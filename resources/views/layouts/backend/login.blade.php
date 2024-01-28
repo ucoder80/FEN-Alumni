@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{__('lang.login')}}|{{ __("lang.title") }}</title>
+  <title>ເຂົ້າສູ່ລະບົບ|{{ __("lang.title") }}</title>
   <link rel="stylesheet" href="{{ asset('backend/plugins/flag-icon-css/css/flag-icon.min.css')}}">
   <link rel="icon" type="image/png" href="{{ asset('logo/logo.jpg') }}" />
   <!-- Google Font: Source Sans Pro -->

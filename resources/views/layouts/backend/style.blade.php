@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{__('lang.title')}}</title>
+    <title>ລະບົບ</title>
     <link rel="icon" type="image/png" href="{{ asset('logo/logo.jpg') }}" />
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -53,8 +53,8 @@
         }
 
         @font-face {
-            font-family: Nuanta-Regular;
-            src: url('{{ asset('fonts/Nuanta-Regular.ttf') }}');
+            font-family: NotoSansLao-Medium;
+            src: url('{{ asset('fonts/NotoSansLao-Medium.ttf') }}');
         }
 
         body {
@@ -65,7 +65,7 @@
     @livewireStyles
 </head>
 
-<body class="hold-transition layout-top-nav" style="font-family: 'Nuanta-Regular'">
+<body class="hold-transition layout-top-nav" style="font-family: 'NotoSansLao-Medium'">
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow main-web-background" role="status"></div>
