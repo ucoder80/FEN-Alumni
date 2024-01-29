@@ -129,8 +129,6 @@
     <!-- SweetAlert2 -->
     <script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.all.js') }}"></script>
     <script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.js') }}"></script>
-    <script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <!-- Trix -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
     <!-- Money format -->
@@ -138,7 +136,7 @@
     <!-- Select2 -->
     <script src="{{ asset('backend/plugins/select2/js/select2.full.min.js')}}"></script>
     <!-- Summernote -->
-    <script src="{{ asset('Backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

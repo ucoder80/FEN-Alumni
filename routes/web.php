@@ -6,6 +6,7 @@ use App\Http\Livewire\Backend\LogoutContent;
 use App\Http\Livewire\Backend\ProfileContent;
 use App\Http\Livewire\Backend\DashboardContent;
 use App\Http\Livewire\Backend\DataStore\UserContent;
+use App\Http\Livewire\Backend\RolesContent;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,5 @@ Route::group(['middleware' => 'auth.backend:admin'], function () {
     Route::get('/dashboard', DashboardContent::class)->name('backend.dashboard');
     Route::get('/admin-profiles', ProfileContent::class)->name('backend.profile');
     Route::get('/users', UserContent::class)->name('backend.user');
+    Route::get('/roles', RolesContent::class)->name('backend.role');
 });

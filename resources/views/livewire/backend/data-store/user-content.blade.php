@@ -97,14 +97,11 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-
                                     </tbody>
                                 </table>
-                                {{-- @if ($this->page_number != 'all')
-                                        <div class="float-right">
-                                            {{ $data->links('livewire.backend.pagination.pagination-component') }}
-                                        </div>
-                                    @endif --}}
+                                <div class="float-right">
+                                    {{ $data->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -169,8 +166,9 @@
                             <div class="form-group">
                                 <label for=""> ເບີໂທ
                                 </label>
-                                <input type="number" class="form-control @error('phone') is-invalid @enderror"
-                                    wire:model="phone" placeholder="ປ້ອນຂໍ້ມູນ" onkeypress="validateNumber(event)">
+                                <input type="number" min="1"
+                                    class="form-control @error('phone') is-invalid @enderror" wire:model="phone"
+                                    placeholder="ປ້ອນຂໍ້ມູນ" onkeypress="validateNumber(event)">
                                 @error('phone')
                                     <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
@@ -187,73 +185,76 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="col-md-4">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for=""><span class="text-danger">*</span>
-                                    {{ __('lang.province') }}</label>
-                                <select class="form-control" wire:model.live="pro_id">
-                                    <option value="">{{ __('lang.province') }}</option>
+                                <label for=""><span class="text-danger"></span>
+                                    ແຂວງ</label>
+                                <select class="form-control" wire:model.live="province_id" id="province_id">
+                                    <option value="">ເລືອກຂໍ້ມູນ</option>
                                     @foreach ($provinces as $item)
                                         <option value="{{ $item->id }}">
-                                            @if (Config::get('app.locale') == 'lo')
-                                                {{ $item->name_la }}
-                                            @elseif(Config::get('app.locale') == 'en')
+                                            {{-- @if (Config::get('app.locale') == 'lo') --}}
+                                            {{ $item->name_la }}
+                                            {{-- @elseif(Config::get('app.locale') == 'en')
                                                 {{ $item->name_en }}
-                                            @endif
+                                            @elseif(Config::get('app.locale') == 'cn')
+                                                {{ $item->name_cn }}
+                                            @endif --}}
                                         </option>
                                     @endforeach
                                 </select>
-                                @error('pro_id')
-                                    <span style="color: red"
-                                        class="error">{{ __('lang.please_fill_information_first') }}</span>
+                                @error('province_id')
+                                    <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group">
-                                <label for=""><span class="text-danger">*</span>
-                                    {{ __('lang.district') }}</label>
-                                <select class="form-control" wire:model.live="dis_id">
-                                    <option value="">{{ __('lang.district') }}</option>
+                            <div wire:ignore.self class="form-group">
+                                <label for=""><span class="text-danger"></span>
+                                    ເມືອງ</label>
+                                <select class="form-control" wire:model.live="district_id" id="district_id">
+                                    <option value="">ເລືອກຂໍ້ມູນ</option>
                                     @foreach ($districts as $item)
                                         <option value="{{ $item->id }}">
-                                            @if (Config::get('app.locale') == 'lo')
-                                                {{ $item->name_la }}
-                                            @elseif(Config::get('app.locale') == 'en')
+                                            {{-- @if (Config::get('app.locale') == 'lo') --}}
+                                            {{ $item->name_la }}
+                                            {{-- @elseif(Config::get('app.locale') == 'en')
                                                 {{ $item->name_en }}
-                                            @endif
+                                            @elseif(Config::get('app.locale') == 'cn')
+                                                {{ $item->name_cn }}
+                                            @endif --}}
                                         </option>
                                     @endforeach
                                 </select>
-                                @error('dis_id')
-                                    <span style="color: red"
-                                        class="error">{{ __('lang.please_fill_information_first') }}</span>
+                                @error('district_id')
+                                    <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group">
-                                <label for=""><span class="text-danger">*</span>
-                                    {{ __('lang.village') }}</label>
-                                <select class="form-control" wire:model.live="vill_id">
-                                    <option value="">{{ __('lang.village') }}</option>
+                            <div wire:ignore.self class="form-group">
+                                <label for=""><span class="text-danger"></span>
+                                    ບ້ານ</label>
+                                <select class="form-control" wire:model.live="village_id" id="village_id">
+                                    <option value="">ເລືອກຂໍ້ມູນ</option>
                                     @foreach ($villages as $item)
                                         <option value="{{ $item->id }}">
-                                            @if (Config::get('app.locale') == 'lo')
-                                                {{ $item->name_la }}
-                                            @elseif(Config::get('app.locale') == 'en')
+                                            {{-- @if (Config::get('app.locale') == 'lo') --}}
+                                            {{ $item->name_la }}
+                                            {{-- @elseif(Config::get('app.locale') == 'en')
                                                 {{ $item->name_en }}
-                                            @endif
+                                            @elseif(Config::get('app.locale') == 'cn')
+                                                {{ $item->name_cn }}
+                                            @endif --}}
                                         </option>
                                     @endforeach
                                 </select>
-                                @error('vill_id')
-                                                                         <span style="color: red" class="error">{{ $message }}</span>
-
+                                @error('village_id')
+                                    <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div> --}}
-                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">ອີເມວ</label>
                                 <input type="email" class="form-control @error('phone') is-invalid @enderror"
@@ -263,7 +264,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for=""></span>
                                     ສະຖານະ</label>
@@ -337,7 +338,8 @@
                     <button type="button" class="btn btn-secondary fas fa-times-circle" data-dismiss="modal">
                         ປິດ</button>
                     @if ($this->ID)
-                        <button wire:click="Update({{ $ID }})" type="button" class="btn btn-warning fas fa-edit">
+                        <button wire:click="Update({{ $ID }})" type="button"
+                            class="btn btn-warning fas fa-edit">
                             ແກ້ໄຂ</button>
                     @else
                         <button wire:click="Store" type="button" class="btn btn-success fas fa-save">
@@ -347,8 +349,8 @@
             </div>
         </div>
     </div>
-    <!-- /.modal-delete-->
-    <div class="modal fade" id="modal-delete">
+    {{-- ======== delete ======== --}}
+    <div class="modal fabe" id="modal-delete">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger">

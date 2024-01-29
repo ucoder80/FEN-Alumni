@@ -300,3 +300,18 @@
 <script type="text/javascript">
   $('.money').simpleMoneyFormat();
 </script>
+{{-- =============================================== sweet alert2 ==================================================== --}}
+<script>
+  window.addEventListener('swal',function(e) {
+      Swal.fire({
+          title:  e.detail.title,
+          icon: e.detail.icon,
+          iconColor: e.detail.iconColor,
+          timer: 5500,
+          toast: true,
+          position: 'top-right',
+          toast:  true,
+          showConfirmButton:  false,
+      });
+  });
+</script>

@@ -13,7 +13,7 @@
                 {{-- ========= ຕັ້ງຄ່າລະບົບ ========== --}}
                 {{-- @foreach ($function_available as $item1)
                     @if ($item1->function->name == 'access_setting') --}}
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown  text-bold">
                             <a id="dropdownSubMenu1" href="javascript:void(0)" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i
                                     class="fas fa-database"></i>
@@ -30,7 +30,7 @@
                                 @endforeach
                                 @foreach ($function_available as $item2)
                                     @if ($item2->function->name == 'access_role') --}}
-                                        <li><a href="" class="dropdown-item"><i
+                                        <li><a href="{{ route('backend.role') }}" class="dropdown-item"><i
                                                     class="fa fa-angle-double-right main-web-color"></i>
                                                 ສິດນຳໃຊ້</a>
                                         </li>
@@ -43,7 +43,7 @@
             {{-- ============== income expend ============== --}}
             {{-- @foreach ($function_available as $item1)
                 @if ($item1->function->name == 'income_expend') --}}
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown  text-bold">
                         <a id="dropdownSubMenu1" href="" aria-haspopup="true"
                             aria-expanded="false" class="nav-link">
                             <i class="fas fa-money-bill-alt"></i> ລາຍຮັບລາຍຈ່າຍ
@@ -52,7 +52,7 @@
                 {{-- @endif
             @endforeach --}}
             {{-- ============== reports ============== --}}
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown  text-bold">
                         <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" class="nav-link dropdown-toggle">
                             <i class="fas fa-chart-line"></i> ລາຍງານ
@@ -116,7 +116,7 @@
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
             <!-- Notifications Dropdown Menu -->
-            {{-- <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown  text-bold">
                 <a class="nav-link" data-toggle="dropdown" href="">
                     <i class="fas fa-language"></i>
                 </a>
@@ -132,8 +132,8 @@
                     </a>
                 </div>
             </li> --}}
-            <li class="nav-item dropdown">
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown  text-bold">
+            <li class="nav-item dropdown  text-bold">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <img src="{{ asset('logo/logo.jpg') }}" style="width: 30px; height: 30px" alt="AdminLTE Logo"
                         class="brand-image img-circle elevation-3" style="opacity: .8">

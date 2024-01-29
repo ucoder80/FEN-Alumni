@@ -40,4 +40,13 @@
             $('#modal-delete').modal('hide');
         })
     </script>
+    <script>
+        // $(document).ready(function() {
+        //     $('#village_id').select2();
+        //     $('#village_id').on('change', function(e) {
+        //         var data = $('#village_id').select2("val");
+        //         @this.set('village_id', data);
+        //     });
+        // });
+    </script>
 @endpush
