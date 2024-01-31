@@ -2,11 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\LoginContent;
+use App\Http\Livewire\Backend\RolesContent;
 use App\Http\Livewire\Backend\LogoutContent;
 use App\Http\Livewire\Backend\ProfileContent;
+use App\Http\Livewire\Backend\VillageContent;
+use App\Http\Livewire\Backend\DistrictContent;
+use App\Http\Livewire\Backend\ProvinceContent;
 use App\Http\Livewire\Backend\DashboardContent;
 use App\Http\Livewire\Backend\DataStore\UserContent;
-use App\Http\Livewire\Backend\RolesContent;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +35,7 @@ Route::group(['middleware' => 'auth.backend:admin'], function () {
     Route::get('/admin-profiles', ProfileContent::class)->name('backend.profile');
     Route::get('/users', UserContent::class)->name('backend.user');
     Route::get('/roles', RolesContent::class)->name('backend.role');
+    Route::get('/villages', VillageContent::class)->name('backend.village');
+    Route::get('/districts', DistrictContent::class)->name('backend.district');
+    Route::get('/provinces', ProvinceContent::class)->name('backend.province');
 });

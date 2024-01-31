@@ -13,105 +13,84 @@
                 {{-- ========= ຕັ້ງຄ່າລະບົບ ========== --}}
                 {{-- @foreach ($function_available as $item1)
                     @if ($item1->function->name == 'access_setting') --}}
-                        <li class="nav-item dropdown  text-bold">
-                            <a id="dropdownSubMenu1" href="javascript:void(0)" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i
-                                    class="fas fa-database"></i>
-                                ຈັດການຂໍ້ມູນ</a>
-                            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                                {{-- @foreach ($function_available as $item2)
+                <li class="nav-item dropdown  text-bold">
+                    <a id="dropdownSubMenu1" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" class="nav-link dropdown-toggle"><i class="fas fa-database"></i>
+                        ຈັດການຂໍ້ມູນ</a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                        <li class="dropdown-submenu dropdown-hover">
+                            <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">
+                                <i class="fa fa-angle-double-right main-web-color"></i>
+                                ຂໍ້ມູນທີ່ຢູ່</a>
+                            <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                                <li>
+                                    <a tabindex="-1" href="{{ route('backend.village') }}" class="dropdown-item"><i
+                                            class="fa fa-angle-double-right main-web-color"></i>
+                                        ບ້ານ</a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="{{ route('backend.district') }}" class="dropdown-item"><i
+                                            class="fa fa-angle-double-right main-web-color"></i>
+                                        ເມືອງ</a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="{{ route('backend.province') }}" class="dropdown-item"><i
+                                            class="fa fa-angle-double-right main-web-color"></i>
+                                        ແຂວງ</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        {{-- @foreach ($function_available as $item2)
                                     @if ($item2->function->name == 'access_branch') --}}
-                                        <li><a href="{{ route('backend.user') }}" class="dropdown-item"><i
-                                                    class="fa fa-angle-double-right main-web-color"></i>
-                                                ຜູ້ໃຊ້</a>
-                                        </li>
-                                        <li class="dropdown-divider"></li>
-                                    {{-- @endif
+                        <li><a href="{{ route('backend.user') }}" class="dropdown-item"><i
+                                    class="fa fa-angle-double-right main-web-color"></i>
+                                ຜູ້ໃຊ້</a>
+                        </li>
+                        {{-- @endif
                                 @endforeach
                                 @foreach ($function_available as $item2)
                                     @if ($item2->function->name == 'access_role') --}}
-                                        <li><a href="{{ route('backend.role') }}" class="dropdown-item"><i
-                                                    class="fa fa-angle-double-right main-web-color"></i>
-                                                ສິດນຳໃຊ້</a>
-                                        </li>
-                                    {{-- @endif
-                                @endforeach --}}
-                            </ul>
+                        <li><a href="{{ route('backend.role') }}" class="dropdown-item"><i
+                                    class="fa fa-angle-double-right main-web-color"></i>
+                                ສິດນຳໃຊ້</a>
                         </li>
-                    {{-- @endif
+                        {{-- @endif
+                                @endforeach --}}
+                    </ul>
+                </li>
+                {{-- @endif
                 @endforeach
             {{-- ============== income expend ============== --}}
-            {{-- @foreach ($function_available as $item1)
+                {{-- @foreach ($function_available as $item1)
                 @if ($item1->function->name == 'income_expend') --}}
-                    <li class="nav-item dropdown  text-bold">
-                        <a id="dropdownSubMenu1" href="" aria-haspopup="true"
-                            aria-expanded="false" class="nav-link">
-                            <i class="fas fa-money-bill-alt"></i> ລາຍຮັບລາຍຈ່າຍ
-                        </a>
-                    </li>
+                <li class="nav-item dropdown  text-bold">
+                    <a id="dropdownSubMenu1" href="" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                        <i class="fas fa-money-bill-alt"></i> ລາຍຮັບລາຍຈ່າຍ
+                    </a>
+                </li>
                 {{-- @endif
             @endforeach --}}
-            {{-- ============== reports ============== --}}
-                    <li class="nav-item dropdown  text-bold">
-                        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" class="nav-link dropdown-toggle">
-                            <i class="fas fa-chart-line"></i> ລາຍງານ
-                        </a>
-                        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                            {{-- @foreach ($function_available as $item1)
+                {{-- ============== reports ============== --}}
+                <li class="nav-item dropdown  text-bold">
+                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" class="nav-link dropdown-toggle">
+                        <i class="fas fa-chart-line"></i> ລາຍງານ
+                    </a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                        {{-- @foreach ($function_available as $item1)
                             @if ($item1->function->name == 'report_all') --}}
-                                <li>
-                                    <a href="" class="dropdown-item"><i
-                                            class="fa fa-angle-double-right main-web-color"></i>
-                                        {{ __('lang.report_all') }}
-                                    </a>
-                                </li>
-                            {{-- @endif
-                        @endforeach
-                            @foreach ($function_available as $item1)
-                                @if ($item1->function->name == 'report_income_transport') --}}
-                                    <li>
-                                        <a href="" class="dropdown-item"><i
-                                                class="fa fa-angle-double-right main-web-color"></i>
-                                            {{ __('lang.clear_link_transport') }}
-                                        </a>
-                                    </li>
-                                {{-- @endif
-                            @endforeach
-                            @foreach ($function_available as $item1)
-                                @if ($item1->function->name == 'report_expend_oil') --}}
-                                    <li>
-                                        <a href=""
-                                            class="dropdown-item"><i
-                                                class="fa fa-angle-double-right main-web-color"></i>
-                                            {{ __('lang.clear_link_oil') }}
-                                        </a>
-                                    </li>
-                                {{-- @endif
-                            @endforeach
-                            @foreach ($function_available as $item1)
-                                @if ($item1->function->name == 'report_sale_soil') --}}
-                                    <li>
-                                        <a href="" class="dropdown-item"><i
-                                                class="fa fa-angle-double-right main-web-color"></i>
-                                            {{ __('lang.income_soil') }}
-                                        </a>
-                                    </li>
-                                {{-- @endif
-                            @endforeach
-                            @foreach ($function_available as $item1)
-                                @if ($item1->function->name == 'report_income_expend') --}}
-                                    <li>
-                                        <a href=""
-                                            class="dropdown-item"><i
-                                                class="fa fa-angle-double-right main-web-color"></i>
-                                            {{ __('lang.income_expend') }}
-                                        </a>
-                                    </li>
-                                {{-- @endif
-                            @endforeach --}}
-                        </ul>
-                    </li>
+                        <li>
+                            <a href="" class="dropdown-item"><i
+                                    class="fa fa-angle-double-right main-web-color"></i>
+                                ລາຍຮັບ-ລາຍຈ່າຍ
+                            </a>
+                        </li>
+                        {{-- @endif
+                        @endforeach --}}
+                    </ul>
+                </li>
         </div>
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
@@ -176,8 +155,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">ຍົກເລີກ</button>
-                <a type="button" href="{{ route('backend.logout') }}"
-                    class="btn btn-primary">ຕົກລົງ</a>
+                <a type="button" href="{{ route('backend.logout') }}" class="btn btn-primary">ຕົກລົງ</a>
             </div>
         </div>
         <!-- /.modal-content -->

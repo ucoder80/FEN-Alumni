@@ -118,7 +118,6 @@ class UserContent extends Component
             $this->dispatchBrowserEvent('swal', [
                 'title' => 'ສຳເລັດເເລ້ວ!',
                 'icon' => 'success',
-                // 'iconColor'=>'greed',
             ]);
             DB::commit();
         } catch (\Exception $ex) {
