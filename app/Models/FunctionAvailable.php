@@ -16,6 +16,10 @@ class FunctionAvailable extends Model
         'created_at',
         'updated_at',
     ];
+    public function roles()
+    {
+        return $this->belongsTo('App\Models\Role', 'role_id', 'id');
+    }
     public function function()
     {
         return $this->belongsTo('App\Models\Functions', 'function_id', 'id');

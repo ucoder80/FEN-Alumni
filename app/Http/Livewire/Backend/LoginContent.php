@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Backend;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use Livewire\Component;
+
 class LoginContent extends Component
 {
     public $phone, $password, $remember;
@@ -21,20 +21,19 @@ class LoginContent extends Component
         $this->validate([
             'phone' => 'required',
             'password' => 'required',
-        ],[
+        ], [
             'phone.required' => 'ກະລຸນາປ້ອນເບີໂທກ່ອນ!',
             'password.required' => 'ກະລຸນາປ້ອນລະຫັດຜ່ານກ່ອນ!',
         ]);
         if (Auth::guard('admin')->attempt([
             'phone' => $this->phone,
             'password' => $this->password],
-            $this->remember)) 
-        {
+            $this->remember)) {
             session()->flash('success', 'ເຂົ້າສູ່ລະບົບສຳເລັດເເລ້ວ');
             return redirect(route('backend.dashboard'));
-        }else{
-            session()->flash('warning', 'ເບີໂທ ຫລື ລະຫັດຜ່ານ ບໍ່ຖືກຕ້ອງ!ກະລຸນາລອງໃໝ່');
-            return redirect(route('backend.login'));
+        } else {
+            $this->emit('alert', ['type' => 'warning', 'message' => 'ເບີໂທ ຫລື ລະຫັດຜ່ານ ບໍ່ຖືກຕ້ອງ!ກະລຸນາລອງໃໝ່']);
+            // return redirect(route('backend.login'));
         }
     }
 }

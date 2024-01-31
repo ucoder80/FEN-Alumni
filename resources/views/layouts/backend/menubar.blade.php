@@ -11,8 +11,8 @@
 
             <ul class="navbar-nav">
                 {{-- ========= ຕັ້ງຄ່າລະບົບ ========== --}}
-                {{-- @foreach ($function_available as $item1)
-                    @if ($item1->function->name == 'access_setting') --}}
+                @foreach ($function_available as $item1)
+                    @if ($item1->function->name == 'action_data')
                 <li class="nav-item dropdown  text-bold">
                     <a id="dropdownSubMenu1" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" class="nav-link dropdown-toggle"><i class="fas fa-database"></i>
@@ -60,7 +60,7 @@
                                 @endforeach --}}
                     </ul>
                 </li>
-                {{-- @endif
+                 @endif
                 @endforeach
             {{-- ============== income expend ============== --}}
                 {{-- @foreach ($function_available as $item1)

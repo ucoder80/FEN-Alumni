@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'admin', // ປ່ຽນເປັນ web ຖ້າມີຟອນເອັນເວບ
         'passwords' => 'users',
     ],
     
@@ -38,10 +38,10 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'customer',
-        ],
+        // 'web' => [
+        //     'driver' => 'session',
+        //     'provider' => 'customer',
+        // ],
         'admin' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -66,11 +66,11 @@ return [
     */
 
     'providers' => [
-        'customer' => [
-            'driver' => 'eloquent',
-            // 'model' => App\Models\Customer::class,
-            'table' => 'customer',
-        ],
+        // 'customer' => [
+        //     'driver' => 'eloquent',
+        //     // 'model' => App\Models\Customer::class,
+        //     'table' => 'customer',
+        // ],
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
@@ -94,12 +94,12 @@ return [
     */
 
     'passwords' => [
-        'customer' => [
-            'provider' => 'customer',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+        // 'customer' => [
+        //     'provider' => 'customer',
+        //     'table' => 'password_resets',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        // ],
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',

@@ -29,7 +29,13 @@ use App\Http\Livewire\Backend\DataStore\UserContent;
 // ========== Backend ====================================//
 Route::get('/login-admin', LoginContent::class)->name('backend.login');
 
-Route::group(['middleware' => 'auth.backend:admin'], function () {
+// ========== Front-end ========== //
+// Route::middleware('auth.frontend')->group(function () {
+//     Route::get('/logouts', [LogoutContent::class, 'logout'])->name('frontend.logout');
+//     Route::get('/profiles/{id}', ProfileContent::class)->name('frontend.profile');
+// });
+
+Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/logout', [LogoutContent::class, 'logout'])->name('backend.logout');
     Route::get('/dashboard', DashboardContent::class)->name('backend.dashboard');
     Route::get('/admin-profiles', ProfileContent::class)->name('backend.profile');

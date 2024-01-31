@@ -18,7 +18,7 @@ class AdminLogin
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->role_id != 0)
+            if ($user->roles_id != 0)
                 return $next($request);
             else
                 return redirect()->route('backend.login');
