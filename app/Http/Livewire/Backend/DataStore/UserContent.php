@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Backend\DataStore;
 
-use App\Models\User;
-use App\Models\Village;
-use Livewire\Component;
 use App\Models\District;
 use App\Models\Province;
-use Livewire\WithPagination;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Village;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class UserContent extends Component
 {
@@ -20,7 +20,7 @@ class UserContent extends Component
     $name_lastname,
     $phone,
     $email,
-    $password, $role_id,
+    $password, $roles_id,
     $confirm_password,
     $branch_id,
     $gender,
@@ -36,15 +36,22 @@ class UserContent extends Component
         $data = User::where(function ($q) {
             $q->where('name_lastname', 'like', '%' . $this->search . '%')
                 ->orwhere('phone', 'like', '%' . $this->search . '%');
-        })->orderBy('id', 'desc')->paginate(5);
+        })->orderBy('id', 'desc');
+        if ($this->roles_id) {
+            $data = $data->where('roles_id', $this->roles_id);
+        }
+        if (!empty($data)) {
+            $data = $data->paginate(5);
+        }
+        $provinces = Province::all();
         if ($this->province_id) {
             $this->districts = District::where('province_id', $this->province_id)->get();
         }
         if ($this->district_id) {
             $this->villages = Village::where('district_id', $this->district_id)->get();
         }
-        $provinces = Province::get();
-        return view('livewire.backend.data-store.user-content', compact('data','provinces'))->layout('layouts.backend.style');
+        $roles = Role::all();
+        return view('livewire.backend.data-store.user-content', compact('data', 'provinces', 'roles'))->layout('layouts.backend.style');
     }
     public function resetField()
     {
@@ -54,7 +61,7 @@ class UserContent extends Component
         $this->email = '';
         $this->password = '';
         $this->confirm_password = '';
-        $this->role_id = '';
+        $this->roles_id = '';
         $this->province_id = '';
         $this->village_id = '';
         $this->district_id = '';
@@ -76,6 +83,7 @@ class UserContent extends Component
             'phone' => 'required|min:8|unique:users',
             'password' => 'required|min:6',
             'confirm_password' => 'required|same:password',
+            'roles_id' => 'required',
         ], [
             'name_lastname.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
             'email.unique' => 'ຂໍ້ມູນນີ້ມີໃນລະບົບເເລ້ວ!',
@@ -87,30 +95,32 @@ class UserContent extends Component
             'password.min' => 'ລະຫັດ6ໂຕຂື້ນໄປ!',
             'confirm_password.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
             'confirm_password.same' => 'ລະຫັດຜ່ານບໍ່ຕົງກັນ!',
+            'roles_id.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
         ]);
         try {
             DB::beginTransaction();
-        $data = new User();
-        $data->name_lastname = $this->name_lastname;
-        $data->phone = $this->phone;
-        $data->email = $this->email;
-        $data->gender = $this->gender;
-        $data->status = $this->status;
-        $data->birtday_date = $this->birtday_date;
-        $data->email = $this->email;
-        $data->password = bcrypt($this->password);
-        $data->village_id = $this->village_id;
-        $data->district_id = $this->district_id;
-        $data->province_id = $this->province_id;
-        $data->save();
-        $this->resetField();
-        $this->dispatchBrowserEvent('hide-modal-add-edit');
-        $this->dispatchBrowserEvent('swal', [
-            'title' => 'ສຳເລັດເເລ້ວ!',
-            'icon' => 'success',
-            // 'iconColor'=>'greed',
-        ]);
-        DB::commit();
+            $data = new User();
+            $data->name_lastname = $this->name_lastname;
+            $data->phone = $this->phone;
+            $data->email = $this->email;
+            $data->gender = $this->gender;
+            $data->status = $this->status;
+            $data->birtday_date = $this->birtday_date;
+            $data->email = $this->email;
+            $data->password = bcrypt($this->password);
+            $data->roles_id = $this->roles_id;
+            $data->village_id = $this->village_id;
+            $data->district_id = $this->district_id;
+            $data->province_id = $this->province_id;
+            $data->save();
+            $this->resetField();
+            $this->dispatchBrowserEvent('hide-modal-add-edit');
+            $this->dispatchBrowserEvent('swal', [
+                'title' => 'ສຳເລັດເເລ້ວ!',
+                'icon' => 'success',
+                // 'iconColor'=>'greed',
+            ]);
+            DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
             $this->dispatchBrowserEvent('swal', [
@@ -131,6 +141,7 @@ class UserContent extends Component
         $this->gender = $data->gender;
         $this->status = $data->status;
         $this->birtday_date = $data->birtday_date;
+        $this->roles_id = $data->roles_id;
         $this->village_id = $data->village_id;
         $this->province_id = $data->province_id;
         $this->district_id = $data->district_id;
@@ -153,6 +164,7 @@ class UserContent extends Component
         $data->gender = $this->gender;
         $data->status = $this->status;
         $data->birtday_date = $this->birtday_date;
+        $data->roles_id = $this->roles_id;
         $data->village_id = $this->village_id;
         $data->province_id = $this->province_id;
         $data->district_id = $this->district_id;

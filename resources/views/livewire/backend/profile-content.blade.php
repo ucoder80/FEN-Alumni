@@ -204,7 +204,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputName2"
-                                                class="col-sm-2 col-form-label">ຍືນຍັນລະຫັດ</label>
+                                                class="col-sm-2 col-form-label">ຍືນຍັນລະຫັດໃຫມ່</label>
                                             <div class="col-sm-10">
                                                 <input type="password" wire:model="confirmPassword"
                                                     class="form-control @error('confirmPassword') is-invalid @enderror"

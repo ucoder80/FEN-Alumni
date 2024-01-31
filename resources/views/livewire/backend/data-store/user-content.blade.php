@@ -31,7 +31,22 @@
                                     <a wire:click="create" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
                                             class="fa fa-plus-circle"></i> ເພີ່ມໃຫມ່</a>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3">
+                                    <div wire:ignore class="form-group">
+                                            <select wire:model="roles_id" id="roles_id"
+                                                class="form-control @error('roles_id') is-invalid @enderror">
+                                                <option value="">
+                                                    ເລືອກສິດນຳໃຊ້
+                                                </option>
+                                                @foreach ($roles as $item)
+                                                    <option value="{{ $item->id }}">
+                                                            {{ $item->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     <input wire:model.live="search" type="text" class="form-control"
@@ -50,6 +65,7 @@
                                             <th>ອີເມວ</th>
                                             <th>ເພດ</th>
                                             <th>ສະຖານະ</th>
+                                            <th>ສິດນຳໃຊ້</th>
                                             <th>ວດປ ເກີດ</th>
                                             <th>ຈັດການ</th>
                                         </tr>
@@ -80,7 +96,24 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    {{ $item->email }}
+                                                    @if ($item->status == 1)
+                                                        <span class="text-secondary">ໂສດ</span>
+                                                    @elseif($item->status == 2)
+                                                        <span class="text-secondary">ມີແຟນ</span>
+                                                    @elseif($item->status == 3)
+                                                        <span class="text-secondary">ແຕ່ງງານ</span>
+                                                    @elseif($item->status == 4)
+                                                        <span class="text-secondary">ຢ່າຮ້າງ</span>
+                                                    @elseif($item->status == 5)
+                                                        <span class="text-secondary">ແຍກກັນຢູ່</span>
+                                                    @elseif($item->status == 6)
+                                                        <span class="text-secondary">ຮັກເຂົາຂ້າງດຽວ</span>
+                                                    @endif
+                                                </td>
+                                                <td class="text-bold">
+                                                    @if (!empty($item->roles))
+                                                        {{ $item->roles->name }}
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     {{ date('d/m/Y', strtotime($item->birtday_date)) }}
@@ -254,7 +287,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">ອີເມວ</label>
                                 <input type="email" class="form-control @error('phone') is-invalid @enderror"
@@ -264,7 +297,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for=""></span>
                                     ສະຖານະ</label>
@@ -283,33 +316,24 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="col-md-4">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for=""><span class="text-danger">*</span>
-                                    {{ __('lang.roles') }}</label>
-                                <select type="text" class="form-control" wire:model.live="role_id"
-                                    id="role_id">
-                                    <option value="">{{ __('lang.select') }}</option>
+                                <label for="">ສິດນຳໃຊ້</label>
+                                <select type="text" class="form-control" wire:model.live="roles_id"
+                                    id="roles_id">
+                                    <option value="">ເລືອກສິດນຳໃຊ້</option>
                                     @foreach ($roles as $item)
-                                        @if (auth()->user()->role_id == 1)
-                                            <option value="{{ $item->id }}">
-                                                {{ $item->name }}
-                                            </option>
-                                        @elseif(auth()->user()->role_id == 2 || auth()->user()->role_id == 3)
-                                            @if ($item->id != 1)
-                                                <option value="{{ $item->id }}">
-                                                    {{ $item->name }}
-                                                </option>
-                                            @endif
-                                        @endif
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->name }}
+                                        </option>
                                     @endforeach
                                 </select>
-                                @error('role_id')
+                                @error('roles_id')
                                     <span style="color: red"
                                         class="error">{{ __('lang.please_fill_information_first') }}</span>
                                 @enderror
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for=""><span class="text-danger">*</span>
@@ -360,11 +384,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <h3 class="text-center">ທ່ານຕ້ອງການລຶບຂໍ້ມູນນີ້ອອກບໍ່?</h3>
                 </div>
                 <div class="modal-footer justify-content-between">
-
                     <button type="button" class="btn btn-primary" data-dismiss="modal">ຍົກເລີກ</button>
                     <button wire:click="destroy({{ $ID }})" type="button" class="btn btn-success"><i
                             class="fa fa-trash"></i> ລຶບອອກ</button>

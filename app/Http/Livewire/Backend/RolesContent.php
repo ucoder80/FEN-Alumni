@@ -2,27 +2,25 @@
 
 namespace App\Http\Livewire\Backend;
 
-use App\Models\Role;
-use App\Models\User;
-use Livewire\Component;
-use App\Models\Function;
-use App\Models\Functions;
-use Livewire\WithPagination;
 use App\Models\FunctionAvailable;
+use App\Models\Functions;
+use App\Models\Role;
 use Illuminate\Support\Facades\DB;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class RolesContent extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $name,
-        $ID,
-        $search, $des,
-        $selected = [], $page_number;
-        public function mount()
-        {
-            $this->page_number  = 5;
-        }
+    $ID,
+    $search, $des,
+    $selected = [], $page_number;
+    public function mount()
+    {
+        $this->page_number = 5;
+    }
     public function render()
     {
         $data = Role::where(function ($q) {
@@ -31,15 +29,15 @@ class RolesContent extends Component
         })->orderBy('id', 'desc');
         if (!empty($data)) {
             if ($this->page_number == 'all') {
-                $data =  $data->get();
+                $data = $data->get();
             } else {
-                $data =  $data->paginate(5);
+                $data = $data->paginate(5);
             }
         } else {
             $data = [];
         }
         $functions = Functions::whereNull('parent_id')->get();
-        return view('livewire.backend.roles-content',compact('data','functions'))->layout('layouts.backend.style');
+        return view('livewire.backend.roles-content', compact('data', 'functions'))->layout('layouts.backend.style');
     }
     public function resetField()
     {
@@ -56,9 +54,10 @@ class RolesContent extends Component
     public function Store()
     {
         $this->validate([
-            'name' => 'required',
+            'name' => 'required|unique:roles',
         ], [
-            'name.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ',
+            'name.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
+            'name.unique' => 'ຂໍ້ມູນນີ້ມີໃນລະບົບເເລ້ວ!',
         ]);
         try {
             DB::beginTransaction();
@@ -77,11 +76,11 @@ class RolesContent extends Component
             }
             DB::commit();
             $this->resetField();
-            $this->dispatchBrowserEvent('hide-modal-add-edit');
             $this->dispatchBrowserEvent('swal', [
                 'title' => 'ສຳເລັດເເລ້ວ!',
                 'icon' => 'success',
             ]);
+            return redirect(route('backend.role'));
         } catch (\Exception $ex) {
             DB::rollBack();
             $this->dispatchBrowserEvent('something_went_wrong');
@@ -137,11 +136,11 @@ class RolesContent extends Component
             }
             DB::commit();
             $this->resetField();
-            $this->dispatchBrowserEvent('hide-modal-add-edit');
             $this->dispatchBrowserEvent('swal', [
                 'title' => 'ສຳເລັດເເລ້ວ!',
                 'icon' => 'success',
             ]);
+            return redirect(route('backend.role'));
         } catch (\Error $ex) {
             DB::rollBack();
             $this->dispatchBrowserEvent('something_went_wrong');
@@ -157,28 +156,28 @@ class RolesContent extends Component
     {
         $check_parent = Functions::where('parent_id', $ids)->get();
         foreach ($check_parent as $parent_item) {
-            $function_child = Functions::where('parent_id', $parent_item->id)->pluck('id')->map(fn ($id) => (string)$id)->toArray();
+            $function_child = Functions::where('parent_id', $parent_item->id)->pluck('id')->map(fn($id) => (string) $id)->toArray();
             $this->selected = array_merge(array_diff($this->selected, $function_child));
         }
-        $function = Functions::where('parent_id', $ids)->pluck('id')->map(fn ($id) => (string)$id)->toArray();
+        $function = Functions::where('parent_id', $ids)->pluck('id')->map(fn($id) => (string) $id)->toArray();
         $this->selected = array_merge(array_diff($this->selected, $function));
     }
     public function delete_child($ids)
     {
-        $function = Functions::where('parent_id', $ids)->pluck('id')->map(fn ($id) => (string)$id)->toArray();
+        $function = Functions::where('parent_id', $ids)->pluck('id')->map(fn($id) => (string) $id)->toArray();
         $this->selected = array_merge(array_diff($this->selected, $function));
     }
 
     public function destroy($ids)
     {
-            $data = Role::find($ids);
-            $data->delete();
-            $this->resetField();
-            $this->dispatchBrowserEvent('hide-modal-delete');
-            $this->dispatchBrowserEvent('swal', [
-                'title' => 'ສຳເລັດເເລ້ວ!',
-                'icon' => 'success',
-            ]);
+        $data = Role::find($ids);
+        $data->delete();
+        $this->resetField();
+        $this->dispatchBrowserEvent('hide-modal-delete');
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'ສຳເລັດເເລ້ວ!',
+            'icon' => 'success',
+        ]);
     }
     // public function destroy()
     // {

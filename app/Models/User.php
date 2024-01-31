@@ -17,17 +17,39 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
     protected $fillable = [
-        'name_lastname',
-        'phone',
-        'email',
-        'password',
-        'role_id',
-        'branch_id',
+        'roles_id',
         'village_id',
         'district_id',
         'province_id',
+        'name_lastname',
+        'phone',
+        'email',
+        'gender',
+        'birtday_date',
+        'status',
+        'password',
+        'remember_token',
+        'created_at',
+        'updated_at',
     ];
+    public function roles()
+    {
+        return $this->belongsTo('App\Models\Role', 'roles_id', 'id');
+    }
+    public function village()
+    {
+        return $this->belongsTo('App\Models\Village', 'village_id', 'id');
+    }
+    public function district()
+    {
+        return $this->belongsTo('App\Models\District', 'district_id', 'id');
+    }
+    public function province()
+    {
+        return $this->belongsTo('App\Models\Province', 'province_id', 'id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
