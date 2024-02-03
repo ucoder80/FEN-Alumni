@@ -56,7 +56,6 @@ class ProfileContent extends Component
         $data->email = $this->email;
         $data->gender = $this->gender;
         $data->status = $this->status;
-        $data->email = $this->email;
         // if ($this->image) {
         //     $this->validate([
         //         'image' => 'required|mimes:png,jpg,jpeg',
