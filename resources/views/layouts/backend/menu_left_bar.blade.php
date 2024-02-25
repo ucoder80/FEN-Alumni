@@ -111,6 +111,32 @@
                     </a>
                 </li>
                 <li class="dropdown-divider"></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-globe"></i>
+                        <p>
+                            ຂໍ້ມູນເວບໄຊ
+                            <i class="fas fa-angle-left right"></i>
+                            {{-- <span class="badge badge-info right">6</span> --}}
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.slide') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ສະໄລຮູບພາບ</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.about') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ກ່ຽວກັບພວກເຮົາ</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 {{-- ===================== ລາຍງານ ======================= --}}
                 {{-- <li class="nav-item {{ (
                   strpos(Route::currentRouteName(), 'backend.report_buy') == 'backend.report_buy'

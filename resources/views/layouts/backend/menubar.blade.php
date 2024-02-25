@@ -11,8 +11,8 @@
 
             <ul class="navbar-nav">
                 {{-- ========= ຕັ້ງຄ່າລະບົບ ========== --}}
-                @foreach ($function_available as $item1)
-                    @if ($item1->function->name == 'action_data')
+                {{-- @foreach ($function_available as $item1)
+                    @if ($item1->function->name == 'action_data') --}}
                 <li class="nav-item dropdown  text-bold">
                     <a id="dropdownSubMenu1" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" class="nav-link dropdown-toggle"><i class="fas fa-database"></i>
@@ -60,9 +60,9 @@
                                 @endforeach --}}
                     </ul>
                 </li>
-                 @endif
-                @endforeach
-            {{-- ============== income expend ============== --}}
+                {{-- @endif
+                @endforeach --}}
+                {{-- ============== income expend ============== --}}
                 {{-- @foreach ($function_available as $item1)
                 @if ($item1->function->name == 'income_expend') --}}
                 <li class="nav-item dropdown  text-bold">
@@ -91,6 +91,30 @@
                         @endforeach --}}
                     </ul>
                 </li>
+                {{-- ============== reports ============== --}}
+                <li class="nav-item dropdown  text-bold">
+                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" class="nav-link dropdown-toggle">
+                        <i class="fas fa-globe"></i> ຂໍ້ມູນເວບໄຊ
+                    </a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                        {{-- @foreach ($function_available as $item1)
+                                            @if ($item1->function->name == 'report_all') --}}
+                        <li>
+                            <a href="{{ route('backend.slide') }}" class="dropdown-item"><i
+                                    class="fa fa-angle-double-right main-web-color"></i>
+                                ສະໄລຮູບພາບ
+                            </a>
+                        <li class="dropdown-divider"></li>
+                        <a href="{{ route('backend.about') }}" class="dropdown-item"><i
+                                class="fa fa-angle-double-right main-web-color"></i>
+                            ກ່ຽວກັບ
+                        </a>
+                </li>
+                {{-- @endif
+                                        @endforeach --}}
+            </ul>
+            </li>
         </div>
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">

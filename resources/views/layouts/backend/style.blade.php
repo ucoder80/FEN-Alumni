@@ -65,10 +65,10 @@
     @livewireStyles
 </head>
 {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງຊ້າຍ --}}
-{{-- <body class="hold-transition sidebar-mini layout-fixed" style="font-family: 'Noto Sans Lao Medium'"> --}}
+<body class="hold-transition sidebar-mini layout-fixed" style="font-family: 'Noto Sans Lao Medium'">
 
 {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງເທິງ --}}
-<body class="hold-transition layout-top-nav" style="font-family: 'NotoSansLao-Medium'">
+{{-- <body class="hold-transition layout-top-nav" style="font-family: 'NotoSansLao-Medium'"> --}}
 
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -77,11 +77,11 @@
     <!-- Spinner End -->
     <div class="wrapper">
 {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງຊ້າຍ --}}
-        {{-- @include('layouts.backend.menutopbar')  
-        @include('layouts.backend.menu_left_bar') --}}
+        @include('layouts.backend.menutopbar')  
+        @include('layouts.backend.menu_left_bar')
 
 {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງເທິງ --}}
-        @include('layouts.backend.menubar')
+        {{-- @include('layouts.backend.menubar') --}}
 
         <div class="content-wrapper">
             {{ $slot }}

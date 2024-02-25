@@ -319,7 +319,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">ສິດນຳໃຊ້</label>
-                                <select type="text" class="form-control" wire:model.live="roles_id"
+                                <select type="text" class="form-control @error('roles_id') is-invalid @enderror" wire:model.live="roles_id"
                                     id="roles_id">
                                     <option value="">ເລືອກສິດນຳໃຊ້</option>
                                     @foreach ($roles as $item)
@@ -329,8 +329,7 @@
                                     @endforeach
                                 </select>
                                 @error('roles_id')
-                                    <span style="color: red"
-                                        class="error">{{ __('lang.please_fill_information_first') }}</span>
+                                <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>

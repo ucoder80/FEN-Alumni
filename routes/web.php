@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Backend\AboutContent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\LoginContent;
 use App\Http\Livewire\Backend\RolesContent;
@@ -10,6 +11,7 @@ use App\Http\Livewire\Backend\DistrictContent;
 use App\Http\Livewire\Backend\ProvinceContent;
 use App\Http\Livewire\Backend\DashboardContent;
 use App\Http\Livewire\Backend\DataStore\UserContent;
+use App\Http\Livewire\Backend\SlideContent;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +46,6 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/villages', VillageContent::class)->name('backend.village');
     Route::get('/districts', DistrictContent::class)->name('backend.district');
     Route::get('/provinces', ProvinceContent::class)->name('backend.province');
+    Route::get('/abouts', AboutContent::class)->name('backend.about');
+    Route::get('/slides', SlideContent::class)->name('backend.slide');
 });
