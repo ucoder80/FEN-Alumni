@@ -1,17 +1,21 @@
 <?php
 
 use App\Http\Livewire\Backend\AboutContent;
-use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Backend\LoginContent;
-use App\Http\Livewire\Backend\RolesContent;
-use App\Http\Livewire\Backend\LogoutContent;
-use App\Http\Livewire\Backend\ProfileContent;
-use App\Http\Livewire\Backend\VillageContent;
-use App\Http\Livewire\Backend\DistrictContent;
-use App\Http\Livewire\Backend\ProvinceContent;
 use App\Http\Livewire\Backend\DashboardContent;
+use App\Http\Livewire\Backend\DataStore\ProductContent;
+use App\Http\Livewire\Backend\DataStore\ProductTypeContent;
 use App\Http\Livewire\Backend\DataStore\UserContent;
+use App\Http\Livewire\Backend\DistrictContent;
+use App\Http\Livewire\Backend\LoginContent;
+use App\Http\Livewire\Backend\LogoutContent;
+use App\Http\Livewire\Backend\Orders\OrdersContent;
+use App\Http\Livewire\Backend\ProfileContent;
+use App\Http\Livewire\Backend\ProvinceContent;
+use App\Http\Livewire\Backend\RolesContent;
+use App\Http\Livewire\Backend\Sales\SalesContent;
 use App\Http\Livewire\Backend\SlideContent;
+use App\Http\Livewire\Backend\VillageContent;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +52,11 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/provinces', ProvinceContent::class)->name('backend.province');
     Route::get('/abouts', AboutContent::class)->name('backend.about');
     Route::get('/slides', SlideContent::class)->name('backend.slide');
+
+    Route::get('/product_types', ProductTypeContent::class)->name('backend.product_type');
+    Route::get('/products', ProductContent::class)->name('backend.product');
+
+    Route::get('/Orders', OrdersContent::class)->name('backend.order');
+    Route::get('/Sales', SalesContent::class)->name('backend.sale');
+
 });

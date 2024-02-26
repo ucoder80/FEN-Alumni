@@ -91,6 +91,22 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.product_type') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ປະເພດສິນຄ້າ</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.product') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ສິນຄ້າ</p>
+                            </a>
+                        </li>
+                    </ul>
                     {{-- <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="" class="nav-link {{ Request::is('customers') ? 'active' : '' }}">
@@ -103,12 +119,74 @@
                 <li class="dropdown-divider"></li>
                 {{-- ===================== ໂຄງການໃຫມ່ ======================= --}}
                 <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-solar-panel"></i>
+                    <a href="{{ route('backend.order') }}" class="nav-link">
+                        <i class="nav-icon fas fa-cart-plus"></i>
                         <p>
-                            ຊື້ທີ່ດິນ
+                            ສັ່ງຊື້-ນຳເຂົ້າສາງ
                         </p>
                     </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-store-alt"></i>
+                        <p>
+                            ການຂາຍ
+                            <i class="fas fa-angle-left right"></i>
+                            {{-- <span class="badge badge-info right">6</span> --}}
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.sale') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ຂາຍຫນ້າຮ້ານ</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.about') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ລູກຄ້າສັ່ງຊື້ຜ່ານເວບໄຊ</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-line"></i>
+                        <p>
+                            ລາຍງານ
+                            <i class="fas fa-angle-left right"></i>
+                            {{-- <span class="badge badge-info right">6</span> --}}
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.slide') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ລາຍງານຂໍ້ມູນສິນຄ້າ</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.about') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ລາຍງານການຊື້ນຳຜູ້ສະຫນອງ</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.about') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ລາຍງານການຂາຍໃຫ້ລູກຄ້າ</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="nav-item">
