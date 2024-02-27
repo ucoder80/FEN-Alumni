@@ -49,4 +49,15 @@
         //     });
         // });
     </script>
+    <script>
+        $('#product_note').summernote({
+            placeholder: 'ລາຍລະອຽດ',
+            height: 150,
+            callbacks: {
+                onChange: function(contents, $editable) {
+                    @this.set('product_note', contents);
+                }
+            }
+        });
+    </script>
 @endpush

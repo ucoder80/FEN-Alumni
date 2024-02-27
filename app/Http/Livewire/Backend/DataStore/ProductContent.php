@@ -12,7 +12,7 @@ use Livewire\WithPagination;
 
 class ProductContent extends Component
 {
-    public $search, $code, $image, $newimage, $name, $status,
+    public $search, $code, $image, $newimage, $name, $status,$product_note,
     $ID, $product_type_id, $stock, $buy_price, $sell_price, $select_color, $note;
     use WithPagination;
     use WithFileUploads;
@@ -22,12 +22,13 @@ class ProductContent extends Component
         $data = Product::where(function ($q) {
             $q->where('name', 'like', '%' . $this->search . '%')
                 ->orwhere('code', 'like', '%' . $this->search . '%');
-        })->get();
+        })->paginate(5);
         $product_type = ProductType::orderBy('id', 'desc')->get();
         return view('livewire.backend.data-store.product-content', compact('product_type', 'data'))->layout('layouts.backend.style');
     }
     public function resetField()
     {
+        $this->ID = '';
         $this->code = '';
         $this->product_type_id = '';
         $this->image = '';
@@ -42,7 +43,7 @@ class ProductContent extends Component
     public function create()
     {
         $this->resetField();
-        $this->dispatch('show-modal-add-edit');
+        $this->dispatchBrowserEvent('show-modal-add-edit');
     }
     public function Store()
     {
@@ -86,7 +87,7 @@ class ProductContent extends Component
             $data->stock = 0;
             $data->buy_price = $this->buy_price;
             $data->sell_price = $this->sell_price;
-            $data->select_color = $this->select_color;
+            $data->select_color = 1;
             $data->note = $this->note;
             $data->status = 0;
             $data->save();
@@ -171,6 +172,7 @@ class ProductContent extends Component
     {
         $data = Product::find($ids);
         $this->ID = $data->id;
+        $this->name = $data->name;
         $this->dispatchBrowserEvent('show-modal-delete');
     }
     public function Destory($ids)
