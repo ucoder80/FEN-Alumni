@@ -8,6 +8,6 @@ class SalesContent extends Component
 {
     public function render()
     {
-        return view('livewire.backend.sales.sales-content');
+        return view('livewire.backend.sales.sales-content')->layout('layouts.backend.style');
     }
 }

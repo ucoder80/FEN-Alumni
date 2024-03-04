@@ -119,7 +119,7 @@
                 <li class="dropdown-divider"></li>
                 {{-- ===================== ໂຄງການໃຫມ່ ======================= --}}
                 <li class="nav-item">
-                    <a href="{{ route('backend.order') }}" class="nav-link">
+                    <a href="{{ route('backend.OrderCart') }}" class="nav-link">
                         <i class="nav-icon fas fa-cart-plus"></i>
                         <p>
                             ສັ່ງຊື້-ນຳເຂົ້າສາງ

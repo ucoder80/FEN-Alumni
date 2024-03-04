@@ -8,6 +8,7 @@ use App\Http\Livewire\Backend\DataStore\UserContent;
 use App\Http\Livewire\Backend\DistrictContent;
 use App\Http\Livewire\Backend\LoginContent;
 use App\Http\Livewire\Backend\LogoutContent;
+use App\Http\Livewire\Backend\Orders\OrdersCartContent;
 use App\Http\Livewire\Backend\Orders\OrdersContent;
 use App\Http\Livewire\Backend\ProfileContent;
 use App\Http\Livewire\Backend\ProvinceContent;
@@ -57,6 +58,8 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/products', ProductContent::class)->name('backend.product');
 
     Route::get('/Orders', OrdersContent::class)->name('backend.order');
+    Route::get('/OrderCarts', OrdersCartContent::class)->name('backend.OrderCart');
     Route::get('/Sales', SalesContent::class)->name('backend.sale');
+    
 
 });

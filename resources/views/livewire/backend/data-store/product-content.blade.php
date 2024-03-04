@@ -88,7 +88,11 @@
                                                             height="50px;">
                                                     @endif
                                                 </td>
-                                                <td></td>
+                                                <td>
+                                                    @if (!empty($item->product_type))
+                                                        {{ $item->product_type->name }}
+                                                    @endif
+                                                </td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ number_format($item->buy_price) }}</td>
                                                 <td>{{ number_format($item->sell_price) }}</td>
@@ -96,11 +100,21 @@
                                                     <p class="bg-primary h5 rounded">{{ $item->stock }}</p>
                                                 </td>
                                                 <td>
-                                                    @if ($item->status == 1)
+                                                    @if ($item->stock >= 10)
+                                                        <span class="text-success"><i class="fas fa-check-circle"></i>
+                                                            ໃນສະຕ໋ອກ</span>
+                                                    @elseif($item->stock > 0 && $item->stock <= 10)
+                                                        <span class="text-warning"><i class="fas fa-warning"></i>
+                                                            ໃກ້ຫມົດ!</span>
+                                                    @elseif($item->stock <= 0)
+                                                        <span class="text-danger"><i class="fas fa-box-open"></i>
+                                                            ຫມົດເເລ້ວ!</span>
+                                                    @endif
+                                                    {{-- @if ($item->status == 1)
                                                         <span class="text-success">{{ __('lang.empty') }}</span>
                                                     @elseif($item->status == 2)
                                                         <span class="text-warning">{{ __('lang.not_empty') }}</span>
-                                                    @endif
+                                                    @endif --}}
                                                 </td>
                                                 <td>
                                                     <div class="btn-group">
@@ -142,6 +156,24 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
+                        <div wire:ignore class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' wire:model="image" id="imageUpload"
+                                    class="@error('image') is-invalid @enderror" accept=".png, .jpg, .jpeg" />
+                                <label for="imageUpload"></label>
+                            </div>
+                            <label class="text-center">ຮູບສິນຄ້າ</label>
+                            <div class="avatar-preview">
+                                <div id="imagePreview"
+                                    style="background-image: url({{ asset('logo/noimage.jpg') }});">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @error('image')
+                        <span style="color: red" class="error">{{ $message }}</span>
+                    @enderror
+                    {{-- <div class="container">
                         <div class="avatar-upload">
                             <div class="avatar-edit">
                                 <input type='file' wire:model="image" id="imageUpload2" accept=".png, .jpg, .jpeg" />
@@ -155,12 +187,12 @@
                             @else
                                 <div class="avatar-preview">
                                     <div id="imagePreview2"
-                                        style="background-image: url({{ asset('images/noimage.jpg') }});">
+                                        style="background-image: url({{ asset('logo/noimage.jpg') }});">
                                     </div>
                                 </div>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <input type="hidden" wire:model="hiddenId">
                         <div class="col-md-4">
@@ -212,8 +244,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for=""> ລາຄາຊື້</label>
-                                <input type="text"
-                                    class="form-control money @error('buy_price') is-invalid @enderror"
+                                <input type="text" class="form-control @error('buy_price') is-invalid @enderror"
                                     wire:model="buy_price" placeholder="0.00">
                                 @error('buy_price')
                                     <span class="error" style="color: red;">{{ $message }}</span>
@@ -223,8 +254,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for=""> ລາຄາຂາຍ</label>
-                                <input type="text"
-                                    class="form-control money @error('sell_price') is-invalid @enderror"
+                                <input type="text" class="form-control @error('sell_price') is-invalid @enderror"
                                     wire:model="sell_price" placeholder="0.00">
                                 @error('sell_price')
                                     <span class="error" style="color: red;">{{ $message }}</span>
@@ -276,7 +306,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button wire:click="destroy({{ $ID }})" type="button" class="btn btn-success"><i
+                    <button wire:click="Destory({{ $ID }})" type="button" class="btn btn-success"><i
                             class="fa fa-trash"></i> ລຶບອອກ</button>
                 </div>
             </div>

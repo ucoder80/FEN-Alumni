@@ -8,6 +8,6 @@ class OrdersContent extends Component
 {
     public function render()
     {
-        return view('livewire.backend.orders.orders-content');
+        return view('livewire.backend.orders.orders-content')->layout('layouts.backend.style');
     }
 }

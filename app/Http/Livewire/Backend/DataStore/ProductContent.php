@@ -12,7 +12,7 @@ use Livewire\WithPagination;
 
 class ProductContent extends Component
 {
-    public $search, $code, $image, $newimage, $name, $status,$product_note,
+    public $search, $code, $image, $newimage, $name, $status, $product_note,
     $ID, $product_type_id, $stock, $buy_price, $sell_price, $select_color, $note;
     use WithPagination;
     use WithFileUploads;
@@ -47,57 +47,64 @@ class ProductContent extends Component
     }
     public function Store()
     {
-        // $this->validate([
-        //     // 'name' => 'required|unique:cars',
-        //     'name' => 'required',
-        //     'car_types_id' => 'required',
-        //     // 'engine_number' => 'required',
-        //     'register_number' => 'required|unique:cars',
-        //     // 'tank_number' => 'required',
-        // ], [
-        //     'name.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ',
-        //     'car_types_id.required' => 'ໃສ່ຂໍ້ມູນກ່ອນ',
-        //     // 'engine_number.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ',
-        //     'register_number.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ',
-        //     'register_number.unique' => 'ຂໍ້ມູນນີ້ມີໃນລະບົບເເລ້ວ!',
-        //     // 'tank_number.required' => 'ໃສ່ຂໍ້ມູນຕົວເລກກ່ອນ',
-        // ]);
+        $this->validate([
+            'name' => 'required|unique:products',
+            'image' => 'required',
+            'product_type_id' => 'required',
+            'buy_price' => 'required',
+            'sell_price' => 'required',
+        ], [
+            'name.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ!',
+            'name.unique' => 'ຂໍ້ມູນນີ້ມີໃນລະບົບເເລ້ວ!',
+            'image.required' => 'ອັບຮູບສິນຄ້າກ່ອນ!',
+            'product_type_id.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
+            'buy_price.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ!',
+            'sell_price.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ!',
+        ]);
         try {
             DB::beginTransaction();
             $count_id = Product::count('id');
             $count = $count_id + 1;
-            $data = new Product();
-            if (!empty($count_id)) {
-                $data->code = 'P-00' . $count;
-            } else {
-                $data->code = 'P-001';
-            }
-            if (!empty($this->image)) {
-                $this->validate([
-                    'image' => 'required|mimes:jpg,png,jpeg',
+            if ($this->buy_price >= $this->sell_price) {
+                $this->dispatchBrowserEvent('swal', [
+                    'title' => 'ລາຄາຊື້ຕ້ອງນ້ອຍກວ່າລາຄາຂາຍ!',
+                    'icon' => 'warning',
                 ]);
-                $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
-                $this->image->storeAs('upload/product', $imageName);
-                $data->image = 'upload/product' . '/' . $imageName;
             } else {
-                $data->image = '';
+                $data = new Product();
+                if (!empty($count_id)) {
+                    $data->code = 'P-00' . $count;
+                } else {
+                    $data->code = 'P-001';
+                }
+                if (!empty($this->image)) {
+                    $this->validate([
+                        'image' => 'required|mimes:jpg,png,jpeg',
+                    ]);
+                    $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
+                    $this->image->storeAs('upload/product', $imageName);
+                    $data->image = 'upload/product' . '/' . $imageName;
+                } else {
+                    $data->image = '';
+                }
+                $data->product_type_id = $this->product_type_id;
+                $data->name = $this->name;
+                $data->stock = 0;
+                $data->buy_price = $this->buy_price;
+                $data->sell_price = $this->sell_price;
+                $data->select_color = 1;
+                $data->note = $this->note;
+                $data->status = 0;
+                $data->save();
+                DB::commit();
+                $this->resetField();
+                $this->dispatchBrowserEvent('hide-modal-add-edit');
+                $this->dispatchBrowserEvent('swal', [
+                    'title' => 'ສຳເລັດເເລ້ວ!',
+                    'icon' => 'success',
+                ]);
             }
-            $data->product_type_id = $this->product_type_id;
-            $data->name = $this->name;
-            $data->stock = 0;
-            $data->buy_price = $this->buy_price;
-            $data->sell_price = $this->sell_price;
-            $data->select_color = 1;
-            $data->note = $this->note;
-            $data->status = 0;
-            $data->save();
-            DB::commit();
-            $this->resetField();
-            $this->dispatchBrowserEvent('hide-modal-add-edit');
-            $this->dispatchBrowserEvent('swal', [
-                'title' => 'ສຳເລັດເເລ້ວ!',
-                'icon' => 'success',
-            ]);
+
         } catch (\Exception $ex) {
             DB::rollBack();
             dd($ex);
@@ -120,21 +127,17 @@ class ProductContent extends Component
     }
     public function Update()
     {
-        // $this->validate([
-        //     'name' => 'required',
-        //     // 'branches_id' => 'required',
-        //     'car_types_id' => 'required',
-        //     // 'engine_number' => 'required',
-        //     'register_number' => 'required',
-        //     // 'tank_number' => 'required',
-        // ], [
-        //     'name.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ',
-        //     // 'branches_id.required' => 'ໃສ່ຂໍ້ມູນກ່ອນ',
-        //     'car_types_id.required' => 'ໃສ່ຂໍ້ມູນກ່ອນ',
-        //     // 'engine_number.required' => 'ໃສ່ຂໍ້ມູນຕົວເລກກ່ອນ',
-        //     'register_number.required' => 'ໃສ່ຂໍ້ມູນຕົວເລກກ່ອນ',
-        //     // 'tank_number.required' => 'ໃສ່ຂໍ້ມູນຕົວເລກກ່ອນ',
-        // ]);
+        $this->validate([
+            'name' => 'required',
+            'product_type_id' => 'required',
+            'buy_price' => 'required',
+            'sell_price' => 'required',
+        ], [
+            'name.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ!',
+            'product_type_id.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
+            'buy_price.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ!',
+            'sell_price.required' => 'ກະລຸນາປ້ອນຂໍ້ມູນກ່ອນ!',
+        ]);
         try {
             DB::beginTransaction();
             $data = Product::find($this->ID);
@@ -170,27 +173,20 @@ class ProductContent extends Component
     }
     public function showDestory($ids)
     {
+        $this->ID = $ids;
         $data = Product::find($ids);
-        $this->ID = $data->id;
         $this->name = $data->name;
         $this->dispatchBrowserEvent('show-modal-delete');
     }
-    public function Destory($ids)
+    public function Destory()
     {
-        try {
-            $data = Product::find($ids);
-            $data->delete();
-            $this->resetField();
-            $this->dispatchBrowserEvent('hide-modal-delete');
-            $this->dispatchBrowserEvent('swal', [
-                'title' => 'ສຳເລັດເເລ້ວ!',
-                'icon' => 'success',
-            ]);
-        } catch (\Exception $ex) {
-            $this->dispatchBrowserEvent('swal', [
-                'title' => 'ມີບາງຢ່າງຜິດພາດ!',
-                'icon' => 'error',
-            ]);
-        }
+        $data = Product::find($this->ID);
+        $data->delete();
+        $this->resetField();
+        $this->dispatchBrowserEvent('hide-modal-delete');
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'ສຳເລັດເເລ້ວ!',
+            'icon' => 'success',
+        ]);
     }
 }
