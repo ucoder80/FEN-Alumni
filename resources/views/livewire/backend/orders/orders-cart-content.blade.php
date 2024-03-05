@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header bg-primary">
+                        <div class="card-header bg-light">
                             <div class="row">
                                 {{-- @if ($this->branchs)
                                     <div class="col-md-2">

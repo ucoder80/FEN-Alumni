@@ -39,6 +39,18 @@
         window.addEventListener('hide-modal-delete', event => {
             $('#modal-delete').modal('hide');
         })
+        window.addEventListener('show-modal-popup', event => {
+            $('#modal-popup').modal('show');
+        })
+        window.addEventListener('hide-modal-popup', event => {
+            $('#modal-popup').modal('hide');
+        })
+        window.addEventListener('show-modal-clear-all-cart', event => {
+            $('#modal-clear-all-cart').modal('show');
+        })
+        window.addEventListener('hide-modal-clear-all-cart', event => {
+            $('#modal-clear-all-cart').modal('hide');
+        })
     </script>
     <script>
         // $(document).ready(function() {
