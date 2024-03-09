@@ -244,7 +244,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for=""> ລາຄາຊື້</label>
-                                <input type="text" class="form-control @error('buy_price') is-invalid @enderror"
+                                <input type="text" class="form-control money @error('buy_price') is-invalid @enderror"
                                     wire:model="buy_price" placeholder="0.00">
                                 @error('buy_price')
                                     <span class="error" style="color: red;">{{ $message }}</span>
@@ -254,7 +254,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for=""> ລາຄາຂາຍ</label>
-                                <input type="text" class="form-control @error('sell_price') is-invalid @enderror"
+                                <input type="text" class="form-control money @error('sell_price') is-invalid @enderror"
                                     wire:model="sell_price" placeholder="0.00">
                                 @error('sell_price')
                                     <span class="error" style="color: red;">{{ $message }}</span>

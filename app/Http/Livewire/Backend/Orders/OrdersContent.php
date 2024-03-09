@@ -2,20 +2,26 @@
 
 namespace App\Http\Livewire\Backend\Orders;
 
+use App\Models\Orders;
 use App\Models\OrdersCart;
+use App\Models\OrdersDetail;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class OrdersContent extends Component
 {
+    public $supplier_id;
+    public $ID, $qty, $price, $total_paid, $type, $note, $sum_subtotal;
     public function render()
     {
         $OrdersCarts = OrdersCart::all();
         $Count_cart = OrdersCart::select('id')->count();
-        return view('livewire.backend.orders.orders-content', compact('OrdersCarts', 'Count_cart'))->layout('layouts.backend.style');
+        $suppliers = User::all();
+        $this->sum_subtotal = OrdersCart::select('subtotal')->sum('subtotal');
+        return view('livewire.backend.orders.orders-content', compact('OrdersCarts', 'Count_cart', 'suppliers'))->layout('layouts.backend.style');
     }
-    public $ID, $qty, $price, $total_paid;
     public function resetField()
     {
         $this->qty = '';
@@ -116,5 +122,55 @@ class OrdersContent extends Component
             ]);
         }
     }
-
+    public function PlaceOrder()
+    {
+        $sum_subtotal = OrdersCart::select('subtotal')->sum('subtotal');
+        if ($this->supplier_id == null) {
+            $this->dispatchBrowserEvent('swal', [
+                'title' => 'ເລືອກຜູ້ຈຳຫນ່າຍກ່ອນ!!',
+                'icon' => 'warning',
+                'iconColor' => 'red',
+            ]);
+        } else {
+            // try {
+            //     DB::beginTransaction();
+                $orders = new Orders();
+                $orders->code = 'OD-' . rand(100000, 999999);
+                $orders->supplier_id = $this->supplier_id;
+                $orders->employee_id = auth()->user()->id;
+                $orders->total = $sum_subtotal;
+                $orders->status = 1;
+                $orders->note = $this->note;
+                $orders->save();
+                $OrderCart = OrdersCart::get();
+                foreach ($OrderCart as $key => $cart_item) {
+                    if ($cart_item->branch_id == auth()->user()->branch_id) {
+                        $products = array(
+                            'orders_id' => $orders->id,
+                            'product_id' => $cart_item->product_id,
+                            'buy_price' => $cart_item->price,
+                            'stock' => $cart_item->qty,
+                            'subtotal' => ($cart_item->price * $cart_item->qty),
+                        );
+                        $OrdersDetail = OrdersDetail::insert($products);
+                        $clear_cart = OrdersCart::where('id', $cart_item->id)->where('creator_id', auth()->user()->id)->delete();
+                    }
+                    $check_product = Product::find($cart_item->product_id);
+                    if ($check_product) {
+                        $check_product->check = null;
+                        $check_product->save();
+                    }
+                }
+                $this->dispatchBrowserEvent('swal', [
+                    'title' => 'ສັ່ງຊື້ສຳເລັດເເລ້ວ!',
+                    'icon' => 'success',
+                ]);
+                return redirect(route('backend.OrderImport'));
+            // } catch (\Exception $ex) {
+            //     DB::rollBack();
+            //     // dd($ex->getMessage());
+            //     $this->emit('alert', ['type' => 'error', 'message' => 'ມີບາງຢ່າງຜິດພາດ!']);
+            // }
+        }
+    }
 }

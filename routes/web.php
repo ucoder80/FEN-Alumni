@@ -1,22 +1,24 @@
 <?php
 
-use App\Http\Livewire\Backend\AboutContent;
-use App\Http\Livewire\Backend\DashboardContent;
-use App\Http\Livewire\Backend\DataStore\ProductContent;
-use App\Http\Livewire\Backend\DataStore\ProductTypeContent;
-use App\Http\Livewire\Backend\DataStore\UserContent;
-use App\Http\Livewire\Backend\DistrictContent;
-use App\Http\Livewire\Backend\LoginContent;
-use App\Http\Livewire\Backend\LogoutContent;
-use App\Http\Livewire\Backend\Orders\OrdersCartContent;
-use App\Http\Livewire\Backend\Orders\OrdersContent;
-use App\Http\Livewire\Backend\ProfileContent;
-use App\Http\Livewire\Backend\ProvinceContent;
-use App\Http\Livewire\Backend\RolesContent;
-use App\Http\Livewire\Backend\Sales\SalesContent;
-use App\Http\Livewire\Backend\SlideContent;
-use App\Http\Livewire\Backend\VillageContent;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Backend\AboutContent;
+use App\Http\Livewire\Backend\LoginContent;
+use App\Http\Livewire\Backend\RolesContent;
+use App\Http\Livewire\Backend\SlideContent;
+use App\Http\Livewire\Backend\LogoutContent;
+use App\Http\Livewire\Backend\ProfileContent;
+use App\Http\Livewire\Backend\VillageContent;
+use App\Http\Livewire\Backend\DistrictContent;
+use App\Http\Livewire\Backend\ProvinceContent;
+use App\Http\Livewire\Backend\DashboardContent;
+use App\Http\Livewire\Backend\Sales\SalesContent;
+use App\Http\Livewire\Backend\Orders\ImportContent;
+use App\Http\Livewire\Backend\Orders\OrdersContent;
+use App\Http\Livewire\Backend\DataStore\UserContent;
+use App\Http\Livewire\Backend\DataStore\ProductContent;
+use App\Http\Livewire\Backend\Orders\OrdersCartContent;
+use App\Http\Livewire\Backend\Orders\ImportUpdateContent;
+use App\Http\Livewire\Backend\DataStore\ProductTypeContent;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,8 @@ Route::group(['middleware' => 'auth.backend'], function () {
 
     Route::get('/Orders', OrdersContent::class)->name('backend.order');
     Route::get('/OrderCarts', OrdersCartContent::class)->name('backend.OrderCart');
+    Route::get('/OrderImports', ImportContent::class)->name('backend.OrderImport');
+    Route::get('/imports-update/{slug_id}', ImportUpdateContent::class)->name('backend.import_update');
     Route::get('/Sales', SalesContent::class)->name('backend.sale');
     
 

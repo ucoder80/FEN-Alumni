@@ -51,15 +51,21 @@
         window.addEventListener('hide-modal-clear-all-cart', event => {
             $('#modal-clear-all-cart').modal('hide');
         })
+        window.addEventListener('show-modal-import', event => {
+            $('#modal-import').modal('show')
+        })
+        window.addEventListener('hide-modal-import', event => {
+            $('#modal-import').modal('hide')
+        })
     </script>
     <script>
-        // $(document).ready(function() {
-        //     $('#village_id').select2();
-        //     $('#village_id').on('change', function(e) {
-        //         var data = $('#village_id').select2("val");
-        //         @this.set('village_id', data);
-        //     });
-        // });
+        $(document).ready(function() {
+            $('#supplier_id').select2();
+            $('#supplier_id').on('change', function(e) {
+                var data = $('#supplier_id').select2("val");
+                @this.set('supplier_id', data);
+            });
+        });
     </script>
     <script>
         $('#product_note').summernote({

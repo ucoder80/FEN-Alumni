@@ -90,8 +90,8 @@ class ProductContent extends Component
                 $data->product_type_id = $this->product_type_id;
                 $data->name = $this->name;
                 $data->stock = 0;
-                $data->buy_price = $this->buy_price;
-                $data->sell_price = $this->sell_price;
+                $data->buy_price = str_replace(',', '', $this->buy_price);
+                $data->sell_price = str_replace(',', '', $this->sell_price);
                 $data->select_color = 1;
                 $data->note = $this->note;
                 $data->status = 0;
@@ -107,7 +107,7 @@ class ProductContent extends Component
 
         } catch (\Exception $ex) {
             DB::rollBack();
-            dd($ex);
+            // dd($ex);
             $this->dispatch('something_went_wrong');
         }
     }
@@ -119,6 +119,7 @@ class ProductContent extends Component
         $this->newimage = $data->image;
         $this->product_type_id = $data->product_type_id;
         $this->name = $data->name;
+        $this->stock = $data->stock;
         $this->buy_price = $data->buy_price;
         $this->sell_price = $data->sell_price;
         $this->select_color = $data->select_color;

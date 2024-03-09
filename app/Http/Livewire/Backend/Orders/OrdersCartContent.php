@@ -33,29 +33,43 @@ class OrdersCartContent extends Component
     {
         try {
             DB::beginTransaction();
-            $product = Product::find($ids);
-            $check_product = Product::where('id', $ids)->update(array('check' => 1));
-            $order_cart = new OrdersCart();
-            $order_cart->creator_id = auth()->user()->id;
-            $order_cart->product_id = $product->id;
-            $order_cart->name = $product->name;
-            $order_cart->price = $product->buy_price;
-            $order_cart->qty = 1;
-            $order_cart->subtotal = $order_cart->price * $order_cart->qty;
-            $order_cart->save();
-            $this->dispatchBrowserEvent('swal', [
-                'title' => 'ເພີ່ມໃສ່ກະຕ່າເເລ້ວ!',
-                'icon' => 'success',
-                'iconColor' => 'green',
-            ]);
+            // Check if the product is already in the cart for the current user
+            $existingCartItem = OrdersCart::where('creator_id', auth()->user()->id)
+                ->where('product_id', $ids)
+                ->first();
+            if ($existingCartItem) {
+                // If the product is already in the cart, you can handle it accordingly
+                $this->dispatchBrowserEvent('swal', [
+                    'title' => 'ສິນຄ້າມີໃນກະຕ່າເເລ້ວ!',
+                    'icon' => 'warning',
+                ]);
+            } else {
+                $product = Product::find($ids);
+                $check_product = Product::where('id', $ids)->update(['check' => 1]);
+
+                $order_cart = new OrdersCart();
+                $order_cart->creator_id = auth()->user()->id;
+                $order_cart->product_id = $product->id;
+                $order_cart->name = $product->name;
+                $order_cart->price = $product->buy_price;
+                $order_cart->qty = 1;
+                $order_cart->subtotal = $order_cart->price * $order_cart->qty;
+                $order_cart->save();
+
+                $this->dispatchBrowserEvent('swal', [
+                    'title' => 'ເພີ່ມໃສ່ກະຕ່າເເລ້ວ!',
+                    'icon' => 'success',
+                    'iconColor' => 'green',
+                ]);
+            }
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
             $this->dispatchBrowserEvent('swal', [
                 'title' => 'ມີບາງຢ່າງຜິດພາດ!',
                 'icon' => 'warning',
-                // 'iconColor'=>'red',
             ]);
         }
     }
+
 }

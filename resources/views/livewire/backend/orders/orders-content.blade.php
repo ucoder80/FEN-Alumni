@@ -20,9 +20,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        {{-- <div class="card-header bg-primary">
+                        <div class="card-header bg-light">
                             <div class="row">
-                                <div class="col-md-4" wire:ignore>
+                                {{-- <div class="col-md-4" wire:ignore>
                                     <div class="form-group">
                                         <select wire:model="product_id" id="selectProduct"
                                             class="form-control @error('product_id') is-invalid @enderror">
@@ -41,40 +41,40 @@
                                 <div class="col-md-2">
                                     <button wire:click="AddToCart" type="button" class="btn btn-primary"><i
                                             class="fas fa-cart-plus"></i> {{ __('lang.select') }}ໃສ່ກະຕ່າ</button>
-                                </div>
-                                <div class="col-md-3"></div>
-                                <div class="col-md-3" wire:ignore>
-                                    @foreach ($res_function_available as $items)
-                                        @if ($items->ResFunctions->name == 'action_34')
-                                            <div class="form-group">
+                                </div> --}}
+                                <div class="col-md-8"></div>
+                                <div class="col-md-4" wire:ignore>
+                                    {{-- @foreach ($res_function_available as $items)
+                                        @if ($items->ResFunctions->name == 'action_34') --}}
+                                    <div class="form-group">
 
-                                                <div class="input-group">
-                                                    <select wire:model="supplier_id" id="selectSupplier"
-                                                        class="form-control @error('supplier_id') is-invalid @enderror">
-                                                        <option value="0" selected>
-                                                            {{ __('lang.select') }}{{ __('lang.supplier') }}</option>
-                                                        @foreach ($suppliers as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}
-                                                                {{ $item->lastname }} {{ $item->phone }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('supplier_id')
-                                                        <span style="color: red" class="error">{{ $message }}</span>
-                                                    @enderror
-                                                    <div class="input-group-append">
-                                                        <button type="button" wire:click="addSupplier"
-                                                            class="btn btn-md btn-success">
-                                                            <i class="fa fa-plus"></i>
-                                                        </button>
-                                                    </div>
+                                        {{-- <div class="input-group"> --}}
+                                        <select wire:model="supplier_id" id="supplier_id"
+                                            class="form-control @error('supplier_id') is-invalid @enderror">
+                                            <option value="0" selected>
+                                                ເລືອກ-ຜູ້ສະຫນອງ</option>
+                                            @foreach ($suppliers as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->name_lastname }}-{{ $item->phone }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('supplier_id')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                        {{-- <div class="input-group-append">
+                                                <button type="button" wire:click="addSupplier"
+                                                    class="btn btn-md btn-success">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div> --}}
 
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
+                                        {{-- </div> --}}
+                                    </div>
+                                    {{-- @endif
+                                    @endforeach --}}
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped bg-light">
@@ -114,10 +114,11 @@
                                             <tr>
                                                 <td class="text-center">{{ $stt++ }}</td>
                                                 <td class="text-center">
-                                                    @if (!empty($item->image))
-                                                        <a href="{{ asset($item->image) }}"target="_blank">
-                                                            <img class="rounded" src="{{ asset($item->image) }}"
-                                                                width="50px;" height="50px;">
+                                                    @if (!empty($item->product->image))
+                                                        <a href="{{ asset($item->product->image) }}"target="_blank">
+                                                            <img class="rounded"
+                                                                src="{{ asset($item->product->image) }}" width="50px;"
+                                                                height="50px;">
                                                         </a>
                                                     @else
                                                         <img src="{{ 'logo/noimage.jpg' }}" width="50px;"
@@ -139,7 +140,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="text-center"><b>{{ number_format($item->subtotal) }}
+                                                <td class="text-center"><b>{{ number_format($item->subtotal) }} ₭
                                                     </b>
                                                 </td>
                                                 <td class="text-center">
@@ -164,18 +165,18 @@
                                             </td>
                                             <td colspan="3" class="text-center">
                                                 <h5><b>ຍອດລວມ:
-                                                        {{-- {{ number_format($sum_subtotal) }}  --}}
+                                                        {{ number_format($this->sum_subtotal) }} ₭
                                                     </b></h5>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2">
+                                            {{-- <td colspan="2">
                                                 <div class="row">
                                                     <div class="col-sm-4">
                                                         <div class="form-group clearfix">
                                                             <div class="icheck-success d-inline">
                                                                 <input type="radio" id="radioPrimary1" value="cash"
-                                                                    wire:model="payment_type" checked>
+                                                                    wire:model="type" checked>
                                                                 <label class="text-success" for="radioPrimary1">ເງິນສົດ
                                                                 </label>
                                                             </div>
@@ -187,27 +188,27 @@
                                                         <div class="form-group clearfix">
                                                             <div class="icheck-success d-inline">
                                                                 <input type="radio" id="radioPrimary2"
-                                                                    value="transfer" wire:model="payment_type">
+                                                                    value="transfer" wire:model="type">
                                                                 <label class="text-danger" for="radioPrimary2">ເງິນໂອນ
                                                                 </label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    {{-- @if ($this->payment_type == 'transfer') --}}
+                                                    @if ($this->type == 'transfer')
                                                     <div class="col-sm-4">
                                                         <div class="form-group clearfix">
                                                             <input type="file" wire:model="payment_image">
                                                         </div>
                                                     </div>
-                                                    {{-- @endif --}}
+                                                    @endif
                                                 </div>
-                                                @error('payment_type')
+                                                @error('type')
                                                     <span style="color: red" class="error">{{ $message }}</span>
                                                 @enderror
-                                            </td>
+                                            </td> --}}
                                             <td colspan="3">
-                                                <h6><b>
-                                                    <input wire:model="total_paid" placeholder="0.00"
+                                                {{-- <h6><b>
+                                                        <input wire:model="total_paid" placeholder="0.00"
                                                             type="text" onkeypress="validate(event)"
                                                             class="form-control money
                                                           @error('total_paid') is-invalid @enderror">
@@ -216,23 +217,37 @@
                                                                 class="error">{{ $message }}</span>
                                                         @enderror
                                                         <span>ປ້ອນເງິນຊຳລະ</span>
-                                                </h6>
+                                                </h6> --}}
                                             </td>
-                                            <td colspan="2">
-                                                @if ($Count_cart)
-                                                    <div class="col-md-12 text-center">
-                                                        <button wire:click="PlaceOrder" class="btn btn-primary"><i
-                                                                class="fas fa-credit-card">
-                                                            </i> ສັ່ງຊື້ເລີຍ</button>
+                                            <td></td>
+                                            <td></td>
+                                            @if ($Count_cart)
+                                                <td colspan="2">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-12 text-center">
+                                                                <button wire:click="PlaceOrder"
+                                                                    class="btn btn-primary btn-md btn-block"><i
+                                                                        class="fas fa-credit-card"></i>
+                                                                    ສັ່ງຊື້ເລີຍ</button>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                @else
-                                                    <div class="col-md-12 text-center">
-                                                        <button wire:click="PlaceOrder" class="btn btn-primary"><i
-                                                                class="fas fa-credit-card">
-                                                            </i> ສັ່ງຊື້ເລີຍ</button>
+                                                </td>
+                                            @else
+                                                <td colspan="2">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-12 text-center">
+                                                                <button disabled wire:click="PlaceOrder"
+                                                                    class="btn btn-primary btn-md btn-block"><i
+                                                                        class="fas fa-credit-card"></i>
+                                                                    ສັ່ງຊື້ເລີຍ</button>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                @endif
-                                            </td>
+                                                </td>
+                                            @endif
                                         </tr>
                                     </tfoot>
 

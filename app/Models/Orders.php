@@ -13,9 +13,9 @@ class Orders extends Model
         'code',
         'supplier_id',
         'employee_id',
+        'total',
         'status',
-        'type',
-        'onepay',
+        'check_payment',
         'note',
         'created_at',
         'updated_at',
@@ -27,5 +27,9 @@ class Orders extends Model
     public function supplier()
     {
         return $this->belongsTo('App\Models\User', 'supplier_id', 'id');
+    }
+    public function orders_logs()
+    {
+        return $this->hasMany(Orderslogs::class);
     }
 }
