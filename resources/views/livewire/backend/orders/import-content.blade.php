@@ -178,27 +178,27 @@
                                                             {{-- @endif --}}
                                                             {{-- @foreach ($res_function_available as $items)
                                                                 @if ($items->ResFunctions->name == 'action_40') --}}
-                                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                            {{-- <a class="dropdown-item" href="javascript:void(0)"
                                                                 wire:click="ShowBill({{ $item->id }})"><i
                                                                     class="fas fa-print">
                                                                 </i> ພິມບິນ</a>
 
-                                                            </a>
+                                                            </a> --}}
                                                             {{-- @endif
                                                             @endforeach --}}
                                                             {{-- @foreach ($res_function_available as $items)
                                                                 @if ($items->ResFunctions->name == 'action_40') --}}
-                                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                            {{-- <a class="dropdown-item" href="javascript:void(0)"
                                                                 wire:click="ShowDetail({{ $item->id }})"><i
                                                                     class="fas fa-file"></i>
-                                                                ລາຍລະອຽດ</a>
+                                                                ລາຍລະອຽດ</a> --}}
                                                             </a>
                                                             {{-- @endif
                                                             @endforeach --}}
                                                             {{-- <li class="dropdown-divider"></li> --}}
-                                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                            {{-- <a class="dropdown-item" href="javascript:void(0)"
                                                                 wire:click=""><i class="fas fa-times-circle">
-                                                                    ຍົກເລີກ</i></a>
+                                                                    ຍົກເລີກ</i></a> --}}
                                                         </div>
                                                     </div>
                                                 </td>

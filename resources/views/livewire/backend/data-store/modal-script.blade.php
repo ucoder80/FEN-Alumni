@@ -57,6 +57,12 @@
         window.addEventListener('hide-modal-import', event => {
             $('#modal-import').modal('hide')
         })
+        window.addEventListener('show-modal-paymoney', event => {
+            $('#modal-paymoney').modal('show')
+        })
+        window.addEventListener('hide-modal-paymoney', event => {
+            $('#modal-paymoney').modal('hide')
+        })
     </script>
     <script>
         $(document).ready(function() {
