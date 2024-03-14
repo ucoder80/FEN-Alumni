@@ -150,7 +150,7 @@
                                                             {{-- <li class="dropdown-divider"></li> --}}
                                                             {{-- @foreach ($res_function_available as $items)
                                                                     @if ($items->ResFunctions->name == 'action_40') --}}
-                                                            <a class="dropdown-item" href=""><i
+                                                            <a class="dropdown-item" wire:click='ShowUpdate({{ $item->id }})' href="javascript:void(0)"><i
                                                                     class="fas fa-edit"></i>
                                                                 ແກ້ໄຂ</a>
                                                             {{-- @endif

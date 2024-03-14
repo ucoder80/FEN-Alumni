@@ -63,6 +63,12 @@
         window.addEventListener('hide-modal-paymoney', event => {
             $('#modal-paymoney').modal('hide')
         })
+        window.addEventListener('show-modal-update-item', event => {
+            $('#modal-update-item').modal('show')
+        })
+        window.addEventListener('hide-modal-update-item', event => {
+            $('#modal-update-item').modal('hide')
+        })
     </script>
     <script>
         $(document).ready(function() {

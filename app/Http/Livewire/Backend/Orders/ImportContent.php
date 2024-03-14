@@ -2,21 +2,22 @@
 
 namespace App\Http\Livewire\Backend\Orders;
 
-use Carbon\Carbon;
 use App\Models\Orders;
-use App\Models\Product;
-use Livewire\Component;
-use App\Models\Orderslogs;
 use App\Models\OrdersDetail;
-use Livewire\WithPagination;
+use App\Models\Orderslogs;
+use App\Models\Product;
+use Carbon\Carbon;
+use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class ImportContent extends Component
 {
     use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $search, $start_date, $end_date, $status, $ID;
+    public $search, $start_date, $end_date, $status, $ID, $caculate;
+
     public function render()
     {
         $end = date('Y-m-d H:i:s', strtotime($this->end_date . '23:23:59'));
@@ -67,15 +68,15 @@ class ImportContent extends Component
             'icon' => 'success',
         ]);
     }
-    public $orders_logs = [],$sum_subtotal_paid,$total,$payment_logs = [],$total_paid,$type;
+    public $orders_logs = [], $sum_subtotal_paid, $total, $payment_logs = [], $total_paid, $type;
     public function ShowPayment($id)
     {
         $this->resetField();
         $this->dispatchBrowserEvent('show-modal-paymoney');
         $orders = Orders::find($id);
         $this->ID = $orders->id;
-        $this->sum_subtotal_paid = Orderslogs::select('total_paid')->where('orders_id',$this->ID)->sum('total_paid');
-        $this->orders_logs = Orderslogs::where('orders_id',$this->ID)->get();
+        $this->sum_subtotal_paid = Orderslogs::select('total_paid')->where('orders_id', $this->ID)->sum('total_paid');
+        $this->orders_logs = Orderslogs::where('orders_id', $this->ID)->get();
         $this->total = $orders->total - $this->sum_subtotal_paid;
     }
     public function ConfirmPayment()
@@ -88,7 +89,7 @@ class ImportContent extends Component
             'type.required' => 'ເລືອກຂໍ້ມູນກ່ອນ',
         ]);
         $orders = Orders::find($this->ID);
-        $this->sum_subtotal_paid = Orderslogs::select('total_paid')->where('orders_id',$orders->id)->sum('total_paid');
+        $this->sum_subtotal_paid = Orderslogs::select('total_paid')->where('orders_id', $orders->id)->sum('total_paid');
         if (($orders->total - $this->sum_subtotal_paid) < str_replace(',', '', $this->total_paid)) {
             $this->dispatchBrowserEvent('swal', [
                 'title' => 'ທ່ານປ້ອນເງິນເກີນຍອດຫນີ້!',
@@ -128,4 +129,37 @@ class ImportContent extends Component
             ]);
         }
     }
+    public $orderDetail = [], $stock = [],$code;
+    public function ShowUpdate($ids)
+    {
+        $this->dispatchBrowserEvent('show-modal-update-item');
+        $orders = Orders::find($ids);
+        $this->ID = $orders->id;
+        $this->code = $orders->code;
+        $this->orderDetail = OrdersDetail::where('orders_id', $this->ID)->get();
+        $this->stock = $this->orderDetail->pluck('stock');
+    }
+
+    public function Remove_Item($id)
+    {
+        $OrdersDetail = OrdersDetail::find($id);
+        $OrdersDetail->delete();
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'ລຶບຂໍ້ມູນສຳເລັດ!',
+            'icon' => 'success',
+        ]);
+    }
+
+    public function UpdateStock($id)
+    {
+        $orderDetail = OrdersDetail::find($id);
+        $orderDetail->stock = $this->stock[$id];
+        $orderDetail->subtotal = $orderDetail->buy_price * $this->stock[$id];
+        $orderDetail->save();
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'ແກ້ໄຂຈຳນວນສຳເລັດ!',
+            'icon' => 'success',
+        ]);
+    }
+
 }
