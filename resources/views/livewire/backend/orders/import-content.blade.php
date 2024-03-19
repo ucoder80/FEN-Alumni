@@ -150,8 +150,9 @@
                                                             {{-- <li class="dropdown-divider"></li> --}}
                                                             {{-- @foreach ($res_function_available as $items)
                                                                     @if ($items->ResFunctions->name == 'action_40') --}}
-                                                            <a class="dropdown-item" wire:click='ShowUpdate({{ $item->id }})' href="javascript:void(0)"><i
-                                                                    class="fas fa-edit"></i>
+                                                            <a class="dropdown-item"
+                                                                wire:click='ShowUpdate({{ $item->id }})'
+                                                                href="javascript:void(0)"><i class="fas fa-edit"></i>
                                                                 ແກ້ໄຂ</a>
                                                             {{-- @endif
                                                                 @endforeach
@@ -164,10 +165,17 @@
                                                             {{-- @if ($item->total_money - $item->total_paid != 0)
                                                                 @foreach ($res_function_available as $items)
                                                                     @if ($items->ResFunctions->name == 'action_38') --}}
-                                                            <a class="dropdown-item" href="javascript:void(0)"
-                                                                wire:click="ShowPayment({{ $item->id }})"><i
-                                                                    class="fas fa-hand-holding-usd"></i>
-                                                                ຊຳລະຫນີ້</a>
+                                                            @if ($item->total == $item->orders_logs_sum_total_paid)
+                                                                <a class="dropdown-item" href="javascript:void(0)"
+                                                                    wire:click="ShowPayment({{ $item->id }})"><i
+                                                                        class="fas fa-history"></i>
+                                                                    ປະຫັວດຊຳລະ</a>
+                                                                    @else
+                                                                    <a class="dropdown-item" href="javascript:void(0)"
+                                                                    wire:click="ShowPayment({{ $item->id }})"><i
+                                                                        class="fas fa-hand-holding-usd"></i>
+                                                                    ຊຳລະຫນີ້</a>
+                                                            @endif
                                                             {{-- @endif
                                                                 @endforeach
                                                             @else --}}

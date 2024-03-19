@@ -20,6 +20,8 @@ class Product extends Model
         'select_color',
         'status',
         'note',
+        'check',
+        'check_2',
         'created_at',
         'updated_at',
     ];

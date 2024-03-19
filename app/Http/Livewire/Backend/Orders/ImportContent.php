@@ -128,6 +128,7 @@ class ImportContent extends Component
                 'iconColor' => 'green',
             ]);
         }
+        return redirect(route('backend.OrderImport'));
     }
     public $orderDetail = [], $stock = [],$code;
     public function ShowUpdate($ids)
