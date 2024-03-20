@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h5><i class="fas fa-balance-scale"></i> ຂາຍທີ່ດິນ</h5>
+                    <h5><i class="fas fa-balance-scale"></i> ຂາຍຫນ້າຮ້ານ</h5>
                 </div>
             </div>
         </div>
@@ -13,96 +13,35 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4 col-lg-4">
-                    <div class="card">
-                        <div class="card-header bg-success">
-                            <h4><i class="fas fa-list"></i> ລາຍການສິນຄ້າທີ່ເລືອກ</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="col-12 table-responsive">
-                                <table class="table">
-                                    <thead class="bg-light">
-                                        <tr>
-                                            <th>ລຳດັບ</th>
-                                            <th>ສິນຄ້າ</th>
-                                            <th>ຈຳນວນ</th>
-                                            <th>ລາຄາ</th>
-                                            <th class="text-center">ຈັດການ</th>
-                                        </tr>
-                                    </thead>
-                                    @php
-                                        $num = 1;
-                                    @endphp
-                                    <tbody>
-                                        @foreach ($sale_cart as $item)
-                                            <tr>
-                                                <td>{{ $num++ }}</td>
-                                                <td>{{ $item->name }}</td>
-                                                <td>{{ $item->qty }}</td>
-                                                <td><small>{{ number_format($item->price) }}</small></td>
-                                                <td class="text-center">
-                                                    <button wire:click="Remove_Item('{{ $item->id }}')"
-                                                        class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-times-circle"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                    @if ($sale_cart == null)
-                                        <p><b>ຈຳນວນ:</b> 0 | <b>ເປັນເງິນ:</b> 0 LAK</p>
-                                    @else
-                                        {{-- <p><b>ຈຳນວນ:</b> {{ $cartCount }} ຕອນ | <b>ເປັນເງິນ:</b>
-                                            {{ $cartTotal }} LAK</p> --}}
-                                    @endif
-                                </table>
-                            </div>
-                        </div>
-                        <div class="card-footer text-right">
-                            {{-- @foreach ($rolepermissions as $items)
-                                @if ($items->permissionname->name == 'action_sale') --}}
-                                    <button wire:click='ClearItem' class="btn btn-danger"><i
-                                            class="fas fa-trash-alt text-white"></i>
-                                        ລືບທັງຫມົດ
-                                    </button>
-                                    <button wire:click='_checkout' class="btn btn-success"><i
-                                            class="far fa-credit-card"></i>
-                                        ໄປທີ່ການຊຳລະເງິນ
-                                    </button>
-                                {{-- @endif
-                            @endforeach --}}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8 col-lg-8">
+                <div class="col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-header bg-primary">
                             <div class="row mb-2">
                                 <div class="col-sm-4">
-                                    <div class="input-group row">
+                                    {{-- <div class="input-group row">
                                         <select wire:model='buy_lands_id' id="programsid"
                                             class="form-control form-control-md">
                                             <option class="text-center" value="" selected>-- ເລືອກໂຄງການ --
                                             </option>
-                                            {{-- @foreach ($buylands as $item)
+                                            @foreach ($buylands as $item)
                                                 <option class="text-center" value="{{ $item->id }}">
                                                     {{ $item->name }}</option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="col-sm-4">
-                                    <div class="input-group row">
+                                    {{-- <div class="input-group row">
                                         <select wire:model='zones_id' id="zomeid"
                                             class="form-control form-control-md">
                                             <option class="text-center" selected value="">-- ເລືອກໂຊນ --</option>
-                                            {{-- @foreach ($zones as $items)
+                                            @foreach ($zones as $items)
                                                 <option class="text-center" value="{{ $items->id }}">
                                                     {{ $items->zname }}
                                                 </option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-group row">
@@ -124,17 +63,23 @@
                                 <!-- Start Row -->
                                 @foreach ($data as $item)
                                     <!-- Start Col -->
-                                    <div class="col-md-3 d-flex align-items-stretch flex-column">
-                                        @if ($item->status == 1)
+                                    <div class="col-md-2 d-flex align-items-stretch flex-column">
+                                        @if ($item->stock == 0)
                                             <div class="ribbon-wrapper">
-                                                <div class="ribbon bg-success text-sm">
-                                                    ກຳລັງຂາຍ
+                                                <div class="ribbon bg-danger text-sm">
+                                                    ຫມົດເເລ້ວ!
                                                 </div>
                                             </div>
-                                        @elseif($item->status == 2)
+                                        @elseif($item->stock <= 10)
                                             <div class="ribbon-wrapper ribbon-sm">
-                                                <div class="ribbon bg-danger text-sm">
-                                                    ຂາຍເເລ້ວ
+                                                <div class="ribbon bg-warning text-sm">
+                                                    ໃກ້ຫມົດ!
+                                                </div>
+                                            </div>
+                                        @elseif($item->stock > 10)
+                                            <div class="ribbon-wrapper ribbon-sm">
+                                                <div class="ribbon bg-success text-sm">
+                                                   ໃນສະຕ໋ອກ
                                                 </div>
                                             </div>
                                         @endif
@@ -146,8 +91,7 @@
                                                 <div class="row text-center">
                                                     <div class="col-md-12">
                                                         @if (!empty($item))
-                                                            <img class="rounded"
-                                                                src="{{ asset($item->image) }}"
+                                                            <img class="rounded" src="{{ asset($item->image) }}"
                                                                 width="50px;" height="50px;">
                                                         @endif
                                                     </div>
@@ -160,7 +104,12 @@
                                                             @if (!empty($item))
                                                                 {{ $item->code }}
                                                             @endif
-
+                                                        </p>
+                                                        <p style="line-height: 20%;" class="text-muted text-sm">
+                                                            <b>ສະຕ່ອກ: </b>
+                                                            @if (!empty($item))
+                                                                {{ $item->stock }}
+                                                            @endif
                                                         </p>
                                                         <p style="line-height: 20%;" class="text-muted text-sm">
                                                             <small><b>ລາຄາຂາຍ:</b></small>
@@ -184,8 +133,7 @@
                                                                 ໃນກະຕ່າ</p>
                                                         </button>
                                                     @else
-                                                        <button
-                                                            wire:click='AddToCart({{ $item->id }})'
+                                                        <button wire:click='AddToCart({{ $item->id }})'
                                                             class="btn btn-info btn-sm float-right">
                                                             <i class="fas fa-cart-plus"></i> ເລືອກ
                                                         </button>
@@ -198,7 +146,7 @@
                                 @endforeach
                             </div>
                             <div class="float-right">
-                                {{-- {{ $lands->links() }} --}}
+                                {{ $data->links() }}
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -252,5 +200,105 @@
                 </div>
 
             </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-header bg-success">
+                            <h4><i class="fas fa-list"></i> ລາຍການສິນຄ້າທີ່ເລືອກ</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="col-12 table-responsive">
+                                <table class="table">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th colspan="4" class="text-bold text-right">ລວມຍອດ</th>
+                                            <th colspan="2">{{ number_format($this->sum_subtotal) }} ₭</th>
+                                        </tr>
+                                        <tr>
+                                            <th>ລຳດັບ</th>
+                                            <th>ສິນຄ້າ</th>
+                                            <th>ລາຄາ</th>
+                                            <th>ຈຳນວນ</th>
+                                            <th>ເປັນເງິນ</th>
+                                            <th class="text-center">ຈັດການ</th>
+                                        </tr>
+                                    </thead>
+                                    @php
+                                        $num = 1;
+                                    @endphp
+                                    <tbody>
+                                        @foreach ($sale_cart as $item)
+                                            <tr>
+                                                <td>{{ $num++ }}</td>
+                                                <td>{{ $item->name }}</td>
+                                                <td><small>{{ number_format($item->price) }}</small></td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input wire:model="qty.{{ $item->id }}"
+                                                                    placeholder="0.00" value="{{ $item->stock }}"
+                                                                    min="1" type="number"
+                                                                    class="form-control text-center money @error('qty.' . $item->id) is-invalid @enderror"
+                                                                    wire:change="UpdateStock({{ $item->id }})">
+                                                                @error('qty.' . $item->id)
+                                                                    <span style="color: #ff0000"
+                                                                        class="error">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        {{ $item->qty }}
+                                                    </div>
+                                                </td>
+                                                <td>{{ number_format($item->subtotal) }}</td>
+                                                <td class="text-center">
+                                                    <button wire:click="Remove_Item('{{ $item->id }}')"
+                                                        class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-times-circle"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+
+                                    {{-- @if ($sale_cart == null)
+                                        <p><b>ຈຳນວນ:</b> 0 | <b>ເປັນເງິນ:</b> 0 LAK</p>
+                                    @else
+                                        <p><b>ຈຳນວນ:</b> {{ $cartCount }} ຕອນ | <b>ເປັນເງິນ:</b>
+                                            {{ $cartTotal }} LAK</p>
+                                    @endif --}}
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            {{-- @foreach ($rolepermissions as $items)
+                                @if ($items->permissionname->name == 'action_sale') --}}
+                            @if ($count_cart > 0)
+                                <button wire:click='ClearItem' class="btn btn-danger"><i
+                                        class="fas fa-trash-alt text-white"></i>
+                                    ລືບທັງຫມົດ
+                                </button>
+                                <button wire:click.live='ShowPlaceSales' class="btn btn-success"><i
+                                        class="far fa-credit-card"></i>
+                                    ໄປທີ່ການຊຳລະເງິນ
+                                </button>
+                            @else
+                                <button disabled wire:click='ClearItem' class="btn btn-danger"><i
+                                        class="fas fa-trash-alt text-white"></i>
+                                    ລືບທັງຫມົດ
+                                </button>
+                                <button disabled wire:click.live='ShowPlaceSales' class="btn btn-success"><i
+                                        class="far fa-credit-card"></i>
+                                    ໄປທີ່ການຊຳລະເງິນ
+                                </button>
+                            @endif
+                            {{-- @endif
+                            @endforeach --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
     </section>
+    @include('livewire.backend.data-store.modal-script')
+    @include('livewire.backend.sales.sales-modal')
 </div>

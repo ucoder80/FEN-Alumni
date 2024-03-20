@@ -69,6 +69,12 @@
         window.addEventListener('hide-modal-update-item', event => {
             $('#modal-update-item').modal('hide')
         })
+        window.addEventListener('show-modal-sales', event => {
+            $('#modal-sales').modal('show')
+        })
+        window.addEventListener('hide-modal-sales', event => {
+            $('#modal-sales').modal('hide')
+        })
     </script>
     <script>
         $(document).ready(function() {
@@ -79,6 +85,15 @@
             });
         });
     </script>
+        <script>
+            $(document).ready(function() {
+                $('#customer_id').select2();
+                $('#customer_id').on('change', function(e) {
+                    var data = $('#customer_id').select2("val");
+                    @this.set('customer_id', data);
+                });
+            });
+        </script>
     <script>
         $('#product_note').summernote({
             placeholder: 'ລາຍລະອຽດ',

@@ -132,8 +132,8 @@ class OrdersContent extends Component
                 'iconColor' => 'red',
             ]);
         } else {
-            // try {
-            //     DB::beginTransaction();
+            try {
+                DB::beginTransaction();
                 $orders = new Orders();
                 $orders->code = 'OD-' . rand(100000, 999999);
                 $orders->supplier_id = $this->supplier_id;
@@ -165,12 +165,13 @@ class OrdersContent extends Component
                     'title' => 'ສັ່ງຊື້ສຳເລັດເເລ້ວ!',
                     'icon' => 'success',
                 ]);
+                DB::commit();
                 return redirect(route('backend.OrderImport'));
-            // } catch (\Exception $ex) {
-            //     DB::rollBack();
-            //     // dd($ex->getMessage());
-            //     $this->emit('alert', ['type' => 'error', 'message' => 'ມີບາງຢ່າງຜິດພາດ!']);
-            // }
+            } catch (\Exception $ex) {
+                DB::rollBack();
+                // dd($ex->getMessage());
+                $this->emit('alert', ['type' => 'error', 'message' => 'ມີບາງຢ່າງຜິດພາດ!']);
+            }
         }
     }
 }

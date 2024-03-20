@@ -19,6 +19,8 @@ use App\Http\Livewire\Backend\DataStore\ProductContent;
 use App\Http\Livewire\Backend\Orders\OrdersCartContent;
 use App\Http\Livewire\Backend\Orders\ImportUpdateContent;
 use App\Http\Livewire\Backend\DataStore\ProductTypeContent;
+use App\Http\Livewire\Backend\Reports\OrdersReportsContent;
+use App\Http\Livewire\Backend\Reports\SalesReportsContent;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +66,10 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/OrderImports', ImportContent::class)->name('backend.OrderImport');
     Route::get('/imports-update/{slug_id}', ImportUpdateContent::class)->name('backend.import_update');
     Route::get('/Sales', SalesContent::class)->name('backend.sale');
+
+    Route::get('/SalesReports', SalesReportsContent::class)->name('backend.SalesReport');
+    Route::get('/OrdersReports', OrdersReportsContent::class)->name('backend.OrdersReport');
+
     
 
 });

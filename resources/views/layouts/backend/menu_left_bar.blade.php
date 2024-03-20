@@ -191,7 +191,7 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('backend.slide') }}" class="nav-link">
+                              <a href="" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
                                   <p>ລາຍງານຂໍ້ມູນສິນຄ້າ</p>
                               </a>
@@ -199,7 +199,7 @@
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('backend.about') }}" class="nav-link">
+                              <a href="" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
                                   <p>ລາຍງານການຊື້ນຳຜູ້ສະຫນອງ</p>
                               </a>
@@ -207,7 +207,7 @@
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('backend.about') }}" class="nav-link">
+                              <a href="{{ route('backend.SalesReport') }}" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
                                   <p>ລາຍງານການຂາຍໃຫ້ລູກຄ້າ</p>
                               </a>
