@@ -152,6 +152,7 @@ class ProductContent extends Component
             }
             $data->product_type_id = $this->product_type_id;
             $data->name = $this->name;
+            $data->stock = $this->stock;
             $data->buy_price = $this->buy_price;
             $data->sell_price = $this->sell_price;
             $data->select_color = $this->select_color;

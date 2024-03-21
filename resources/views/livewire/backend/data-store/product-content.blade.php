@@ -232,7 +232,7 @@
                             @if ($this->ID)
                                 <div class="form-group">
                                     <label for=""> ສະຕ໋ອກ</label>
-                                    <input disabled type="text"
+                                    <input type="text"
                                         class="form-control money @error('stock') is-invalid @enderror"
                                         wire:model="stock" placeholder="0">
                                     @error('stock')
