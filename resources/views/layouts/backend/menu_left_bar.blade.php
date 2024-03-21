@@ -67,6 +67,15 @@
                       </ul>
                   </li>
                   <li class="nav-item">
+                    <a href="{{ route('backend.IncomeExpendContent') }}" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            ບັນທຶກປະຈຳວັນ
+                        </p>
+                    </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                  <li class="nav-item">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-database"></i>
                           <p>
@@ -125,7 +134,8 @@
                             ສັ່ງຊື້-ນຳເຂົ້າສາງ
                         </p>
                     </a>
-                </li> --}}
+                </li>
+                <li class="dropdown-divider"></li> --}}
                   <li class="nav-item">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-cart-plus"></i>
