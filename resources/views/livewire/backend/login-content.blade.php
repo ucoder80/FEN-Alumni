@@ -3,7 +3,8 @@
 {{-- <marquee scrollamount="15" direction="left"> <h1>{{ __('lang.headding1') }} {{ __('lang.headding2') }}</h1> </marquee> --}}
 <div class="login-box">
     <marquee scrollamount="12" direction="left" class="text-white">
-        <h1><i class="flag-icon flag-icon-la"></i> ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ ສັນຕິພາບ ເອກະລາດ ປະຊາທິປະໄຕ ເອກະພາບ ວັດທະນາຖາວອນ</h1>
+        {{-- <h1><i class="flag-icon flag-icon-la"></i> ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ ສັນຕິພາບ ເອກະລາດ ປະຊາທິປະໄຕ ເອກະພາບ ວັດທະນາຖາວອນ</h1> --}}
+        <h1><i class="fas fa-seedling text-success"></i> ຕົ້ມເເລະ ຕົ້ມລະບໍ່ ມື້ນີ້? <i class="far fa-grin-squint-tears text-danger"></i></h1>
     </marquee>
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
@@ -14,7 +15,7 @@
             <p class="login-box-msg h5">
                 <a href="#" class="brand-link">
                     <img src="{{ asset('logo/logo.jpg') }}" class="img-circle elevation-2" height="70"> <br>
-                    <a href="#" target="_blank" class="h5"><b>ຊື່ລະບົບ</b></a>
+                    <a href="#" target="_blank" class="h5"><b>ຮ້ານ: ດາວລິດ ພົມມະຈັນ</b></a>
                 </a>
             </p>
             {{-- <form> --}}

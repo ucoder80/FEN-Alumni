@@ -32,7 +32,7 @@ class LoginContent extends Component
             session()->flash('success', 'ເຂົ້າສູ່ລະບົບສຳເລັດເເລ້ວ');
             return redirect(route('backend.dashboard'));
         } else {
-            $this->emit('alert', ['type' => 'warning', 'message' => 'ເບີໂທ ຫລື ລະຫັດຜ່ານ ບໍ່ຖືກຕ້ອງ!ກະລຸນາລອງໃໝ່']);
+            $this->emit('alert', ['type' => 'error', 'message' => 'ລືມຕະຫລອດຈັ່ງແມ່ນມຶງປຶກ!']);
             // return redirect(route('backend.login'));
         }
     }
