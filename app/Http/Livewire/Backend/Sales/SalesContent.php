@@ -64,7 +64,7 @@ class SalesContent extends Component
                 $order_cart->creator_id = auth()->user()->id;
                 $order_cart->product_id = $product->id;
                 $order_cart->name = $product->name;
-                $order_cart->price = $product->buy_price;
+                $order_cart->price = $product->sell_price;
                 $order_cart->qty = 1;
                 $order_cart->subtotal = $order_cart->price * $order_cart->qty;
                 $order_cart->save();
