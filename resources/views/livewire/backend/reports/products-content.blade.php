@@ -6,13 +6,13 @@
                     <h6><i class="fas fa-chart-line"></i>
                         ລາຍງານ
                         <i class="fa fa-angle-double-right"></i>
-                        ການຊື້ນຳຜູ້ສະຫນອງ
+                        ຂໍ້ມູນສິນຄ້າ
                     </h6>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('backend.dashboard') }}">ໜ້າຫຼັກ</a></li>
-                        <li class="breadcrumb-item active">ການຊື້ນຳຜູ້ສະຫນອງ</li>
+                        <li class="breadcrumb-item active">ຂໍ້ມູນສິນຄ້າ</li>
                     </ol>
                 </div>
             </div>
@@ -27,21 +27,22 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="date" wire:model="start_date" class="form-control">
+                                        {{-- <input type="date" wire:model="start_date" class="form-control"> --}}
                                     </div>
                                 </div><!-- end div-col -->
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="date" wire:model="end_date" class="form-control">
+                                        {{-- <input type="date" wire:model="end_date" class="form-control"> --}}
                                     </div>
                                 </div><!-- end div-col -->
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div wire:ignore class="form-group">
                                         <select wire:model.live="status" id="status" class="form-control">
-                                            <option value="">ເລືອກ-ປະເພດເງິນ
+                                            <option value="">ເລືອກ-ສະຖານະ
                                             </option>
-                                            <option value="1">ສັ່ງຊື້ໃຫມ່</option>
-                                            <option value="2">ນຳເຂົ້າສຳເລັດ</option>
+                                            <option value="1">ໃນສະຕ໋ອກ</option>
+                                            <option value="2">ໃກ້ຫມົດ</option>
+                                            <option value="3">ຫມົດເເລ້ວ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -119,7 +120,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                <h4><u><b>ລາຍງານ-ການຊື້ນຳຜູ້ສະຫນອງ</b></u></h4>
+                                                <h4><u><b>ລາຍງານ-ຂໍ້ມູນສິນຄ້າ</b></u></h4>
                                                 <h4><b>ວັນທີ່:
                                                         @if (!empty($start_date))
                                                             {{ date('d-m-Y', strtotime($start_date)) }}
@@ -138,12 +139,13 @@
                                                     <thead>
                                                         <tr class="text-center bg-gradient-info text-bold">
                                                             <th>ລຳດັບ</th>
-                                                            <th>ວັນທີ</th>
                                                             <th>ລະຫັດ</th>
-                                                            <th>ຜູ້ສະຫນອງ</th>
-                                                            <th>ຍອດລວມ</th>
+                                                            <th>ປະເພດ</th>
+                                                            <th>ສິນຄ້າ</th>
+                                                            <th>ລາຄາຊື້</th>
+                                                            <th>ລາຄາຂາຍ</th>
+                                                            <th>ສະຕ໋ອກ</th>
                                                             <th>ສະຖານະ</th>
-                                                            <th>ຜູ້ສ້າງ</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -155,51 +157,44 @@
                                                                     <a href="javascript:void(0)"
                                                                         wire:click="ShowDetail({{ $item->id }})">{{ $item->code }}</a>
                                                                 </td> --}}
-                                                                <td>{{ date('d/m/Y', strtotime($item->created_at)) }}
-                                                                </td>
                                                                 <td class="text-center">
                                                                     @if (!empty($item->code))
                                                                         {{ $item->code }}
                                                                     @endif
                                                                 </td>
-                                                                <td>
-                                                                    @if (!empty($item->supplier))
-                                                                        {{ $item->supplier->name_lastname }} <br>
-                                                                        <i class="fas fa-phone-alt"></i>
-                                                                        {{ $item->supplier->phone }}
+                                                                <td class="text-center">
+                                                                    @if (!empty($item->product_type))
+                                                                        {{ $item->product_type->name }}
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    {{ number_format($item->total) }} ₭
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    @if ($item->status == 1)
-                                                                        <span class="text-info"><i
-                                                                                class="fas fa-plus-circle"></i>
-                                                                            ໃຫມ່</span>
-                                                                            @elseif($item->status == 2)
-                                                                            <span class="text-success"><i
-                                                                                class="fas fa-check-circle"></i>
-                                                                            ນຳເຂົ້າສຳເລັດ</span>
+                                                                    @if (!empty($item))
+                                                                        {{ $item->name }}
                                                                     @endif
                                                                 </td>
-                                                                <td class="text-center">
-                                                                    @if (!empty($item->employee))
-                                                                        {{ $item->employee->name_lastname }}
+                                                                <td>
+                                                                    {{ number_format($item->buy_price) }} ₭
+                                                                </td>
+                                                                <td>
+                                                                    {{ number_format($item->sell_price) }} ₭
+                                                                </td>
+                                                                <td>
+                                                                    {{ $item->stock }} 
+                                                                </td>
+                                                                <td>
+                                                                    @if ($item->stock >= 10)
+                                                                        <span class="text-success"><i class="fas fa-check-circle"></i>
+                                                                            ໃນສະຕ໋ອກ</span>
+                                                                    @elseif($item->stock > 0 && $item->stock <= 10)
+                                                                        <span class="text-warning"><i class="fas fa-warning"></i>
+                                                                            ໃກ້ຫມົດ!</span>
+                                                                    @elseif($item->stock <= 0)
+                                                                        <span class="text-danger"><i class="fas fa-box-open"></i>
+                                                                            ຫມົດເເລ້ວ!</span>
                                                                     @endif
                                                                 </td>
                                                             </tr>
                                                         @endforeach
-                                                        <tr class="text-center">
-                                                            <td class="bg-light text-right" colspan="6">
-                                                                <i>
-                                                                    <h5><b>ລວມເງິນທັງໝົດ</b></h5>
-                                                                </i>
-                                                            </td>
-                                                            <td colspan="2" class="text-left bg-light">
-                                                                <h5><b>{{ number_format($sum_total) }} ₭</b></h5>
-                                                            </td>
-                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>

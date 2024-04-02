@@ -40,8 +40,8 @@
                                         <select wire:model.live="type" id="type" class="form-control">
                                             <option value="">ເລືອກ-ປະເພດເງິນ
                                             </option>
-                                                <option value="1">ເງິນສົດ</option>
-                                                <option value="2">ເງິນໂອນ</option>
+                                            <option value="1">ເງິນສົດ</option>
+                                            <option value="2">ເງິນໂອນ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -74,42 +74,9 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                <i class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i><i
-                                                    class="fa fa-angle-double-left"></i> <span> <i
+                                                =============  <span> <i
                                                         style="font-size: 30px"
-                                                        class="fas fa-yin-yang text-info"></i></span> <i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i><i
-                                                    class="fa fa-angle-double-right"></i>
+                                                        class="fas fa-yin-yang text-info"></i></span> =============
                                             </div>
                                         </div>
                                         <div class="row">
@@ -127,13 +94,23 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-3">
-                                                <h5 class="text-center">ຮ້ານ: ດາວລິດ</h5>
+                                                <h5 class="text-center">
+                                                    @if (!empty($about))
+                                                    {{ $about->name_la }}
+                                                    @endif
+                                                </h5>
                                                 <h6 class="text-sm"><i class="fas fa-phone-alt"></i> ຕິດຕໍ່:
-                                                    {{ auth()->user()->phone }}
+                                                    @if (!empty($about))
+                                                    {{ $about->phone }}
+                                                    @endif
                                                     <h6 class="text-sm"><i class="fas fa-envelope"></i> ອີເມວ:
-                                                        {{ auth()->user()->email }}
+                                                        @if (!empty($about))
+                                                        {{ $about->email }}
+                                                        @endif
                                                         <h6 class="text-sm"><i class="fas fa-hospital"></i> ທີ່ຕັ້ງ:
-                                                            ພັນໄຊ, ຊຳເຫນືອ, ແຂວງ ຫົວພັນ</h6>
+                                                            @if (!empty($about))
+                                                            {{ $about->address }}
+                                                            @endif</h6>
                                             </div>
                                             <div class="col-md-3"></div>
                                             <div class="col-md-6">
@@ -197,11 +174,14 @@
                                                                     {{ number_format($item->total) }} ₭
                                                                 </td>
                                                                 <td>
-                                                                    @if($item->type == 1)
-                                                                    <span class="text-success"><i class="fas fa-hand-holding-usd"></i> ເງິນສົດ</span>
+                                                                    @if ($item->type == 1)
+                                                                        <span class="text-success"><i
+                                                                                class="fas fa-hand-holding-usd"></i>
+                                                                            ເງິນສົດ</span>
                                                                     @elseif($item->type == 2)
-                                                                    <span class="text-danger"><i class="fas fa-hand-holding-usd"></i> ເງິນໂອນ</span>
-                                                                        
+                                                                        <span class="text-danger"><i
+                                                                                class="fas fa-hand-holding-usd"></i>
+                                                                            ເງິນໂອນ</span>
                                                                     @endif
                                                                 </td>
                                                                 <td class="text-center">

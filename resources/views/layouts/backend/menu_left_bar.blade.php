@@ -4,7 +4,10 @@
       <a href="{{ route('backend.dashboard') }}" class="brand-link">
           <img src="{{ asset('logo/logo.jpg') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
               style="opacity: .8">
-          <span class="brand-text font-weight-light text-md">ຮ້ານ: ດາວລິດ</span>
+          <span class="brand-text font-weight-light text-md">
+            @if(!empty($about))
+            {{ $about->name_la }}
+          @endif</span>
       </a>
       <!-- Sidebar -->
       <div class="sidebar">
@@ -201,7 +204,7 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="" class="nav-link">
+                              <a href="{{ route('backend.ProductsReport') }}" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
                                   <p>ລາຍງານຂໍ້ມູນສິນຄ້າ</p>
                               </a>
@@ -209,7 +212,7 @@
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="" class="nav-link">
+                              <a href="{{ route('backend.OrdersReport') }}" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
                                   <p>ລາຍງານການຊື້ນຳຜູ້ສະຫນອງ</p>
                               </a>

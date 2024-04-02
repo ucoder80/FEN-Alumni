@@ -105,4 +105,13 @@
             }
         });
     </script>
+            <script>
+                $(document).ready(function() {
+                    $('#product_type_id').select2();
+                    $('#product_type_id').on('change', function(e) {
+                        var data = $('#product_type_id').select2("val");
+                        @this.set('product_type_id', data);
+                    });
+                });
+            </script>
 @endpush

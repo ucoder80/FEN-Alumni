@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Backend\Sales;
 
 use App\Models\Product;
+use App\Models\ProductType;
 use App\Models\Sales;
 use App\Models\SalesCart;
 use App\Models\SalesDetail;
@@ -17,14 +18,18 @@ class SalesContent extends Component
     use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $search_product, $search, $branchs, $sum_subtotal, $qty, $customer_id, $customer_data, $type = 2, $note;
+    public $search_product, $search, $branchs, $sum_subtotal, $qty, $customer_id, $customer_data, $type = 2, $note,$product_type_id;
     public function render()
     {
+        $product_type = ProductType::all();
         $data = Product::where(function ($q) {
             $q->where('name', 'like', '%' . $this->search . '%')
                 ->orwhere('code', 'like', '%' . $this->search . '%');
-        })->paginate(12);
-
+        });
+        if($this->product_type_id)
+        {
+            $data = $data->where('product_type_id',$this->product_type_id);
+        }
         $count_cart = SalesCart::count();
         $sale_cart = SalesCart::all();
         $customers = User::all();
@@ -36,7 +41,13 @@ class SalesContent extends Component
             $this->customer_id = '';
             $this->customer_data = [];
         }
-        return view('livewire.backend.sales.sales-content', compact('data', 'count_cart', 'sale_cart', 'customers'))->layout('layouts.backend.style');
+        if(!empty($data))
+        {
+            $data = $data->paginate(12);
+        }else{
+            $data = [];
+        }
+        return view('livewire.backend.sales.sales-content', compact('data', 'count_cart', 'sale_cart', 'customers','product_type'))->layout('layouts.backend.style');
     }
     public function resetField()
     {

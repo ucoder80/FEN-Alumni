@@ -50,6 +50,6 @@ class AboutContent extends Component
         $data->longitude = $this->longs;
         $data->save();
         session()->flash('success', 'ແກ້ໄຂຂໍ້ມູນສຳເລັດ');
-        return redirect(route('backend.Office'));
+        return redirect(route('backend.about'));
     }
 }

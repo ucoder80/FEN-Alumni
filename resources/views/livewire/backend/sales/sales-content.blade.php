@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                     <div class="card">
-                        <div class="card-header bg-primary">
+                        <div class="card-header bg-light">
                             <div class="row mb-2">
                                 <div class="col-sm-4">
                                     {{-- <div class="input-group row">
@@ -30,18 +30,18 @@
                                         </select>
                                     </div> --}}
                                 </div>
-                                <div class="col-sm-4">
-                                    {{-- <div class="input-group row">
-                                        <select wire:model='zones_id' id="zomeid"
+                                <div wire:ignore class="col-sm-4">
+                                    <div class="input-group row">
+                                        <select wire:model='product_type_id' id="product_type_id"
                                             class="form-control form-control-md">
-                                            <option class="text-center" selected value="">-- ເລືອກໂຊນ --</option>
-                                            @foreach ($zones as $items)
-                                                <option class="text-center" value="{{ $items->id }}">
-                                                    {{ $items->zname }}
+                                            <option class="text-left" selected value="">-- ປະເພດສິນຄ້າ --</option>
+                                            @foreach ($product_type as $item)
+                                                <option class="text-left" value="{{ $item->id }}">
+                                                    {{ $item->name }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                    </div> --}}
+                                    </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-group row">
@@ -114,7 +114,7 @@
                                                         <p style="line-height: 20%;" class="text-muted text-sm">
                                                             <small><b>ລາຄາຂາຍ:</b></small>
                                                             <small> {{ number_format($item->sell_price) }}
-                                                                LAK</small>
+                                                                ₭</small>
                                                         </p>
                                                         <p style="line-height: 20%;" class="text-muted text-sm">
                                                             <small>
@@ -174,7 +174,7 @@
                                                         {{ $items->zomes->zname }}
                                                         @endif
                                                     </small>
-                                                    <small>{{ number_format($items->selling_price) }} LAK</small>
+                                                    <small>{{ number_format($items->selling_price) }} ₭</small>
                                                     @if ($cartData->where('id', $items->id)->count() > 0)
                                                         <button class="btn btn-warning btn-sm float-right">
                                                             <p class="mb-0">In Cart</p>
@@ -204,7 +204,7 @@
                 <div class="col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-header bg-success">
-                            <h4><i class="fas fa-list"></i> ລາຍການສິນຄ້າທີ່ເລືອກ</h4>
+                            <h4><i class="fas fa-cart-plus"></i> ກະຕ່າສິນຄ້າ</h4>
                         </div>
                         <div class="card-body">
                             <div class="col-12 table-responsive">
@@ -231,13 +231,13 @@
                                             <tr>
                                                 <td>{{ $num++ }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td><small>{{ number_format($item->price) }}</small></td>
+                                                <td><small>{{ number_format($item->price) }} ₭</small></td>
                                                 <td>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <input wire:model="qty.{{ $item->id }}"
-                                                                    placeholder="0.00" value="{{ $item->stock }}"
+                                                                <input wire:model.live="qty.{{ $item->id }}" style="width: 100px"
+                                                                    placeholder="0" value="{{ $item->qty }}"
                                                                     min="1" type="number"
                                                                     class="form-control text-center money @error('qty.' . $item->id) is-invalid @enderror"
                                                                     wire:change="UpdateStock({{ $item->id }})">
@@ -247,10 +247,10 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        {{ $item->qty }}
+                                                       <span class="pl-2"> {{ $item->qty }}</span>
                                                     </div>
                                                 </td>
-                                                <td>{{ number_format($item->subtotal) }}</td>
+                                                <td>{{ number_format($item->subtotal) }} ₭</td>
                                                 <td class="text-center">
                                                     <button wire:click="Remove_Item('{{ $item->id }}')"
                                                         class="btn btn-danger btn-sm">
@@ -262,10 +262,10 @@
                                     </tbody>
 
                                     {{-- @if ($sale_cart == null)
-                                        <p><b>ຈຳນວນ:</b> 0 | <b>ເປັນເງິນ:</b> 0 LAK</p>
+                                        <p><b>ຈຳນວນ:</b> 0 | <b>ເປັນເງິນ:</b> 0 ₭</p>
                                     @else
                                         <p><b>ຈຳນວນ:</b> {{ $cartCount }} ຕອນ | <b>ເປັນເງິນ:</b>
-                                            {{ $cartTotal }} LAK</p>
+                                            {{ $cartTotal }} ₭</p>
                                     @endif --}}
                                 </table>
                             </div>
