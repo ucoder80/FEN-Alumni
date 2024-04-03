@@ -75,6 +75,9 @@
         window.addEventListener('hide-modal-sales', event => {
             $('#modal-sales').modal('hide')
         })
+        window.addEventListener('show-modal-bill', event => {
+            $('#modal-bill').modal('show')
+        })
     </script>
     <script>
         $(document).ready(function() {
@@ -85,15 +88,15 @@
             });
         });
     </script>
-        <script>
-            $(document).ready(function() {
-                $('#customer_id').select2();
-                $('#customer_id').on('change', function(e) {
-                    var data = $('#customer_id').select2("val");
-                    @this.set('customer_id', data);
-                });
+    <script>
+        $(document).ready(function() {
+            $('#customer_id').select2();
+            $('#customer_id').on('change', function(e) {
+                var data = $('#customer_id').select2("val");
+                @this.set('customer_id', data);
             });
-        </script>
+        });
+    </script>
     <script>
         $('#product_note').summernote({
             placeholder: 'ລາຍລະອຽດ',
@@ -105,13 +108,29 @@
             }
         });
     </script>
-            <script>
-                $(document).ready(function() {
-                    $('#product_type_id').select2();
-                    $('#product_type_id').on('change', function(e) {
-                        var data = $('#product_type_id').select2("val");
-                        @this.set('product_type_id', data);
-                    });
+    <script>
+        $(document).ready(function() {
+            $('#product_type_id').select2();
+            $('#product_type_id').on('change', function(e) {
+                var data = $('#product_type_id').select2("val");
+                @this.set('product_type_id', data);
+            });
+        });
+    </script>
+        <script>
+            $(document).ready(function() {
+                $('#print').click(function() {
+                    printDiv();
+    
+                    function printDiv() {
+                        var printContents = $(".right_content").html();
+                        var originalContents = document.body.innerHTML;
+                        document.body.innerHTML = printContents;
+                        window.print();
+                        document.body.innerHTML = originalContents;
+                    }
+                    location.reload();
                 });
-            </script>
+            });
+        </script>
 @endpush

@@ -81,9 +81,15 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-3 text-center">
-                                                <img src="{{ asset('logo/logo.jpg') }}"
+                                                @if (!empty($about))
+                                                <img src="{{ asset($about->logo) }}"
                                                     class="brand-image-xl img-circle elevation-2" height="80"
                                                     width="80">
+                                            @else
+                                                <img src="{{ asset('logo/noimage.jpg') }}"
+                                                    class="brand-image-xl img-circle elevation-2" height="80"
+                                                    width="80">
+                                            @endif
                                             </div>
                                             <div class="col-md-3"></div>
                                             <div class="col-md-6 text-right">

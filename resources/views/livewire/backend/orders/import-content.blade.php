@@ -186,12 +186,11 @@
                                                             {{-- @endif --}}
                                                             {{-- @foreach ($res_function_available as $items)
                                                                 @if ($items->ResFunctions->name == 'action_40') --}}
-                                                            {{-- <a class="dropdown-item" href="javascript:void(0)"
+                                                            <a class="dropdown-item" href="javascript:void(0)"
                                                                 wire:click="ShowBill({{ $item->id }})"><i
                                                                     class="fas fa-print">
                                                                 </i> ພິມບິນ</a>
-
-                                                            </a> --}}
+                                                            </a>
                                                             {{-- @endif
                                                             @endforeach --}}
                                                             {{-- @foreach ($res_function_available as $items)

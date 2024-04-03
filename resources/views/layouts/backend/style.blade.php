@@ -6,22 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>ລະບົບ</title>
-    <link rel="icon" type="image/png" href="{{ asset('logo/logo.jpg') }}" />
+    <title>
+        @if (!empty($about))
+            {{ $about->name_la }}
+        @endif
+    </title>
+    @if(!empty($about))
+    <link rel="icon" type="image/png" href="{{ asset( $about->logo) }}" />
+    @else
+    <link rel="icon" type="image/png" href="{{ asset('logo/noimage.jpg') }}" />
+    @endif
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ asset('backend/plugins/flag-icon-css/css/flag-icon.min.css') }}">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- JQVMap -->
     {{-- avatar icon --}}
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Daterange picker -->
@@ -30,7 +41,8 @@
     <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/summernote-bs4.min.css') }}">
     <!-- data table -->
     <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Toastr -->
     <link rel="stylesheet" href="{{ asset('backend/plugins/toastr/toastr.min.css') }}">
@@ -38,9 +50,9 @@
     <link rel="stylesheet" href="{{ asset('backend/plugins/sweetalert2/sweetalert2.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/plugins/sweetalert2/sweetalert2.min.css') }}">
     <!-- Select2 -->
-    <link rel="stylesheet" href="{{ asset('backend/plugins/flag-icon-css/css/flag-icon.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('backend/plugins/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('backend/plugins/flag-icon-css/css/flag-icon.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <!-- Trix -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
     <!-- Trix -->
@@ -65,22 +77,24 @@
     @livewireStyles
 </head>
 {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງຊ້າຍ --}}
+
 <body class="hold-transition sidebar-mini layout-fixed" style="font-family: 'Noto Sans Lao Medium'">
 
-{{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງເທິງ --}}
-{{-- <body class="hold-transition layout-top-nav" style="font-family: 'NotoSansLao-Medium'"> --}}
+    {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງເທິງ --}}
+    {{-- <body class="hold-transition layout-top-nav" style="font-family: 'NotoSansLao-Medium'"> --}}
 
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow main-web-background bg-primary" role="status"></div>
     </div>
     <!-- Spinner End -->
     <div class="wrapper">
-{{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງຊ້າຍ --}}
-        @include('layouts.backend.menutopbar')  
+        {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງຊ້າຍ --}}
+        @include('layouts.backend.menutopbar')
         @include('layouts.backend.menu_left_bar')
 
-{{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງເທິງ --}}
+        {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງເທິງ --}}
         {{-- @include('layouts.backend.menubar') --}}
 
         <div class="content-wrapper">
@@ -144,12 +158,12 @@
     <!-- Money format -->
     <script src="{{ asset('js/money.format.js') }}"></script>
     <!-- Select2 -->
-    <script src="{{ asset('backend/plugins/select2/js/select2.full.min.js')}}"></script>
+    <script src="{{ asset('backend/plugins/select2/js/select2.full.min.js') }}"></script>
     <!-- Summernote -->
     <script src="{{ asset('backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- export to excel -->
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     @livewireScripts

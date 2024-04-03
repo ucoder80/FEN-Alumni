@@ -16,7 +16,7 @@ class ImportContent extends Component
     use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $search, $start_date, $end_date, $status, $ID, $caculate;
+    public $search, $start_date, $end_date, $status, $ID, $caculate,$OrdersDetail = [],$sum_OrdersDetail_subtotal,$sum_OrdersDetail_stock,$supplier_data;
 
     public function render()
     {
@@ -161,6 +161,19 @@ class ImportContent extends Component
             'title' => 'ແກ້ໄຂຈຳນວນສຳເລັດ!',
             'icon' => 'success',
         ]);
+    }
+
+    public function ShowBill($id)
+    {
+        $this->resetField();
+        $this->dispatchBrowserEvent('show-modal-bill');
+        $orders = Orders::find($id);
+        $this->ID = $orders->id;
+        $this->supplier_data = $orders->supplier;
+        $this->code = $orders->code;
+        $this->sum_OrdersDetail_subtotal = OrdersDetail::select('subtotal')->where('orders_id', $this->ID)->sum('subtotal');
+        $this->sum_OrdersDetail_stock = OrdersDetail::select('stock')->where('orders_id', $this->ID)->sum('stock');
+        $this->OrdersDetail = OrdersDetail::where('orders_id', $this->ID)->get();
     }
 
 }

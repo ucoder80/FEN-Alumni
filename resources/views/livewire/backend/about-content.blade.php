@@ -28,46 +28,24 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="control-user">
-                                            {{-- @if($new_img)
-                                                @if ($img)
-                                                    <div class="user-profile" style="border: 5px solid green;">
-                                                        @php
-                                                            try {
-                                                                $url = $img->temporaryUrl();
-                                                                $status = true;
-                                                            } catch (RuntimeException $exception) {
-                                                                $status = false;
-                                                            }
-                                                        @endphp
-                                                        @if ($status)
-                                                            <img src="{{ $url }}" alt="logo">
-                                                        @endif
-                                                    </div>
-                                                    <i class="fas fa-check-circle" style="color:green;font-size:20px;padding:10px;"></i>
-                                                @else
-                                                    <div class="user-profile" style="border: 5px solid green;">
-                                                            <img src="{{asset($new_img)}}" alt="logo">
-                                                    </div>
-                                                    <i class="fas fa-check-circle" style="color:green;font-size:20px;padding:10px;"></i>
-                                                @endif
-                                            @else
-                                                <div class="user-profile" style="border: 5px solid #000">
-                                                    <img src="{{ asset('image/logo/lao_youth.png') }}" alt="" width="100px;"
-                                                        height="100px;">
+                                        <div class="container">
+                                            <div wire:ignore class="avatar-upload">
+                                                <div class="avatar-edit">
+                                                    <input type='file' wire:model="logo" id="imageUpload"
+                                                        class="@error('logo') is-invalid @enderror" accept=".png, .jpg, .jpeg" />
+                                                    <label for="imageUpload"></label>
                                                 </div>
-                                            @endif
-                                            <label>{{ __('lang.logo') }}</label> --}}
-                                            {{-- <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <input wire:model="img" type="file" placeholder="{{ __('lang.logo') }}"
-                                                        class="form-control @error('img') is-invalid @enderror">
-                                                    @error('img')
-                                                        <span style="color: red" class="error">{{ $message }}</span>
-                                                    @enderror
+                                                <label class="text-center">ປ່ຽນໂລໂກ</label>
+                                                <div class="avatar-preview">
+                                                    <div id="imagePreview"
+                                                        style="background-image: url({{ asset('logo/noimage.jpg') }});">
+                                                    </div>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                         </div>
+                                        @error('logo')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">

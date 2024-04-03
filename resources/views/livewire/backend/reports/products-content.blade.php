@@ -75,16 +75,21 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                =============  <span> <i
-                                                        style="font-size: 30px"
+                                                ============= <span> <i style="font-size: 30px"
                                                         class="fas fa-yin-yang text-info"></i></span> =============
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-3 text-center">
-                                                <img src="{{ asset('logo/logo.jpg') }}"
-                                                    class="brand-image-xl img-circle elevation-2" height="80"
-                                                    width="80">
+                                                @if (!empty($about))
+                                                    <img src="{{ asset($about->logo) }}"
+                                                        class="brand-image-xl img-circle elevation-2" height="80"
+                                                        width="80">
+                                                @else
+                                                    <img src="{{ asset('logo/noimage.jpg') }}"
+                                                        class="brand-image-xl img-circle elevation-2" height="80"
+                                                        width="80">
+                                                @endif
                                             </div>
                                             <div class="col-md-3"></div>
                                             <div class="col-md-6 text-right">
@@ -97,21 +102,22 @@
                                             <div class="col-md-3">
                                                 <h5 class="text-center">
                                                     @if (!empty($about))
-                                                    {{ $about->name_la }}
+                                                        {{ $about->name_la }}
                                                     @endif
                                                 </h5>
                                                 <h6 class="text-sm"><i class="fas fa-phone-alt"></i> ຕິດຕໍ່:
                                                     @if (!empty($about))
-                                                    {{ $about->phone }}
+                                                        {{ $about->phone }}
                                                     @endif
                                                     <h6 class="text-sm"><i class="fas fa-envelope"></i> ອີເມວ:
                                                         @if (!empty($about))
-                                                        {{ $about->email }}
+                                                            {{ $about->email }}
                                                         @endif
                                                         <h6 class="text-sm"><i class="fas fa-hospital"></i> ທີ່ຕັ້ງ:
                                                             @if (!empty($about))
-                                                            {{ $about->address }}
-                                                            @endif</h6>
+                                                                {{ $about->address }}
+                                                            @endif
+                                                        </h6>
                                             </div>
                                             <div class="col-md-3"></div>
                                             <div class="col-md-6">
@@ -179,17 +185,20 @@
                                                                     {{ number_format($item->sell_price) }} ₭
                                                                 </td>
                                                                 <td>
-                                                                    {{ $item->stock }} 
+                                                                    {{ $item->stock }}
                                                                 </td>
                                                                 <td>
                                                                     @if ($item->stock >= 10)
-                                                                        <span class="text-success"><i class="fas fa-check-circle"></i>
+                                                                        <span class="text-success"><i
+                                                                                class="fas fa-check-circle"></i>
                                                                             ໃນສະຕ໋ອກ</span>
                                                                     @elseif($item->stock > 0 && $item->stock <= 10)
-                                                                        <span class="text-warning"><i class="fas fa-warning"></i>
+                                                                        <span class="text-warning"><i
+                                                                                class="fas fa-warning"></i>
                                                                             ໃກ້ຫມົດ!</span>
                                                                     @elseif($item->stock <= 0)
-                                                                        <span class="text-danger"><i class="fas fa-box-open"></i>
+                                                                        <span class="text-danger"><i
+                                                                                class="fas fa-box-open"></i>
                                                                             ຫມົດເເລ້ວ!</span>
                                                                     @endif
                                                                 </td>

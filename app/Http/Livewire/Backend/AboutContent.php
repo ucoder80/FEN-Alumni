@@ -9,7 +9,7 @@ use Livewire\WithFileUploads;
 class AboutContent extends Component
 {
     use WithFileUploads;
-    public $name_la,$name_en,$phone,$email,$note,$role,$lats,$longs,$latitude,$longitude,$address;
+    public $name_la, $name_en, $phone, $email, $note, $role, $lats, $longs, $latitude, $longitude, $address, $logo;
     public $new_img, $img;
     public function mount()
     {
@@ -20,6 +20,7 @@ class AboutContent extends Component
         $this->address = $data->address;
         $this->latitude = $data->latitude;
         $this->longitude = $data->longitude;
+        $this->logo = $data->logo;
     }
     public function render()
     {
@@ -28,19 +29,27 @@ class AboutContent extends Component
     public function update()
     {
         $this->validate([
-            'name_la'=>'required',
-            'phone'=>'required|regex:/^[0-9]+$/i|max:8|:abouts',
-            'note'=>'required',
-        ],[
-            'name_la.required'=>'ປ້ອນຂໍ້ມູນກ່ອນ!',
-            'phone.required'=>'ປ້ອນຂໍ້ມູນກ່ອນ!',
-            'phone.regex'=>'ປ້ອນເປັນຕົວເລກທັງຫມົດ!',
-            'phone.max'=>'ຕົວເລກບໍ່ເກີນ 8 ໂຕ!',
+            'name_la' => 'required',
+            'phone' => 'required|regex:/^[0-9]+$/i|max:8|:abouts',
+            'note' => 'required',
+        ], [
+            'name_la.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
+            'phone.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
+            'phone.regex' => 'ປ້ອນເປັນຕົວເລກທັງຫມົດ!',
+            'phone.max' => 'ຕົວເລກບໍ່ເກີນ 8 ໂຕ!',
             // 'phone.unique'=>'ຂໍ້ມູນນີ້ມີໃນລະບົບເເລ້ວ!',
-            'note.required'=>'ປ້ອນຂໍ້ມູນກ່ອນ!',
-            // 'image.required'=>'ເລືອກຮູບພາບກ່ອນ!',
+            'note.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
+            // 'logo.required'=>'ເລືອກຮູບພາບກ່ອນ!',
         ]);
         $data = About::find(1);
+        if ($this->logo) {
+            $this->validate([
+                'logo' => 'required|mimes:jpg,png,jpeg',
+            ]);
+            $filename_logo = $this->logo->getClientOriginalName();
+            $this->logo->storeAs('upload/logo' . $filename_logo);
+            $data->logo = 'upload/logo' . $filename_logo;
+        }
         $data->name_la = $this->name_la;
         $data->name_en = $this->name_en;
         $data->phone = $this->phone;
@@ -49,7 +58,11 @@ class AboutContent extends Component
         $data->latitude = $this->lats;
         $data->longitude = $this->longs;
         $data->save();
-        session()->flash('success', 'ແກ້ໄຂຂໍ້ມູນສຳເລັດ');
+        // session()->flash('success', 'ແກ້ໄຂຂໍ້ມູນສຳເລັດ');
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'ແກ້ໄຂສຳເລັດເເລ້ວ!',
+            'icon' => 'success',
+        ]);
         return redirect(route('backend.about'));
     }
 }

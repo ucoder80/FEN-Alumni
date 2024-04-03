@@ -2,8 +2,13 @@
   <aside class="main-sidebar sidebar-light-primary elevation-3">
       <!-- Brand Logo -->
       <a href="{{ route('backend.dashboard') }}" class="brand-link">
-          <img src="{{ asset('logo/logo.jpg') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-              style="opacity: .8">
+        @if(!empty($about))
+        <img src="{{ asset( $about->logo) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width: 40px; height:50px"
+        style="opacity: .8">
+        @else
+        <img src="{{ asset('logo/noimage.jpg') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width: 50px; height:50px"
+        style="opacity: .8">
+        @endif
           <span class="brand-text font-weight-light text-md">
             @if(!empty($about))
             {{ $about->name_la }}
