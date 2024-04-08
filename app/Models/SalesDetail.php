@@ -11,7 +11,7 @@ class SalesDetail extends Model
     protected $table = 'sale_detail';
     protected $fillable = [
         'sales_id',
-        'product_id',
+        'products_id',
         'sell_price',
         'stock',
         'subtotal',
@@ -24,6 +24,6 @@ class SalesDetail extends Model
     }
     public function product()
     {
-        return $this->belongsTo('App\Models\User', 'product_id', 'id');
+        return $this->belongsTo('App\Models\Product', 'products_id', 'id');
     }
 }

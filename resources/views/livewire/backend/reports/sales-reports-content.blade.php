@@ -158,16 +158,11 @@
                                                         @foreach ($data as $item)
                                                             <tr class="text-center">
                                                                 <td>{{ $no++ }}</td>
-                                                                {{-- <td class="text-center">
-                                                                    <a href="javascript:void(0)"
-                                                                        wire:click="ShowDetail({{ $item->id }})">{{ $item->code }}</a>
-                                                                </td> --}}
                                                                 <td>{{ date('d/m/Y', strtotime($item->created_at)) }}
                                                                 </td>
                                                                 <td class="text-center">
-                                                                    @if (!empty($item->code))
-                                                                        {{ $item->code }}
-                                                                    @endif
+                                                                    <a href="javascript:void(0)"
+                                                                        wire:click="ShowDetail({{ $item->id }})">{{ $item->code }}</a>
                                                                 </td>
                                                                 <td>
                                                                     @if (!empty($item->customer))
@@ -227,6 +222,141 @@
             </div>
         </div>
     </section>
+    {{-- \\\\\\\\\\\\\\\\\\\\\\\ show detail  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+    <div class="modal fade" id="modal-detail" wire:ignore.self>
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fas fa-file-alt"></i> ລາຍລະອຽດບິນ: {{ $this->code }}
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <span>
+                                            @if (!empty($about))
+                                                <i class="fas fa-store-alt"></i> {{ $about->name_la }}
+                                            @endif
+                                        </span>
+                                        <br>
+                                        <span>
+                                            @if (!empty($about))
+                                                ໂທ: {{ $about->phone }}
+                                            @endif
+                                        </span><br>
+                                        <span>
+                                            @if (!empty($about))
+                                                {{ $about->address }}
+                                            @endif
+                                        </span>
+                                    </th>
+
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <span><i class="fas fa-user"></i> ລູກຄ້າ</span><br>
+                                        <span>
+                                            @if (!empty($customer_data))
+                                                {{ $customer_data->name_lastname }}
+                                            @endif
+                                        </span>
+                                        <br>
+                                        <span>
+                                            @if (!empty($customer_data))
+                                                ໂທ: {{ $customer_data->phone }}
+                                            @endif
+                                        </span><br>
+                                        <span>
+                                            @if (!empty($customer_data))
+                                                {{ $customer_data->address }}
+                                            @endif
+                                        </span>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <span> ບິນເລກທີ: {{ $this->code }}</span><br>
+                                        <span> ວັນທີ: {{ date('d-m-Y') }}</span><br>
+                                        <span>
+                                            ເວລາ: {{ date('H:i:s') }}
+                                        </span>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="right_content2">
+                        <div class="row text-center pt-3">
+                            <input type="hidden" wire:model="ID">
+                            <div class="col-md-12">
+                                <h4><b>ໃບບິນການຂາຍ</b></h4>
+                            </div>
+                        </div>
+                        <table class="table table-hover text-center responsive">
+                            <thead class="bg-light text-center">
+                                <tr>
+                                    <th>ລຳດັບ</th>
+                                    <th>ສິນຄ້າ</th>
+                                    <th>ລາຄາ</th>
+                                    <th>ຈຳນວນ</th>
+                                    <th>ເປັນເງິນ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $num = 1;
+                                @endphp
+                                @foreach ($SalesDetail as $item)
+                                    <tr class="text-center">
+                                        <td>{{ $num++ }}</td>
+                                        <td>
+                                            @if (!empty($item->product))
+                                                {{ $item->product->name }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ number_format($item->sell_price) }} ₭
+                                        </td>
+                                        <td>
+                                            x {{ $item->stock }}
+                                        </td>
+                                        <td>
+                                            {{ number_format($item->subtotal) }} ₭
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                <tr class="text-bold bg-light">
+                                    <td colspan="3">ຍອດລວມ</td>
+                                    <td>x {{ number_format($this->sum_SalesDetail_stock) }}</td>
+                                    <td>{{ number_format($this->sum_SalesDetail_subtotal) }} ₭</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-secondary fas fa-times-circle" data-dismiss="modal">
+                        ປິດ</button>
+                    <button id="print2" type="button" class="btn btn-success"> <i class="fas fa-print"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @push('scripts')
     <script>
@@ -241,6 +371,22 @@
 
                 function printDiv() {
                     var printContents = $(".right_content").html();
+                    var originalContents = document.body.innerHTML;
+                    document.body.innerHTML = printContents;
+                    window.print();
+                    document.body.innerHTML = originalContents;
+                }
+                location.reload();
+            });
+        });
+    </script>
+       <script>
+        $(document).ready(function() {
+            $('#print2').click(function() {
+                printDiv();
+
+                function printDiv() {
+                    var printContents = $(".right_content2").html();
                     var originalContents = document.body.innerHTML;
                     document.body.innerHTML = printContents;
                     window.print();

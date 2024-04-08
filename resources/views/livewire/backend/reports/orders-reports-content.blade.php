@@ -74,22 +74,21 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                =============  <span> <i
-                                                        style="font-size: 30px"
+                                                ============= <span> <i style="font-size: 30px"
                                                         class="fas fa-yin-yang text-info"></i></span> =============
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-3 text-center">
                                                 @if (!empty($about))
-                                                <img src="{{ asset($about->logo) }}"
-                                                    class="brand-image-xl img-circle elevation-2" height="80"
-                                                    width="80">
-                                            @else
-                                                <img src="{{ asset('logo/noimage.jpg') }}"
-                                                    class="brand-image-xl img-circle elevation-2" height="80"
-                                                    width="80">
-                                            @endif
+                                                    <img src="{{ asset($about->logo) }}"
+                                                        class="brand-image-xl img-circle elevation-2" height="80"
+                                                        width="80">
+                                                @else
+                                                    <img src="{{ asset('logo/noimage.jpg') }}"
+                                                        class="brand-image-xl img-circle elevation-2" height="80"
+                                                        width="80">
+                                                @endif
                                             </div>
                                             <div class="col-md-3"></div>
                                             <div class="col-md-6 text-right">
@@ -102,21 +101,22 @@
                                             <div class="col-md-3">
                                                 <h5 class="text-center">
                                                     @if (!empty($about))
-                                                    {{ $about->name_la }}
+                                                        {{ $about->name_la }}
                                                     @endif
                                                 </h5>
                                                 <h6 class="text-sm"><i class="fas fa-phone-alt"></i> ຕິດຕໍ່:
                                                     @if (!empty($about))
-                                                    {{ $about->phone }}
+                                                        {{ $about->phone }}
                                                     @endif
                                                     <h6 class="text-sm"><i class="fas fa-envelope"></i> ອີເມວ:
                                                         @if (!empty($about))
-                                                        {{ $about->email }}
+                                                            {{ $about->email }}
                                                         @endif
                                                         <h6 class="text-sm"><i class="fas fa-hospital"></i> ທີ່ຕັ້ງ:
                                                             @if (!empty($about))
-                                                            {{ $about->address }}
-                                                            @endif</h6>
+                                                                {{ $about->address }}
+                                                            @endif
+                                                        </h6>
                                             </div>
                                             <div class="col-md-3"></div>
                                             <div class="col-md-6">
@@ -157,16 +157,12 @@
                                                         @foreach ($data as $item)
                                                             <tr class="text-center">
                                                                 <td>{{ $no++ }}</td>
-                                                                {{-- <td class="text-center">
-                                                                    <a href="javascript:void(0)"
-                                                                        wire:click="ShowDetail({{ $item->id }})">{{ $item->code }}</a>
-                                                                </td> --}}
+
                                                                 <td>{{ date('d/m/Y', strtotime($item->created_at)) }}
                                                                 </td>
                                                                 <td class="text-center">
-                                                                    @if (!empty($item->code))
-                                                                        {{ $item->code }}
-                                                                    @endif
+                                                                    <a href="javascript:void(0)"
+                                                                        wire:click="ShowDetail({{ $item->id }})">{{ $item->code }}</a>
                                                                 </td>
                                                                 <td>
                                                                     @if (!empty($item->supplier))
@@ -183,8 +179,8 @@
                                                                         <span class="text-info"><i
                                                                                 class="fas fa-plus-circle"></i>
                                                                             ໃຫມ່</span>
-                                                                            @elseif($item->status == 2)
-                                                                            <span class="text-success"><i
+                                                                    @elseif($item->status == 2)
+                                                                        <span class="text-success"><i
                                                                                 class="fas fa-check-circle"></i>
                                                                             ນຳເຂົ້າສຳເລັດ</span>
                                                                     @endif
@@ -219,6 +215,141 @@
             </div>
         </div>
     </section>
+    {{-- \\\\\\\\\\\\\\\\\\\\\\\ show detail  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+    <div class="modal fade" id="modal-detail" wire:ignore.self>
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fas fa-file-alt"></i> ລາຍລະອຽດບິນ: {{ $this->code }}
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <span>
+                                            @if (!empty($about))
+                                                <i class="fas fa-store-alt"></i> {{ $about->name_la }}
+                                            @endif
+                                        </span>
+                                        <br>
+                                        <span>
+                                            @if (!empty($about))
+                                                ໂທ: {{ $about->phone }}
+                                            @endif
+                                        </span><br>
+                                        <span>
+                                            @if (!empty($about))
+                                                {{ $about->address }}
+                                            @endif
+                                        </span>
+                                    </th>
+
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <span><i class="fas fa-user"></i> ຜູ້ສະຫນອງ</span><br>
+                                        <span>
+                                            @if (!empty($supplier_data))
+                                                {{ $supplier_data->name_lastname }}
+                                            @endif
+                                        </span>
+                                        <br>
+                                        <span>
+                                            @if (!empty($supplier_data))
+                                                ໂທ: {{ $supplier_data->phone }}
+                                            @endif
+                                        </span><br>
+                                        <span>
+                                            @if (!empty($supplier_data))
+                                                {{ $supplier_data->address }}
+                                            @endif
+                                        </span>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <span> ບິນເລກທີ: {{ $this->code }}</span><br>
+                                        <span> ວັນທີ: {{ date('d-m-Y') }}</span><br>
+                                        <span>
+                                                ເວລາ: {{ date('H:i:s') }}
+                                        </span>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="right_content2">
+                        <div class="row text-center pt-3">
+                            <input type="hidden" wire:model="ID">
+                            <div class="col-md-12">
+                                <h4><b>ໃບບິນສັ່ງຊື້</b></h4>
+                            </div>
+                        </div>
+                        <table class="table table-hover text-center responsive">
+                            <thead class="bg-light text-center">
+                                <tr>
+                                    <th>ລຳດັບ</th>
+                                    <th>ສິນຄ້າ</th>
+                                    <th>ລາຄາ</th>
+                                    <th>ຈຳນວນ</th>
+                                    <th>ເປັນເງິນ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $num = 1;
+                                @endphp
+                                @foreach ($OrdersDetail as $item)
+                                    <tr class="text-center">
+                                        <td>{{ $num++ }}</td>
+                                        <td>
+                                            @if (!empty($item->product))
+                                                {{ $item->product->name }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ number_format($item->buy_price) }} ₭
+                                        </td>
+                                        <td>
+                                            x {{ $item->stock }}
+                                        </td>
+                                        <td>
+                                            {{ number_format($item->subtotal) }} ₭
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                <tr class="text-bold bg-light">
+                                    <td colspan="3">ຍອດລວມ</td>
+                                    <td>x {{ number_format($this->sum_OrdersDetail_stock) }}</td>
+                                    <td>{{ number_format($this->sum_OrdersDetail_subtotal) }} ₭</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-secondary fas fa-times-circle" data-dismiss="modal">
+                        ປິດ</button>
+                    <button id="print2" type="button" class="btn btn-success"> <i class="fas fa-print"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @push('scripts')
     <script>
@@ -242,4 +373,20 @@
             });
         });
     </script>
+        <script>
+            $(document).ready(function() {
+                $('#print2').click(function() {
+                    printDiv();
+    
+                    function printDiv() {
+                        var printContents = $(".right_content2").html();
+                        var originalContents = document.body.innerHTML;
+                        document.body.innerHTML = printContents;
+                        window.print();
+                        document.body.innerHTML = originalContents;
+                    }
+                    location.reload();
+                });
+            });
+        </script>
 @endpush
