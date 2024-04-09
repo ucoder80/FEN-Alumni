@@ -76,7 +76,7 @@
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 ============= <span> <i style="font-size: 30px"
-                                                        class="fas fa-yin-yang text-info"></i></span> =============
+                                                        class="fas fa-yin-yang text-danger"></i></span> =============
                                             </div>
                                         </div>
                                         <div class="row">
@@ -143,7 +143,7 @@
                                             <div class="col-md-12">
                                                 <table class="table table-striped table-hover responsive">
                                                     <thead>
-                                                        <tr class="text-center bg-gradient-info text-bold">
+                                                        <tr class="text-center bg-gradient-danger text-bold">
                                                             <th>ລຳດັບ</th>
                                                             <th>ລະຫັດ</th>
                                                             <th>ປະເພດ</th>

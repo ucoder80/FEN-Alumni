@@ -194,6 +194,7 @@ class SalesContent extends Component
                     $sales->type = $this->type;
                     $sales->onepay = 1;
                     $sales->note = $this->note;
+                    $sales->type_sale = 1;
                     $sales->save();
                     foreach ($SalesCart as $key => $cart_item) {
                         $check_product = Product::find($cart_item->product_id);
