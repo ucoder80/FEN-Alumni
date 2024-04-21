@@ -86,7 +86,7 @@
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow main-web-background bg-primary" role="status"></div>
+        <div class="spinner-grow main-web-background bg-danger" role="status"></div>
     </div>
     <!-- Spinner End -->
     <div class="wrapper">

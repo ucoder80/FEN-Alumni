@@ -153,7 +153,7 @@ class SalesContent extends Component
         $sum_subtotal = SalesCart::select('subtotal')->sum('subtotal');
         if ($this->customer_id == null) {
             $this->dispatchBrowserEvent('swal', [
-                'title' => 'ເລືອກລູກຄ້າກ່ອນໄອເວນ!',
+                'title' => 'ເລືອກລູກຄ້າກ່ອນ!',
                 'icon' => 'warning',
                 'iconColor' => 'red',
             ]);
