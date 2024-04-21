@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\Backend;
 
-use Illuminate\Support\Facades\Auth;
+use App\Models\About;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class LoginContent extends Component
 {
@@ -14,7 +15,8 @@ class LoginContent extends Component
     }
     public function render()
     {
-        return view('livewire.backend.login-content')->layout('layouts.backend.login');
+        $about  = About::first();
+        return view('livewire.backend.login-content',compact('about'))->layout('layouts.backend.login');
     }
     public function login()
     {
@@ -32,7 +34,7 @@ class LoginContent extends Component
             session()->flash('success', 'ເຂົ້າສູ່ລະບົບສຳເລັດເເລ້ວ');
             return redirect(route('backend.dashboard'));
         } else {
-            $this->emit('alert', ['type' => 'error', 'message' => 'ລືມຕະຫລອດຈັ່ງແມ່ນມຶງປຶກ!']);
+            $this->emit('alert', ['type' => 'error', 'message' => 'ເບີໂທ ຫລື ລະຫັດບໍ່ຖືກກະລຸນາລອງໃຫມ່!']);
             // return redirect(route('backend.login'));
         }
     }

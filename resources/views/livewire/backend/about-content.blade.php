@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" style="background: linear-gradient(90deg, rgba(26,159,245,1) 20%, rgba(33,8,176,1) 52%, rgba(61,8,176,1) 84%);">
-                                <h5 style="color:#fff"><b><i class="fas fa-building"></i> ຂໍ້ມູນກ່ຽວກັບຫ້ອງການ</b></h5>
+                                <h5 style="color:#fff"><b><i class="fas fa-building"></i> ຂໍ້ມູນກ່ຽວກັບ</b></h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">

@@ -74,7 +74,7 @@
                           </li>
                       </ul>
                   </li>
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                     <a href="{{ route('backend.IncomeExpendContent') }}" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
@@ -82,7 +82,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="dropdown-divider"></li>
+                <li class="dropdown-divider"></li> --}}
                   <li class="nav-item">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-database"></i>
@@ -231,6 +231,14 @@
                               </a>
                           </li>
                       </ul>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.ReportUser') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ລາຍງານຂໍ້ມູນຜູ້ໃຊ້</p>
+                            </a>
+                        </li>
+                    </ul>
                   </li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-item">

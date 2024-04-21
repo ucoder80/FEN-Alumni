@@ -22,6 +22,7 @@ use App\Http\Livewire\Backend\DataStore\ProductTypeContent;
 use App\Http\Livewire\Backend\IncomeExpendContent;
 use App\Http\Livewire\Backend\Reports\OrdersReportsContent;
 use App\Http\Livewire\Backend\Reports\ProductsContent;
+use App\Http\Livewire\Backend\Reports\ReportUserContent;
 use App\Http\Livewire\Backend\Reports\SalesReportsContent;
 
 /*
@@ -73,6 +74,8 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/OrdersReports', OrdersReportsContent::class)->name('backend.OrdersReport');
     Route::get('/ProductsReports', ProductsContent::class)->name('backend.ProductsReport');
     Route::get('/IncomeExpendContents', IncomeExpendContent::class)->name('backend.IncomeExpendContent');
+    Route::get('/ReportUsers', ReportUserContent::class)->name('backend.ReportUser');
+
 
     
 

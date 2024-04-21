@@ -10,10 +10,10 @@ class ProductsContent extends Component
     public $status;
     public function render()
     {
-            $data = Product::all();
+        $data = Product::all();
         if ($this->status) {
             $data = $data->where('status', $this->status);
         }
-        return view('livewire.backend.reports.products-content',compact('data'))->layout('layouts.backend.style');
+        return view('livewire.backend.reports.products-content', compact('data'))->layout('layouts.backend.style');
     }
 }
