@@ -6,14 +6,14 @@
                     <h5><i class="fas fa-database"></i>
                         ຈັດການຂໍ້ມູນ
                         <i class="fa fa-angle-double-right"></i>
-                        ປະເພດສິນຄ້າ
+                        ຂັ້ນເງິນເດືອນ
                     </h5>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('backend.dashboard') }}">{{ __('lang.home') }}</a>
                         </li>
-                        <li class="breadcrumb-item active">ປະເພດສິນຄ້າ</li>
+                        <li class="breadcrumb-item active">ຂັ້ນເງິນເດືອນ</li>
                     </ol>
                 </div>
             </div>
@@ -34,12 +34,12 @@
                                 <input type="hidden" wire:model="hiddenId" value="{{ $ID }}">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label>ຊື່ປະເພດສິນຄ້າ</label>
+                                        <label>ຂັ້ນເງິນເດືອນ</label>
                                         <div class="form-group">
-                                            <input wire:model="name" type="text"
-                                                class="form-control @error('name') is-invalid @enderror"
+                                            <input wire:model="salary" type="text" min="1"
+                                                class="form-control money @error('salary') is-invalid @enderror"
                                                 placeholder="ປ້ອນຂໍ້ມູນ">
-                                            @error('name')
+                                            @error('salary')
                                                 <span class="error" style="color: red;">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -84,7 +84,7 @@
                                     <thead class="bg-light">
                                         <tr class="text-center">
                                             <th>ລຳດັບ</th>
-                                            <th>ຊື່ປະເພດສິນຄ້າ</th>
+                                            <th>ຂັ້ນເງິນເດືອນ</th>
                                             <th>ຈັດການ</th>
                                         </tr>
                                     </thead>
@@ -98,7 +98,7 @@
                                                     {{ $i++ }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->name }}
+                                                    {{ number_format($item->salary) }} ₭
                                                 </td>
                                                 <td>
                                                     <div class="btn-group">
@@ -139,7 +139,7 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" wire:model="hiddenId" value="{{ $ID }}">
-                    <h3 class="text-center">ທ່ານຕ້ອງການລຶບ {{ $this->name }} ບໍ່?</h3>
+                    <h3 class="text-center">ທ່ານຕ້ອງການລຶບ {{ $this->salary }} ບໍ່?</h3>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i

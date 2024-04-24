@@ -19,7 +19,7 @@
             </div>
         </div>
     </section>
-    <section class="content">
+    <section wire:ignore class="content">
         <div class="container-fluid">
             <div class="row">
                 <!--customers -->
@@ -35,17 +35,17 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div wire:ignore class="form-group">
-                                            <select wire:model="roles_id" id="roles_id"
-                                                class="form-control @error('roles_id') is-invalid @enderror">
-                                                <option value="">
-                                                    ເລືອກສິດນຳໃຊ້
+                                        <select wire:model="roles_id" id="roles_id"
+                                            class="form-control @error('roles_id') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກສິດນຳໃຊ້
+                                            </option>
+                                            @foreach ($roles as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->name }}
                                                 </option>
-                                                @foreach ($roles as $item)
-                                                    <option value="{{ $item->id }}">
-                                                            {{ $item->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -54,7 +54,77 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- /.card-header -->
                         <div class="card-body">
+                            <!-- Start Body -->
+                            <div class="row">
+                                <!-- Start Row -->
+                                @foreach ($data as $item)
+                                    <!-- Start Col -->
+                                    <div class="col-md-3 d-flex align-items-stretch flex-column">
+                                        <div class="card bg-light d-flex flex-fill">
+                                            <div class="card-header border-bottom-0 justify-content-between">
+                                                <b>{{ $item->name_lastname }} </b>
+
+                                            </div>
+                                            <div class="card-body pt-0">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        @if (!empty($item->image))
+                                                            <img class="rounded" src="{{ asset($item->image) }}"
+                                                                width="100%;" height="200px; ">
+                                                        @else
+                                                            <img class="rounded" src="{{ asset('logo/noimage.jpg') }}"
+                                                                width="100%;" height="200px; ">
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h2 class="lead"><b></b></h2>
+                                                        <p style="line-height: 20%;" class="text-muted text-sm">
+                                                            <b>ລະຫັດ: </b>
+                                                            {{ $item->code }}
+                                                        </p>
+                                                        <p style="line-height: 20%;" class="text-muted text-sm">
+                                                            <b>ເບີໂທ:</b>
+                                                            {{ $item->phone }}
+                                                        </p>
+                                                        <p style="line-height: 20%;" class="text-muted">
+                                                            <b>ຕຳແໜ່ງ:</b>
+                                                            @if(!empty($item->position))
+                                                            {{ $item->position->name }}
+                                                            @endif
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                {{-- @foreach ($res_function_available as $items)
+                                                                    @if ($items->ResFunctions->name == 'action_33') --}}
+
+                                                <div class="btn-group col-md-12">
+                                                    <button class="btn btn-secondary btn-sm float-right">
+                                                        <i class="fas fa-eye"></i>
+                                                        ລາຍລະອຽດ
+                                                    </button>
+                                                    <button wire:click="edit({{ $item->id }})" type="button"
+                                                        class="btn btn-warning btn-sm"><i
+                                                            class="fas fa-pencil-alt"></i></button>
+                                                    <button wire:click="showDestroy({{ $item->id }})"
+                                                        type="button" class="btn btn-danger btn-sm"><i
+                                                            class="fas fa-trash"></i></button>
+                                                </div>
+                                                {{-- @endif
+                                                                @endforeach --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="float-right">
+                                {{ $data->links() }}
+                            </div>
+                            {{-- <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead class="bg-light">
@@ -136,15 +206,15 @@
                                     {{ $data->links() }}
                                 </div>
                             </div>
+                        </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     {{-- =========== Add-Edit ============================ --}}
     <div wire:ignore.self class="modal fade" id="modal-add-edit">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header bg-light">
                     <h4 class="modal-title">
@@ -159,6 +229,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="container">
+                        <div wire:ignore class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' wire:model="image" id="imageUpload"
+                                    accept=".png, .jpg, .jpeg" />
+
+                                <label for="imageUpload"></label>
+                            </div>
+                            <label class="text-center">ໃສ່ຮູບພາບ(ຖ້າມີ)</label>
+                            <div class="avatar-preview">
+                                <div id="imagePreview"
+                                    style="background-image: url({{ asset('logo/noimage.jpg') }});">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -188,7 +274,8 @@
                             <div class="form-group">
                                 <label for="">
                                     ຊື່ ນາມສະກຸນ</label>
-                                <input type="text" class="form-control @error('name_lastname') is-invalid @enderror"
+                                <input type="text"
+                                    class="form-control @error('name_lastname') is-invalid @enderror"
                                     wire:model="name_lastname" placeholder="ປ້ອນຂໍ້ມູນ">
                                 @error('name_lastname')
                                     <span style="color: red" class="error">{{ $message }}</span>
@@ -319,8 +406,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">ສິດນຳໃຊ້</label>
-                                <select type="text" class="form-control @error('roles_id') is-invalid @enderror" wire:model.live="roles_id"
-                                    id="roles_id">
+                                <select type="text" class="form-control @error('roles_id') is-invalid @enderror"
+                                    wire:model.live="roles_id" id="roles_id">
                                     <option value="">ເລືອກສິດນຳໃຊ້</option>
                                     @foreach ($roles as $item)
                                         <option value="{{ $item->id }}">
@@ -329,7 +416,63 @@
                                     @endforeach
                                 </select>
                                 @error('roles_id')
-                                <span style="color: red" class="error">{{ $message }}</span>
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">
+                                    ສັນຊາດ</label>
+                                <input type="text" class="form-control @error('nationality') is-invalid @enderror"
+                                    wire:model="nationality" placeholder="ປ້ອນຂໍ້ມູນ">
+                                @error('nationality')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">
+                                    ສາສະຫນາ</label>
+                                <input type="text" class="form-control @error('religion') is-invalid @enderror"
+                                    wire:model="religion" placeholder="ປ້ອນຂໍ້ມູນ">
+                                @error('religion')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">ຕໍາແໜ່ງ</label>
+                                <select type="text" class="form-control @error('position_id') is-invalid @enderror"
+                                    wire:model.live="position_id" id="position_id">
+                                    <option value="">ເລືອກຕໍາແໜ່ງ</option>
+                                    @foreach ($position as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('position_id')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">ຂັ້ນເງິນເດືອນ</label>
+                                <select type="text" class="form-control @error('salary_id') is-invalid @enderror"
+                                    wire:model.live="salary_id" id="salary_id">
+                                    <option value="">ເລືອກຂັ້ນເງິນເດືອນ</option>
+                                    @foreach ($salary as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ number_format($item->salary) }} ₭
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('salary_id')
+                                    <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>

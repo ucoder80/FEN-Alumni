@@ -2,17 +2,22 @@
 
 namespace App\Http\Livewire\Backend\DataStore;
 
-use App\Models\District;
-use App\Models\Province;
+use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Salary;
 use App\Models\Village;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use App\Models\District;
+use App\Models\Position;
+use App\Models\Province;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
 
 class UserContent extends Component
 {
+    use WithFileUploads;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $ID,
@@ -31,6 +36,7 @@ class UserContent extends Component
     $district_id,
     $districts = [],
     $villages = [];
+    public $salary_id,$position_id,$image,$nationality,$religion,$newimage;
     public function render()
     {
         $data = User::where(function ($q) {
@@ -41,7 +47,7 @@ class UserContent extends Component
             $data = $data->where('roles_id', $this->roles_id);
         }
         if (!empty($data)) {
-            $data = $data->paginate(5);
+            $data = $data->paginate(8);
         }
         $provinces = Province::all();
         if ($this->province_id) {
@@ -51,7 +57,9 @@ class UserContent extends Component
             $this->villages = Village::where('district_id', $this->district_id)->get();
         }
         $roles = Role::all();
-        return view('livewire.backend.data-store.user-content', compact('data', 'provinces', 'roles'))->layout('layouts.backend.style');
+        $salary = Salary::all();
+        $position = Position::all();
+        return view('livewire.backend.data-store.user-content', compact('data', 'provinces', 'roles','salary','position'))->layout('layouts.backend.style');
     }
     public function resetField()
     {
@@ -68,6 +76,13 @@ class UserContent extends Component
         $this->status = '';
         $this->gender = '';
         $this->birtday_date = '';
+
+        $this->salary_id = '';
+        $this->position_id = '';
+        $this->image = '';
+        $this->nationality = '';
+        $this->religion = '';
+
     }
     public function create()
     {
@@ -101,6 +116,16 @@ class UserContent extends Component
         try {
             DB::beginTransaction();
             $data = new User();
+            if (!empty($this->image)) {
+                $this->validate([
+                    'image' => 'required|mimes:jpg,png,jpeg',
+                ]);
+                $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
+                $this->image->storeAs('upload/users', $imageName);
+                $data->image = 'upload/users' . '/' . $imageName;
+            } else {
+                $data->image = '';
+            }
             $data->name_lastname = $this->name_lastname;
             $data->phone = $this->phone;
             $data->email = $this->email;
@@ -113,6 +138,10 @@ class UserContent extends Component
             $data->village_id = $this->village_id;
             $data->district_id = $this->district_id;
             $data->province_id = $this->province_id;
+            $data->salary_id = $this->salary_id;
+            $data->position_id = $this->position_id;
+            $data->nationality = $this->nationality;
+            $data->religion = $this->religion;
             $data->save();
             $this->resetField();
             $this->dispatchBrowserEvent('hide-modal-add-edit');
@@ -121,6 +150,7 @@ class UserContent extends Component
                 'icon' => 'success',
             ]);
             DB::commit();
+        return redirect(route('backend.user'));
         } catch (\Exception $ex) {
             DB::rollBack();
             $this->dispatchBrowserEvent('swal', [
@@ -145,6 +175,11 @@ class UserContent extends Component
         $this->village_id = $data->village_id;
         $this->province_id = $data->province_id;
         $this->district_id = $data->district_id;
+        $this->salary_id = $data->salary_id;
+        $this->newimage = $data->image;
+        $this->position_id = $data->position_id;
+        $this->nationality = $data->nationality;
+        $this->religion = $data->religion;
         $this->dispatchBrowserEvent('show-modal-add-edit');
     }
     public function Update($ids)
@@ -158,6 +193,14 @@ class UserContent extends Component
         ]);
         $this->ID = $ids;
         $data = User::find($ids);
+        if ($this->image) {
+            $this->validate([
+                'image' => 'required|mimes:jpg,png,jpeg',
+            ]);
+            $filename_image = $this->image->getClientOriginalName();
+            $this->image->storeAs('upload/users' . $filename_image);
+            $data->image = 'upload/users' . $filename_image;
+        }
         $data->name_lastname = $this->name_lastname;
         $data->phone = $this->phone;
         $data->email = $this->email;
@@ -168,11 +211,16 @@ class UserContent extends Component
         $data->village_id = $this->village_id;
         $data->province_id = $this->province_id;
         $data->district_id = $this->district_id;
+        $data->salary_id = $this->salary_id;
+        $data->position_id = $this->position_id;
+        $data->nationality = $this->nationality;
+        $data->religion = $this->religion;
         $data->save();
         $this->dispatchBrowserEvent('swal', [
             'title' => 'ສຳເລັດເເລ້ວ!',
             'icon' => 'success',
         ]);
+        return redirect(route('backend.user'));
         $this->resetField();
         $this->dispatchBrowserEvent('hide-modal-add-edit');
     }
@@ -196,6 +244,7 @@ class UserContent extends Component
                 'icon' => 'success',
             ]);
             DB::commit();
+        return redirect(route('backend.user'));
         } catch (\Exception $ex) {
             DB::rollBack();
             $this->dispatchBrowserEvent('swal', [

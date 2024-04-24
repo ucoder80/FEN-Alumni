@@ -119,6 +119,24 @@
     </script>
         <script>
             $(document).ready(function() {
+                $('#position_id').select2();
+                $('#position_id').on('change', function(e) {
+                    var data = $('#position_id').select2("val");
+                    @this.set('position_id', data);
+                });
+            });
+        </script>
+            <script>
+                $(document).ready(function() {
+                    $('#salary_id').select2();
+                    $('#salary_id').on('change', function(e) {
+                        var data = $('#salary_id').select2("val");
+                        @this.set('salary_id', data);
+                    });
+                });
+            </script>
+        <script>
+            $(document).ready(function() {
                 $('#print').click(function() {
                     printDiv();
     

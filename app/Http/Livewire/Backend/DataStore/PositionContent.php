@@ -3,21 +3,21 @@
 namespace App\Http\Livewire\Backend\DataStore;
 
 use Livewire\Component;
-use App\Models\ProductType;
+use App\Models\Position;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 
-class ProductTypeContent extends Component
+class PositionContent extends Component
 {
     public $branches_id, $name, $ID, $code, $note, $select_branches_id, $search;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public function render()
     {
-        $data = ProductType::where(function ($q) {
+        $data = Position::where(function ($q) {
             $q->orwhere('name', 'like', '%' . $this->search . '%');
         })->paginate(5);
-        return view('livewire.backend.data-store.product-type-content', compact('data'))->layout('layouts.backend.style');
+        return view('livewire.backend.data-store.position-content', compact('data'))->layout('layouts.backend.style');
     }
     public function resetflied()
     {
@@ -42,7 +42,7 @@ class ProductTypeContent extends Component
         if ($updateId > 0) {
             try {
             DB::beginTransaction();
-                $data = ProductType::find($updateId);
+                $data = Position::find($updateId);
                 $data->name = $this->name;
                 $data->save();
                 $this->resetflied();
@@ -62,7 +62,7 @@ class ProductTypeContent extends Component
             $this->validate();
             // try {
             DB::beginTransaction();
-                $data = new ProductType();
+                $data = new Position();
                 $data->name = $this->name;
                 $data->save();
                 $this->resetflied();
@@ -82,13 +82,13 @@ class ProductTypeContent extends Component
     }
     public function edit($ids)
     {
-        $data = ProductType::find($ids);
+        $data = Position::find($ids);
         $this->ID = $data->id;
         $this->name = $data->name;
     }
     public function showdelete($ids)
     {
-        $data = ProductType::find($ids);
+        $data = Position::find($ids);
         $this->ID = $data->id;
         $this->name = $data->name;
         $this->dispatchBrowserEvent('show-modal-delete');
@@ -97,7 +97,7 @@ class ProductTypeContent extends Component
     {
         try {
             DB::beginTransaction();
-            $data = ProductType::find($ids);
+            $data = Position::find($ids);
             $data->delete();
             $this->resetflied();
             $this->dispatchBrowserEvent('hide-modal-delete');

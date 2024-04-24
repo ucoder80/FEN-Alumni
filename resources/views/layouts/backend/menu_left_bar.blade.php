@@ -42,13 +42,13 @@
                     || strpos(Route::currentRouteName(), 'backend.item') == 'backend.item'
                     ) ? 'menu-open' : '' }}"> --}}
                   <li class="nav-item">
-                      {{-- <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-database"></i>
+                      <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-map-marked-alt"></i>
                             <p>
                                 ຂໍ້ມູນທີ່ຢູ່
                                 <i class="fas fa-angle-left right"></i>
                             </p>
-                        </a> --}}
+                        </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
                               <a href="{{ route('backend.village') }}" class="nav-link">
@@ -74,14 +74,14 @@
                           </li>
                       </ul>
                   </li>
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                     <a href="{{ route('backend.IncomeExpendContent') }}" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                             ບັນທຶກປະຈຳວັນ
                         </p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="dropdown-divider"></li>
                   <li class="nav-item">
                       <a href="#" class="nav-link">
@@ -96,7 +96,7 @@
                           <li class="nav-item">
                               <a href="{{ route('backend.user') }}" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ຜູ້ໃຊ້</p>
+                                  <p>ພະນັກງານ</p>
                               </a>
                           </li>
                       </ul>
@@ -110,17 +110,17 @@
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('backend.product_type') }}" class="nav-link">
+                              <a href="{{ route('backend.position') }}" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ປະເພດສິນຄ້າ</p>
+                                  <p>ຕຳແໜ່ງ</p>
                               </a>
                           </li>
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('backend.product') }}" class="nav-link">
+                              <a href="{{ route('backend.salary') }}" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ສິນຄ້າ</p>
+                                  <p>ຂັ້ນເງິນເດືອນ</p>
                               </a>
                           </li>
                       </ul>
@@ -134,23 +134,22 @@
                     </ul> --}}
                   </li>
                   <li class="dropdown-divider"></li>
-                  {{-- ===================== orders-import ======================= --}}
-                  {{-- <li class="nav-item">
-                    <a href="{{ route('backend.OrderCart') }}" class="nav-link">
-                        <i class="nav-icon fas fa-cart-plus"></i>
+                  <li class="nav-item">
+                    <a href="{{ route('backend.IncomeExpendContent') }}" class="nav-link">
+                        <i class="nav-icon fas fa-money-bill-alt"></i>
                         <p>
-                            ສັ່ງຊື້-ນຳເຂົ້າສາງ
+                            ເບີກຈ່າຍເງິນເດືອນ
                         </p>
                     </a>
                 </li>
-                <li class="dropdown-divider"></li> --}}
-                  <li class="nav-item">
+                  {{-- ===================== orders-import ======================= --}}
+                  {{-- <li class="nav-item">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-cart-plus"></i>
                           <p>
                               ສັ່ງຊື້-ນຳເຂົ້າ
                               <i class="fas fa-angle-left right"></i>
-                              {{-- <span class="badge badge-info right">6</span> --}}
+                              <span class="badge badge-info right">6</span>
                           </p>
                       </a>
                       <ul class="nav nav-treeview">
@@ -169,15 +168,15 @@
                               </a>
                           </li>
                       </ul>
-                  </li>
-                  <li class="dropdown-divider"></li>
+                  </li> --}}
+                  {{-- <li class="dropdown-divider"></li>
                   <li class="nav-item">
                       <a href="#" class="nav-link">
                           <i class="nav-icon fas fa-store-alt"></i>
                           <p>
                               ການຂາຍ
                               <i class="fas fa-angle-left right"></i>
-                              {{-- <span class="badge badge-info right">6</span> --}}
+                              <span class="badge badge-info right">6</span>
                           </p>
                       </a>
                       <ul class="nav nav-treeview">
@@ -196,7 +195,7 @@
                               </a>
                           </li>
                       </ul>
-                  </li>
+                  </li> --}}
                   <li class="dropdown-divider"></li>
                   <li class="nav-item">
                       <a href="#" class="nav-link">
@@ -207,7 +206,7 @@
                               {{-- <span class="badge badge-info right">6</span> --}}
                           </p>
                       </a>
-                      <ul class="nav nav-treeview">
+                      {{-- <ul class="nav nav-treeview">
                           <li class="nav-item">
                               <a href="{{ route('backend.ProductsReport') }}" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
@@ -222,12 +221,12 @@
                                   <p>ລາຍງານການຊື້ນຳຜູ້ສະຫນອງ</p>
                               </a>
                           </li>
-                      </ul>
+                      </ul> --}}
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('backend.SalesReport') }}" class="nav-link">
+                              <a href="{{ route('backend.ReportUser') }}" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ລາຍງານການຂາຍໃຫ້ລູກຄ້າ</p>
+                                  <p>ລາຍງານຂໍ້ມູນພະນັກງານ</p>
                               </a>
                           </li>
                       </ul>
@@ -235,7 +234,7 @@
                         <li class="nav-item">
                             <a href="{{ route('backend.ReportUser') }}" class="nav-link">
                                 <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>ລາຍງານຂໍ້ມູນຜູ້ໃຊ້</p>
+                                <p>ລາຍງານເບີກຈ່າຍເງິນເດືອນ</p>
                             </a>
                         </li>
                     </ul>
@@ -243,26 +242,26 @@
                   <li class="dropdown-divider"></li>
                   <li class="nav-item">
                       <a href="#" class="nav-link">
-                          <i class="nav-icon fas fa-globe"></i>
+                          <i class="nav-icon fas fa-hospital-alt"></i>
                           <p>
-                              ຂໍ້ມູນເວບໄຊ
+                              ຂໍ້ມູນຫ້ອງການ
                               <i class="fas fa-angle-left right"></i>
                               {{-- <span class="badge badge-info right">6</span> --}}
                           </p>
                       </a>
-                      <ul class="nav nav-treeview">
+                      {{-- <ul class="nav nav-treeview">
                           <li class="nav-item">
                               <a href="{{ route('backend.slide') }}" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
                                   <p>ສະໄລຮູບພາບ</p>
                               </a>
                           </li>
-                      </ul>
+                      </ul> --}}
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
                               <a href="{{ route('backend.about') }}" class="nav-link">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ກ່ຽວກັບພວກເຮົາ</p>
+                                  <p>ຂໍ້ມູນຫ້ອງການ</p>
                               </a>
                           </li>
                       </ul>

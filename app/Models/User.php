@@ -23,6 +23,11 @@ class User extends Authenticatable
         'village_id',
         'district_id',
         'province_id',
+        'salary_id',
+        'position_id',
+        'image',
+        'nationality',
+        'religion',
         'name_lastname',
         'phone',
         'email',
@@ -49,6 +54,14 @@ class User extends Authenticatable
     public function province()
     {
         return $this->belongsTo('App\Models\Province', 'province_id', 'id');
+    }
+    public function salary()
+    {
+        return $this->belongsTo('App\Models\Salary', 'salary_id', 'id');
+    }
+    public function position()
+    {
+        return $this->belongsTo('App\Models\Position', 'position_id', 'id');
     }
 
     /**

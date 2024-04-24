@@ -18,7 +18,8 @@ use App\Http\Livewire\Backend\DataStore\UserContent;
 use App\Http\Livewire\Backend\DataStore\ProductContent;
 use App\Http\Livewire\Backend\Orders\OrdersCartContent;
 use App\Http\Livewire\Backend\Orders\ImportUpdateContent;
-use App\Http\Livewire\Backend\DataStore\ProductTypeContent;
+use App\Http\Livewire\Backend\DataStore\PositionContent;
+use App\Http\Livewire\Backend\DataStore\SalaryContent;
 use App\Http\Livewire\Backend\IncomeExpendContent;
 use App\Http\Livewire\Backend\Reports\OrdersReportsContent;
 use App\Http\Livewire\Backend\Reports\ProductsContent;
@@ -61,7 +62,8 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/abouts', AboutContent::class)->name('backend.about');
     Route::get('/slides', SlideContent::class)->name('backend.slide');
 
-    Route::get('/product_types', ProductTypeContent::class)->name('backend.product_type');
+    Route::get('/positions', PositionContent::class)->name('backend.position');
+    Route::get('/salarys', SalaryContent::class)->name('backend.salary');
     Route::get('/products', ProductContent::class)->name('backend.product');
 
     Route::get('/Orders', OrdersContent::class)->name('backend.order');
