@@ -67,6 +67,7 @@
                                                 <th>ລວມເງິນ</th>
                                                 <th>ປະເພດ</th>
                                                 <th>ສະຖານະ</th>
+                                                <th>ວັນທີຖອນ</th>
                                                 <th>ຜູ້ສ້າງ</th>
                                                 <th>ຈັດການ</th>
                                             </tr>
@@ -81,49 +82,67 @@
                                                         {{ $i++ }}
                                                     </td>
                                                     <td>
-                                                        {{ $item->name_lastname }}
+                                                        @if (!empty($item->employee))
+                                                            {{ $item->employee->name_lastname }}
+                                                        @endif
                                                     </td>
                                                     <td>
-                                                        {{ $item->phone }}
+                                                        @if (!empty($item->employee))
+                                                            @if ($item->employee->gender == 1)
+                                                                <span> ຍິງ</span>
+                                                            @else
+                                                                <span> ຊາຍ</span>
+                                                            @endif
+                                                        @endif
                                                     </td>
                                                     <td>
-                                                        {{ $item->email }}
+                                                        {{ $item->month }}/{{ $item->years }}
                                                     </td>
                                                     <td>
-                                                        @if ($item->gender == 1)
-                                                            <span class="text-success">ຍິງ</span>
-                                                        @elseif($item->gender == 2)
-                                                            <span class="text-danger">ຊາຍ</span>
+                                                        @if (!empty($item->employee->salary))
+                                                            {{ number_format($item->employee->salary->salary) }} ₭
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-bold">
+                                                        @if (!empty($item->total_salary))
+                                                            {{ number_format($item->total_salary) }} ₭
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-bold">
+                                                        @if (!empty($item->type))
+                                                            @if($item->type == 1)
+                                                                <span class="text-primary">ເງິນສົດ</span>
+                                                                @else
+                                                                <span class="text-danger">ເງິນໂອນ</span>
+                                                            @endif
+                                                        @else
+                                                            -
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if ($item->status == 1)
-                                                            <span class="text-secondary">ໂສດ</span>
+                                                            <span class="text-warning"><i class="fas fa-warning"></i> ຍັງບໍ່ຖອນ</span>
                                                         @elseif($item->status == 2)
-                                                            <span class="text-secondary">ມີແຟນ</span>
-                                                        @elseif($item->status == 3)
-                                                            <span class="text-secondary">ແຕ່ງງານ</span>
-                                                        @elseif($item->status == 4)
-                                                            <span class="text-secondary">ຢ່າຮ້າງ</span>
-                                                        @elseif($item->status == 5)
-                                                            <span class="text-secondary">ແຍກກັນຢູ່</span>
-                                                        @elseif($item->status == 6)
-                                                            <span class="text-secondary">ຮັກເຂົາຂ້າງດຽວ</span>
-                                                        @endif
-                                                    </td>
-                                                    <td class="text-bold">
-                                                        @if (!empty($item->roles))
-                                                            {{ $item->roles->name }}
+                                                            <span class="text-success"><i class="fas fa-check-circle"></i> ຖອນສຳເລັດ</span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        {{ date('d/m/Y', strtotime($item->birtday_date)) }}
+                                                        @if (!empty($item->date_pay))
+                                                            {{ date('d/m/Y', strtotime($item->date_pay)) }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if (!empty($item->creator))
+                                                            {{ $item->creator->name_lastname }}
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         <div class="btn-group">
                                                             <button wire:click="edit({{ $item->id }})"
-                                                                type="button" class="btn btn-warning btn-sm"><i
-                                                                    class="fas fa-pencil-alt"></i>ຖອນ</button>
+                                                                type="button" class="btn btn-info btn-sm"><i
+                                                                    class="fas fa-hand-holding-usd"></i></button>
                                                             <button wire:click="edit({{ $item->id }})"
                                                                 type="button" class="btn btn-warning btn-sm"><i
                                                                     class="fas fa-pencil-alt"></i></button>
@@ -432,7 +451,7 @@
         </div>
     </div> --}}
     {{-- ======== delete ======== --}}
-    {{-- <div class="modal fabe" id="modal-delete">
+    <div wire:ignore.self class="modal fabe" id="modal-delete">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
@@ -451,7 +470,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     {{-- ======== delete ======== --}}
     <div wire:ignore.self class="modal fabe" id="modal-add-edit">
         <div class="modal-dialog modal-lg">
@@ -463,18 +482,18 @@
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <h3>ສຳຫຼັບເດືອນ: {{ $month }} ປີ: {{ $year }}</h3>
+                    <h3>ສຳຫຼັບເດືອນ: {{ $month }} ປີ: {{ $years }}</h3>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <select wire:model="year" id="year"
-                                    class="form-control @error('year') is-invalid @enderror">
+                                <select wire:model="years" id="years"
+                                    class="form-control @error('years') is-invalid @enderror">
                                     <option value="" selected>ເລືອກ-ປີ</option>
-                                    @for ($year = 1950; $year <= 2050; $year++)
-                                        <option value="{{ $year }}">{{ $year }}</option>
+                                    @for ($years = 1950; $years <= 2050; $years++)
+                                        <option value="{{ $years }}">ປີ-{{ $years }}</option>
                                     @endfor
                                 </select>
-                                @error('year')
+                                @error('years')
                                     <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -498,7 +517,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-dark" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button wire:click="destroy({{ $ID }})" type="button" class="btn btn-success"><i
+                    <button wire:click="PaySalary" type="button" class="btn btn-success"><i
                             class="fas fa-check-circle"></i> ຍືນຍັນ</button>
                 </div>
             </div>
