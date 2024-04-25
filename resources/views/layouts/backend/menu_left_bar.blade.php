@@ -135,7 +135,7 @@
                   </li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-item">
-                    <a href="{{ route('backend.IncomeExpendContent') }}" class="nav-link">
+                    <a href="{{ route('backend.PaySalary') }}" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-alt"></i>
                         <p>
                             ເບີກຈ່າຍເງິນເດືອນ

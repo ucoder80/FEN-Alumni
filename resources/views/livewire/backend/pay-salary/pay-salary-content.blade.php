@@ -3,17 +3,15 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h5><i class="fas fa-database"></i>
-                        ຈັດການຂໍ້ມູນ
-                        <i class="fas fa-angle-double-right"></i>
-                        ພະນັກງານ
+                    <h5><i class="fas fa-money-bill-alt"></i>
+                        ເບີກຈ່າຍເງິນເດືອນ
                     </h5>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('backend.dashboard') }}">ໜ້າຫຼັກ</a>
                         </li>
-                        <li class="breadcrumb-item active">ພະນັກງານ</li>
+                        <li class="breadcrumb-item active">ເບີກຈ່າຍເງິນເດືອນ</li>
                     </ol>
                 </div>
             </div>
@@ -28,13 +26,13 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <a wire:click="create" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
-                                            class="fa fa-plus-circle"></i> ເພີ່ມໃຫມ່</a>
+                                    <a wire:click="ShowCreateSalary" class="btn btn-primary btn-sm"
+                                        href="javascript:void(0)"><i class="fa fa-plus-circle"></i> ສ້າງໃຫມ່</a>
                                 </div>
                                 <div class="col-md-3">
                                 </div>
                                 <div class="col-md-3">
-                                    <div wire:ignore class="form-group">
+                                    {{-- <div wire:ignore class="form-group">
                                         <select wire:model="roles_id" id="roles_id"
                                             class="form-control @error('roles_id') is-invalid @enderror">
                                             <option value="">
@@ -46,7 +44,7 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="col-md-3">
                                     <input wire:model.live="search" type="text" class="form-control"
@@ -56,164 +54,100 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <!-- Start Body -->
-                            <div class="row">
-                                <!-- Start Row -->
-                                @foreach ($data as $item)
-                                    <!-- Start Col -->
-                                    <div class="col-md-3 d-flex align-items-stretch flex-column">
-                                        <div class="card bg-light d-flex flex-fill">
-                                            <div class="card-header border-bottom-0 justify-content-between">
-                                                <b>{{ $item->name_lastname }} </b>
-
-                                            </div>
-                                            <div class="card-body pt-0">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        @if (!empty($item->image))
-                                                            <img class="rounded" src="{{ asset($item->image) }}"
-                                                                width="100%;" height="200px; ">
-                                                        @else
-                                                            <img class="rounded" src="{{ asset('logo/noimage.jpg') }}"
-                                                                width="100%;" height="200px; ">
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <h2 class="lead"><b></b></h2>
-                                                        <p style="line-height: 20%;" class="text-muted text-sm">
-                                                            <b>ລະຫັດ: </b>
-                                                            {{ $item->code }}
-                                                        </p>
-                                                        <p style="line-height: 20%;" class="text-muted text-sm">
-                                                            <b>ເບີໂທ:</b>
-                                                            {{ $item->phone }}
-                                                        </p>
-                                                        <p style="line-height: 20%;" class="text-muted">
-                                                            <b>ຕຳແໜ່ງ:</b>
-                                                            @if(!empty($item->position))
-                                                            {{ $item->position->name }}
-                                                            @endif
-                                                        </p>
-                                                    </div>
-                                                </div>
-
-                                                {{-- @foreach ($res_function_available as $items)
-                                                                    @if ($items->ResFunctions->name == 'action_33') --}}
-
-                                                <div class="btn-group col-md-12">
-                                                    <button class="btn btn-secondary btn-sm float-right">
-                                                        <i class="fas fa-eye"></i>
-                                                        ລາຍລະອຽດ
-                                                    </button>
-                                                    <button wire:click="edit({{ $item->id }})" type="button"
-                                                        class="btn btn-warning btn-sm"><i
-                                                            class="fas fa-pencil-alt"></i></button>
-                                                    <button wire:click="showDestroy({{ $item->id }})"
-                                                        type="button" class="btn btn-danger btn-sm"><i
-                                                            class="fas fa-trash"></i></button>
-                                                </div>
-                                                {{-- @endif
-                                                                @endforeach --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="float-right">
-                                {{ $data->links() }}
-                            </div>
-                            {{-- <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead class="bg-light">
-                                        <tr style="text-align: center">
-                                            <th>ລຳດັບ</th>
-                                            <th>ຊື່ ນາມສະກຸນ</th>
-                                            <th>ເບີໂທ</th>
-                                            <th>ອີເມວ</th>
-                                            <th>ເພດ</th>
-                                            <th>ສະຖານະ</th>
-                                            <th>ສິດນຳໃຊ້</th>
-                                            <th>ວດປ ເກີດ</th>
-                                            <th>ຈັດການ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $i = 1;
-                                        @endphp
-                                        @foreach ($data as $item)
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead class="bg-light">
                                             <tr style="text-align: center">
-                                                <td>
-                                                    {{ $i++ }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->name_lastname }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->phone }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->email }}
-                                                </td>
-                                                <td>
-                                                    @if ($item->gender == 1)
-                                                        <span class="text-success">ຍິງ</span>
-                                                    @elseif($item->gender == 2)
-                                                        <span class="text-danger">ຊາຍ</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($item->status == 1)
-                                                        <span class="text-secondary">ໂສດ</span>
-                                                    @elseif($item->status == 2)
-                                                        <span class="text-secondary">ມີແຟນ</span>
-                                                    @elseif($item->status == 3)
-                                                        <span class="text-secondary">ແຕ່ງງານ</span>
-                                                    @elseif($item->status == 4)
-                                                        <span class="text-secondary">ຢ່າຮ້າງ</span>
-                                                    @elseif($item->status == 5)
-                                                        <span class="text-secondary">ແຍກກັນຢູ່</span>
-                                                    @elseif($item->status == 6)
-                                                        <span class="text-secondary">ຮັກເຂົາຂ້າງດຽວ</span>
-                                                    @endif
-                                                </td>
-                                                <td class="text-bold">
-                                                    @if (!empty($item->roles))
-                                                        {{ $item->roles->name }}
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    {{ date('d/m/Y', strtotime($item->birtday_date)) }}
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button wire:click="edit({{ $item->id }})" type="button"
-                                                            class="btn btn-warning btn-sm"><i
-                                                                class="fas fa-pencil-alt"></i></button>
-                                                        <button wire:click="showDestroy({{ $item->id }})"
-                                                            type="button" class="btn btn-danger btn-sm"><i
-                                                                class="fas fa-trash"></i></button>
-                                                    </div>
-                                                </td>
+                                                <th>ລຳດັບ</th>
+                                                <th>ຊື່ ນາມສະກຸນ</th>
+                                                <th>ເພດ</th>
+                                                <th>ເດືອນ/ປີ</th>
+                                                <th>ຂັ້ນເງິນເດືອນ</th>
+                                                <th>ລວມເງິນ</th>
+                                                <th>ປະເພດ</th>
+                                                <th>ສະຖານະ</th>
+                                                <th>ຜູ້ສ້າງ</th>
+                                                <th>ຈັດການ</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                <div class="float-right">
-                                    {{ $data->links() }}
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $i = 1;
+                                            @endphp
+                                            @foreach ($data as $item)
+                                                <tr style="text-align: center">
+                                                    <td>
+                                                        {{ $i++ }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->name_lastname }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->phone }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $item->email }}
+                                                    </td>
+                                                    <td>
+                                                        @if ($item->gender == 1)
+                                                            <span class="text-success">ຍິງ</span>
+                                                        @elseif($item->gender == 2)
+                                                            <span class="text-danger">ຊາຍ</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($item->status == 1)
+                                                            <span class="text-secondary">ໂສດ</span>
+                                                        @elseif($item->status == 2)
+                                                            <span class="text-secondary">ມີແຟນ</span>
+                                                        @elseif($item->status == 3)
+                                                            <span class="text-secondary">ແຕ່ງງານ</span>
+                                                        @elseif($item->status == 4)
+                                                            <span class="text-secondary">ຢ່າຮ້າງ</span>
+                                                        @elseif($item->status == 5)
+                                                            <span class="text-secondary">ແຍກກັນຢູ່</span>
+                                                        @elseif($item->status == 6)
+                                                            <span class="text-secondary">ຮັກເຂົາຂ້າງດຽວ</span>
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-bold">
+                                                        @if (!empty($item->roles))
+                                                            {{ $item->roles->name }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        {{ date('d/m/Y', strtotime($item->birtday_date)) }}
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <button wire:click="edit({{ $item->id }})"
+                                                                type="button" class="btn btn-warning btn-sm"><i
+                                                                    class="fas fa-pencil-alt"></i>ຖອນ</button>
+                                                            <button wire:click="edit({{ $item->id }})"
+                                                                type="button" class="btn btn-warning btn-sm"><i
+                                                                    class="fas fa-pencil-alt"></i></button>
+                                                            <button wire:click="showDestroy({{ $item->id }})"
+                                                                type="button" class="btn btn-danger btn-sm"><i
+                                                                    class="fas fa-trash"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    <div class="float-right">
+                                        {{-- {{ $data->links() }} --}}
+                                    </div>
                                 </div>
                             </div>
-                        </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
     </section>
     {{-- =========== Add-Edit ============================ --}}
-    <div wire:ignore.self class="modal fade" id="modal-add-edit">
+    {{-- <div wire:ignore.self class="modal fade" id="modal-add-edit">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header bg-light">
@@ -313,13 +247,7 @@
                                     <option value="">ເລືອກຂໍ້ມູນ</option>
                                     @foreach ($provinces as $item)
                                         <option value="{{ $item->id }}">
-                                            {{-- @if (Config::get('app.locale') == 'lo') --}}
                                             {{ $item->name_la }}
-                                            {{-- @elseif(Config::get('app.locale') == 'en')
-                                                {{ $item->name_en }}
-                                            @elseif(Config::get('app.locale') == 'cn')
-                                                {{ $item->name_cn }}
-                                            @endif --}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -336,13 +264,7 @@
                                     <option value="">ເລືອກຂໍ້ມູນ</option>
                                     @foreach ($districts as $item)
                                         <option value="{{ $item->id }}">
-                                            {{-- @if (Config::get('app.locale') == 'lo') --}}
                                             {{ $item->name_la }}
-                                            {{-- @elseif(Config::get('app.locale') == 'en')
-                                                {{ $item->name_en }}
-                                            @elseif(Config::get('app.locale') == 'cn')
-                                                {{ $item->name_cn }}
-                                            @endif --}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -359,13 +281,7 @@
                                     <option value="">ເລືອກຂໍ້ມູນ</option>
                                     @foreach ($villages as $item)
                                         <option value="{{ $item->id }}">
-                                            {{-- @if (Config::get('app.locale') == 'lo') --}}
                                             {{ $item->name_la }}
-                                            {{-- @elseif(Config::get('app.locale') == 'en')
-                                                {{ $item->name_en }}
-                                            @elseif(Config::get('app.locale') == 'cn')
-                                                {{ $item->name_cn }}
-                                            @endif --}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -514,9 +430,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- ======== delete ======== --}}
-    <div class="modal fabe" id="modal-delete">
+    {{-- <div class="modal fabe" id="modal-delete">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
@@ -532,6 +448,58 @@
                     <button type="button" class="btn btn-primary" data-dismiss="modal">ຍົກເລີກ</button>
                     <button wire:click="destroy({{ $ID }})" type="button" class="btn btn-success"><i
                             class="fa fa-trash"></i> ລຶບອອກ</button>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+    {{-- ======== delete ======== --}}
+    <div wire:ignore.self class="modal fabe" id="modal-add-edit">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title"><i class="fas fa-plus"> </i> ສ້າງໃຫມ່</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h3>ສຳຫຼັບເດືອນ: {{ $month }} ປີ: {{ $year }}</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select wire:model="year" id="year"
+                                    class="form-control @error('year') is-invalid @enderror">
+                                    <option value="" selected>ເລືອກ-ປີ</option>
+                                    @for ($year = 1950; $year <= 2050; $year++)
+                                        <option value="{{ $year }}">{{ $year }}</option>
+                                    @endfor
+                                </select>
+                                @error('year')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select wire:model="month" id="month"
+                                    class="form-control @error('month') is-invalid @enderror">
+                                    <option value="" selected>ເລືອກ-ເດືອນ</option>
+                                    @for ($month = 1; $month <= 12; $month++)
+                                        <option value="{{ $month }}">ເດືອນ-{{ $month }}</option>
+                                    @endfor
+                                </select>
+                                @error('month')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">ຍົກເລີກ</button>
+                    <button wire:click="destroy({{ $ID }})" type="button" class="btn btn-success"><i
+                            class="fas fa-check-circle"></i> ຍືນຍັນ</button>
                 </div>
             </div>
         </div>

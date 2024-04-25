@@ -76,7 +76,6 @@ class UserContent extends Component
         $this->status = '';
         $this->gender = '';
         $this->birtday_date = '';
-
         $this->salary_id = '';
         $this->position_id = '';
         $this->image = '';
@@ -126,6 +125,7 @@ class UserContent extends Component
             } else {
                 $data->image = '';
             }
+            $data->code = 'EP-' . mt_rand(100000, 999999);
             $data->name_lastname = $this->name_lastname;
             $data->phone = $this->phone;
             $data->email = $this->email;
