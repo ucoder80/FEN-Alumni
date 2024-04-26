@@ -37,11 +37,23 @@
             font-family: 'Noto Sans Lao';
             src: url('{{ asset('fonts/NotoSansLao-Medium.ttf') }}');
         }
-
         body {
+    /* Gradient background */
+    background:
+                /* Image background */
+                url('https://i.gifer.com/TPPX.gif') center center no-repeat;
+    /* Fallback background color (in case the image fails to load) */
+    background-color: #000000;
+    /* Background size (cover to fill the entire body) */
+    background-size: cover;
+    /* Ensures content is above the background */
+    z-index: -1;
+}
+
+        /* body {
             background-image: linear-gradient(#d7e817, #484945);
             background-color: #000000;
-        }
+        } */
     </style>
     @livewireStyles
 </head>
