@@ -65,8 +65,8 @@
         }
 
         @font-face {
-            font-family: NotoSansLao-Medium;
-            src: url('{{ asset('fonts/NotoSansLao-Medium.ttf') }}');
+            font-family: phetsarath OT;
+            src: url('{{ asset('fonts/phetsarath OT.ttf') }}');
         }
 
         body {
@@ -78,10 +78,10 @@
 </head>
 {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງຊ້າຍ --}}
 
-<body class="hold-transition sidebar-mini layout-fixed" style="font-family: 'Noto Sans Lao Medium'">
+<body class="hold-transition sidebar-mini layout-fixed" style="font-family: 'phetsarath OT'">
 
     {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງເທິງ --}}
-    {{-- <body class="hold-transition layout-top-nav" style="font-family: 'NotoSansLao-Medium'"> --}}
+    {{-- <body class="hold-transition layout-top-nav" style="font-family: 'phetsarath OT'"> --}}
 
     <!-- Spinner Start -->
     <div id="spinner"

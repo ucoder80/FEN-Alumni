@@ -1,31 +1,32 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\AboutContent;
-use App\Http\Livewire\Backend\LoginContent;
-use App\Http\Livewire\Backend\RolesContent;
-use App\Http\Livewire\Backend\SlideContent;
-use App\Http\Livewire\Backend\LogoutContent;
-use App\Http\Livewire\Backend\ProfileContent;
-use App\Http\Livewire\Backend\VillageContent;
-use App\Http\Livewire\Backend\DistrictContent;
-use App\Http\Livewire\Backend\ProvinceContent;
 use App\Http\Livewire\Backend\DashboardContent;
-use App\Http\Livewire\Backend\Sales\SalesContent;
-use App\Http\Livewire\Backend\Orders\ImportContent;
-use App\Http\Livewire\Backend\Orders\OrdersContent;
-use App\Http\Livewire\Backend\DataStore\UserContent;
-use App\Http\Livewire\Backend\DataStore\ProductContent;
-use App\Http\Livewire\Backend\Orders\OrdersCartContent;
-use App\Http\Livewire\Backend\Orders\ImportUpdateContent;
 use App\Http\Livewire\Backend\DataStore\PositionContent;
+use App\Http\Livewire\Backend\DataStore\ProductContent;
 use App\Http\Livewire\Backend\DataStore\SalaryContent;
+use App\Http\Livewire\Backend\DataStore\UserContent;
+use App\Http\Livewire\Backend\DistrictContent;
 use App\Http\Livewire\Backend\IncomeExpendContent;
+use App\Http\Livewire\Backend\LoginContent;
+use App\Http\Livewire\Backend\LogoutContent;
+use App\Http\Livewire\Backend\Orders\ImportContent;
+use App\Http\Livewire\Backend\Orders\ImportUpdateContent;
+use App\Http\Livewire\Backend\Orders\OrdersCartContent;
+use App\Http\Livewire\Backend\Orders\OrdersContent;
 use App\Http\Livewire\Backend\PaySalary\PaySalaryContent;
+use App\Http\Livewire\Backend\ProfileContent;
+use App\Http\Livewire\Backend\ProvinceContent;
 use App\Http\Livewire\Backend\Reports\OrdersReportsContent;
 use App\Http\Livewire\Backend\Reports\ProductsContent;
+use App\Http\Livewire\Backend\Reports\ReportPaySalaryContent;
 use App\Http\Livewire\Backend\Reports\ReportUserContent;
 use App\Http\Livewire\Backend\Reports\SalesReportsContent;
+use App\Http\Livewire\Backend\RolesContent;
+use App\Http\Livewire\Backend\Sales\SalesContent;
+use App\Http\Livewire\Backend\SlideContent;
+use App\Http\Livewire\Backend\VillageContent;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,7 @@ use App\Http\Livewire\Backend\Reports\SalesReportsContent;
 // });
 
 // ========== Backend ====================================//
-Route::get('/login-admin', LoginContent::class)->name('backend.login');
+Route::get('/', LoginContent::class)->name('backend.login');
 
 // ========== Front-end ========== //
 // Route::middleware('auth.frontend')->group(function () {
@@ -77,12 +78,8 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/OrdersReports', OrdersReportsContent::class)->name('backend.OrdersReport');
     Route::get('/ProductsReports', ProductsContent::class)->name('backend.ProductsReport');
     Route::get('/IncomeExpendContents', IncomeExpendContent::class)->name('backend.IncomeExpendContent');
-    Route::get('/ReportUsers', ReportUserContent::class)->name('backend.ReportUser');
+    Route::get('/ReportEmployee', ReportUserContent::class)->name('backend.ReportUser');
 
     Route::get('/PaySalarys', PaySalaryContent::class)->name('backend.PaySalary');
-
-
-
-    
-
+    Route::get('/ReportPaySalarys', ReportPaySalaryContent::class)->name('backend.ReportPaySalary');
 });

@@ -25,39 +25,89 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-3">
-                                    <a wire:click="ShowCreateSalary" class="btn btn-primary btn-sm"
-                                        href="javascript:void(0)"><i class="fa fa-plus-circle"></i> ສ້າງໃຫມ່</a>
+                                <div class="col-md-2">
+                                    <div class="btn-group">
+                                        <button wire:click='ShowCreateSalary' type="button"
+                                            class="btn btn-primary btn-sm"><i class="fas fa-plus-circle"></i>
+                                            ສ້າງເງິນເດືອນໃຫມ່</button>
+                                        {{-- <button type="button" id="print" class="btn btn-danger btn-sm"><i
+                                                class="fas fa-print"></i> ພິມອອກ</button> --}}
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="date" wire:model="start_date" class="form-control">
+                                    </div>
+                                </div><!-- end div-col -->
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="date" wire:model="end_date" class="form-control">
+                                    </div>
+                                </div><!-- end div-col -->
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <select wire:model="years" id="years"
+                                            class="form-control @error('years') is-invalid @enderror">
+                                            <option value="" selected>ເລືອກ-ປີ</option>
+                                            @for ($yearss = 1950; $yearss <= 2050; $yearss++)
+                                                <option value="{{ $yearss }}">ປີ-{{ $yearss }}</option>
+                                            @endfor
+                                        </select>
+                                        @error('years')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    {{-- <div wire:ignore class="form-group">
-                                        <select wire:model="roles_id" id="roles_id"
-                                            class="form-control @error('roles_id') is-invalid @enderror">
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <select wire:model="month" id="month"
+                                            class="form-control @error('month') is-invalid @enderror">
+                                            <option value="" selected>ເລືອກ-ເດືອນ</option>
+                                            @for ($monthh = 1; $monthh <= 12; $monthh++)
+                                                <option value="{{ $monthh }}">ເດືອນ-{{ $monthh }}</option>
+                                            @endfor
+                                        </select>
+                                        @error('month')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div wire:ignore class="form-group">
+                                        <select wire:model="employee_id" id="employee_id"
+                                            class="form-control @error('employee_id') is-invalid @enderror">
                                             <option value="">
-                                                ເລືອກສິດນຳໃຊ້
+                                                ພະນັກງານ
                                             </option>
-                                            @foreach ($roles as $item)
+                                            @foreach ($employees as $item)
                                                 <option value="{{ $item->id }}">
-                                                    {{ $item->name }}
+                                                    {{ $item->name_lastname }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                    </div> --}}
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
+                                {{-- <div class="col-md-3">
                                     <input wire:model.live="search" type="text" class="form-control"
                                         placeholder="ຄົ້ນຫາ">
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
+                        <div class="card-body right_content">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <thead class="bg-light">
+                                            <tr>
+                                                <th colspan="9" class="text-right">
+                                                    <h3><i>ລວມຍອດຈ່າຍເງິນເດືອນໃຫ້ພະນັກງານ</i></h3>
+                                                </th>
+                                                <th colspan="2">
+                                                    <h3 class="text-bold">{{ number_format($sum_total_salary) }} ₭</h3>
+                                                </th>
+                                            </tr>
                                             <tr style="text-align: center">
                                                 <th>ລຳດັບ</th>
                                                 <th>ຊື່ ນາມສະກຸນ</th>
@@ -110,9 +160,9 @@
                                                     </td>
                                                     <td class="text-bold">
                                                         @if (!empty($item->type))
-                                                            @if($item->type == 1)
+                                                            @if ($item->type == 1)
                                                                 <span class="text-primary">ເງິນສົດ</span>
-                                                                @else
+                                                            @else
                                                                 <span class="text-danger">ເງິນໂອນ</span>
                                                             @endif
                                                         @else
@@ -121,14 +171,17 @@
                                                     </td>
                                                     <td>
                                                         @if ($item->status == 1)
-                                                            <span class="text-warning"><i class="fas fa-warning"></i> ຍັງບໍ່ຖອນ</span>
+                                                            <span class="text-warning"><i class="fas fa-warning"></i>
+                                                                ຍັງບໍ່ຖອນ</span>
                                                         @elseif($item->status == 2)
-                                                            <span class="text-success"><i class="fas fa-check-circle"></i> ຖອນສຳເລັດ</span>
+                                                            <span class="text-success"><i
+                                                                    class="fas fa-check-circle"></i> ຖອນສຳເລັດ</span>
                                                         @endif
                                                     </td>
                                                     <td>
                                                         @if (!empty($item->date_pay))
-                                                            {{ date('d/m/Y', strtotime($item->date_pay)) }}
+                                                            {{ date('d/m/Y', strtotime($item->date_pay)) }} <br>
+                                                            {{ date('H:i:s', strtotime($item->date_pay)) }}
                                                         @else
                                                             -
                                                         @endif
@@ -140,12 +193,16 @@
                                                     </td>
                                                     <td>
                                                         <div class="btn-group">
-                                                            <button wire:click="edit({{ $item->id }})"
-                                                                type="button" class="btn btn-info btn-sm"><i
-                                                                    class="fas fa-hand-holding-usd"></i></button>
-                                                            <button wire:click="edit({{ $item->id }})"
-                                                                type="button" class="btn btn-warning btn-sm"><i
+                                                            @if ($item->status != 2)
+                                                                <button wire:click="ShowSalary({{ $item->id }})"
+                                                                    type="button" class="btn btn-info btn-sm"><i
+                                                                        class="fas fa-hand-holding-usd"></i></button>
+                                                            @endif
+                                                            <button type="button" class="btn btn-warning btn-sm"><i
                                                                     class="fas fa-pencil-alt"></i></button>
+                                                            {{-- <button wire:click="edit({{ $item->id }})"
+                                                                        type="button" class="btn btn-warning btn-sm"><i
+                                                                            class="fas fa-pencil-alt"></i></button> --}}
                                                             <button wire:click="showDestroy({{ $item->id }})"
                                                                 type="button" class="btn btn-danger btn-sm"><i
                                                                     class="fas fa-trash"></i></button>
@@ -471,7 +528,7 @@
             </div>
         </div>
     </div>
-    {{-- ======== delete ======== --}}
+    {{-- ======== pay salary ======== --}}
     <div wire:ignore.self class="modal fabe" id="modal-add-edit">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -519,6 +576,62 @@
                     <button type="button" class="btn btn-dark" data-dismiss="modal">ຍົກເລີກ</button>
                     <button wire:click="PaySalary" type="button" class="btn btn-success"><i
                             class="fas fa-check-circle"></i> ຍືນຍັນ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div wire:ignore.self class="modal fabe" id="modal-paymoney">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title"><i class="fas fa-hand-holding-usd"> </i> ຖອນໃຫ້: {{ $this->employee }}
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-group clearfix">
+                                    <div class="icheck-success d-inline">
+                                        <input type="radio" id="radioPrimary1" value="1" wire:model="type">
+                                        <label for="radioPrimary1">ເງິນສົດ
+                                        </label>
+                                    </div>
+                                    <div class="icheck-danger d-inline">
+                                        <input type="radio" id="radioPrimary2" value="2" wire:model="type"
+                                            checked>
+                                        <label for="radioPrimary2">ເງິນໂອນ
+                                        </label>
+                                    </div>
+                                </div>
+                                @error('type')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="text-center">ຈຳນວນເງິນເດືອນທີ່ຈະຖອນໃຫ້ພະນັກງານ</h4>
+                    <h3 class="text-center text-bold">{{ number_format($this->total_salary) }} ₭</h3>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="note">
+                                ຄຳອະທິບາຍ(ຖ້າມີ)</label>
+                            <textarea id="note" style="height: 100px" class="form-control @error('note') is-invalid @enderror"
+                                wire:model="note" placeholder="ປ້ອນຂໍ້ມູນ"></textarea>
+                            @error('note')
+                                <span style="color: red" class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal"><i
+                            class="fas fa-times-circle"></i> ຍົກເລີກ</button>
+                    <button wire:click="ConfirmSalary({{ $ID }})" type="button"
+                        class="btn btn-success"><i class="fas fa-hand-holding-usd"></i> ຍືນຍັນຖອນ</button>
                 </div>
             </div>
         </div>

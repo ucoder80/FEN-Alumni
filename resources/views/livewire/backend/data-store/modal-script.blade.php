@@ -81,10 +81,10 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#supplier_id').select2();
-            $('#supplier_id').on('change', function(e) {
-                var data = $('#supplier_id').select2("val");
-                @this.set('supplier_id', data);
+            $('#employee_id').select2();
+            $('#employee_id').on('change', function(e) {
+                var data = $('#employee_id').select2("val");
+                @this.set('employee_id', data);
             });
         });
     </script>

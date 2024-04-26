@@ -2,19 +2,21 @@
 
 namespace App\Http\Livewire\Backend\Reports;
 
+use App\Models\Position;
 use App\Models\User;
 use Livewire\Component;
 
 class ReportUserContent extends Component
 {
-    public $roles_id;
+    public $position_id;
 
     public function render()
     {
-        $data = User::whereIn('roles_id', [2,4])->get();
-        if ($this->roles_id) {
-            $data = $data->where('roles_id', $this->roles_id);
+        $data = User::get();
+        $position = Position::get();
+        if ($this->position_id) {
+            $data = $data->where('position_id', $this->position_id);
         }
-        return view('livewire.backend.reports.report-user-content', compact('data'))->layout('layouts.backend.style');
+        return view('livewire.backend.reports.report-user-content', compact('data','position'))->layout('layouts.backend.style');
     }
 }

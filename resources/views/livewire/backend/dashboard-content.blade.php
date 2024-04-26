@@ -19,12 +19,12 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-4 col-6">
+                <div class="col-lg-6 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h5>{{ number_format($this->sum_total_order) }} ₭</h5>
-                            <p>ລວມຍອດຊື້</p>
+                            <h3>{{ number_format($this->sum_total_salary) }} ₭</h3>
+                            <h4>ລວມຍອດການຈ່າຍເງິນເດືອນ</h4>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
@@ -34,27 +34,12 @@
                     </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-4 col-6">
+                <div class="col-lg-6 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-warning">
+                    <div class="small-box bg-info">
                         <div class="inner">
-                            <h5>{{ number_format($this->sum_total_sale) }} ₭</h5>
-                            <p>ລວມຍອດຂາຍ</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">ເບິ່ງລາຍລະອຽດ <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-4 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h5>{{ number_format($this->count_product) }} ລາຍການ</h5>
-                            <p>ສິນຄ້າທັງຫມົດ</p>
+                            <h3>{{ $this->count_position }} ຕໍາແໜ່ງ</h3>
+                            <h4>ຕຳແໜ່ງວຽກທັງຫມົດ</h4>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
@@ -69,7 +54,7 @@
             <!-- /.row -->
 
             <div class="row">
-                <div class="col-md-3 col-sm-6 col-12">
+                {{-- <div class="col-md-6 col-sm-6 col-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-info"><i class="fas fa-cart-arrow-down"></i></span>
 
@@ -82,7 +67,7 @@
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-12">
+                <div class="col-md-6 col-sm-6 col-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-warning"><i class="fas fa-cart-plus"></i></span>
 
@@ -93,36 +78,36 @@
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
-                </div>
+                </div> --}}
                 <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-12">
+                <div class="col-md-12 col-sm-6 col-12">
                     <div class="info-box">
-                        <span class="info-box-icon bg-success"><i class="fa fa-users"></i></span>
+                        <span class="info-box-icon bg-info"><i class="fa fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">ພະນັກງານທັງຫມົກ</span>
-                            <span class="info-box-number">{{ $this->count_employee }} <small> ຄົນ</small></span>
+                            <span class="info-box-text"><h4>ພະນັກງານທັງຫມົດ</h4></span>
+                            <span class="info-box-number"><h4>{{ $this->count_employee }} ຄົນ</h4></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-12">
+                {{-- <div class="col-md-6 col-sm-6 col-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-danger"><i class="fa fa-users"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">ລູກຄ້າທັງຫມົດ</span>
-                            <span class="info-box-number">{{ $this->count_customer }} <small> ຄົນ</small></span>
+                            <span class="info-box-number">{{ $this->count_employee }} <small> ຄົນ</small></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
-                </div>
+                </div> --}}
                 <!-- /.col -->
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-bordered responsive">
@@ -178,7 +163,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- /.row -->
 
         </div><!-- /.container-fluid -->
