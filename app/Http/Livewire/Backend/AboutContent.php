@@ -20,7 +20,10 @@ class AboutContent extends Component
         $this->address = $data->address;
         $this->latitude = $data->latitude;
         $this->longitude = $data->longitude;
-        $this->logo = $data->logo;
+        if($this->logo)
+        {
+            $this->logo = $data->logo;
+        }
     }
     public function render()
     {

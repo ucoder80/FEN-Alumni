@@ -125,7 +125,7 @@
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                     <h4><u><b>ລາຍງານ-ຂໍ້ມູນພະນັກງານ</b></u></h4>
-                                                <h4><b>ວັນທີ່:
+                                                {{-- <h4><b>ວັນທີ່:
                                                         @if (!empty($start_date))
                                                             {{ date('d-m-Y', strtotime($start_date)) }}
                                                         @endif
@@ -133,7 +133,7 @@
                                                         @if (!empty($end_date))
                                                             {{ date('d-m-Y', strtotime($end_date)) }}
                                                         @endif
-                                                    </b></h4>
+                                                    </b></h4> --}}
                                             </div>
                                         </div>
                                         <br>

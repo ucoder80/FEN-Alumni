@@ -9,7 +9,8 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="#" class="h2"><i class="fa fa-user-tie"></i> ຍິນດີຕ້ອນຮັບທ່ານ</a>
+            <a href="#" class="h2"><i class="fa fa-user-tie"></i> 
+                Welcome To </a>
         </div>
         <div class="card-body">
             <p class="login-box-msg h5">

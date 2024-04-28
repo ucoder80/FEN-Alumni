@@ -23,8 +23,8 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ number_format($this->sum_total_salary) }} ₭</h3>
-                            <h4>ລວມຍອດການຈ່າຍເງິນເດືອນ</h4>
+                            <h4>{{ number_format($this->sum_total_salary) }} ₭</h4>
+                            <h5>ລວມຍອດການຈ່າຍເງິນເດືອນ</h5>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
@@ -38,8 +38,8 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ $this->count_position }} ຕໍາແໜ່ງ</h3>
-                            <h4>ຕຳແໜ່ງວຽກທັງຫມົດ</h4>
+                            <h4>{{ $this->count_position }} ຕໍາແໜ່ງ</h4>
+                            <h5>ຕຳແໜ່ງວຽກທັງຫມົດ</h5>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
