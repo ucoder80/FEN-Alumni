@@ -2,18 +2,18 @@
 
 namespace App\Http\Livewire\Backend\DataStore;
 
-use Carbon\Carbon;
-use App\Models\Role;
-use App\Models\User;
-use App\Models\Salary;
-use App\Models\Village;
-use Livewire\Component;
 use App\Models\District;
 use App\Models\Position;
 use App\Models\Province;
-use Livewire\WithPagination;
-use Livewire\WithFileUploads;
+use App\Models\Role;
+use App\Models\Salary;
+use App\Models\User;
+use App\Models\Village;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class UserContent extends Component
 {
@@ -24,6 +24,7 @@ class UserContent extends Component
     $search, $page_number,
     $name_lastname,
     $phone,
+    $code,
     $email,
     $password, $roles_id,
     $confirm_password,
@@ -36,7 +37,7 @@ class UserContent extends Component
     $district_id,
     $districts = [],
     $villages = [];
-    public $salary_id,$position_id,$image,$nationality,$religion,$newimage;
+    public $salary_id, $position_id, $image, $nationality, $religion, $newimage;
     public function render()
     {
         $data = User::where(function ($q) {
@@ -59,7 +60,7 @@ class UserContent extends Component
         $roles = Role::all();
         $salary = Salary::all();
         $position = Position::all();
-        return view('livewire.backend.data-store.user-content', compact('data', 'provinces', 'roles','salary','position'))->layout('layouts.backend.style');
+        return view('livewire.backend.data-store.user-content', compact('data', 'provinces', 'roles', 'salary', 'position'))->layout('layouts.backend.style');
     }
     public function resetField()
     {
@@ -150,7 +151,7 @@ class UserContent extends Component
                 'icon' => 'success',
             ]);
             DB::commit();
-        return redirect(route('backend.user'));
+            return redirect(route('backend.user'));
         } catch (\Exception $ex) {
             DB::rollBack();
             $this->dispatchBrowserEvent('swal', [
@@ -244,7 +245,7 @@ class UserContent extends Component
                 'icon' => 'success',
             ]);
             DB::commit();
-        return redirect(route('backend.user'));
+            return redirect(route('backend.user'));
         } catch (\Exception $ex) {
             DB::rollBack();
             $this->dispatchBrowserEvent('swal', [
@@ -252,5 +253,28 @@ class UserContent extends Component
                 'icon' => 'warning',
             ]);
         }
+    }
+    public $position_data, $village_data, $province_data, $district_data, $salary_data,$roles_data;
+    public function show_detail($ids)
+    {
+        $this->ID = $ids;
+        $data = User::find($ids);
+        $this->code = $data->code;
+        $this->name_lastname = $data->name_lastname;
+        $this->phone = $data->phone;
+        $this->email = $data->email;
+        $this->gender = $data->gender;
+        $this->status = $data->status;
+        $this->birtday_date = $data->birtday_date;
+        $this->roles_data = $data->roles->name ?? '';
+        $this->village_data = $data->village->name_la ?? '';
+        $this->province_data = $data->province->name_la ?? '';
+        $this->district_data = $data->district->name_la ?? '';
+        $this->salary_data = $data->salary->salary ?? '';
+        $this->newimage = $data->image;
+        $this->position_data = $data->position->name ?? '';
+        $this->nationality = $data->nationality;
+        $this->religion = $data->religion;
+        $this->dispatchBrowserEvent('show-modal-detail');
     }
 }

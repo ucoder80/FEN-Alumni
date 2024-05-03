@@ -92,8 +92,8 @@
                                                         </p>
                                                         <p style="line-height: 20%;" class="text-muted">
                                                             <b>ຕຳແໜ່ງ:</b>
-                                                            @if(!empty($item->position))
-                                                            {{ $item->position->name }}
+                                                            @if (!empty($item->position))
+                                                                {{ $item->position->name }}
                                                             @endif
                                                         </p>
                                                     </div>
@@ -103,7 +103,8 @@
                                                                     @if ($items->ResFunctions->name == 'action_33') --}}
 
                                                 <div class="btn-group col-md-12">
-                                                    <button class="btn btn-secondary btn-sm float-right">
+                                                    <button wire:click='show_detail({{ $item->id }})'
+                                                        class="btn btn-secondary btn-sm float-right">
                                                         <i class="fas fa-eye"></i>
                                                         ລາຍລະອຽດ
                                                     </button>
@@ -232,15 +233,13 @@
                     <div class="container">
                         <div wire:ignore class="avatar-upload">
                             <div class="avatar-edit">
-                                <input type='file' wire:model="image" id="imageUpload"
-                                    accept=".png, .jpg, .jpeg" />
+                                <input type='file' wire:model="image" id="imageUpload" accept=".png, .jpg, .jpeg" />
 
                                 <label for="imageUpload"></label>
                             </div>
                             <label class="text-center">ໃສ່ຮູບພາບ(ຖ້າມີ)</label>
                             <div class="avatar-preview">
-                                <div id="imagePreview"
-                                    style="background-image: url({{ asset('logo/noimage.jpg') }});">
+                                <div id="imagePreview" style="background-image: url({{ asset('logo/noimage.jpg') }});">
                                 </div>
                             </div>
                         </div>
@@ -516,7 +515,7 @@
         </div>
     </div>
     {{-- ======== delete ======== --}}
-    <div class="modal fabe" id="modal-delete">
+    <div wire:ignore.self class="modal fabe" id="modal-delete">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
@@ -532,6 +531,130 @@
                     <button type="button" class="btn btn-primary" data-dismiss="modal">ຍົກເລີກ</button>
                     <button wire:click="destroy({{ $ID }})" type="button" class="btn btn-success"><i
                             class="fa fa-trash"></i> ລຶບອອກ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- \\\\\\\\\\\\\\\\\\\\\\\ show detail  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+    <div class="modal fade" id="modal-detail" wire:ignore.self>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fas fa-address-book"></i> ໂປຣຟາຍພະນັກງານ: {{ $this->code }}
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body right_content">
+                    <div class="row">
+                        <div class="container">
+                            <div wire:ignore.self class="avatar-upload">
+                                <div class="avatar-preview">
+                                    <div id="imagePreview"
+                                        style="background-image: url({{ asset($this->newimage) }});">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center pt-3">
+                        <input type="hidden" wire:model="ID">
+                        <div class="col-md-12">
+                            <h4><b>{{ $this->name_lastname }}</b></h4>
+                        </div>
+                    </div>
+                    <table class="table table-hover responsive">
+                        <thead class="bg-light text-left">
+                            <tr>
+                                <th>ເພດ:</th>
+                                <th>
+                                    @if ($this->gender == 1)
+                                        <span>ຍິງ</span>
+                                    @else
+                                        <span>ຊາຍ</span>
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ເບີໂທ:</th>
+                                <th>{{ $this->phone }}</th>
+                            </tr>
+                            <tr>
+                                <th>ວ.ດ.ປ ເກີດ:</th>
+                                <th>{{ $this->birtday_date }}</th>
+                            </tr>
+                            <tr>
+                                <th>ທີ່ຢູ່ປະຈຸບັນ: </th>
+                                <th>
+                                    @if (!empty($this->village_data))
+                                        {{ $this->village_data }}
+                                    @endif -
+                                    @if (!empty($this->district_data))
+                                        {{ $this->district_data }}
+                                    @endif -
+                                    @if (!empty($this->province_data))
+                                        {{ $this->province_data }}
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ອີເມວ: </th>
+                                <th>{{ $this->email }}</th>
+                            </tr>
+                            <tr>
+                                <th>ສະຖານະ: </th>
+                                <th>
+                                    @if ($this->status == 2)
+                                        <span>ມີແຟນ</span>
+                                    @elseif($this->status == 3)
+                                        <span>ແຕ່ງງານ</span>
+                                    @elseif($this->status == 4)
+                                        <span>ຢ່າຮ້າງ</span>
+                                    @elseif($this->status == 5)
+                                        <span>ແຍກກັນຢູ່</span>
+                                    @elseif($this->status == 6)
+                                        <span>ຮັກເຂົາຂ້າງດຽວ</span>
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ສິດເຂົ້າສູ່ລະບົບ: </th>
+                                <th> {{ $this->roles_data }}</th>
+                            </tr>
+                            <tr>
+                                <th>ສັນຊາດ: </th>
+                                <th>{{ $this->nationality }}</th>
+                            </tr>
+                            <tr>
+                                <th>ສາສະຫນາ: </th>
+                                <th>{{ $this->religion }}</th>
+                            </tr>
+                            <tr>
+                                <th>ຕຳແໜ່ງ: </th>
+                                <th>
+                                    @if (!empty($this->position_data))
+                                        {{ $this->position_data }}
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ຂັ້ນເງິນເດຶອນ: </th>
+                                <th>
+                                    @if (!empty($this->salary_data))
+                                        {{ number_format($this->salary_data) }} ₭
+                                    @endif
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                    {{-- </div> --}}
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-secondary fas fa-times-circle" data-dismiss="modal">
+                        ປິດ</button>
+                    <button id="print" type="button" class="btn btn-success"> <i class="fas fa-print"></i>
+                    </button>
                 </div>
             </div>
         </div>

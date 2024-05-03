@@ -198,7 +198,7 @@
                                                                     type="button" class="btn btn-info btn-sm"><i
                                                                         class="fas fa-hand-holding-usd"></i></button>
                                                             @endif
-                                                            <button type="button" class="btn btn-warning btn-sm"><i
+                                                            <button  wire:click="edit({{ $item->id }})" type="button" class="btn btn-warning btn-sm"><i
                                                                     class="fas fa-pencil-alt"></i></button>
                                                             {{-- <button wire:click="edit({{ $item->id }})"
                                                                         type="button" class="btn btn-warning btn-sm"><i
@@ -636,5 +636,92 @@
             </div>
         </div>
     </div>
+        {{-- ======== edit salary ======== --}}
+        <div wire:ignore.self class="modal fabe" id="modal-update">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning">
+                        <h4 class="modal-title"><i class="fas fa-pen"> </i> ແກ້ໄຂ</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <h3>ສຳຫຼັບເດືອນ: {{ $this->month }} ປີ: {{ $this->years }}</h3>
+                        <div class="row">
+                           @if($this->status == 2)
+                           <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="form-group clearfix">
+                                    <div class="icheck-success d-inline">
+                                        <input type="radio" id="radioPrimary1" value="1" wire:model="type">
+                                        <label for="radioPrimary1">ເງິນສົດ
+                                        </label>
+                                    </div>
+                                    <div class="icheck-danger d-inline">
+                                        <input type="radio" id="radioPrimary2" value="2" wire:model="type"
+                                            checked>
+                                        <label for="radioPrimary2">ເງິນໂອນ
+                                        </label>
+                                    </div>
+                                </div>
+                                @error('type')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                           @endif
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="note">
+                                        ຄຳອະທິບາຍ(ຖ້າມີ)</label>
+                                    <textarea id="note" style="height: 100px" class="form-control @error('note') is-invalid @enderror"
+                                        wire:model="note" placeholder="ປ້ອນຂໍ້ມູນ"></textarea>
+                                    @error('note')
+                                        <span style="color: red" class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select wire:model="years" id="years"
+                                        class="form-control @error('years') is-invalid @enderror">
+                                        <option value="" selected>ເລືອກ-ປີ</option>
+                                        @for ($years = 1950; $years <= 2050; $years++)
+                                            <option value="{{ $years }}">ປີ-{{ $years }}</option>
+                                        @endfor
+                                    </select>
+                                    @error('years')
+                                        <span style="color: red" class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+    
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select wire:model="month" id="month"
+                                        class="form-control @error('month') is-invalid @enderror">
+                                        <option value="" selected>ເລືອກ-ເດືອນ</option>
+                                        @for ($month = 1; $month <= 12; $month++)
+                                            <option value="{{ $month }}">ເດືອນ-{{ $month }}</option>
+                                        @endfor
+                                    </select>
+                                    @error('month')
+                                        <span style="color: red" class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">ຍົກເລີກ</button>
+                        <button wire:click="update" type="button" class="btn btn-success"><i
+                                class="fas fa-check-circle"></i> ແກ້ໄຂ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 @include('livewire.backend.data-store.modal-script')

@@ -75,8 +75,15 @@
         window.addEventListener('hide-modal-sales', event => {
             $('#modal-sales').modal('hide')
         })
-        window.addEventListener('show-modal-bill', event => {
-            $('#modal-bill').modal('show')
+        window.addEventListener('show-modal-detail', event => {
+            $('#modal-detail').modal('show')
+        })
+
+        window.addEventListener('show-modal-update', event => {
+            $('#modal-update').modal('show')
+        })
+        window.addEventListener('hide-modal-update', event => {
+            $('#modal-update').modal('hide')
         })
     </script>
     <script>

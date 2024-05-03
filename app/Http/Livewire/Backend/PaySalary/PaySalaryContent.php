@@ -14,7 +14,7 @@ class PaySalaryContent extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $ID,
-    $search, $page_number, $month, $years, $salary, $type = 2, $total_salary, $employee, $note, $end_date, $start_date, $employee_id;
+    $search, $page_number, $month, $years, $salary, $type = 2, $total_salary, $employee,$status, $note, $end_date, $start_date, $employee_id;
     public function mount()
     {
         // $this->month = date('m');
@@ -41,7 +41,7 @@ class PaySalaryContent extends Component
             $data = $data->where('employee_id', $this->employee_id);
             $sum_total_salary = $data->where('employee_id', $this->employee_id)->sum('total_salary');
         }
-        return view('livewire.backend.pay-salary.pay-salary-content', compact('data', 'employees','sum_total_salary'))->layout('layouts.backend.style');
+        return view('livewire.backend.pay-salary.pay-salary-content', compact('data', 'employees', 'sum_total_salary'))->layout('layouts.backend.style');
     }
     public function resetField()
     {
@@ -123,6 +123,11 @@ class PaySalaryContent extends Component
     }
     public function ConfirmSalary()
     {
+        $this->validate([
+            'type' => 'required',
+        ],[
+            'type.required' => 'ເລືອກປະເພດຊຳລະກ່ອນ!',
+        ]);
         $data = PaySalary::find($this->ID);
         $data->status = 2;
         $data->type = $this->type;
@@ -131,6 +136,32 @@ class PaySalaryContent extends Component
         $data->save();
         $this->resetField();
         $this->dispatchBrowserEvent('hide-modal-paymoney');
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'ສຳເລັດເເລ້ວ!',
+            'icon' => 'success',
+        ]);
+    }
+    public function edit($ids)
+    {
+        $this->ID = $ids;
+        $data = PaySalary::find($ids);
+        $this->month = $data->month;
+        $this->years = $data->years;
+        $this->type = $data->type;
+        $this->note = $data->note;
+        $this->status = $data->status;
+        $this->dispatchBrowserEvent('show-modal-update');
+    }
+    public function update()
+    {
+        $data = PaySalary::find($this->ID);
+        $data->month = $this->month;
+        $data->years = $this->years;
+        $data->type = $this->type;
+        $data->note = $this->note;
+        $data->save();
+        $this->resetField();
+        $this->dispatchBrowserEvent('hide-modal-update');
         $this->dispatchBrowserEvent('swal', [
             'title' => 'ສຳເລັດເເລ້ວ!',
             'icon' => 'success',
