@@ -4,10 +4,8 @@ namespace App\Http\Livewire\Backend\DataStore;
 
 use App\Models\District;
 use App\Models\EducationYear;
-use App\Models\Position;
 use App\Models\Province;
 use App\Models\Role;
-use App\Models\Salary;
 use App\Models\Subject;
 use App\Models\User;
 use App\Models\Village;
@@ -18,7 +16,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
-class UserContent extends Component
+class OldStudentContent extends Component
 {
     use WithFileUploads;
     use WithPagination;
@@ -26,6 +24,7 @@ class UserContent extends Component
     public $ID,
     $search, $page_number,
     $name_lastname,
+    $name_lastname_en,
     $phone,
     $code,
     $email,
@@ -45,7 +44,9 @@ class UserContent extends Component
     {
         $data = User::where(function ($q) {
             $q->where('name_lastname', 'like', '%' . $this->search . '%')
-                ->orwhere('phone', 'like', '%' . $this->search . '%');
+                ->orwhere('name_lastname_en', 'like', '%' . $this->search . '%')
+                ->orwhere('phone', 'like', '%' . $this->search . '%')
+                ->orwhere('code', 'like', '%' . $this->search . '%');
         })->orderBy('id', 'desc');
         if ($this->roles_id) {
             $data = $data->where('roles_id', $this->roles_id);
@@ -64,12 +65,13 @@ class UserContent extends Component
         $EducationYears = EducationYear::all();
         $Subjects = Subject::all();
         $WorkPlaces = WorkPlace::all();
-        return view('livewire.backend.data-store.user-content', compact('data', 'provinces', 'roles', 'EducationYears', 'Subjects', 'WorkPlaces'))->layout('layouts.backend.style');
+        return view('livewire.backend.data-store.old-student-content', compact('data', 'provinces', 'roles', 'EducationYears', 'Subjects', 'WorkPlaces'))->layout('layouts.backend.style');
     }
     public function resetField()
     {
         $this->ID = '';
         $this->name_lastname = '';
+        $this->name_lastname_en = '';
         $this->phone = '';
         $this->email = '';
         $this->password = '';
@@ -118,53 +120,55 @@ class UserContent extends Component
             'confirm_password.same' => 'ລະຫັດຜ່ານບໍ່ຕົງກັນ!',
             'roles_id.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
         ]);
-        // try {
-        //     DB::beginTransaction();
-        $data = new User();
-        if (!empty($this->image)) {
-            $this->validate([
-                'image' => 'required|mimes:jpg,png,jpeg',
+        try {
+            DB::beginTransaction();
+            $data = new User();
+            if (!empty($this->image)) {
+                $this->validate([
+                    'image' => 'required|mimes:jpg,png,jpeg',
+                ]);
+                $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
+                $this->image->storeAs('upload/users', $imageName);
+                $data->image = 'upload/users' . '/' . $imageName;
+            } else {
+                $data->image = '';
+            }
+            $data->code = 'EP-' . mt_rand(100000, 999999);
+            $data->name_lastname = $this->name_lastname;
+            $data->name_lastname_en = $this->name_lastname_en;
+            $data->phone = $this->phone;
+            $data->email = $this->email;
+            $data->gender = $this->gender;
+            $data->status = $this->status;
+            $data->birtday_date = $this->birtday_date;
+            $data->email = $this->email;
+            $data->password = bcrypt($this->password);
+            $data->roles_id = $this->roles_id;
+            $data->village_id = $this->village_id;
+            $data->district_id = $this->district_id;
+            $data->province_id = $this->province_id;
+            $data->education_year_id = !empty($this->education_year_id) ? $this->education_year_id : null;
+            $data->subject_id = !empty($this->subject_id) ? $this->subject_id : null;
+            $data->work_place_id = !empty($this->work_place_id) ? $this->work_place_id : null;
+            $data->nationality = $this->nationality;
+            $data->religion = $this->religion;
+            $data->save();
+            $this->resetField();
+            $this->dispatchBrowserEvent('hide-modal-add-edit');
+            $this->dispatchBrowserEvent('swal', [
+                'title' => 'ສຳເລັດເເລ້ວ!',
+                'icon' => 'success',
             ]);
-            $imageName = Carbon::now()->timestamp . '.' . $this->image->extension();
-            $this->image->storeAs('upload/users', $imageName);
-            $data->image = 'upload/users' . '/' . $imageName;
-        } else {
-            $data->image = '';
+            DB::commit();
+            return redirect(route('backend.OldStudent'));
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            $this->dispatchBrowserEvent('swal', [
+                'title' => 'ມີບາງຢ່າງຜິດພາດ!',
+                'icon' => 'warning',
+                // 'iconColor'=>'warning',
+            ]);
         }
-        $data->code = 'EP-' . mt_rand(100000, 999999);
-        $data->name_lastname = $this->name_lastname;
-        $data->phone = $this->phone;
-        $data->email = $this->email;
-        $data->gender = $this->gender;
-        $data->status = $this->status;
-        $data->birtday_date = !empty($this->birtday_date) ? $this->birtday_date : null;
-        $data->email = $this->email;
-        $data->password = bcrypt($this->password);
-        $data->roles_id = $this->roles_id ?? null;
-        $data->village_id = !empty($this->village_id) ? $this->village_id : null;
-        $data->district_id = !empty($this->district_id) ? $this->district_id : null;
-        $data->province_id = !empty($this->province_id) ? $this->province_id : null;
-        $data->education_year_id = !empty($this->education_year_id) ? $this->education_year_id : null;
-        $data->subject_id = !empty($this->subject_id) ? $this->subject_id : null;
-        $data->work_place_id = !empty($this->work_place_id) ? $this->work_place_id : null;
-        $data->nationality = $this->nationality ?? null;
-        $data->religion = $this->religion ?? null;
-        $data->save();
-        $this->resetField();
-        $this->dispatchBrowserEvent('hide-modal-add-edit');
-        $this->dispatchBrowserEvent('swal', [
-            'title' => 'ສຳເລັດເເລ້ວ!',
-            'icon' => 'success',
-        ]);
-        DB::commit();
-        return redirect(route('backend.user'));
-        // } catch (\Exception $ex) {
-        //     DB::rollBack();
-        //     $this->dispatchBrowserEvent('swal', [
-        //         'title' => 'ມີບາງຢ່າງຜິດພາດ!',
-        //         'icon' => 'warning',
-        //     ]);
-        // }
 
     }
     public function edit($ids)
@@ -172,6 +176,7 @@ class UserContent extends Component
         $this->ID = $ids;
         $data = User::find($ids);
         $this->name_lastname = $data->name_lastname;
+        $this->name_lastname_en = $data->name_lastname_en;
         $this->phone = $data->phone;
         $this->email = $data->email;
         $this->gender = $data->gender;
@@ -209,26 +214,27 @@ class UserContent extends Component
             $data->image = 'upload/users' . $filename_image;
         }
         $data->name_lastname = $this->name_lastname;
+        $data->name_lastname_en = $this->name_lastname_en;
         $data->phone = $this->phone;
         $data->email = $this->email;
         $data->gender = $this->gender;
         $data->status = $this->status;
-        $data->birtday_date = !empty($this->birtday_date) ? $this->birtday_date : null;
+        $data->birtday_date = $this->birtday_date;
         $data->roles_id = $this->roles_id;
-        $data->village_id = !empty($this->village_id) ? $this->village_id : null;
-        $data->district_id = !empty($this->district_id) ? $this->district_id : null;
-        $data->province_id = !empty($this->province_id) ? $this->province_id : null;
+        $data->village_id = $this->village_id;
+        $data->province_id = $this->province_id;
+        $data->district_id = $this->district_id;
         $data->education_year_id = !empty($this->education_year_id) ? $this->education_year_id : null;
         $data->subject_id = !empty($this->subject_id) ? $this->subject_id : null;
         $data->work_place_id = !empty($this->work_place_id) ? $this->work_place_id : null;
-        $data->nationality = $this->nationality ?? null;
-        $data->religion = $this->religion ?? null;
+        $data->nationality = $this->nationality;
+        $data->religion = $this->religion;
         $data->save();
         $this->dispatchBrowserEvent('swal', [
             'title' => 'ສຳເລັດເເລ້ວ!',
             'icon' => 'success',
         ]);
-        return redirect(route('backend.user'));
+        return redirect(route('backend.OldStudent'));
         $this->resetField();
         $this->dispatchBrowserEvent('hide-modal-add-edit');
     }
@@ -252,7 +258,7 @@ class UserContent extends Component
                 'icon' => 'success',
             ]);
             DB::commit();
-            return redirect(route('backend.user'));
+            return redirect(route('backend.OldStudent'));
         } catch (\Exception $ex) {
             DB::rollBack();
             $this->dispatchBrowserEvent('swal', [
@@ -261,13 +267,15 @@ class UserContent extends Component
             ]);
         }
     }
-    public $position_data, $village_data, $province_data, $district_data, $salary_data, $roles_data;
+    public $village_data, $province_data, $district_data, $roles_data;
+    public $education_start_year_data, $education_end_year_data, $subject_data, $work_place_data;
     public function show_detail($ids)
     {
         $this->ID = $ids;
         $data = User::find($ids);
         $this->code = $data->code;
         $this->name_lastname = $data->name_lastname;
+        $this->name_lastname_en = $data->name_lastname_en;
         $this->phone = $data->phone;
         $this->email = $data->email;
         $this->gender = $data->gender;
@@ -277,9 +285,11 @@ class UserContent extends Component
         $this->village_data = $data->village->name_la ?? '';
         $this->province_data = $data->province->name_la ?? '';
         $this->district_data = $data->district->name_la ?? '';
-        $this->salary_data = $data->salary->salary ?? '';
+        $this->education_start_year_data = $data->education_year->start_year ?? '';
+        $this->education_end_year_data = $data->education_year->end_year ?? '';
+        $this->subject_data = $data->subject->name_la ?? '';
+        $this->work_place_data = $data->work_place->name ?? '';
         $this->newimage = $data->image;
-        $this->position_data = $data->position->name ?? '';
         $this->nationality = $data->nationality;
         $this->religion = $data->religion;
         $this->dispatchBrowserEvent('show-modal-detail');

@@ -3,14 +3,15 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h5><i class="fas fa-globe"></i> ຂໍ້ມູນເວບໄຊ <i class="fa fa-angle-double-right"></i>
-                        ກ່ຽວກັບ</h5>
+                    <h5><i class="fas fa-cog"></i>
+                         {{-- ຂໍ້ມູນເວບໄຊ <i class="fa fa-angle-double-right"></i> --}}
+                        ຕັ້ງຄ່າລະບົບ</h5>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href="{{ route('backend.dashboard') }}">ໜ້າຫຼັກ</a></li>
-                        <li class="breadcrumb-item active">ກ່ຽວກັບ</li>
+                        <li class="breadcrumb-item active">ຕັ້ງຄ່າລະບົບ</li>
                     </ol>
                 </div>
             </div>
@@ -23,7 +24,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" style="background: linear-gradient(90deg, rgba(26,159,245,1) 20%, rgba(33,8,176,1) 52%, rgba(61,8,176,1) 84%);">
-                                <h5 style="color:#fff"><b><i class="fas fa-building"></i> ຂໍ້ມູນກ່ຽວກັບ</b></h5>
+                                <h5 style="color:#fff"><b><i class="fas fa-building"></i> ຂໍ້ມູນຕັ້ງຄ່າລະບົບ</b></h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -78,7 +79,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="detail">ຄຳອະທິບາຍກ່ຽວກັບຫ້ອງການ</label>
+                                            <label for="detail">ຄຳອະທິບາຍຕັ້ງຄ່າລະບົບຫ້ອງການ</label>
                                             <div wire:ignore>
                                                 <textarea class="form-control" id="note" wire:model="note">{{$note}}</textarea>
                                             </div>
@@ -87,7 +88,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-12" wire:ignore>
+                                    {{-- <div class="col-md-12" wire:ignore>
                                         <div id="map-update-s" style="height:250px; width: 100%;" class="my-3"></div>
                                     </div>
                                     <div class="col-md-12">
@@ -95,7 +96,7 @@
                                             <label>ສະເເດງແຜນທີ່</label>
                                             <button type="button" class="btn btn-outline-primary form-control"><a href="#" onclick="getLocations()"><i class="fas fa-map-marker-alt"></i> ສະເເດງແຜນທີ່ <i class="icon-long-arrow-right"></i></a></button>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     {{-- <div class="col-md-6">
                                         <div class="form-group">
                                             <label>lat</label>

@@ -2,10 +2,16 @@
 
 use App\Http\Livewire\Backend\AboutContent;
 use App\Http\Livewire\Backend\DashboardContent;
+use App\Http\Livewire\Backend\DataStore\DepartmentContent;
+use App\Http\Livewire\Backend\DataStore\EducationSystemContent;
+use App\Http\Livewire\Backend\DataStore\EducationYearContent;
+use App\Http\Livewire\Backend\DataStore\OldStudentContent;
 use App\Http\Livewire\Backend\DataStore\PositionContent;
 use App\Http\Livewire\Backend\DataStore\ProductContent;
 use App\Http\Livewire\Backend\DataStore\SalaryContent;
+use App\Http\Livewire\Backend\DataStore\SubjectContent;
 use App\Http\Livewire\Backend\DataStore\UserContent;
+use App\Http\Livewire\Backend\DataStore\WorkPlaceContent;
 use App\Http\Livewire\Backend\DistrictContent;
 use App\Http\Livewire\Backend\IncomeExpendContent;
 use App\Http\Livewire\Backend\LoginContent;
@@ -57,6 +63,7 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/dashboard', DashboardContent::class)->name('backend.dashboard');
     Route::get('/admin-profiles', ProfileContent::class)->name('backend.profile');
     Route::get('/users', UserContent::class)->name('backend.user');
+    Route::get('/OldStudents', OldStudentContent::class)->name('backend.OldStudent');
     Route::get('/roles', RolesContent::class)->name('backend.role');
     Route::get('/villages', VillageContent::class)->name('backend.village');
     Route::get('/districts', DistrictContent::class)->name('backend.district');
@@ -82,4 +89,11 @@ Route::group(['middleware' => 'auth.backend'], function () {
 
     Route::get('/PaySalarys', PaySalaryContent::class)->name('backend.PaySalary');
     Route::get('/ReportPaySalarys', ReportPaySalaryContent::class)->name('backend.ReportPaySalary');
+    // ============ you ==============
+    Route::get('/EducationSystems', EducationSystemContent::class)->name('backend.EducationSystem');
+    Route::get('/Departments', DepartmentContent::class)->name('backend.Department');
+    Route::get('/Subjects', SubjectContent::class)->name('backend.Subject');
+    Route::get('/WorkPlaces', WorkPlaceContent::class)->name('backend.WorkPlace');
+    Route::get('/EducationYears', EducationYearContent::class)->name('backend.EducationYear');
+
 });

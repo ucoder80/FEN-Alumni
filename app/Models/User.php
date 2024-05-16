@@ -60,9 +60,17 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Salary', 'salary_id', 'id');
     }
-    public function position()
+    public function subject()
     {
-        return $this->belongsTo('App\Models\Position', 'position_id', 'id');
+        return $this->belongsTo('App\Models\Subject', 'subject_id', 'id');
+    }
+    public function work_place()
+    {
+        return $this->belongsTo('App\Models\WorkPlace', 'work_place_id', 'id');
+    }
+    public function education_year()
+    {
+        return $this->belongsTo('App\Models\EducationYear', 'education_year_id', 'id');
     }
 
     /**

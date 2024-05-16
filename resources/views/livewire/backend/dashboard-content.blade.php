@@ -23,7 +23,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h4>{{ number_format($this->sum_total_salary) }} ₭</h4>
+                            {{-- <h4>{{ number_format($this->sum_total_salary) }} ₭</h4> --}}
                             <h5>ລວມຍອດການຈ່າຍເງິນເດືອນ</h5>
                         </div>
                         <div class="icon">
@@ -38,7 +38,7 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h4>{{ $this->count_position }} ຕໍາແໜ່ງ</h4>
+                            {{-- <h4>{{ $this->count_position }} ຕໍາແໜ່ງ</h4> --}}
                             <h5>ຕຳແໜ່ງວຽກທັງຫມົດ</h5>
                         </div>
                         <div class="icon">
@@ -86,7 +86,7 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text"><h4>ພະນັກງານທັງຫມົດ</h4></span>
-                            <span class="info-box-number"><h4>{{ $this->count_employee }} ຄົນ</h4></span>
+                            {{-- <span class="info-box-number"><h4>{{ $this->count_employee }} ຄົນ</h4></span> --}}
                         </div>
                         <!-- /.info-box-content -->
                     </div>

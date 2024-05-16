@@ -1,18 +1,19 @@
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-primary bg-info elevation-3">
+  <aside class="main-sidebar sidebar-light-primary bg-danger elevation-3">
       <!-- Brand Logo -->
       <a href="{{ route('backend.dashboard') }}" class="brand-link">
-        @if(!empty($about))
-        <img src="{{ asset( $about->logo) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width: 40px; height:50px"
-        style="opacity: .8">
-        @else
-        <img src="{{ asset('logo/noimage.jpg') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="width: 50px; height:50px"
-        style="opacity: .8">
-        @endif
+          @if (!empty($about))
+              <img src="{{ asset($about->logo) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                  style="width: 40px; height:50px" style="opacity: .8">
+          @else
+              <img src="{{ asset('logo/noimage.jpg') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                  style="width: 50px; height:50px" style="opacity: .8">
+          @endif
           <span class="brand-text font-weight-light text-md">
-            @if(!empty($about))
-            {{ $about->name_la }}
-          @endif</span>
+              @if (!empty($about))
+                  {{ $about->name_la }}
+              @endif
+          </span>
       </a>
       <!-- Sidebar -->
       <div class="sidebar">
@@ -43,12 +44,12 @@
                     ) ? 'menu-open' : '' }}"> --}}
                   <li class="nav-item">
                       <a href="#" class="nav-link text-white">
-                            <i class="nav-icon fas fa-map-marked-alt"></i>
-                            <p>
-                                ຂໍ້ມູນທີ່ຢູ່
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
+                          <i class="nav-icon fas fa-map-marked-alt"></i>
+                          <p>
+                              ຂໍ້ມູນທີ່ຢູ່
+                              <i class="fas fa-angle-left right"></i>
+                          </p>
+                      </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
                               <a href="{{ route('backend.village') }}" class="nav-link text-white">
@@ -82,7 +83,7 @@
                         </p>
                     </a>
                 </li> --}}
-                <li class="dropdown-divider"></li>
+                  <li class="dropdown-divider"></li>
                   <li class="nav-item">
                       <a href="#" class="nav-link text-white">
                           <i class="nav-icon fas fa-database"></i>
@@ -96,7 +97,15 @@
                           <li class="nav-item">
                               <a href="{{ route('backend.user') }}" class="nav-link text-white">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ພະນັກງານ</p>
+                                  <p>ຂໍ້ມູນຜູ້ໃຊ້</p>
+                              </a>
+                          </li>
+                      </ul>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="{{ route('backend.OldStudent') }}" class="nav-link text-white">
+                                  <i class="fas fa-angle-double-right nav-icon"></i>
+                                  <p>ຂໍ້ມູນສິດເກົ່າ</p>
                               </a>
                           </li>
                       </ul>
@@ -110,65 +119,46 @@
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('backend.position') }}" class="nav-link text-white">
+                              <a href="{{ route('backend.Department') }}" class="nav-link text-white">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ຕຳແໜ່ງ</p>
+                                  <p>ຂໍ້ມູນພາກວິຊາ</p>
                               </a>
                           </li>
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('backend.salary') }}" class="nav-link text-white">
+                              <a href="{{ route('backend.Subject') }}" class="nav-link text-white">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ຂັ້ນເງິນເດືອນ</p>
+                                  <p>ຂໍ້ມູນສາຂາວິຊາ</p>
                               </a>
                           </li>
                       </ul>
-                      {{-- <ul class="nav nav-treeview">
+                      <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link text-white {{ Request::is('customers') ? 'active' : '' }}">
+                            <a href="{{ route('backend.EducationYear') }}" class="nav-link text-white">
                                 <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>ລູກຄ້າ</p>
+                                <p>ຂໍ້ມູນສົກສຶກສາ</p>
                             </a>
                         </li>
-                    </ul> --}}
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.WorkPlace') }}" class="nav-link text-white">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ຂໍ້ມູນສະຖານທີ່ເຮັດວຽກ</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.EducationSystem') }}" class="nav-link text-white">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ຂໍ້ມູນລະບົບການຮຽນ</p>
+                            </a>
+                        </li>
+                    </ul>
                   </li>
-                  <li class="dropdown-divider"></li>
-                  <li class="nav-item">
-                    <a href="{{ route('backend.PaySalary') }}" class="nav-link text-white">
-                        <i class="nav-icon fas fa-money-bill-alt"></i>
-                        <p>
-                            ເບີກຈ່າຍເງິນເດືອນ
-                        </p>
-                    </a>
-                </li>
                   {{-- ===================== orders-import ======================= --}}
-                  {{-- <li class="nav-item">
-                      <a href="#" class="nav-link text-white">
-                          <i class="nav-icon fas fa-cart-plus"></i>
-                          <p>
-                              ສັ່ງຊື້-ນຳເຂົ້າ
-                              <i class="fas fa-angle-left right"></i>
-                              <span class="badge badge-info right">6</span>
-                          </p>
-                      </a>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="{{ route('backend.OrderCart') }}" class="nav-link text-white">
-                                  <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ສັ່ງຊື້ສິນຄ້າ</p>
-                              </a>
-                          </li>
-                      </ul>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="{{ route('backend.OrderImport') }}" class="nav-link text-white">
-                                  <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ນຳສິນຄ້າເຂົ້າສາງ</p>
-                              </a>
-                          </li>
-                      </ul>
-                  </li> --}}
                   {{-- <li class="dropdown-divider"></li>
                   <li class="nav-item">
                       <a href="#" class="nav-link text-white">
@@ -206,45 +196,29 @@
                               {{-- <span class="badge badge-info right">6</span> --}}
                           </p>
                       </a>
-                      {{-- <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="{{ route('backend.ProductsReport') }}" class="nav-link text-white">
-                                  <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ລາຍງານຂໍ້ມູນສິນຄ້າ</p>
-                              </a>
-                          </li>
-                      </ul>
-                      <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="{{ route('backend.OrdersReport') }}" class="nav-link text-white">
-                                  <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ລາຍງານການຊື້ນຳຜູ້ສະຫນອງ</p>
-                              </a>
-                          </li>
-                      </ul> --}}
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
                               <a href="{{ route('backend.ReportUser') }}" class="nav-link text-white">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ລາຍງານຂໍ້ມູນພະນັກງານ</p>
+                                  <p>ລາຍງານຂໍ້ມູນສິດເກົ່າ</p>
                               </a>
                           </li>
                       </ul>
                       <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('backend.ReportPaySalary') }}" class="nav-link text-white">
-                                <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>ລາຍງານເບີກຈ່າຍເງິນເດືອນ</p>
-                            </a>
-                        </li>
-                    </ul>
+                          <li class="nav-item">
+                              <a href="{{ route('backend.ReportPaySalary') }}" class="nav-link text-white">
+                                  <i class="fas fa-angle-double-right nav-icon"></i>
+                                  <p>ລາຍງານຂໍ້ມູນຜູ້ໃຊ້</p>
+                              </a>
+                          </li>
+                      </ul>
                   </li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-item">
                       <a href="#" class="nav-link text-white">
-                          <i class="nav-icon fas fa-hospital-alt"></i>
+                          <i class="nav-icon fas fa-cog"></i>
                           <p>
-                              ຂໍ້ມູນຫ້ອງການ
+                              ຕັ້ງຄ່າລະບົບ
                               <i class="fas fa-angle-left right"></i>
                               {{-- <span class="badge badge-info right">6</span> --}}
                           </p>
@@ -261,115 +235,12 @@
                           <li class="nav-item">
                               <a href="{{ route('backend.about') }}" class="nav-link text-white">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
-                                  <p>ຂໍ້ມູນຫ້ອງການ</p>
+                                  <p>ຕັ້ງຄ່າລະບົບ</p>
                               </a>
                           </li>
                       </ul>
                   </li>
-                  {{-- ===================== ລາຍງານ ======================= --}}
-                  {{-- <li class="nav-item {{ (
-                  strpos(Route::currentRouteName(), 'backend.report_buy') == 'backend.report_buy'
-                  || strpos(Route::currentRouteName(), 'backend.report_sale') == 'backend.report_sale'
-                  || strpos(Route::currentRouteName(), 'backend.report_payArrear') == 'backend.report_payArrear'
-                  || strpos(Route::currentRouteName(), 'backend.report_payfinish') == 'backend.report_payfinish'
-                  ) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-line"></i>
-                        <p>
-                            {{ __('lang.report') }}
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('backend.report_buy') }}" class="nav-link {{ Request::is('report-buyland') ? 'active' : '' }}">
-                                <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>ລາຍງານການຊື້ດິນ</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('backend.report_sale') }}" class="nav-link {{ Request::is('report-saleland') ? 'active' : '' }}">
-                                <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>ລາຍງານການຂາຍດິນ</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('backend.report_payArrear') }}" class="nav-link {{ Request::is('report-paymentArrear') ? 'active' : '' }}">
-                                <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>ລາຍງານຄ້າງຊຳລະ</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('backend.report_payfinish') }}" class="nav-link {{ Request::is('report-paymentfinish') ? 'active' : '' }}">
-                                <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>ລາຍງານຊຳລະເເລ້ວ</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                          <a href="{{ route('backend.report_income') }}" class="nav-link {{ Request::is('report-income') ? 'active' : '' }}">
-                              <i class="fas fa-angle-double-right nav-icon"></i>
-                              <p>ລາຍງານລາຍຮັບ</p>
-                          </a>
-                      </li>
-                  </ul>
-                  <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                          <a href="{{ route('backend.report_expend') }}" class="nav-link {{ Request::is('report-expent') ? 'active' : '' }}">
-                              <i class="fas fa-angle-double-right nav-icon"></i>
-                              <p>ລາຍງານລາຍຈ່າຍ</p>
-                          </a>
-                      </li>
-                  </ul>
-                </li> --}}
-                  {{-- ===================== ຜູ້ໃຊ້ ເເລະ ສິດທິ ======================= --}}
-                  {{-- <li class="dropdown-divider"></li>
-                <li class="nav-item {{ (
-                  strpos(Route::currentRouteName(), 'backend.users') == 'backend.users'
-                  || strpos(Route::currentRouteName(), 'backend.role') == 'backend.role'
-                  ) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            {{ __('lang.users') }} & {{ __('lang.roles') }}
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('backend.users') }}" class="nav-link {{ Request::is('users') ? 'active' : '' }}">
-                                <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>{{ __('lang.users') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('backend.role') }}" class="nav-link {{ Request::is('roles') ? 'active' : '' }}">
-                                <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>{{ __('lang.roles') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
                   <li class="dropdown-divider"></li>
-                  {{-- ===================== ກ່ຽວກັບບໍລິສັດ ======================= --}}
-                  {{-- <li class="nav-item">
-                    <a href="{{ route('about-company') }}" class="nav-link {{ Request::is('about-companys') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-address-card"></i>
-                        <p>
-                            ກ່ຽວກັບບໍລິສັດ
-                        </p>
-                    </a>
-                </li>
-                <li class="dropdown-divider"></li> --}}
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

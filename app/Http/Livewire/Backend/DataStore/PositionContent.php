@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class PositionContent extends Component
 {
-    public $branches_id, $name, $ID, $code, $note, $select_branches_id, $search;
+    public $name, $ID, $code, $note, $search;
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public function render()

@@ -8,6 +8,6 @@ class WorkPlaceContent extends Component
 {
     public function render()
     {
-        return view('livewire.backend.data-store.work-place-content');
+        return view('livewire.backend.data-store.work-place-content')->layout('layouts.backend.style');
     }
 }
