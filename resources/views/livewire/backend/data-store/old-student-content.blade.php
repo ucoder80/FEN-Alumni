@@ -490,7 +490,7 @@
                                     <option value="">ເລືອກສະຖານທີ່ເຮັດວຽກ</option>
                                     @foreach ($WorkPlaces as $item)
                                         <option value="{{ $item->id }}">
-                                            {{ number_format($item->name) }} ₭
+                                            {{ $item->name }} 
                                         </option>
                                     @endforeach
                                 </select>

@@ -198,7 +198,7 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('backend.ReportUser') }}" class="nav-link text-white">
+                              <a href="{{ route('backend.ReportOldStudent') }}" class="nav-link text-white">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
                                   <p>ລາຍງານຂໍ້ມູນສິດເກົ່າ</p>
                               </a>
@@ -206,7 +206,7 @@
                       </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="{{ route('backend.ReportPaySalary') }}" class="nav-link text-white">
+                              <a href="{{ route('backend.ReportUser') }}" class="nav-link text-white">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
                                   <p>ລາຍງານຂໍ້ມູນຜູ້ໃຊ້</p>
                               </a>
@@ -214,7 +214,7 @@
                       </ul>
                       <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('backend.ReportPaySalary') }}" class="nav-link text-white">
+                            <a href="{{ route('backend.ReportWorkPlace') }}" class="nav-link text-white">
                                 <i class="fas fa-angle-double-right nav-icon"></i>
                                 <p>ລາຍງານສະຖານທີ່ເຮັດວຽກ</p>
                             </a>

@@ -6,13 +6,13 @@
                     <h6><i class="fas fa-chart-line"></i>
                         ລາຍງານ
                         <i class="fa fa-angle-double-right"></i>
-                        ຂໍ້ມູນຜູ້ໃຊ້
+                        ຂໍ້ມູນສິດເກົ່າ
                     </h6>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('backend.dashboard') }}">ໜ້າຫຼັກ</a></li>
-                        <li class="breadcrumb-item active">ຂໍ້ມູນຜູ້ໃຊ້</li>
+                        <li class="breadcrumb-item active">ຂໍ້ມູນສິດເກົ່າ</li>
                     </ol>
                 </div>
             </div>
@@ -37,14 +37,15 @@
                                 </div><!-- end div-col -->
                                 <div class="col-md-4">
                                     <div wire:ignore class="form-group">
-                                        <select wire:model="position_id" id="position_id"
-                                            class="form-control @error('position_id') is-invalid @enderror">
+                                        <select wire:model="education_year_id" id="education_year_id"
+                                            class="form-control @error('education_year_id') is-invalid @enderror">
                                             <option value="">
-                                                ເລືອກ-ຕຳແໜ່ງ
+                                                ເລືອກ-ປີສົກຮຽນ
                                             </option>
-                                            @foreach ($position as $item)
+                                            @foreach ($education_year as $item)
                                                 <option value="{{ $item->id }}">
-                                                    {{ $item->name }}
+                                                    {{ $item->start_year }} -
+                                                    {{ $item->end_year }} 
                                                 </option>
                                             @endforeach
                                         </select>
@@ -124,7 +125,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                    <h4><u><b>ລາຍງານ-ຂໍ້ມູນຜູ້ໃຊ້</b></u></h4>
+                                                    <h4><u><b>ລາຍງານ-ຂໍ້ມູນສິດເກົ່າ</b></u></h4>
                                                 {{-- <h4><b>ວັນທີ່:
                                                         @if (!empty($start_date))
                                                             {{ date('d-m-Y', strtotime($start_date)) }}
@@ -143,15 +144,13 @@
                                                     <thead>
                                                         <tr class="text-center bg-gradient-info text-bold">
                                                             <th>ລຳດັບ</th>
-                                                            <th>ສິດນຳໃຊ້</th>
+                                                            <th>ຈົບສົກຮຽນ</th>
+                                                            <th>ລະຫັດ</th>
+                                                            <th>ຮູບ</th>
                                                             <th>ຊື່ ນາມສະກຸນ</th>
                                                             <th>ເພດ</th>
-                                                            <th>ອີເມວ</th>
-                                                            <th>ເບີໂທ</th>
-                                                            {{-- <th>ທີ່ຢູ່</th> --}}
-                                                            {{-- <th>ເຊື້ອຊາດ</th>
-                                                            <th>ສາສະຫນາ</th> --}}
-                                                            <th>ສະຖານະ</th>
+                                                            <th>ບ່ອນເຮັດວຽກ</th>
+                                                            <th>ຕຳແຫນ່ງ</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -164,8 +163,23 @@
                                                                         wire:click="ShowDetail({{ $item->id }})">{{ $item->code }}</a>
                                                                 </td> --}}
                                                                 <td class="text-center">
-                                                                    @if (!empty($item->roles))
-                                                                        {{ $item->roles->name }}
+                                                                    @if (!empty($item->education_year))
+                                                                        {{ $item->education_year->start_year }} -
+                                                                        {{ $item->education_year->start_year }} 
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    {{ $item->code }}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    @if (!empty($item->image))
+                                                                        <a href="{{ asset($item->image) }}"target="_blank">
+                                                                            <img class="rounded" src="{{ asset($item->image) }}"
+                                                                                width="50px;" height="50px;">
+                                                                        </a>
+                                                                    @else
+                                                                        <img src="{{ 'images/noimage.jpg' }}" width="50px;"
+                                                                            height="50px;">
                                                                     @endif
                                                                 </td>
                                                                 <td class="text-center">
@@ -183,10 +197,14 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    {{ $item->email }}
+                                                                    @if (!empty($item->work_place))
+                                                                    {{ $item->work_place->name }}
+                                                                @endif
                                                                 </td>
                                                                 <td>
-                                                                    {{ $item->phone }}
+                                                                    @if (!empty($item->position))
+                                                                    {{ $item->position->name }}
+                                                                @endif
                                                                 </td>
                                                                 {{-- <td>
                                                                     {{ $item->nationality }}
@@ -194,7 +212,7 @@
                                                                 <td>
                                                                     {{ $item->religion }}
                                                                 </td> --}}
-                                                                <td>
+                                                                {{-- <td>
                                                                     @if ($item->status == 1)
                                                                         <span class="text-secondary">ໂສດ</span>
                                                                     @elseif($item->status == 2)
@@ -208,7 +226,7 @@
                                                                     @elseif($item->status == 6)
                                                                         <span class="text-secondary">ຮັກເຂົາຂ້າງດຽວ</span>
                                                                     @endif
-                                                                </td>
+                                                                </td> --}}
                                                             </tr>
                                                         @endforeach
                                                     </tbody>

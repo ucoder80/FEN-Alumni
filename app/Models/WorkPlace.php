@@ -11,9 +11,11 @@ class WorkPlace extends Model
     protected $table = 'work_place';
     protected $fillable = [
         'id',
+        'image',
         'name',
-        'position',
-        'sectors',
+        'phone',
+        'email',
+        'facebook',
         'village_id',
         'district_id',
         'province_id',
@@ -31,5 +33,9 @@ class WorkPlace extends Model
     public function province()
     {
         return $this->belongsTo('App\Models\Province', 'province_id', 'id');
+    }
+    public function users()
+    {
+        return $this->hasMany('App\Models\User', 'work_place_id', 'id');
     }
 }

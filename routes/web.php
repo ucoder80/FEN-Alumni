@@ -25,8 +25,10 @@ use App\Http\Livewire\Backend\ProfileContent;
 use App\Http\Livewire\Backend\ProvinceContent;
 use App\Http\Livewire\Backend\Reports\OrdersReportsContent;
 use App\Http\Livewire\Backend\Reports\ProductsContent;
+use App\Http\Livewire\Backend\Reports\ReportOldStudentContent;
 use App\Http\Livewire\Backend\Reports\ReportPaySalaryContent;
 use App\Http\Livewire\Backend\Reports\ReportUserContent;
+use App\Http\Livewire\Backend\Reports\ReportWorkPlaceContent;
 use App\Http\Livewire\Backend\Reports\SalesReportsContent;
 use App\Http\Livewire\Backend\RolesContent;
 use App\Http\Livewire\Backend\Sales\SalesContent;
@@ -95,5 +97,9 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/Subjects', SubjectContent::class)->name('backend.Subject');
     Route::get('/WorkPlaces', WorkPlaceContent::class)->name('backend.WorkPlace');
     Route::get('/EducationYears', EducationYearContent::class)->name('backend.EducationYear');
+
+    Route::get('/ReportOldStudents', ReportOldStudentContent::class)->name('backend.ReportOldStudent');
+    Route::get('/ReportWorkPlaces', ReportWorkPlaceContent::class)->name('backend.ReportWorkPlace');
+
 
 });

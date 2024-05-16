@@ -6,13 +6,13 @@
                     <h6><i class="fas fa-chart-line"></i>
                         ລາຍງານ
                         <i class="fa fa-angle-double-right"></i>
-                        ຂໍ້ມູນຜູ້ໃຊ້
+                        ສະຖານທີ່ເຮັດວຽກ
                     </h6>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('backend.dashboard') }}">ໜ້າຫຼັກ</a></li>
-                        <li class="breadcrumb-item active">ຂໍ້ມູນຜູ້ໃຊ້</li>
+                        <li class="breadcrumb-item active">ສະຖານທີ່ເຮັດວຽກ</li>
                     </ol>
                 </div>
             </div>
@@ -25,17 +25,17 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        {{-- <input type="date" wire:model="start_date" class="form-control"> --}}
-                                    </div>
-                                </div><!-- end div-col -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {{-- <input type="date" wire:model="end_date" class="form-control"> --}}
+                                        <input type="date" wire:model="start_date" class="form-control">
                                     </div>
                                 </div><!-- end div-col -->
                                 <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="date" wire:model="end_date" class="form-control">
+                                    </div>
+                                </div><!-- end div-col -->
+                                {{-- <div class="col-md-4">
                                     <div wire:ignore class="form-group">
                                         <select wire:model="position_id" id="position_id"
                                             class="form-control @error('position_id') is-invalid @enderror">
@@ -49,7 +49,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- @foreach ($rolepermissions as $items)
                                 @if ($items->permissionname->name == 'action_report_sale') --}}
                                 <div class="col-md-3">
@@ -124,8 +124,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                    <h4><u><b>ລາຍງານ-ຂໍ້ມູນຜູ້ໃຊ້</b></u></h4>
-                                                {{-- <h4><b>ວັນທີ່:
+                                                <h4><u><b>ລາຍງານ-ສະຖານທີ່ເຮັດວຽກ</b></u></h4>
+                                                <h4><b>ວັນທີ່:
                                                         @if (!empty($start_date))
                                                             {{ date('d-m-Y', strtotime($start_date)) }}
                                                         @endif
@@ -133,7 +133,7 @@
                                                         @if (!empty($end_date))
                                                             {{ date('d-m-Y', strtotime($end_date)) }}
                                                         @endif
-                                                    </b></h4> --}}
+                                                    </b></h4>
                                             </div>
                                         </div>
                                         <br>
@@ -143,15 +143,14 @@
                                                     <thead>
                                                         <tr class="text-center bg-gradient-info text-bold">
                                                             <th>ລຳດັບ</th>
-                                                            <th>ສິດນຳໃຊ້</th>
-                                                            <th>ຊື່ ນາມສະກຸນ</th>
-                                                            <th>ເພດ</th>
-                                                            <th>ອີເມວ</th>
+                                                            <th>ຮູບ</th>
+                                                            <th>ຊື່</th>
                                                             <th>ເບີໂທ</th>
-                                                            {{-- <th>ທີ່ຢູ່</th> --}}
-                                                            {{-- <th>ເຊື້ອຊາດ</th>
-                                                            <th>ສາສະຫນາ</th> --}}
-                                                            <th>ສະຖານະ</th>
+                                                            <th>ອີີເມວ</th>
+                                                            <th>FaceBook</th>
+                                                            <th>ສິດເກົ່າ</th>
+                                                            <th>ທີ່ຢູ່</th>
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -164,49 +163,60 @@
                                                                         wire:click="ShowDetail({{ $item->id }})">{{ $item->code }}</a>
                                                                 </td> --}}
                                                                 <td class="text-center">
-                                                                    @if (!empty($item->roles))
-                                                                        {{ $item->roles->name }}
+                                                                    @if (!empty($item->image))
+                                                                        <a
+                                                                            href="{{ asset($item->image) }}"target="_blank">
+                                                                            <img class="rounded"
+                                                                                src="{{ asset($item->image) }}"
+                                                                                width="50px;" height="50px;">
+                                                                        </a>
+                                                                    @else
+                                                                        <img src="{{ 'images/noimage.jpg' }}"
+                                                                            width="50px;" height="50px;">
                                                                     @endif
                                                                 </td>
                                                                 <td class="text-center">
-                                                                    @if (!empty($item->name_lastname))
-                                                                        {{ $item->name_lastname }}
+                                                                    @if (!empty($item->name))
+                                                                        {{ $item->name }}
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    @if (!empty($item))
-                                                                        @if($item->gender == 1)
-                                                                        <span>ຍິງ</span>
-                                                                        @else
-                                                                        <span>ຊາຍ</span>
-                                                                        @endif
+                                                                    @if (!empty($item->phone))
+                                                                        {{ $item->phone }}
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    {{ $item->email }}
+                                                                    @if (!empty($item->email))
+                                                                        {{ $item->email }}
+                                                                    @endif
                                                                 </td>
                                                                 <td>
-                                                                    {{ $item->phone }}
+                                                                    @if ($item->facebook)
+                                                                        <a href="{{ $item->facebook }}"><i
+                                                                                class="fa fa-facebook"></i> Fanpage</a>
+                                                                    @else
+                                                                        -
+                                                                    @endif
                                                                 </td>
-                                                                {{-- <td>
-                                                                    {{ $item->nationality }}
+                                                                @php
+                                                                    $num = 1;
+                                                                @endphp
+                                                                <td class="text-left">
+                                                                    @if ($item->users->isNotEmpty())
+                                                                        @foreach ($item->users as $user)
+                                                                           {{ $num++ }} {{ $user->name_lastname }} - {{ $user->phone }}<br>
+                                                                        @endforeach
+                                                                    @endif
                                                                 </td>
                                                                 <td>
-                                                                    {{ $item->religion }}
-                                                                </td> --}}
-                                                                <td>
-                                                                    @if ($item->status == 1)
-                                                                        <span class="text-secondary">ໂສດ</span>
-                                                                    @elseif($item->status == 2)
-                                                                        <span class="text-secondary">ມີແຟນ</span>
-                                                                    @elseif($item->status == 3)
-                                                                        <span class="text-secondary">ແຕ່ງງານ</span>
-                                                                    @elseif($item->status == 4)
-                                                                        <span class="text-secondary">ຢ່າຮ້າງ</span>
-                                                                    @elseif($item->status == 5)
-                                                                        <span class="text-secondary">ແຍກກັນຢູ່</span>
-                                                                    @elseif($item->status == 6)
-                                                                        <span class="text-secondary">ຮັກເຂົາຂ້າງດຽວ</span>
+                                                                    @if (!empty($item->village))
+                                                                        {{ $item->village->name_la }}, <br>
+                                                                    @endif
+                                                                    @if (!empty($item->district))
+                                                                        {{ $item->district->name_la }},
+                                                                    @endif
+                                                                    @if (!empty($item->province))
+                                                                        {{ $item->province->name_la }}
                                                                     @endif
                                                                 </td>
                                                             </tr>
