@@ -212,6 +212,14 @@
                               </a>
                           </li>
                       </ul>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.ReportPaySalary') }}" class="nav-link text-white">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>ລາຍງານສະຖານທີ່ເຮັດວຽກ</p>
+                            </a>
+                        </li>
+                    </ul>
                   </li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-item">
