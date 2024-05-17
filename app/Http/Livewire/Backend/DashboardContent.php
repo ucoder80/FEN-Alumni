@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Backend;
 
+use App\Models\Department;
 use App\Models\Orders;
 use App\Models\PaySalary;
 use App\Models\Position;
 use App\Models\Product;
 use App\Models\Sales;
 use App\Models\User;
+use App\Models\WorkPlace;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,21 +17,13 @@ class DashboardContent extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $sum_total_sale, $sum_total_salary, $count_product, $count_order, $count_sale, $count_employee, $count_position;
+    public $count_user,$work_place,$department,$old_student;
     public function render()
     {
-        // $this->sum_total_salary = PaySalary::select('total_salary')->sum('total_salary');
-        // $this->sum_total_sale = Sales::select('total')->sum('total');
-        // $this->count_product = Product::select('id')->count('id');
-
-        // $this->count_order = Orders::select('id')->count('id');
-        // $this->count_sale = Sales::select('id')->count('id');
-
-        // $this->count_employee = User::select('id')->count('id');
-        // $this->count_position = Position::select('id')->count('id');
-
-        // $sales = Sales::where('status', 1)->paginate(5);
-
+        $this->count_user = User::select('id')->count();
+        $this->old_student = User::select('id')->where('roles_id',4)->count();
+        $this->work_place = WorkPlace::select('id')->count();
+        $this->department = Department::select('id')->count();
         return view('livewire.backend.dashboard-content',)->layout('layouts.backend.style');
     }
 }

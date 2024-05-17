@@ -133,7 +133,8 @@ class OldStudentContent extends Component
             } else {
                 $data->image = '';
             }
-            $data->code = 'EP-' . mt_rand(100000, 999999);
+            $data->code = mt_rand(1000000000, 9999999999);
+            // $data->code = 'EP-' . mt_rand(100000, 999999);
             $data->name_lastname = $this->name_lastname;
             $data->name_lastname_en = $this->name_lastname_en;
             $data->phone = $this->phone;

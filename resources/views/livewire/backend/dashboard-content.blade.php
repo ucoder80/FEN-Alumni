@@ -19,11 +19,11 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-6 col-6">
+                {{-- <div class="col-lg-6 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            {{-- <h4>{{ number_format($this->sum_total_salary) }} ₭</h4> --}}
+                            <h4>{{ number_format($this->sum_total_salary) }} ₭</h4>
                             <h5>ລວມຍອດການຈ່າຍເງິນເດືອນ</h5>
                         </div>
                         <div class="icon">
@@ -32,13 +32,13 @@
                         <a href="#" class="small-box-footer">ເບິ່ງລາຍລະອຽດ <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
+                </div> --}}
                 <!-- ./col -->
-                <div class="col-lg-6 col-6">
+                {{-- <div class="col-lg-6 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            {{-- <h4>{{ $this->count_position }} ຕໍາແໜ່ງ</h4> --}}
+                            <h4>{{ $this->count_position }} ຕໍາແໜ່ງ</h4>
                             <h5>ຕຳແໜ່ງວຽກທັງຫມົດ</h5>
                         </div>
                         <div class="icon">
@@ -47,7 +47,7 @@
                         <a href="#" class="small-box-footer">ເບິ່ງລາຍລະອຽດ <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- ./col -->
             </div>
@@ -80,13 +80,49 @@
                     <!-- /.info-box -->
                 </div> --}}
                 <!-- /.col -->
-                <div class="col-md-12 col-sm-6 col-12">
+                <div class="col-md-6 col-sm-6 col-12">
                     <div class="info-box">
-                        <span class="info-box-icon bg-info"><i class="fa fa-users"></i></span>
+                        <span class="info-box-icon bg-danger"><i class="fa fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text"><h4>ພະນັກງານທັງຫມົດ</h4></span>
-                            {{-- <span class="info-box-number"><h4>{{ $this->count_employee }} ຄົນ</h4></span> --}}
+                            <span class="info-box-text"><h4>ຜູ້ໃຊ້ທັງຫມົດ</h4></span>
+                            <span class="info-box-number"><h4>{{ $this->count_user }} ຄົນ</h4></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-md-6 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-danger"><i class="fa fa-users"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text"><h4>ສິດເກົ່າທັງຫມົດ</h4></span>
+                            <span class="info-box-number"><h4>{{ $this->old_student }} ຄົນ</h4></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-md-6 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-danger"><i class="fas fa-school"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text"><h4>ສະຖານທີ່ເຮັດວຽກທັງຫມົດ</h4></span>
+                            <span class="info-box-number"><h4>{{ $this->work_place }} ບ່ອນ</h4></span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-md-6 col-sm-6 col-12">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-danger"><i class="fas fa-book-open"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text"><h4>ພາກວິຊາທັງຫມົດ</h4></span>
+                            <span class="info-box-number"><h4>{{ $this->department }} ພາກ</h4></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
