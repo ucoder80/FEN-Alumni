@@ -34,6 +34,9 @@ use App\Http\Livewire\Backend\RolesContent;
 use App\Http\Livewire\Backend\Sales\SalesContent;
 use App\Http\Livewire\Backend\SlideContent;
 use App\Http\Livewire\Backend\VillageContent;
+use App\Http\Livewire\Frontend\AboutsContent;
+use App\Http\Livewire\Frontend\ContactsContent;
+use App\Http\Livewire\Frontend\HomeContent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,7 +55,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // ========== Backend ====================================//
-Route::get('/', LoginContent::class)->name('backend.login');
+Route::get('/login-admin', LoginContent::class)->name('backend.login');
+Route::get('/', HomeContent::class)->name('frontend.Home');
+Route::get('Abouts', AboutsContent::class)->name('frontend.About');
+Route::get('Contacts', ContactsContent::class)->name('frontend.Contact');
 
 // ========== Front-end ========== //
 // Route::middleware('auth.frontend')->group(function () {
