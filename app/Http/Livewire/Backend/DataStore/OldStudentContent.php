@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Backend\DataStore;
 
 use App\Models\District;
+use App\Models\EducationSystem;
 use App\Models\EducationYear;
 use App\Models\Province;
 use App\Models\Role;
@@ -39,7 +40,7 @@ class OldStudentContent extends Component
     $district_id,
     $districts = [],
     $villages = [];
-    public $education_year_id, $subject_id, $work_place_id, $image, $nationality, $religion, $newimage;
+    public $education_year_id, $subject_id, $work_place_id, $image, $nationality, $religion, $newimage,$education_system_id;
     public function render()
     {
         $data = User::where(function ($q) {
@@ -65,7 +66,8 @@ class OldStudentContent extends Component
         $EducationYears = EducationYear::all();
         $Subjects = Subject::all();
         $WorkPlaces = WorkPlace::all();
-        return view('livewire.backend.data-store.old-student-content', compact('data', 'provinces', 'roles', 'EducationYears', 'Subjects', 'WorkPlaces'))->layout('layouts.backend.style');
+        $EducationSystem = EducationSystem::all();
+        return view('livewire.backend.data-store.old-student-content', compact('data', 'provinces', 'roles', 'EducationYears', 'Subjects', 'WorkPlaces','EducationSystem'))->layout('layouts.backend.style');
     }
     public function resetField()
     {
@@ -86,6 +88,7 @@ class OldStudentContent extends Component
         $this->education_year_id = '';
         $this->subject_id = '';
         $this->work_place_id = '';
+        $this->education_system_id = '';
         $this->image = '';
         $this->nationality = '';
         $this->religion = '';
@@ -151,6 +154,7 @@ class OldStudentContent extends Component
             $data->education_year_id = !empty($this->education_year_id) ? $this->education_year_id : null;
             $data->subject_id = !empty($this->subject_id) ? $this->subject_id : null;
             $data->work_place_id = !empty($this->work_place_id) ? $this->work_place_id : null;
+            $data->education_system_id = !empty($this->education_system_id) ? $this->education_system_id : null;
             $data->nationality = $this->nationality;
             $data->religion = $this->religion;
             $data->save();
@@ -190,6 +194,7 @@ class OldStudentContent extends Component
         $this->education_year_id = $data->education_year_id;
         $this->subject_id = $data->subject_id;
         $this->work_place_id = $data->work_place_id;
+        $this->education_system_id = $data->education_system_id;
         $this->newimage = $data->image;
         $this->nationality = $data->nationality;
         $this->religion = $data->religion;
@@ -228,6 +233,7 @@ class OldStudentContent extends Component
         $data->education_year_id = !empty($this->education_year_id) ? $this->education_year_id : null;
         $data->subject_id = !empty($this->subject_id) ? $this->subject_id : null;
         $data->work_place_id = !empty($this->work_place_id) ? $this->work_place_id : null;
+        $data->education_system_id = !empty($this->education_system_id) ? $this->education_system_id : null;
         $data->nationality = $this->nationality;
         $data->religion = $this->religion;
         $data->save();

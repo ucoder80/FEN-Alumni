@@ -1,16 +1,22 @@
 <div>
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
-            <a href="index.html" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
-                <h2 class="mb-2 text-white">Logistica</h2>
+            <a href="{{ route('frontend.Home') }}" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
+            <img width="70px" height="70px" class="img-fluid" src="{{ asset($about->logo) }}" alt="" style="border-radius: 50%;">
+                
+                <h2 class="mb-2 text-white">
+                    @if(!empty($about->name_la))
+                        {{ $about->name_la }}
+                    @endif
+                </h2>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="{{ route('frontend.Home') }}" class="nav-item nav-link active"><i class="fas fa-home"></i> ໜ້າຫຼັກ</a>
-                    <a href="about.html" class="nav-item nav-link"><i class="fas fa-users"></i> ສະມາສິກເກົ່າ</a>
+                    <a href="{{ route('frontend.Home') }}" class="nav-item nav-link active"><i class="fas fa-users"></i> ສະມາສິກເກົ່າ</a>
+                    {{-- <a href="about.html" class="nav-item nav-link"><i class="fas fa-users"></i> ສະມາສິກເກົ່າ</a> --}}
                     <a href="{{ route('frontend.About') }}" class="nav-item nav-link"><i class="fas fa-address-book"></i> ກ່ຽວກັບ</a>
                     {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>

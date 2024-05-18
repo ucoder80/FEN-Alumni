@@ -445,7 +445,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">ສົກຮຽນປີ</label>
                                 <select type="text"
@@ -464,7 +464,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">ສາຂາວີິຊາ</label>
                                 <select type="text" class="form-control @error('subject_id') is-invalid @enderror"
@@ -481,7 +481,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">ສະຖານທີ່ເຮັດວຽກ</label>
                                 <select type="text"
@@ -495,6 +495,24 @@
                                     @endforeach
                                 </select>
                                 @error('work_place_id')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">ລະດັບການສຶກສາ</label>
+                                <select type="text"
+                                    class="form-control @error('education_system_id') is-invalid @enderror"
+                                    wire:model.live="education_system_id" id="education_system_id">
+                                    <option value="">ເລືອກລະດັບການສຶກສາ</option>
+                                    @foreach ($EducationSystem as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->name }} 
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('education_system_id')
                                     <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>

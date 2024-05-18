@@ -26,6 +26,8 @@ class User extends Authenticatable
         'province_id',
         'salary_id',
         'position_id',
+        'education_year_id',
+        'education_system_id',
         'image',
         'nationality',
         'religion',
@@ -71,6 +73,10 @@ class User extends Authenticatable
     public function education_year()
     {
         return $this->belongsTo('App\Models\EducationYear', 'education_year_id', 'id');
+    }
+    public function education_system()
+    {
+        return $this->belongsTo('App\Models\EducationSystem', 'education_system_id', 'id');
     }
 
     /**
