@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
+            $about  = About::first();
             if (Auth::check()) {
                 $about  = About::first();
                 $function_available = FunctionAvailable::select('function_availables.*')
@@ -40,6 +41,9 @@ class AppServiceProvider extends ServiceProvider
                     'function_available' => $function_available,
                 ]));
             }
+            View::share(([
+                'about' => $about,
+            ]));
         });
     }
 }

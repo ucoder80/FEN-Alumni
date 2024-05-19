@@ -231,14 +231,14 @@
                               {{-- <span class="badge badge-info right">6</span> --}}
                           </p>
                       </a>
-                      {{-- <ul class="nav nav-treeview">
+                      <ul class="nav nav-treeview">
                           <li class="nav-item">
                               <a href="{{ route('backend.slide') }}" class="nav-link text-white">
                                   <i class="fas fa-angle-double-right nav-icon"></i>
                                   <p>ສະໄລຮູບພາບ</p>
                               </a>
                           </li>
-                      </ul> --}}
+                      </ul>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
                               <a href="{{ route('backend.about') }}" class="nav-link text-white">

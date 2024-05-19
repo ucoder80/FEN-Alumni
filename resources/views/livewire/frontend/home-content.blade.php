@@ -2,22 +2,27 @@
 <!-- Carousel Start -->
 <div class="container-fluid">
     <div class="owl-carousel header-carousel position-relative mb-1">
-        <div class="owl-carousel-item position-relative">
-            <img class="img-fluid" src="https://scontent.fvte2-2.fna.fbcdn.net/v/t39.30808-6/308158724_540419537887303_5059208229703567722_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE9RYmT3rLMAbZ5qIyrrTtgA3aJJFJEMCgDdokkUkQwKJkE_AAgaOucXlAFJXDvMeHuSRgI3iPwnAp26BN4nrUl&_nc_ohc=41A42G_IR40Q7kNvgFKYYZ5&_nc_ht=scontent.fvte2-2.fna&oh=00_AYBAWD1y054gza5MuVe5Us-ozCCtHsTKWgHUJ0MbkmPWWw&oe=664E6EDE" alt="">
-            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(6, 3, 21, .5);">
-                <div class="container">
-                    <div class="row justify-content-start">
-                        <div class="col-10 col-lg-8">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Transport & Logistics Solution</h5>
-                            <h1 class="display-3 text-white animated slideInDown mb-4">#1 Place For Your <span class="text-primary">Logistics</span> Solution</h1>
-                            <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
-                            {{-- <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Free Quote</a> --}}
-                        </div>
-                    </div>
+@foreach ($slide as $item)
+<div class="owl-carousel-item position-relative">
+    <h4><marquee scrollamount="12" direction="left" class="text-white">
+        <h1><i class="flag-icon flag-icon-la"></i> ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ ສັນຕິພາບ ເອກະລາດ ປະຊາທິປະໄຕ ເອກະພາບ
+            ວັດທະນາຖາວອນ</h1>
+    </marquee></h4>
+    <img class="img-fluid" src="{{ asset($item->image) }}" alt="">
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(6, 3, 21, .5);">
+        <div class="container">
+            <div class="row justify-content-start">
+                <div class="col-10 col-lg-8">
+                    <h2 class="display-3 text-white animated slideInDown mb-4">{{ $item->header }} </h2>
+                    <p class="fs-5 fw-medium text-white mb-4 pb-2">{{ $item->body }}</p>
+                    {{-- <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
+                    <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Free Quote</a> --}}
                 </div>
             </div>
         </div>
+    </div>
+</div>
+@endforeach
         {{-- <div class="owl-carousel-item position-relative">
             <img class="img-fluid" src="frontend/img/carousel-2.jpg" alt="">
             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(6, 3, 21, .5);">

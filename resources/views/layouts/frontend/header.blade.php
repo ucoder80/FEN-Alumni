@@ -31,7 +31,9 @@
                     </div> --}}
                     <a href="{{ route('frontend.Contact') }}" class="nav-item nav-link"><i class="fas fa-phone-alt"></i> ຕິດຕໍ່ພົ່ວພັນ</a>
                 </div>
-                <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>+012 345 6789</h4>
+                <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>  @if(!empty($about))
+                    {{ $about->phone }}
+                @endif</h4>
             </div>
         </nav>
         <!-- Navbar End -->

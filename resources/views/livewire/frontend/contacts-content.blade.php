@@ -4,38 +4,36 @@
         <div class="container contact-page py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-md-6 contact-form wow fadeIn" data-wow-delay="0.1s">
-                    <h6 class="text-secondary text-uppercase">Get In Touch</h6>
-                    <h1 class="mb-4">Contact For Any Query</h1>
-                    <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
+                    <h1 class="mb-4">ທ່ານມີຄຳຖາມຫຍັງບໍ່?</h1>
                     <div class="bg-light p-4">
                         <form>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                        <label for="name">Your Name</label>
+                                        <input wire:model='name' type="text" class="form-control" id="name" placeholder="ຊື່">
+                                        <label for="name">ຊື່</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email">Your Email</label>
+                                        <input wire:model='email' type="email" class="form-control" id="email" placeholder="ອີເມວ">
+                                        <label for="email">ອີເມວ</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                        <label for="subject">Subject</label>
+                                        <input wire:model='subject' type="text" class="form-control" id="subject" placeholder="ຫົວຂໍ້">
+                                        <label for="subject">ຫົວຂໍ້</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
-                                        <label for="message">Message</label>
+                                        <textarea wire:model='message' class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                        <label for="message">ຄຳອະທິບາຍ</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                    <button wire:click ='SendMessage' class="btn btn-primary w-100 py-3" type="button"> ສົ່ງຂໍ້ຄວາມ <i class="fas fa-arrow-right"></i></button>
                                 </div>
                             </div>
                         </form>
