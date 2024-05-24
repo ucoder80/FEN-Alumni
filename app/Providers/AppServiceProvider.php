@@ -6,6 +6,7 @@ use App\Models\About;
 use App\Models\FunctionAvailable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -44,6 +45,9 @@ class AppServiceProvider extends ServiceProvider
             View::share(([
                 'about' => $about,
             ]));
+            View::composer('*', function ($view) {
+                $view->with('currentRoute', Route::currentRouteName());
+            });
         });
     }
 }

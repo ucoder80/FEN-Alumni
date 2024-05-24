@@ -1,0 +1,61 @@
+<div>
+
+    <!-- Service Start -->
+    <div class="container-xxl py-5">
+        <div class="container py-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h1 class="mb-5">ສິດເກົ່າຄະນະ</h1>
+            </div>
+            <div class="row g-4">
+                @foreach ($data as $item)
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="service-item p-4">
+                            <div class="overflow-hidden mb-4">
+                                <img style="width: 100%; height:220px" class="img-fluid" src="{{ asset($item->image) }}"
+                                    alt="">
+                            </div>
+                            <h5 class="mb-3">{{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>
+                                <p><b>ຈົບສົກສຶກສາ:</b>
+                                    @if (!empty($item->education_year))
+                                        {{ $item->education_year->start_year }} -
+                                        {{ $item->education_year->end_year }}
+                                    @endif
+                                </p>
+                                <p><b>ລູ້ນທີ່:</b>
+                                    @if (!empty($item->education_year))
+                                        {{ $item->education_year->genderation }}
+                                    @endif
+                                </p>
+                                <p><b>ລະດັບການສຶກສາ: </b>
+                                    @if (!empty($item->education_system))
+                                        {{ $item->education_system->name }}
+                                    @endif
+                                </p>
+                                <p><b>ພາກວິຊາ: </b>
+                                    @if (!empty($item->subject->department))
+                                        {{ $item->subject->department->name_la }}
+                                    @endif
+                                </p>
+                                <p><b>ສາຂາ:</b>
+                                    @if (!empty($item->subject))
+                                        {{ $item->subject->name_la }}
+                                    @endif
+                                </p>
+                                <p><b>ບ່ອນເຮັດວຽກ: </b>
+                                    @if (!empty($item->work_place))
+                                        {{ $item->work_place->name }}
+                                    @endif
+                                </p>
+                                <a class="btn-slide mt-2"
+                                    href="@if (!empty($item->work_place)) {{ $item->work_place->facebook }} @endif"><i
+                                        class="fa fa-arrow-right"></i><span>ບ່ອນເຮັດວຽກ</span></a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+
+</div>

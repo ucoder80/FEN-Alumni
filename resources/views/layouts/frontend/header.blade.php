@@ -1,10 +1,10 @@
 <div>
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
-            <a href="{{ route('frontend.Home') }}" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
-            <img width="70px" height="70px" class="img-fluid" src="{{ asset($about->logo) }}" alt="" style="border-radius: 50%;">
+            <a href="{{ route('frontend.Home') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img width="70px" height="70px" class="img-fluid" src="{{ asset($about->logo) }}" alt="" style="border-radius: 100%; padding-bottom:10px">
                 
-                <h2 class="mb-2 text-white">
+                <h2 class="mb-2 text-dark">
                     @if(!empty($about->name_la))
                         {{ $about->name_la }}
                     @endif
@@ -15,9 +15,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="{{ route('frontend.Home') }}" class="nav-item nav-link active"><i class="fas fa-users"></i> ສະມາສິກເກົ່າ</a>
+                    <a href="{{ route('frontend.Home') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.Home' ? 'active' : '' }}"><i class="fas fa-users"></i> ສະມາສິກເກົ່າ</a>
                     {{-- <a href="about.html" class="nav-item nav-link"><i class="fas fa-users"></i> ສະມາສິກເກົ່າ</a> --}}
-                    <a href="{{ route('frontend.About') }}" class="nav-item nav-link"><i class="fas fa-address-book"></i> ກ່ຽວກັບ</a>
+                    <a href="{{ route('frontend.About') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.About' ? 'active' : '' }}"><i class="fas fa-address-book"></i> ກ່ຽວກັບ</a>
                     {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu fade-up m-0">
@@ -29,7 +29,7 @@
                             <a href="404.html" class="dropdown-item">404 Page</a>
                         </div>
                     </div> --}}
-                    <a href="{{ route('frontend.Contact') }}" class="nav-item nav-link"><i class="fas fa-phone-alt"></i> ຕິດຕໍ່ພົ່ວພັນ</a>
+                    <a href="{{ route('frontend.Contact') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.Contact' ? 'active' : '' }}"><i class="fas fa-phone-alt"></i> ຕິດຕໍ່ພົ່ວພັນ</a>
                 </div>
                 <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>  @if(!empty($about))
                     {{ $about->phone }}

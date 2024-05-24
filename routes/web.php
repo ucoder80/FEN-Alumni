@@ -37,6 +37,7 @@ use App\Http\Livewire\Backend\VillageContent;
 use App\Http\Livewire\Frontend\AboutsContent;
 use App\Http\Livewire\Frontend\ContactsContent;
 use App\Http\Livewire\Frontend\HomeContent;
+use App\Http\Livewire\Frontend\SearchContent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +60,7 @@ Route::get('/login-admin', LoginContent::class)->name('backend.login');
 Route::get('/', HomeContent::class)->name('frontend.Home');
 Route::get('Abouts', AboutsContent::class)->name('frontend.About');
 Route::get('Contacts', ContactsContent::class)->name('frontend.Contact');
+Route::get('Searchs', SearchContent::class)->name('frontend.Search');
 
 // ========== Front-end ========== //
 // Route::middleware('auth.frontend')->group(function () {
