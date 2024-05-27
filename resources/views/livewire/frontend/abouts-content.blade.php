@@ -25,12 +25,16 @@
                         <i class="fas fa-address-book"></i> {{ $about->address }}
                     @endif
                     </p>
-                    {{-- <div class="row g-4 mb-5">
+                    <div class="row g-4 mb-5">
                         <div class="col-sm-12 wow fadeIn" data-wow-delay="0.5s">
                             <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
-                            <p class="m-0">Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam justo.</p>
+                            <p class="m-0">
+                                @if(!empty($about))
+                                {!! $about->note !!}
+                                @endif
+                            </p>
                         </div>
-                    </div> --}}
+                    </div>
                     {{-- <a href="" class="btn btn-primary py-3 px-5">Explore More</a> --}}
                 </div>
             </div>

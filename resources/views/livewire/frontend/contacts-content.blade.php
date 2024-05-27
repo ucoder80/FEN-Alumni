@@ -10,26 +10,38 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input wire:model='name' type="text" class="form-control" id="name" placeholder="ຊື່">
+                                        <input wire:model='name' type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="ຊື່">
                                         <label for="name">ຊື່</label>
+                                        @error('name')
+                                        <span style="color: red" class="error">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input wire:model='email' type="email" class="form-control" id="email" placeholder="ອີເມວ">
+                                        <input wire:model='email' type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="ອີເມວ">
                                         <label for="email">ອີເມວ</label>
+                                        @error('email')
+                                        <span style="color: red" class="error">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input wire:model='subject' type="text" class="form-control" id="subject" placeholder="ຫົວຂໍ້">
+                                        <input wire:model='subject' type="text" class="form-control @error('subject') is-invalid @enderror" id="subject" placeholder="ຫົວຂໍ້">
                                         <label for="subject">ຫົວຂໍ້</label>
+                                        @error('subject')
+                                        <span style="color: red" class="error">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea wire:model='message' class="form-control" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
+                                        <textarea wire:model='message' class="form-control @error('message') is-invalid @enderror" placeholder="Leave a message here" id="message" style="height: 100px"></textarea>
                                         <label for="message">ຄຳອະທິບາຍ</label>
+                                        @error('message')
+                                        <span style="color: red" class="error">{{ $message }}</span>
+                                    @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">

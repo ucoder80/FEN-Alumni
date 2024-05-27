@@ -35,6 +35,10 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
+        <!-- sweetalert2 -->
+        <link rel="stylesheet" href="{{ asset('backend/plugins/sweetalert2/sweetalert2.css') }}">
+        <link rel="stylesheet" href="{{ asset('backend/plugins/sweetalert2/sweetalert2.min.css') }}">
+    @livewireStyles
 </head>
 
 <body>
@@ -60,9 +64,13 @@
     <script src="{{ asset('frontend/lib/waypoints/waypoints.min.js') }}"></script>
     <script src="{{ asset('frontend/lib/counterup/counterup.min.js') }}"></script>
     <script src="{{ asset('frontend/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Template Javascript -->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    @include('layouts.backend.script')
+    @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>

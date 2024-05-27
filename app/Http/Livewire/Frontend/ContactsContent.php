@@ -39,7 +39,7 @@ class ContactsContent extends Component
         $data->message = $this->message;
         $data->save();
         $this->dispatchBrowserEvent('swal', [
-            'title' => 'ສຳເລັດເເລ້ວ!',
+            'title' => 'ສົ່ງຂໍ້ມູນສຳເລັດເເລ້ວ!',
             'icon' => 'success',
         ]);
         $this->resetform();

@@ -30,6 +30,14 @@
                         </div>
                     </div> --}}
                     <a href="{{ route('frontend.Contact') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.Contact' ? 'active' : '' }}"><i class="fas fa-phone-alt"></i> ຕິດຕໍ່ພົ່ວພັນ</a>
+                    @auth
+                    <a href="{{ route('frontend.Profiles') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.Profiles' ? 'active' : '' }}"><i class="fas fa-address-book"></i> ຂໍ້ມູນສ່ວນຕົວ</a>
+                    <a href="{{ route('frontend.SignOuts') }}" class="nav-item nav-link text-danger"><i class="fas fa-sign-out-alt"></i> ອອກລະບົບ</a>
+                        @else
+                        <a href="{{ route('frontend.SignUp') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.SignUp' ? 'active' : '' }}"><i class="fas fa-user-edit"></i> ສະໝັກສະມາສິກ</a>
+                    <a href="{{ route('frontend.SignIn') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.SignIn' ? 'active' : '' }}"><i class="fas fa-user-lock"></i> ເຂົ້າສູ່ລະບົບ</a>
+                    @endauth
+
                 </div>
                 <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>  @if(!empty($about))
                     {{ $about->phone }}

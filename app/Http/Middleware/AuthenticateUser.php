@@ -16,9 +16,18 @@ class AuthenticateUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (! Auth::guard('web')->check()) {
-            return redirect()->route('frontend.login');
+        // if (! Auth::guard('web')->check()) {
+        //     return redirect()->route('frontend.login');
+        // }
+        // return $next($request);
+        if (Auth::check()) {
+            $user = Auth::user();
+            if ($user->roles_id != 0)
+                return $next($request);
+            else
+                return redirect()->route('frontend.SignIn');
+        } else {
+            return redirect()->route('frontend.SignIn');
         }
-        return $next($request);
     }
 }

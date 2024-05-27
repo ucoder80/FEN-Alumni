@@ -1,6 +1,6 @@
 <div>
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
+    <div class="container-fluid bg-danger text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-4 col-md-6">
@@ -26,6 +26,9 @@
                     <a class="btn btn-link" href="">ສະມາສິກເກົ່າ</a>
                     <a class="btn btn-link" href="">ກ່ຽວກັບ</a>
                     <a class="btn btn-link" href="">ຕິດຕໍ່ພົ່ວພັນ</a>
+                    <a class="btn btn-link" href="">ສະໝັກສະມາສິກ</a>
+                    <a class="btn btn-link" href="">ເຂົ້າສູ່ລະບົບ</a>
+                    <a class="btn btn-link" href="">ອອກຈາກລະບົບ</a>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <h4 class="text-light mb-4">ຊ່ອງທາງຕິດຕໍ່</h4>

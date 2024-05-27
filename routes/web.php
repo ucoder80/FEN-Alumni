@@ -37,7 +37,11 @@ use App\Http\Livewire\Backend\VillageContent;
 use App\Http\Livewire\Frontend\AboutsContent;
 use App\Http\Livewire\Frontend\ContactsContent;
 use App\Http\Livewire\Frontend\HomeContent;
+use App\Http\Livewire\Frontend\ProfilesContent;
 use App\Http\Livewire\Frontend\SearchContent;
+use App\Http\Livewire\Frontend\SignInContent;
+use App\Http\Livewire\Frontend\SignOutContent;
+use App\Http\Livewire\Frontend\SignUpContent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,12 +65,16 @@ Route::get('/', HomeContent::class)->name('frontend.Home');
 Route::get('Abouts', AboutsContent::class)->name('frontend.About');
 Route::get('Contacts', ContactsContent::class)->name('frontend.Contact');
 Route::get('Searchs', SearchContent::class)->name('frontend.Search');
+Route::get('/SignIns', SignInContent::class)->name('frontend.SignIn');
+Route::get('/SignUps', SignUpContent::class)->name('frontend.SignUp');
 
 // ========== Front-end ========== //
-// Route::middleware('auth.frontend')->group(function () {
-//     Route::get('/logouts', [LogoutContent::class, 'logout'])->name('frontend.logout');
-//     Route::get('/profiles/{id}', ProfileContent::class)->name('frontend.profile');
-// });
+Route::middleware('auth.frontend')->group(function () {
+    // Route::get('/logouts', [LogoutContent::class, 'logout'])->name('frontend.logout');
+    // Route::get('/profiles/{id}', ProfileContent::class)->name('frontend.profile');
+    Route::get('/SignOutss', [SignOutContent::class, 'SignOut'])->name('frontend.SignOuts');
+    Route::get('/Profiless', ProfilesContent::class)->name('frontend.Profiles');
+});
 
 Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/logout', [LogoutContent::class, 'logout'])->name('backend.logout');
@@ -108,6 +116,5 @@ Route::group(['middleware' => 'auth.backend'], function () {
 
     Route::get('/ReportOldStudents', ReportOldStudentContent::class)->name('backend.ReportOldStudent');
     Route::get('/ReportWorkPlaces', ReportWorkPlaceContent::class)->name('backend.ReportWorkPlace');
-
 
 });

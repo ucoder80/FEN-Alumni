@@ -1,24 +1,25 @@
 <div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <!-- Carousel Start -->
     <div class="container-fluid">
-        <div class="owl-carousel header-carousel position-relative mb-1">
+        <div class="owl-carousel header-carousel position-relative">
             @foreach ($slide as $item)
-                <div class="owl-carousel-item position-relative">
+                <div class="owl-carousel-item position-relative" style="width: 100%; height:400px">
                     <h4>
-                        <marquee scrollamount="12" direction="left" class="text-white">
+                        <marquee scrollamount="25" direction="left" class="text-white">
                             <h1><i class="flag-icon flag-icon-la"></i> ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ ສັນຕິພາບ ເອກະລາດ
                                 ປະຊາທິປະໄຕ ເອກະພາບ
-                                ວັດທະນາຖາວອນ</h1>
+                                ວັດທະນາຖາວອນ <i class="flag-icon flag-icon-la"></i></h1>
                         </marquee>
                     </h4>
                     <img class="img-fluid" src="{{ asset($item->image) }}" alt="">
                     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-                        style="background: rgba(6, 3, 21, .5);">
+                        style="background: rgba(233, 230, 230, 0.5);">
                         <div class="container">
                             <div class="row justify-content-start">
                                 <div class="col-10 col-lg-8">
-                                    <h2 class="display-3 text-white animated slideInDown mb-4">{{ $item->header }} </h2>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">{{ $item->body }}</p>
+                                    <h2 class="display-3 text-dark animated slideInDown mb-4">{{ $item->header }} </h2>
+                                    <p class="fs-5 fw-medium text-dark mb-4 pb-2">{{ $item->body }}</p>
                                     {{-- <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
                     <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Free Quote</a> --}}
                                 </div>
@@ -51,22 +52,22 @@
     <!-- Service Start -->
     <div class="container-xxl py-5">
         <div class="container py-5">
-            {{-- <div class="row g-5 mx-lg-0">
-                <div class="col-md-12 contact-form wow fadeIn" data-wow-delay="0.1s">
+            <div class="row g-5 mx-lg-0">
+                <div class="col-md-12 contact-form wow fadeIn">
                     <div class="bg-light p-4" style="border-radius: 50px;">
                         <form>
                             <div class="row">
-                                <div class="col-md-6 pt-2">
+                                {{-- <div class="col-md-6 pt-2">
                                     <div class="form-floating">
                                         <input wire:model='subject' type="text" class="form-control" id="subject"
                                             placeholder="ຄົ້ນຫາຂໍ້ມູນ..." style="border-radius: 50px; font-size:20px">
                                         <label for="subject">ຄົ້ນຫາຂໍ້ມູນ...</label>
                                     </div>
-                                </div>
-                                <div class="col-md-6 pt-2">
+                                </div> --}}
+                                <div class="col-md-12 pt-2">
                                     <select class="form-select border-0" wire:model='education_year_id'
                                         style="height: 55px;">
-                                        <option selected>ສົກຮຽນປີ</option>
+                                        <option selected value="">ສົກຮຽນປີ</option>
                                         @foreach ($education_year as $item)
                                             <option value="{{ $item->id }}">{{ $item->start_year }} -
                                                 {{ $item->end_year }} ລຸ້ນທີ: {{ $item->genderation }}</option>
@@ -77,10 +78,14 @@
                         </form>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             @include('livewire.frontend.action-search-content')
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="mb-5">ສິດເກົ່າຄະນະ</h1>
+                <h1 class="mb-5">
+                    @if(!empty($about))
+                       <i class="fas fa-users"></i> {{ $about->name_la }}
+                    @endif
+                </h1>
             </div>
             <div class="row g-4">
                 @foreach ($data as $item)
@@ -128,6 +133,9 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            <div class="float-right">
+                {{ $data->links() }}
             </div>
         </div>
     </div>

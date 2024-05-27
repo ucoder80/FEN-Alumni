@@ -12,8 +12,7 @@ class ActionSearchContent extends Component
     {
         $data = User::orderBy('id', 'desc')->where('roles_id', 4)->where(function ($q) {
             $q->where('name_lastname', 'like', '%' . $this->search . '%')
-                ->orwhere('code', 'like', '%' . $this->search . '%')
-                ->orwhere('note', 'like', '%' . $this->search . '%');
+                ->orwhere('code', 'like', '%' . $this->search . '%');
         })->get();
         return view('livewire.frontend.action-search-content',compact('data'));
     }
