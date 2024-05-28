@@ -32,6 +32,7 @@ class User extends Authenticatable
         'nationality',
         'religion',
         'name_lastname',
+        'name_lastname_en',
         'phone',
         'email',
         'gender',

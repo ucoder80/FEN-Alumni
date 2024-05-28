@@ -31,7 +31,7 @@
                     </div> --}}
                     <a href="{{ route('frontend.Contact') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.Contact' ? 'active' : '' }}"><i class="fas fa-phone-alt"></i> ຕິດຕໍ່ພົ່ວພັນ</a>
                     @auth
-                    <a href="{{ route('frontend.Profiles') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.Profiles' ? 'active' : '' }}"><i class="fas fa-address-book"></i> ຂໍ້ມູນສ່ວນຕົວ</a>
+                    <a href="{{ route('frontend.Profiles') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.Profiles' ? 'active' : '' }}"><i class="fas fa-user-tie"></i> {{ auth()->user()->name_lastname }}</a>
                     <a href="{{ route('frontend.SignOuts') }}" class="nav-item nav-link text-danger"><i class="fas fa-sign-out-alt"></i> ອອກລະບົບ</a>
                         @else
                         <a href="{{ route('frontend.SignUp') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.SignUp' ? 'active' : '' }}"><i class="fas fa-user-edit"></i> ສະໝັກສະມາສິກ</a>

@@ -92,7 +92,7 @@
                     <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="service-item p-4">
                             <div class="overflow-hidden mb-4">
-                                <img style="width: 100%; height:220px" class="img-fluid" src="{{ asset($item->image) }}"
+                                <img style="width: 100%; height:250px" class="img-fluid" src="{{ asset($item->image) }}"
                                     alt="">
                             </div>
                             <h5 class="mb-3">{{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>

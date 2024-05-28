@@ -41,7 +41,7 @@
     /* Gradient background */
     background:
                 /* Image background */
-                url('https://scontent.fvte2-2.fna.fbcdn.net/v/t39.30808-6/308158724_540419537887303_5059208229703567722_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE9RYmT3rLMAbZ5qIyrrTtgA3aJJFJEMCgDdokkUkQwKJkE_AAgaOucXlAFJXDvMeHuSRgI3iPwnAp26BN4nrUl&_nc_ohc=41A42G_IR40Q7kNvgGljWAG&_nc_ht=scontent.fvte2-2.fna&oh=00_AYCIT2F0hrHBK6a8PDJo7ZVReDa3DaKjksW9YM3eFrwhRw&oe=664CE51E') center center no-repeat;
+                url('https://scontent.fvte1-1.fna.fbcdn.net/v/t39.30808-6/308158724_540419537887303_5059208229703567722_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE9RYmT3rLMAbZ5qIyrrTtgA3aJJFJEMCgDdokkUkQwKJkE_AAgaOucXlAFJXDvMeHuSRgI3iPwnAp26BN4nrUl&_nc_ohc=b47QteBfLToQ7kNvgFlenXw&_nc_zt=23&_nc_ht=scontent.fvte1-1.fna&oh=00_AYAMqabYYspTssIzF9H7OlbhYtHkjjr9rg3R35R3tTf4rw&oe=665A4C5E') center center no-repeat;
     /* Fallback background color (in case the image fails to load) */
     background-color: #000000;
     /* Background size (cover to fill the entire body) */

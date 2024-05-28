@@ -1,6 +1,6 @@
 <div>
     <!-- Contact Start -->
-    <div class="container-fluid d-flex justify-content-center align-items-center overflow-hidden px-lg-0" style="min-height: 70vh;">
+    <div class="container-fluid d-flex justify-content-center align-items-center overflow-hidden px-lg-0" style="min-height: 80vh;">
         <div class="container contact-page px-lg-0">
             <div class="row g-5 mx-lg-0 justify-content-center">
                 <div class="col-md-10 contact-form wow fadeIn">
@@ -20,7 +20,7 @@
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
                                         <input wire:model='password' type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="ອີເມວ">
-                                        <label for="password">ລະຫັດຜ່ານ 6 ຕົວ</label>
+                                        <label for="password">ລະຫັດຜ່ານ</label>
                                         @error('password')
                                         <span style="color: red" class="error">{{ $message }}</span>
                                     @enderror
