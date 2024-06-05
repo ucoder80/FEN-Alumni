@@ -93,11 +93,6 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/salarys', SalaryContent::class)->name('backend.salary');
     Route::get('/products', ProductContent::class)->name('backend.product');
 
-    Route::get('/Orders', OrdersContent::class)->name('backend.order');
-    Route::get('/OrderCarts', OrdersCartContent::class)->name('backend.OrderCart');
-    Route::get('/OrderImports', ImportContent::class)->name('backend.OrderImport');
-    Route::get('/imports-update/{slug_id}', ImportUpdateContent::class)->name('backend.import_update');
-    Route::get('/Sales', SalesContent::class)->name('backend.sale');
 
     Route::get('/SalesReports', SalesReportsContent::class)->name('backend.SalesReport');
     Route::get('/OrdersReports', OrdersReportsContent::class)->name('backend.OrdersReport');
@@ -105,7 +100,6 @@ Route::group(['middleware' => 'auth.backend'], function () {
     Route::get('/IncomeExpendContents', IncomeExpendContent::class)->name('backend.IncomeExpendContent');
     Route::get('/ReportEmployee', ReportUserContent::class)->name('backend.ReportUser');
 
-    Route::get('/PaySalarys', PaySalaryContent::class)->name('backend.PaySalary');
     Route::get('/ReportPaySalarys', ReportPaySalaryContent::class)->name('backend.ReportPaySalary');
     // ============ you ==============
     Route::get('/EducationSystems', EducationSystemContent::class)->name('backend.EducationSystem');

@@ -19,7 +19,8 @@
             </div>
         </div>
     </section>
-
+    @foreach ($function_available as $item1)
+    @if ($item1->function->name == 'action_14')
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -164,6 +165,8 @@
             </div>
         </div>
     </section>
+    @endif
+    @endforeach
 
     <!-- Modal-Delete -->
     <div wire:ignore.self class="modal fade" id="modal-delete">

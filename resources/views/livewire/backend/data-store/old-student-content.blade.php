@@ -19,6 +19,8 @@
             </div>
         </div>
     </section>
+    @foreach ($function_available as $item1)
+    @if ($item1->function->name == 'action_11')
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -205,6 +207,8 @@
                 </div>
             </div>
     </section>
+    @endif
+    @endforeach
     {{-- =========== Add-Edit ============================ --}}
     <div wire:ignore.self class="modal fade" id="modal-add-edit">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
