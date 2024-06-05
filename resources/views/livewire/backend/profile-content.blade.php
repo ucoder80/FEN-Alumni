@@ -15,7 +15,8 @@
             </div>
         </div>
     </section>
-
+    @foreach ($function_available as $item1)
+        @if ($item1->function->name == 'action_6')
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -236,5 +237,7 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+    @endif
+    @endforeach
 </div>
 <!-- /.content-wrapper -->

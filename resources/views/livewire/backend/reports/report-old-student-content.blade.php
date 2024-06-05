@@ -18,6 +18,8 @@
             </div>
         </div>
     </section>
+    @foreach ($function_available as $item1)
+    @if ($item1->function->name == 'action_18')
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -242,6 +244,8 @@
             </div>
         </div>
     </section>
+    @endif
+    @endforeach
 </div>
 @push('scripts')
     <script>

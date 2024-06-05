@@ -72,6 +72,8 @@
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li> --}}
+                @foreach ($function_available as $item1)
+                @if ($item1->function->name == 'action_6')
                 @auth
                     @if (Auth::guard('admin')->user()->id != 1)
                         <li class="nav-item dropdown">
@@ -89,6 +91,8 @@
                         </li>
                     @endif
                 @endauth
+                @endif
+                @endforeach
                 {{-- ============================= modal logout ============================= --}}
                 <li class="nav-item">
                     <a data-toggle="modal" data-target="#modal-default" class="nav-link"

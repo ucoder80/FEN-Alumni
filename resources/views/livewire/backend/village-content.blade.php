@@ -21,6 +21,8 @@
                 </div>
             </div>
         </section>
+        @foreach ($function_available as $item1)
+        @if ($item1->function->name == 'action_7')
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -212,6 +214,8 @@
                 </div>
             </div>
         </section>
+        @endif
+        @endforeach
         {{-- ======================================== modal-delete ====================================================== --}}
         <div class="modal fade" id="modal-delete">
             <div class="modal-dialog">
