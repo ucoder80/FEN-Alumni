@@ -25,7 +25,7 @@
                     <h4 class="text-light mb-4">ເມນູລະບົບ</h4>
                     <a class="btn btn-link" href="">ສະມາສິກເກົ່າ</a>
                     <a class="btn btn-link" href="">ກ່ຽວກັບ</a>
-                    <a class="btn btn-link" href="">ຕິດຕໍ່ພົ່ວພັນ</a>
+                    <a class="btn btn-link" href="">ຕິດຕໍ່ພົວພັນ</a>
                     <a class="btn btn-link" href="">ສະໝັກສະມາສິກ</a>
                     <a class="btn btn-link" href="">ເຂົ້າສູ່ລະບົບ</a>
                     <a class="btn btn-link" href="">ອອກຈາກລະບົບ</a>
