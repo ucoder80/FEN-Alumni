@@ -6,7 +6,7 @@
                         <form action="{{ route('frontend.Search') }}">
                             <div class="col-md-12 pt-2 d-flex">
                                 <div class="form-floating flex-grow-1">
-                                    <input wire:model='search' type="text" class="form-control" id="search" name="search"
+                                    <input wire:model='search' type="text" class="form-control" id="search" name="search" required
                                         placeholder="ຄົ້ນຫາຂໍ້ມູນ..." style="border-radius: 50px; font-size:20px">
                                     <label for="search">ຄົ້ນຫາຂໍ້ມູນ...</label>
                                 </div>
