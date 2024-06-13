@@ -248,7 +248,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <div class="form-floating">
                                         <input wire:model='village_id' type="text"
                                             class="form-control @error('village_id') is-invalid @enderror"

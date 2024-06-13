@@ -26,6 +26,7 @@ class ProfilesContent extends Component
     public function mount()
     {
         $user = User::where('id', auth()->user()->id)->first();
+        if (!empty($user)) {
         $this->name_lastname = $user->name_lastname;
         $this->name_lastname_en = $user->name_lastname_en;
         $this->phone = $user->phone;
@@ -47,15 +48,18 @@ class ProfilesContent extends Component
         $this->status = $user->status;
         $this->birtday_date = $user->birtday_date;
         $this->new_image = $user->image;
+        }
         $work_place = WorkPlace::find($user->work_place_id);
-        $this->new_image_work = $work_place->image;
-        $this->name_work = $work_place->name;
-        $this->phone_work = $work_place->phone;
-        $this->email_work = $work_place->email;
-        $this->facebook_work = $work_place->facebook;
-        $this->village_id_work = $work_place->village_id;
-        $this->district_id_work = $work_place->district_id;
-        $this->province_id_work = $work_place->province_id;
+        if (!empty($work_place)) {
+            $this->new_image_work = $work_place->image;
+            $this->name_work = $work_place->name;
+            $this->phone_work = $work_place->phone;
+            $this->email_work = $work_place->email;
+            $this->facebook_work = $work_place->facebook;
+            $this->village_id_work = $work_place->village_id;
+            $this->district_id_work = $work_place->district_id;
+            $this->province_id_work = $work_place->province_id;
+        }
     }
     public function render()
     {
