@@ -52,19 +52,13 @@
     <!-- Service Start -->
     <div class="container-xxl py-5">
         <div class="container py-5">
+            @include('livewire.frontend.action-search-content')
             <div class="row g-5 mx-lg-0">
                 <div class="col-md-12 contact-form wow fadeIn">
-                    <div class="bg-light p-4" style="border-radius: 50px;">
+                    <div class="bg-light p-4" >
                         <form>
                             <div class="row">
-                                {{-- <div class="col-md-6 pt-2">
-                                    <div class="form-floating">
-                                        <input wire:model='subject' type="text" class="form-control" id="subject"
-                                            placeholder="ຄົ້ນຫາຂໍ້ມູນ..." style="border-radius: 50px; font-size:20px">
-                                        <label for="subject">ຄົ້ນຫາຂໍ້ມູນ...</label>
-                                    </div>
-                                </div> --}}
-                                <div class="col-md-12 pt-2">
+                                <div class="col-md-3 pt-2">
                                     <select class="form-select border-0" wire:model='education_year_id'
                                         style="height: 55px;">
                                         <option selected value="">ສົກຮຽນປີ</option>
@@ -74,12 +68,38 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="col-md-3 pt-2">
+                                    <select class="form-select border-0" wire:model='education_system_id'
+                                        style="height: 55px;">
+                                        <option selected value="">ລະດັບການສຶກສາ</option>
+                                        @foreach ($education_system as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3 pt-2">
+                                    <select class="form-select border-0" wire:model='subject_id'
+                                        style="height: 55px;">
+                                        <option selected value="">ສາຂາວິຊາ</option>
+                                        @foreach ($subject as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name_la }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3 pt-2">
+                                    <select class="form-select border-0" wire:model='work_place_id'
+                                        style="height: 55px;">
+                                        <option selected value="">ສະຖານທີ່ເຮັດວຽກ</option>
+                                        @foreach ($work_place as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            @include('livewire.frontend.action-search-content')
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class="mb-5">
                     @if(!empty($about))
@@ -129,7 +149,7 @@
                                 </p>
                                 <a class="btn-slide mt-2"
                                     href="@if (!empty($item->work_place)) {{ $item->work_place->facebook }} @endif"><i
-                                        class="fa fa-arrow-right"></i><span>ບ່ອນເຮັດວຽກ</span></a>
+                                        class="fa fa-arrow-right"></i><span>ຍ້ຽມຊົມບ່ອນເຮັດວຽກ</span></a>
                         </div>
                     </div>
                 @endforeach

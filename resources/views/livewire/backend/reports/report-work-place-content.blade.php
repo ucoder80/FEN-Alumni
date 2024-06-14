@@ -27,31 +27,61 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-4">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="date" wire:model="start_date" class="form-control">
                                     </div>
                                 </div><!-- end div-col -->
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="date" wire:model="end_date" class="form-control">
                                     </div>
-                                </div><!-- end div-col -->
-                                {{-- <div class="col-md-4">
+                                </div><!-- end div-col --> --}}
+                                <div class="col-md-3">
                                     <div wire:ignore class="form-group">
-                                        <select wire:model="position_id" id="position_id"
-                                            class="form-control @error('position_id') is-invalid @enderror">
+                                        <select wire:model="province_id" id="province_id"
+                                            class="form-control @error('province_id') is-invalid @enderror">
                                             <option value="">
-                                                ເລືອກ-ຕຳແໜ່ງ
+                                                ເລືອກ-ແຂວງ
                                             </option>
-                                            @foreach ($position as $item)
+                                            @foreach ($province as $item)
                                                 <option value="{{ $item->id }}">
-                                                    {{ $item->name }}
+                                                    {{ $item->name_la }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
-                                </div> --}}
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select wire:model="district_id" id="district_id"
+                                            class="form-control @error('district_id') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ເມືອງ
+                                            </option>
+                                            @foreach ($districts as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->name_la }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select wire:model="village_id" id="village_id"
+                                            class="form-control @error('village_id') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ບ້ານ
+                                            </option>
+                                            @foreach ($villages as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->name_la }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                                 {{-- @foreach ($rolepermissions as $items)
                                 @if ($items->permissionname->name == 'action_report_sale') --}}
                                 <div class="col-md-3">
@@ -127,7 +157,8 @@
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 <h4><u><b>ລາຍງານ-ສະຖານທີ່ເຮັດວຽກ</b></u></h4>
-                                                <h4><b>ວັນທີ່:
+                                                <h4>
+                                                    {{-- <b>ວັນທີ່:
                                                         @if (!empty($start_date))
                                                             {{ date('d-m-Y', strtotime($start_date)) }}
                                                         @endif
@@ -135,7 +166,8 @@
                                                         @if (!empty($end_date))
                                                             {{ date('d-m-Y', strtotime($end_date)) }}
                                                         @endif
-                                                    </b></h4>
+                                                    </b> --}}
+                                                </h4>
                                             </div>
                                         </div>
                                         <br>

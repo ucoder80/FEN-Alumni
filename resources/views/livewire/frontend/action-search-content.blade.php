@@ -1,7 +1,7 @@
 
     <div class="row g-5 mx-lg-0">
         <div class="col-md-12 contact-form wow fadeIn">
-            <div class="bg-light p-4" style="border-radius: 50px;">
+            <div class="bg-light p-4">
                     <div class="row">
                         <form action="{{ route('frontend.Search') }}">
                             <div class="col-md-12 pt-2 d-flex">
