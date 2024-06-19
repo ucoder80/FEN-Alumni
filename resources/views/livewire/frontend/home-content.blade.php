@@ -18,7 +18,7 @@
                         <div class="container">
                             <div class="row justify-content-start">
                                 <div class="col-10 col-lg-8">
-                                    <h2 class="display-3 text-dark animated slideInDown mb-4">{{ $item->header }} </h2>
+                                    <h3 class="display-3 text-dark animated slideInDown mb-4">{{ $item->header }} </h3>
                                     <p class="fs-5 fw-medium text-dark mb-4 pb-2">{{ $item->body }}</p>
                                     {{-- <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
                     <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Free Quote</a> --}}

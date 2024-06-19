@@ -1,6 +1,6 @@
 <div>
     <!-- Footer Start -->
-    <div class="container-fluid bg-danger text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
+    <div class="container-fluid text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="background-color: {{ !empty($about->f_sidebar_color) ? $about->f_sidebar_color : '' }}">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-4 col-md-6">

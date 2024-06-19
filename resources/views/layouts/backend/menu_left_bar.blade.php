@@ -1,5 +1,5 @@
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-primary bg-danger elevation-3">
+  <aside class="main-sidebar sidebar-light-primary elevation-3" style="background-color: {{ !empty($about->b_sidebar_color) ? $about->b_sidebar_color : '' }}">
       <!-- Brand Logo -->
       <a href="{{ route('backend.dashboard') }}" class="brand-link">
           @if (!empty($about))
