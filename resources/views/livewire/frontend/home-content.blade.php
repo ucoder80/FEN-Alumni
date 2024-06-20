@@ -4,58 +4,42 @@
     <div class="container-fluid">
         <div class="owl-carousel header-carousel position-relative">
             @foreach ($slide as $item)
-                <div class="owl-carousel-item position-relative" style="width: 100%; height:400px">
-                    <h4>
+                <div class="owl-carousel-item position-relative" style="width: 100%; height:300px">
+                    {{-- <h5>
                         <marquee scrollamount="25" direction="left" class="text-white">
                             <h1><i class="flag-icon flag-icon-la"></i> ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ ສັນຕິພາບ ເອກະລາດ
                                 ປະຊາທິປະໄຕ ເອກະພາບ
                                 ວັດທະນາຖາວອນ <i class="flag-icon flag-icon-la"></i></h1>
                         </marquee>
-                    </h4>
+                    </h5> --}}
                     <img class="img-fluid" src="{{ asset($item->image) }}" alt="">
                     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
                         style="background: rgba(233, 230, 230, 0.5);">
                         <div class="container">
                             <div class="row justify-content-start">
                                 <div class="col-10 col-lg-8">
-                                    <h3 class="display-3 text-dark animated slideInDown mb-4">{{ $item->header }} </h3>
-                                    <p class="fs-5 fw-medium text-dark mb-4 pb-2">{{ $item->body }}</p>
-                                    {{-- <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                    <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Free Quote</a> --}}
+                                    <h3 class="display-3 text-light animated slideInDown mb-4">{{ $item->header }}</h3>
+                                    <p class="fs-5 fw-medium text-light mb-4 pb-2">{{ $item->body }}</p>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
-            {{-- <div class="owl-carousel-item position-relative">
-            <img class="img-fluid" src="frontend/img/carousel-2.jpg" alt="">
-            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(6, 3, 21, .5);">
-                <div class="container">
-                    <div class="row justify-content-start">
-                        <div class="col-10 col-lg-8">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Transport & Logistics Solution</h5>
-                            <h1 class="display-3 text-white animated slideInDown mb-4">#1 Place For Your <span class="text-primary">Transport</span> Solution</h1>
-                            <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Free Quote</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         </div>
     </div>
     <!-- Carousel End -->
 
 
     <!-- Service Start -->
-    <div class="container-xxl py-5">
-        <div class="container py-5">
+    <div class="container-xxl py-2">
+        <div class="container py-2">
             @include('livewire.frontend.action-search-content')
-            <div class="row g-5 mx-lg-0">
+            <div class="row g-0 mx-lg-0">
                 <div class="col-md-12 contact-form wow fadeIn">
-                    <div class="bg-light p-4" >
+                    {{-- <div class="bg-light p-4" > --}}
+                    <div class="p-4" style="background-color:#f7f7f7;">
                         <form>
                             <div class="row">
                                 <div class="col-md-3 pt-2">
@@ -101,10 +85,11 @@
                 </div>
             </div>
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="mb-5">
-                    @if(!empty($about))
+                <h1 class="my-4" style="font-family:'Noto Sans Lao';color: #193b7c ">
+                    {{-- @if(!empty($about))
                        <i class="fas fa-users"></i> {{ $about->name_la }}
-                    @endif
+                    @endif --}}
+                    ສິດເກົ່າຂອງຄະນະວິສະວະກຳສາດ
                 </h1>
             </div>
             <div class="row g-4">
@@ -115,14 +100,14 @@
                                 <img style="width: 100%; height:250px" class="img-fluid" src="{{ asset($item->image) }}"
                                     alt="">
                             </div>
-                            <h5 class="mb-3">{{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>
+                            <h5 class="mb-3 " style="font-family:'Noto Sans Lao';color: #193b7c ">{{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>
                                 <p><b>ຈົບສົກສຶກສາ:</b>
                                     @if (!empty($item->education_year))
                                         {{ $item->education_year->start_year }} -
                                         {{ $item->education_year->end_year }}
                                     @endif
                                 </p>
-                                <p><b>ລູ້ນທີ່:</b>
+                                <p><b>ລຸ້ນທີ່:</b>
                                     @if (!empty($item->education_year))
                                         {{ $item->education_year->genderation }}
                                     @endif

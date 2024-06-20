@@ -78,7 +78,7 @@
 </head>
 {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງຊ້າຍ --}}
 
-<body class="hold-transition sidebar-mini layout-fixed" style="font-family: 'phetsarath OT'">
+<body class="hold-transition sidebar-mini layout-fixed" style="font-family: 'Noto Sans Lao'">
 
     {{-- ເປີດໃຊ້ class ນີ້ເພື່ອປັບຫນ້າຕ່າງເວບເມນູເບື້ອງເທິງ --}}
     {{-- <body class="hold-transition layout-top-nav" style="font-family: 'phetsarath OT'"> --}}
@@ -101,12 +101,12 @@
             {{ $slot }}
         </div>
 
-        <footer class="main-footer">
+        {{-- <footer class="main-footer">
             <strong>ອ້າງອີກຈາກ Admin.LTE ອອກແບບ ເເລະ ພັດທະນາໂດຍ: ນັກສຶກສາ ມະຫາວິທະຍາໄລສຸພານຸວົງ &copy;2024.</strong>
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version: </b> 1.0.0.1
             </div>
-        </footer>
+        </footer> --}}
     </div>
     <!-- jQuery -->
     <script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>

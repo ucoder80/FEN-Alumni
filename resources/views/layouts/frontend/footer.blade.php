@@ -4,7 +4,7 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-4 col-md-6">
-                    <h4 class="text-light mb-4">ທີ່ຢູ່</h4>
+                    <h4 class="text-light mb-4" style="font-family:'Noto Sans Lao';color: #193b7c;">ທີ່ຢູ່</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>
                     @if(!empty($about))
                         {{ $about->address }}
@@ -22,7 +22,7 @@
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <h4 class="text-light mb-4">ເມນູລະບົບ</h4>
+                    <h4 class="text-light mb-4" style="font-family:'Noto Sans Lao';color: #193b7c;">ເມນູລະບົບ</h4>
                     <a class="btn btn-link" href="">ສະມາສິກເກົ່າ</a>
                     <a class="btn btn-link" href="">ກ່ຽວກັບ</a>
                     <a class="btn btn-link" href="">ຕິດຕໍ່ພົວພັນ</a>
@@ -31,7 +31,7 @@
                     <a class="btn btn-link" href="">ອອກຈາກລະບົບ</a>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <h4 class="text-light mb-4">ຊ່ອງທາງຕິດຕໍ່</h4>
+                    <h4 class="text-light mb-4"style="font-family:'Noto Sans Lao';color: #193b7c;">ຊ່ອງທາງຕິດຕໍ່</h4>
                     <p>
                         @if(!empty($about))
                             {{ $about->phone }}
@@ -53,9 +53,9 @@
         <div class="container">
             <div class="copyright">
                 <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    {{-- <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                         ອ້າງອີງຈາກ HTML Codex ອອກແບບ ເເລະ ພັດທະນາຕໍ່ໂດຍນັກສຶກສາ ມສ
-                    </div>
+                    </div> --}}
                     <div class="col-md-6 text-center text-md-end">
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                         {{-- Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> --}}

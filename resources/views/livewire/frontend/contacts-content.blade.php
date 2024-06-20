@@ -4,8 +4,8 @@
         <div class="container contact-page py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-md-6 contact-form wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="mb-4">ທ່ານມີຄຳຖາມຫຍັງບໍ່?</h1>
-                    <div class="bg-light p-4">
+                    <h1 class="mb-4" style="font-family:'Noto Sans Lao';color: #193b7c;">ທ່ານມີຄຳຖາມຫຍັງບໍ່?</h1>
+                    <div class=" p-4" style="background-color:#f7f7f7;">
                         <form>
                             <div class="row g-3">
                                 <div class="col-md-6">
@@ -53,11 +53,14 @@
                 </div>
                 <div class="col-md-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s">
                     <div class="position-relative h-100">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3751.009633294909!2d102.18505731478838!3d19.923998879701326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x312ed617d3811703%3A0xbcc56fe552f97a9d!2sFaculty%20of%20Engineering%2C%20SU!5e0!3m2!1sen!2sla!4v1718886249020!5m2!1sen!2sla" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    {{-- <div class="position-relative h-100">
                         <iframe class="position-absolute w-100 h-100" style="object-fit: cover;"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
                         frameborder="0" allowfullscreen="" aria-hidden="false"
                         tabindex="0"></iframe>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

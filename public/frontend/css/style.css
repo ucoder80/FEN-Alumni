@@ -1,13 +1,13 @@
 /********** Template CSS **********/
 :root {
-    --primary: #FF3E41;
+    --primary: #193b7c;
     --secondary: #51CFED;
     --light: #F8F2F0;
-    --dark: #060315;
+    --dark: #7c7c7c;
 }
 
 .fw-medium {
-    font-weight: 600 !important;
+    font-weight: 400 !important;
 }
 
 .back-to-top {
@@ -419,8 +419,9 @@
 
 /*** Footer ***/
 .footer {
-    background: linear-gradient(rgba(6, 3, 21, .5), rgba(6, 3, 21, .5)), url(../img/map.png) center center no-repeat;
-    background-size: cover;
+    /* background: linear-gradient(rgba(6, 3, 21, .5), rgba(6, 3, 21, .5)), url(../img/map.png) center center no-repeat; */
+    /* background-size: cover; */
+    background-color: var(--primary);
 }
 
 .footer .btn.btn-social {

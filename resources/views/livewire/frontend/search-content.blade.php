@@ -4,7 +4,7 @@
     <div class="container-xxl py-5">
         <div class="container py-5">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="mb-5">ຜົນການຄົ້ນຫາຂອງທ່ານ</h1>
+                <h1 class="mb-5" style="font-family:'Noto Sans Lao';color: #193b7c ">ຜົນການຄົ້ນຫາຂອງທ່ານ</h1>
             </div>
             <div class="row g-4">
                 @if ($data->count() > 0)
@@ -22,7 +22,7 @@
                                         {{ $item->education_year->end_year }}
                                     @endif
                                 </p>
-                                <p><b>ລູ້ນທີ່:</b>
+                                <p><b>ລຸ້ນທີ່:</b>
                                     @if (!empty($item->education_year))
                                         {{ $item->education_year->genderation }}
                                     @endif
