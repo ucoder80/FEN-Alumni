@@ -96,6 +96,24 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">ປັບສີພື້ນຫນ້າບ້ານ(Frontend)</label>
+                                                <input type="color" wire:model="f_sidebar_color" class="form-control @error('f_sidebar_color') is-invalid @enderror" placeholder="ຊື່ອົງກອນ">
+                                                @error('f_sidebar_color')
+                                                <span style="color: red" class="error">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">ປັບສີພື້ນຫລັງບ້ານ(Backend)</label>
+                                                <input type="color" wire:model="b_sidebar_color" class="form-control @error('b_sidebar_color') is-invalid @enderror" placeholder="ຊື່ອົງກອນ">
+                                                @error('b_sidebar_color')
+                                                <span style="color: red" class="error">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
                                         {{-- <div class="col-md-12" wire:ignore>
                                         <div id="map-update-s" style="height:250px; width: 100%;" class="my-3"></div>
                                     </div>

@@ -11,18 +11,20 @@ class AboutContent extends Component
     use WithFileUploads;
     public $name_la, $name_en, $phone, $email, $note, $role, $lats, $longs, $latitude, $longitude, $address, $logo;
     public $new_img, $img;
+    public $f_sidebar_color, $b_sidebar_color;
     public function mount()
     {
         $data = About::find(1);
-        $this->name_la = $data->name_la;
-        $this->phone = $data->phone;
-        $this->note = $data->note;
-        $this->address = $data->address;
-        $this->latitude = $data->latitude;
-        $this->longitude = $data->longitude;
-        if($this->logo)
-        {
-            $this->logo = $data->logo;
+        $this->name_la = $data->name_la ?? '';
+        $this->phone = $data->phone ?? '';
+        $this->note = $data->note ?? '';
+        $this->address = $data->address ?? '';
+        $this->latitude = $data->latitude ?? '';
+        $this->longitude = $data->longitude ?? '';
+        $this->b_sidebar_color = $data->b_sidebar_color ?? '';
+        $this->f_sidebar_color = $data->f_sidebar_color ?? '';
+        if ($this->logo) {
+            $this->logo = $data->logo ?? '';
         }
     }
     public function render()
@@ -33,26 +35,28 @@ class AboutContent extends Component
     {
         $this->validate([
             'name_la' => 'required',
-            'phone' => 'required|regex:/^[0-9]+$/i|max:8|:abouts',
+            'phone' => 'required|regex:/^[0-9]+$/i|max:8',
             'note' => 'required',
         ], [
             'name_la.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
             'phone.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
             'phone.regex' => 'ປ້ອນເປັນຕົວເລກທັງຫມົດ!',
             'phone.max' => 'ຕົວເລກບໍ່ເກີນ 8 ໂຕ!',
-            // 'phone.unique'=>'ຂໍ້ມູນນີ້ມີໃນລະບົບເເລ້ວ!',
             'note.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
-            // 'logo.required'=>'ເລືອກຮູບພາບກ່ອນ!',
         ]);
-        $data = About::find(1);
+
+        $data = About::firstOrNew(['id' => 1]);
+
         if ($this->logo) {
             $this->validate([
                 'logo' => 'required|mimes:jpg,png,jpeg',
             ]);
+
             $filename_logo = $this->logo->getClientOriginalName();
-            $this->logo->storeAs('upload/logo' . $filename_logo);
-            $data->logo = 'upload/logo' . $filename_logo;
+            $this->logo->storeAs('upload/logo', $filename_logo);
+            $data->logo = 'upload/logo/' . $filename_logo;
         }
+
         $data->name_la = $this->name_la;
         $data->name_en = $this->name_en;
         $data->phone = $this->phone;
@@ -60,12 +64,16 @@ class AboutContent extends Component
         $data->address = $this->address;
         $data->latitude = $this->lats;
         $data->longitude = $this->longs;
+        $data->b_sidebar_color = $this->b_sidebar_color;
+        $data->f_sidebar_color = $this->f_sidebar_color;
         $data->save();
-        // session()->flash('success', 'ແກ້ໄຂຂໍ້ມູນສຳເລັດ');
+
         $this->dispatchBrowserEvent('swal', [
-            'title' => 'ແກ້ໄຂສຳເລັດເເລ້ວ!',
+            'title' => 'ສຳເລັດເເລ້ວ!',
             'icon' => 'success',
         ]);
+
         return redirect(route('backend.about'));
     }
+
 }

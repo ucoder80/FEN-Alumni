@@ -1,6 +1,6 @@
 <div>
         <!-- Navbar Start -->
-        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
+        <nav class="navbar navbar-expand-lg navbar-light shadow border-top border-5 border-primary sticky-top p-0" style="background-color: {{ !empty($about->f_sidebar_color) ? $about->f_sidebar_color : '' }}">
             <a href="{{ route('frontend.Home') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <img width="70px" height="70px" class="img-fluid" src="{{ asset($about->logo) }}" alt="" style="border-radius: 100%; padding-bottom:10px">
                 

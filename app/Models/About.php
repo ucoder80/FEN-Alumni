@@ -19,6 +19,8 @@ class About extends Model
         'latitude',
         'longitude',
         'note',
+        'f_sidebar_color',
+        'b_sidebar_color',
         'created_at',
         'updated_at',
     ];

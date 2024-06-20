@@ -61,7 +61,7 @@
                         <span class="info-box-icon bg-info"><i class="fas fa-cart-arrow-down"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">ຈຳນວນສັ່ງຊື້ນຳຜູ້ສະຫນອງ</span>
+                            <span class="info-box-text pt-1">ຈຳນວນສັ່ງຊື້ນຳຜູ້ສະຫນອງ</span>
                             <span class="info-box-number">{{ $this->count_order }} <small> ລາຍການ</small></span>
                         </div>
                         <!-- /.info-box-content -->
@@ -74,7 +74,7 @@
                         <span class="info-box-icon bg-warning"><i class="fas fa-cart-plus"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">ຈຳນວນຂາຍໃຫ້ລູກຄ້າ</span>
+                            <span class="info-box-text pt-1">ຈຳນວນຂາຍໃຫ້ລູກຄ້າ</span>
                             <span class="info-box-number">{{ $this->count_sale }} <small> ລາຍການ</small></span>
                         </div>
                         <!-- /.info-box-content -->
@@ -84,10 +84,10 @@
                 <!-- /.col -->
                 <div class="col-md-6 col-sm-6 col-12">
                     <div class="info-box">
-                        <span class="info-box-icon bg-danger"><i class="fa fa-users"></i></span>
+                        <span class="info-box-icon text-white" style="background-color: {{ !empty($about->b_sidebar_color) ? $about->b_sidebar_color : '' }}"><i class="fa fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text"><h4>ຜູ້ໃຊ້ທັງຫມົດ</h4></span>
+                            <span class="info-box-text pt-1"><h4>ຜູ້ໃຊ້ທັງຫມົດ</h4></span>
                             <span class="info-box-number"><h4>{{ $this->count_user }} ຄົນ</h4></span>
                         </div>
                         <!-- /.info-box-content -->
@@ -96,10 +96,10 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-12">
                     <div class="info-box">
-                        <span class="info-box-icon bg-danger"><i class="fa fa-users"></i></span>
+                        <span class="info-box-icon text-white" style="background-color: {{ !empty($about->b_sidebar_color) ? $about->b_sidebar_color : '' }}"><i class="fa fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text"><h4>ສິດເກົ່າທັງຫມົດ</h4></span>
+                            <span class="info-box-text pt-1"><h4>ສິດເກົ່າທັງຫມົດ</h4></span>
                             <span class="info-box-number"><h4>{{ $this->old_student }} ຄົນ</h4></span>
                         </div>
                         <!-- /.info-box-content -->
@@ -108,10 +108,10 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-12">
                     <div class="info-box">
-                        <span class="info-box-icon bg-danger"><i class="fas fa-school"></i></span>
+                        <span class="info-box-icon text-white" style="background-color: {{ !empty($about->b_sidebar_color) ? $about->b_sidebar_color : '' }}"><i class="fas fa-school"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text"><h4>ສະຖານທີ່ເຮັດວຽກທັງຫມົດ</h4></span>
+                            <span class="info-box-text pt-1"><h4>ສະຖານທີ່ເຮັດວຽກທັງຫມົດ</h4></span>
                             <span class="info-box-number"><h4>{{ $this->work_place }} ບ່ອນ</h4></span>
                         </div>
                         <!-- /.info-box-content -->
@@ -120,10 +120,10 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-12">
                     <div class="info-box">
-                        <span class="info-box-icon bg-danger"><i class="fas fa-book-open"></i></span>
+                        <span class="info-box-icon text-white" style="background-color: {{ !empty($about->b_sidebar_color) ? $about->b_sidebar_color : '' }}"><i class="fas fa-book-open"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text"><h4>ພາກວິຊາທັງຫມົດ</h4></span>
+                            <span class="info-box-text pt-1"><h4>ພາກວິຊາທັງຫມົດ</h4></span>
                             <span class="info-box-number"><h4>{{ $this->department }} ພາກ</h4></span>
                         </div>
                         <!-- /.info-box-content -->
@@ -133,10 +133,10 @@
                 <!-- /.col -->
                 {{-- <div class="col-md-6 col-sm-6 col-12">
                     <div class="info-box">
-                        <span class="info-box-icon bg-danger"><i class="fa fa-users"></i></span>
+                        <span class="info-box-icon text-white" style="background-color: {{ !empty($about->b_sidebar_color) ? $about->b_sidebar_color : '' }}"><i class="fa fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">ລູກຄ້າທັງຫມົດ</span>
+                            <span class="info-box-text pt-1">ລູກຄ້າທັງຫມົດ</span>
                             <span class="info-box-number">{{ $this->count_employee }} <small> ຄົນ</small></span>
                         </div>
                         <!-- /.info-box-content -->
