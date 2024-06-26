@@ -314,6 +314,83 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input wire:model='system' type="text"
+                                            class="form-control @error('system') is-invalid @enderror"
+                                            id="name" placeholder="ລະບົບ">
+                                        <label for="name">ລະບົບ</label>
+                                        @error('system')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input wire:model='scholarship' type="text"
+                                            class="form-control @error('scholarship') is-invalid @enderror"
+                                            id="name" placeholder="ທືນການສືກສາ">
+                                        <label for="name">ທືນການສືກສາ</label>
+                                        @error('scholarship')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input wire:model='final_report' type="text"
+                                            class="form-control @error('final_report') is-invalid @enderror"
+                                            id="name" placeholder="ບົດໂຄງການຈົບຊັ້ນ">
+                                        <label for="name">ບົດໂຄງການຈົບຊັ້ນ</label>
+                                        @error('final_report')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input wire:model='advisor' type="text"
+                                            class="form-control @error('advisor') is-invalid @enderror"
+                                            id="name" placeholder="ອາຈານຜູ້ນຳພາ">
+                                        <label for="name">ອາຈານຜູ້ນຳພາ</label>
+                                        @error('advisor')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input wire:model='co_advisor' type="text"
+                                            class="form-control @error('co_advisor') is-invalid @enderror"
+                                            id="name" placeholder="ອາຈານຜູ້ຊ່ວຍນຳພາ">
+                                        <label for="name">ອາຈານຜູ້ຊ່ວຍນຳພາ</label>
+                                        @error('co_advisor')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input wire:model='grade' type="text"
+                                            class="form-control @error('grade') is-invalid @enderror"
+                                            id="name" placeholder="ເກຣດນິຍົມ">
+                                        <label for="name">ເກຣດນິຍົມ</label>
+                                        @error('grade')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input wire:model='performance' type="text"
+                                            class="form-control @error('performance') is-invalid @enderror"
+                                            id="name" placeholder="ຜົນງານນັກສຶກສາ">
+                                        <label for="name">ຜົນງານນັກສຶກສາ</label>
+                                        @error('performance')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <span class="text-bold">
                                     <h5 style="font-family:'Noto Sans Lao';color: #193b7c;">3.ຂໍ້ມູນສະຖານທີ່ເຮັດວຽກປະຈຸບັນ</h5>
                                     {{-- <h5><b>3.ຂໍ້ມູນສະຖານທີ່ເຮັດວຽກປະຈຸບັນ</b></h5> --}}

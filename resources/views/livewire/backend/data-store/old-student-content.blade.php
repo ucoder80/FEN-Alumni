@@ -30,8 +30,8 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <a wire:click="create" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
-                                            class="fa fa-plus-circle"></i> ເພີ່ມໃຫມ່</a>
+                                    {{-- <a wire:click="create" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                            class="fa fa-plus-circle"></i> ເພີ່ມໃຫມ່</a> --}}
                                 </div>
                                 <div class="col-md-3">
                                 </div>

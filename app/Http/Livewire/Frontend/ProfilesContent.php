@@ -22,7 +22,7 @@ class ProfilesContent extends Component
     public $name_lastname, $phone, $new_image_work, $password, $new_image, $districts = [], $villages = [], $ID, $name_lastname_en;
     public $name_work, $phone_work, $email_work, $facebook_work, $village_id_work, $district_id_work, $province_id_work, $image_work;
     public $email, $district_id, $code, $status, $gender, $birtday_date, $education_year_id, $subject_id, $work_place_id, $image, $nationality, $religion;
-    public $education_system_id;
+    public $education_system_id,$system,$scholarship,$final_report,$advisor,$co_advisor,$grade,$performance;
     public function mount()
     {
         $user = User::where('id', auth()->user()->id)->first();
@@ -48,6 +48,14 @@ class ProfilesContent extends Component
         $this->status = $user->status;
         $this->birtday_date = $user->birtday_date;
         $this->new_image = $user->image;
+        $this->system = $user->system;
+        $this->scholarship = $user->scholarship;
+        $this->final_report = $user->final_report;
+        $this->advisor = $user->advisor;
+        $this->co_advisor = $user->co_advisor;
+        $this->grade = $user->grade;
+        $this->performance = $user->performance;
+
         }
         $work_place = WorkPlace::find($user->work_place_id);
         if (!empty($work_place)) {
@@ -107,6 +115,13 @@ class ProfilesContent extends Component
         $data->status = $this->status;
         $data->birtday_date = $this->birtday_date;
         $data->roles_id = 4;
+        $data->system = $this->system;
+        $data->scholarship = $this->scholarship;
+        $data->final_report = $this->final_report;
+        $data->advisor = $this->advisor;
+        $data->co_advisor = $this->co_advisor;
+        $data->grade = $this->grade;
+        $data->performance = $this->performance;
         $data->save();
         $work_place = WorkPlace::find($data->work_place_id);
         if ($this->image_work) {

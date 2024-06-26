@@ -19,7 +19,7 @@ class SignUpContent extends Component
 {
     use WithFileUploads;
     public $name_lastname, $phone, $password, $confirmPassword, $districts = [], $villages = [], $ID, $name_lastname_en;
-    public $name_work, $phone_work, $email_work, $facebook_work, $village_id_work, $district_id_work, $province_id_work, $image_work;
+    public $name_work, $phone_work, $email_work, $facebook_work, $village_id_work, $district_id_work, $province_id_work, $image_work,$system,$scholarship,$final_report,$advisor,$co_advisor,$grade,$performance;
     public function render()
     {
         $provinces = Province::all();
@@ -69,18 +69,25 @@ class SignUpContent extends Component
         $this->nationality = '';
         $this->religion = '';
         $this->code = '';
+        $this->system = '';
+        $this->scholarship = '';
+        $this->final_report = '';
+        $this->advisor = '';
+        $this->co_advisor = '';
+        $this->grade = '';
+        $this->performance = '';
 
     }
     public function SignUp()
     {
         $this->validate([
-            'name_work' => 'required',
-            'phone_work' => 'required',
+            // 'name_work' => 'required',
+            // 'phone_work' => 'required',
             // 'email_work' => 'required',
             // 'facebook_work' => 'required',
-            'village_id_work' => 'required',
-            'district_id_work' => 'required',
-            'province_id_work' => 'required',
+            // 'village_id_work' => 'required',
+            // 'district_id_work' => 'required',
+            // 'province_id_work' => 'required',
             // 'image_work' => 'required',
 
             'education_year_id' => 'required',
@@ -100,11 +107,11 @@ class SignUpContent extends Component
             'confirmPassword' => 'required|same:password',
         ], [
             'code.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
-            'name_work.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
-            'phone_work.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
-            'village_id_work.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
-            'district_id_work.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
-            'province_id_work.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
+            // 'name_work.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
+            // 'phone_work.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
+            // 'village_id_work.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
+            // 'district_id_work.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
+            // 'province_id_work.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
 
             'education_year_id.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
             'subject_id.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
@@ -177,6 +184,13 @@ class SignUpContent extends Component
         $data->status = $this->status;
         $data->birtday_date = $this->birtday_date;
         $data->roles_id = 4;
+        $data->system = $this->system;
+        $data->scholarship = $this->scholarship;
+        $data->final_report = $this->final_report;
+        $data->advisor = $this->advisor;
+        $data->co_advisor = $this->co_advisor;
+        $data->grade = $this->grade;
+        $data->performance = $this->performance;
         $data->save();
         Auth::guard('admin')->login($data);
         $this->dispatchBrowserEvent('swal', [
