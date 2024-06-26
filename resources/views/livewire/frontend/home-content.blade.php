@@ -1,7 +1,7 @@
 <div>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <!-- Carousel Start -->
-    <div class="container-fluid">
+    <div class="container-fluid" wire:ignore>
         <div class="owl-carousel header-carousel position-relative">
             @foreach ($slide as $item)
                 <div class="owl-carousel-item position-relative" style="width: 100%; height:300px">
@@ -100,7 +100,7 @@
                                 <img style="width: 100%; height:250px" class="img-fluid" src="{{ asset($item->image) }}"
                                     alt="">
                             </div>
-                            <h5 class="mb-3 " style="font-family:'Noto Sans Lao';color: #193b7c ">{{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>
+                            <h4 class="mb-3 " style="font-family:'Noto Sans Lao';color: #193b7c "><i class="fas fa-graduation-cap"></i> {{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>
                                 <p><b>ຈົບສົກສຶກສາ:</b>
                                     @if (!empty($item->education_year))
                                         {{ $item->education_year->start_year }} -
@@ -112,11 +112,6 @@
                                         {{ $item->education_year->genderation }}
                                     @endif
                                 </p>
-                                <p><b>ລະດັບການສຶກສາ: </b>
-                                    @if (!empty($item->education_system))
-                                        {{ $item->education_system->name }}
-                                    @endif
-                                </p>
                                 <p><b>ພາກວິຊາ: </b>
                                     @if (!empty($item->subject->department))
                                         {{ $item->subject->department->name_la }}
@@ -125,6 +120,36 @@
                                 <p><b>ສາຂາ:</b>
                                     @if (!empty($item->subject))
                                         {{ $item->subject->name_la }}
+                                    @endif
+                                </p>
+                                <p><b>ລະດັບການສຶກສາ: </b>
+                                    @if (!empty($item->education_system))
+                                        {{ $item->education_system->name }}
+                                    @endif
+                                </p>
+                                <p><b>ບົດໂຄງການຈົບຊັ້ນ: </b>
+                                    @if (!empty($item->final_report))
+                                        {{ $item->final_report }}
+                                    @endif
+                                </p>
+                                <p><b>ອາຈານຜູ້ນຳພາ: </b>
+                                    @if (!empty($item->advidor))
+                                        {{ $item->advidor }}
+                                    @endif
+                                </p>
+                                <p><b>ອາຈານຜູ້ຊ່ວຍນຳພາ: </b>
+                                    @if (!empty($item->co_advidor))
+                                        {{ $item->co_advidor }}
+                                    @endif
+                                </p>
+                                <p><b>ເກຣດ: </b>
+                                    @if (!empty($item->grade))
+                                        {{ $item->grade }}
+                                    @endif
+                                </p>
+                                <p><b>ຜົນງານນັກສຶກສາ: </b>
+                                    @if (!empty($item->performance))
+                                        {{ $item->performance }}
                                     @endif
                                 </p>
                                 <p><b>ບ່ອນເຮັດວຽກ: </b>

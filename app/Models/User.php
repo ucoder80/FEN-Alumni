@@ -40,6 +40,13 @@ class User extends Authenticatable
         'status',
         'password',
         'remember_token',
+        'system',
+        'scholarship',
+        'final_report',
+        'advisor',
+        'co_advisor',
+        'grade',
+        'performance',
         'created_at',
         'updated_at',
     ];

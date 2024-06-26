@@ -23,7 +23,12 @@ class HomeContent extends Component
         $subject = Subject::all();
         $work_place = WorkPlace::all();
         $education_system = EducationSystem::all();
-        $data = User::where('roles_id', 4);
+        $data = User::where(function ($q) {
+            $q->where('name_lastname', 'like', '%' . $this->search . '%')
+                ->orwhere('name_lastname_en', 'like', '%' . $this->search . '%')
+                ->orwhere('phone', 'like', '%' . $this->search . '%')
+                ->orwhere('code', 'like', '%' . $this->search . '%');
+        })->where('roles_id', 4)->orderBy('id', 'desc');
         if ($this->education_year_id) {
             $data = $data->where('education_year_id', $this->education_year_id);
         }

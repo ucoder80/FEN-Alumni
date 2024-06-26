@@ -57,7 +57,7 @@
                                                 <span style="color: red" class="error">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="name">ຊື່</label>
                                                 <input type="text" wire:model="name_la"
@@ -68,13 +68,24 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="name">ເບີໂທ</label>
                                                 <input type="text" wire:model="phone"
                                                     class="form-control @error('phone') is-invalid @enderror"
                                                     placeholder="ຂໍ້ມູນຕິດຕໍ່">
                                                 @error('phone')
+                                                    <span style="color: red" class="error">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="name">ອີເມວ</label>
+                                                <input type="email" wire:model="email"
+                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    placeholder="ຂໍ້ມູນຕິດຕໍ່">
+                                                @error('email')
                                                     <span style="color: red" class="error">{{ $message }}</span>
                                                 @enderror
                                             </div>

@@ -17,6 +17,7 @@ class AboutContent extends Component
         $data = About::find(1);
         $this->name_la = $data->name_la ?? '';
         $this->phone = $data->phone ?? '';
+        $this->email = $data->email ?? '';
         $this->note = $data->note ?? '';
         $this->address = $data->address ?? '';
         $this->latitude = $data->latitude ?? '';
@@ -60,6 +61,7 @@ class AboutContent extends Component
         $data->name_la = $this->name_la;
         $data->name_en = $this->name_en;
         $data->phone = $this->phone;
+        $data->email = $this->email;
         $data->note = $this->note;
         $data->address = $this->address;
         $data->latitude = $this->lats;
