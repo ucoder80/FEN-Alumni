@@ -4,8 +4,10 @@
         <div class="container contact-page px-lg-0">
             <div class="row g-5 mx-lg-0 justify-content-center">
                 <div class="col-md-10 contact-form wow fadeIn">
-                    <h1 class="mb-4 text-center"><i class="fas fa-user-lock"></i> ເຂົ້າສູ່ລະບົບ</h1>
-                    <div class="bg-light p-4">
+                    {{-- <h1 class="mb-4 text-center" ><i class="fas fa-user-lock"></i> ເຂົ້າສູ່ລະບົບ</h1> --}}
+                    <h1 class="mb-4 text-center" style="font-family:'Noto Sans Lao';color: #193b7c;" ><i class="fas fa-user-lock"></i> ເຂົ້າສູ່ລະບົບ</h1>
+                    {{-- <div class="bg-light p-4"> --}}
+                    <div class=" p-4" style="background-color: #f9f9f9;">
                         <form>
                             <div class="row g-3">
                                 <div class="col-12">

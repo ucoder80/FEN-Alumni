@@ -77,8 +77,10 @@
         <div class="container contact-page py-3 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-md-12 contact-form wow fadeIn">
-                    <h1 class="mb-4 text-center"><i class="fas fa-user-edit"></i> ສະໝັກເປັນສະມາສິກເກົ່າ</h1>
-                    <div class="bg-light p-4">
+                    {{-- <h1 class="mb-4 text-center"><i class="fas fa-user-edit"></i> ສະໝັກເປັນສະມາສິກເກົ່າ</h1> --}}
+                    <h1 class="mb-4 text-center" style="font-family:'Noto Sans Lao';color: #193b7c;"><i class="fas fa-user-edit"></i> ສະໝັກເປັນສິດເກົ່າ</h1>
+                    {{-- <div class="bg-light p-4"> --}}
+                    <div class=" p-4" style="background-color: #f9f9f9;">
                         <form>
                             {{-- <div class="avatar-upload">
                                 <div class="avatar-edit">
@@ -97,7 +99,8 @@
 
                             <div class="row g-3">
                                 <span class="text-bold">
-                                    <h5><b>1.ຂໍ້ມູນສ່ວນຕົວ</b></h5>
+                                    <h5 style="font-family:'Noto Sans Lao';color: #193b7c;" >1.ຂໍ້ມູນສ່ວນຕົວ</h5>
+                                    {{-- <h5><b>1.ຂໍ້ມູນສ່ວນຕົວ</b></h5> --}}
                                 </span>
                                 <div class="col-md-4">
                                     <div class="form-floating">
@@ -260,7 +263,8 @@
                                     </div>
                                 </div>
                                 <span class="text-bold">
-                                    <h5><b>2.ຂໍ້ມູນຈົບການສຶກສາ</b></h5>
+                                    <h5 style="font-family:'Noto Sans Lao';color: #193b7c;" >2.ຂໍ້ມູນຈົບການສຶກສາ</h5>
+                                    {{-- <h5><b>2.ຂໍ້ມູນຈົບການສຶກສາ</b></h5> --}}
                                 </span>
                                 <div class="col-md-4">
                                     <div class="form-floating">
@@ -299,19 +303,20 @@
                                         <select
                                             class="form-select border-0 @error('education_system_id') is-invalid @enderror"
                                             wire:model="education_system_id">
-                                            <option value="">ເລືອກ-ລະກັບການສຶກສາ</option>
+                                            <option value="">ເລືອກ-ລະດັບການສຶກສາ</option>
                                             @foreach ($EducationSystem as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="education_system_id">ລະກັບການສຶກສາ</label>
+                                        <label for="education_system_id">ລະດັບການສຶກສາ</label>
                                         @error('education_system_id')
                                             <span style="color: red" class="error">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                                 <span class="text-bold">
-                                    <h5><b>3.ຂໍ້ມູນສະຖານທີ່ເຮັດວຽກປະຈຸບັນ</b></h5>
+                                    <h5 style="font-family:'Noto Sans Lao';color: #193b7c;">3.ຂໍ້ມູນສະຖານທີ່ເຮັດວຽກປະຈຸບັນ</h5>
+                                    {{-- <h5><b>3.ຂໍ້ມູນສະຖານທີ່ເຮັດວຽກປະຈຸບັນ</b></h5> --}}
                                 </span>
                                 <div class="col-md-4">
                                     <div class="form-floating">
@@ -412,7 +417,8 @@
                                     </div>
                                 </div>
                                 <span class="text-bold">
-                                    <h5><b>4.ບັນຊີເຂົ້າສູ່ລະບົບ</b></h5>
+                                    <h5 style="font-family:'Noto Sans Lao';color: #193b7c;" >4.ບັນຊີເຂົ້າສູ່ລະບົບ</h5>
+                                    {{-- <h5><b>4.ບັນຊີເຂົ້າສູ່ລະບົບ</b></h5> --}}
                                 </span>
                                 <div class="col-md-12">
                                     <div class="form-floating">

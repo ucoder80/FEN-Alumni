@@ -2,15 +2,15 @@
 <div class="float-lg-start"><h4>{{ __('lang.headding2') }}</h4></div><br> --}}
 {{-- <marquee scrollamount="15" direction="left"> <h1>{{ __('lang.headding1') }} {{ __('lang.headding2') }}</h1> </marquee> --}}
 <div class="login-box">
-    {{-- <marquee scrollamount="12" direction="left" class="text-white">
-        <h1><i class="flag-icon flag-icon-la"></i> ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ ສັນຕິພາບ ເອກະລາດ ປະຊາທິປະໄຕ ເອກະພາບ
-            ວັດທະນາຖາວອນ</h1>
-    </marquee> --}}
+    <marquee scrollamount="12" direction="left" class="text-white">
+        <h4 style="color: #193b7c;" ><i class="flag-icon flag-icon-la"></i> ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ ສັນຕິພາບ ເອກະລາດ ປະຊາທິປະໄຕ ເອກະພາບ
+            ວັດທະນາຖາວອນ <i class="flag-icon flag-icon-la"></i></h4>
+    </marquee>
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="#" class="h2"><i class="fa fa-user-tie"></i> 
-                Welcome To </a>
+            <h2 class=" text-bold" style="color: #193b7c;" ><i class="fa fa-user-tie"></i> 
+                WELCOME TO</h2>
         </div>
         <div class="card-body">
             <p class="login-box-msg h5">
@@ -20,7 +20,7 @@
                     @else
                         <img src="{{ asset('logo/logo.jpg') }}" class="img-circle elevation-2" height="70"> <br>
                     @endif
-                    <a href="#" target="_blank" class="h5"><b>
+                    <a href="#" target="_blank" class="h5" style="color: #193b7c;" ><b>
                             @if (!empty($about))
                                 {{ $about->name_la }}
                             @endif
@@ -31,7 +31,7 @@
             <div class="input-group mb-3">
                 <div class="input-group-append">
                     <div class="input-group-text">
-                        <span class="fas fa-phone"></span>
+                        <span class="fas fa-phone" style="color: #193b7c;" ></span>
                     </div>
                 </div>
                 <input type="tel" wire:model="phone" wire:keydown.enter="login"
@@ -44,7 +44,7 @@
             <div class="input-group mb-3">
                 <div class="input-group-append">
                     <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
+                        <span class="fas fa-lock " style="color: #193b7c;" ></span>
                     </div>
                 </div>
                 <input type="password" wire:model="password" wire:keydown.enter="login"
@@ -58,14 +58,14 @@
                 <div class="col-8">
                     <div class="icheck-primary">
                         <input type="checkbox" id="remember" wire:model="remember">
-                        <label for="remember">
-                            ຈຶ່ຈຳຂ້ອຍໄວ້
+                        <label for="remember" style="color: #193b7c;" >
+                            ຈຶ່ຂ້ອຍໄວ້
                         </label>
                     </div>
                 </div>
             </div>
             <div class="social-auth-links text-center mt-2 mb-3">
-                <button wire:click="login" class="btn btn-block btn-primary">
+                <button wire:click="login" class="btn btn-block" style="background-color: #193b7c; color:white;" >
                     <i class="fa fa-sign-in-alt"></i> ເຂົ້າສູ່ລະບົບ
                 </button>
                 {{-- <a href="#" class="btn btn-block btn-primary">

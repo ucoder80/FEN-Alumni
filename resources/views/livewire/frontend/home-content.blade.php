@@ -18,7 +18,7 @@
                         <div class="container">
                             <div class="row justify-content-start">
                                 <div class="col-10 col-lg-8">
-                                    <h3 class="display-3 text-light animated slideInDown mb-4">{{ $item->header }}</h3>
+                                    <h3 class="display-3 text-light animated slideInDown mb-4" style="font-family:'Noto Sans Lao';">{{ $item->header }}</h3>
                                     <p class="fs-5 fw-medium text-light mb-4 pb-2">{{ $item->body }}</p>
                                     
                                 </div>

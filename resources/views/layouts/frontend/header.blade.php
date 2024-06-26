@@ -34,7 +34,7 @@
                     <a href="{{ route('frontend.Profiles') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.Profiles' ? 'active' : '' }}"><i class="fas fa-user-tie"></i> {{ auth()->user()->name_lastname }}</a>
                     <a href="{{ route('frontend.SignOuts') }}" class="nav-item nav-link text-danger"><i class="fas fa-sign-out-alt"></i> ອອກລະບົບ</a>
                         @else
-                        <a href="{{ route('frontend.SignUp') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.SignUp' ? 'active' : '' }}"><i class="fas fa-user-edit"></i> ສະໝັກສະມາສິກ</a>
+                        <a href="{{ route('frontend.SignUp') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.SignUp' ? 'active' : '' }}"><i class="fas fa-user-edit"></i> ສະໝັກສະມາຊີກ</a>
                     <a href="{{ route('frontend.SignIn') }}" class="nav-item nav-link {{ $currentRoute == 'frontend.SignIn' ? 'active' : '' }}"><i class="fas fa-user-lock"></i> ເຂົ້າສູ່ລະບົບ</a>
                     @endauth
 

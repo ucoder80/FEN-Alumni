@@ -90,8 +90,10 @@
         <div class="container contact-page py-3 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-md-12 contact-form wow fadeIn">
-                    <h1 class="mb-4 text-center"><i class="fas fa-user-edit"></i> ແກ້ໄຂຂໍ້ມູນສ່ວນຕົວ</h1>
-                    <div class="bg-light p-4">
+                    <h1 class="mb-4 text-center" style="font-family:'Noto Sans Lao';color: #193b7c;" ><i class="fas fa-user-edit"></i> ແກ້ໄຂຂໍ້ມູນສ່ວນຕົວ</h1>
+                    {{-- <h1 class="mb-4 text-center" ><i class="fas fa-user-edit"></i> ແກ້ໄຂຂໍ້ມູນສ່ວນຕົວ</h1> --}}
+                    {{-- <div class="bg-light p-4"> --}}
+                    <div class="p-4" style="background-color: #f9f9f9;">
                         <form>
                             <div class="avatar-upload text-center">
                                 <div class="avatar-preview border-animation">
@@ -104,7 +106,8 @@
 
                             <div class="row g-3">
                                 <span class="text-bold">
-                                    <h5><b>1.ຂໍ້ມູນສ່ວນຕົວ</b></h5>
+                                    {{-- <h5><b>1.ຂໍ້ມູນສ່ວນຕົວ</b></h5> --}}
+                                    <h5 style="font-family:'Noto Sans Lao';color: #193b7c;" >1.ຂໍ້ມູນສ່ວນຕົວ</h5>
                                 </span>
                                 <div class="col-md-4">
                                     <div class="form-floating">
@@ -267,7 +270,8 @@
                                     </div>
                                 </div>
                                 <span class="text-bold">
-                                    <h5><b>2.ຂໍ້ມູນຈົບການສຶກສາ</b></h5>
+                                    <h5 style="font-family:'Noto Sans Lao';color: #193b7c;" >2.ຂໍ້ມູນຈົບການສຶກສາ</h5>
+                                    {{-- <h5><b>2.ຂໍ້ມູນຈົບການສຶກສາ</b></h5> --}}
                                 </span>
                                 <div class="col-md-4">
                                     <div class="form-floating">
@@ -318,7 +322,8 @@
                                     </div>
                                 </div>
                                 <span class="text-bold">
-                                    <h5><b>3.ຂໍ້ມູນສະຖານທີ່ເຮັດວຽກປະຈຸບັນ</b></h5>
+                                    <h5 style="font-family:'Noto Sans Lao';color: #193b7c;">3.ຂໍ້ມູນສະຖານທີ່ເຮັດວຽກປະຈຸບັນ</h5>
+                                    {{-- <h5><b>3.ຂໍ້ມູນສະຖານທີ່ເຮັດວຽກປະຈຸບັນ</b></h5> --}}
                                 </span>
                                 <div class="col-md-4">
                                     <div class="form-floating">
@@ -419,7 +424,8 @@
                                     </div>
                                 </div>
                                 <span class="text-bold">
-                                    <h5><b>4.ບັນຊີເຂົ້າສູ່ລະບົບ</b></h5>
+                                    <h5 style="font-family:'Noto Sans Lao';color: #193b7c;" >4.ບັນຊີເຂົ້າສູ່ລະບົບ</h5>
+                                    {{-- <h5><b>4.ບັນຊີເຂົ້າສູ່ລະບົບ</b></h5> --}}
                                 </span>
                                 <div class="col-md-12">
                                     <div class="form-floating">
@@ -448,8 +454,10 @@
         <div class="container contact-page py-3 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-md-12 contact-form wow fadeIn">
-                    <h1 class="mb-4 text-center"><i class="fas fa-key"></i> ປ່ຽນລະຫັດຜ່ານ</h1>
-                    <div class="bg-light p-4">
+                    {{-- <h1 class="mb-4 text-center" ><i class="fas fa-key"></i> ປ່ຽນລະຫັດຜ່ານ</h1> --}}
+                    <h1 class="mb-4 text-center" style="font-family:'Noto Sans Lao';color: #193b7c;" ><i class="fas fa-key"></i> ປ່ຽນລະຫັດຜ່ານ</h1>
+                    <div class="p-4" style="background-color: #f9f9f9;">
+                    {{-- <div class="bg-light p-4"> --}}
                         <form>
                             <div class="row g-3">
                                 <div class="col-md-12">

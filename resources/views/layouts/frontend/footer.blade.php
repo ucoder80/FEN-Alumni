@@ -15,18 +15,18 @@
                         {{ $about->phone }}
                     @endif
                     </p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>
+                    {{-- <p class="mb-2"><i class="fa fa-envelope me-3"></i>
                         @if(!empty($about))
                         {{ $about->email }}
                     @endif
-                    </p>
+                    </p> --}}
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <h4 class="text-light mb-4" style="font-family:'Noto Sans Lao';color: #193b7c;">ເມນູລະບົບ</h4>
                     <a class="btn btn-link" href="">ສະມາສິກເກົ່າ</a>
                     <a class="btn btn-link" href="">ກ່ຽວກັບ</a>
                     <a class="btn btn-link" href="">ຕິດຕໍ່ພົວພັນ</a>
-                    <a class="btn btn-link" href="">ສະໝັກສະມາສິກ</a>
+                    <a class="btn btn-link" href="">ສະໝັກສະມາຊີກ</a>
                     <a class="btn btn-link" href="">ເຂົ້າສູ່ລະບົບ</a>
                     <a class="btn btn-link" href="">ອອກຈາກລະບົບ</a>
                 </div>

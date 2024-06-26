@@ -19,15 +19,16 @@
                     </h1>
                     <p class="mb-5">
                         @if(!empty($about))
-                      <i class="fas fa-phone-alt"></i>  {{ $about->phone }}
+                      <i class="fas fa-phone-alt" style="color: #193b7c "></i>  {{ $about->phone }}
                     @endif <br>
                         @if(!empty($about))
-                        <i class="fas fa-address-book"></i> {{ $about->address }}
+                        <i class="fas fa-address-book" style="color: #193b7c "></i> {{ $about->address }}
                     @endif
                     </p>
-                    <div class="row g-4 mb-5">
+                    <div class="row g-4 mb-5" >
                         <div class="col-sm-12 wow fadeIn" data-wow-delay="0.5s">
-                            <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
+                            <i class="fas fa-book-open fa-3x mb-3" style="color: #193b7c "></i>
+                            {{-- <i class="fas fa-book-open fa-3x text-primary mb-3"></i> --}}
                             <p class="m-0">
                                 @if(!empty($about))
                                 {!! $about->note !!}

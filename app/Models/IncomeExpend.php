@@ -13,7 +13,7 @@ class IncomeExpend extends Model
         'id',
         'name',
         'total_price',
-        'type', //1 = ລາຍຮັບ 2 = ລາຍຈ່າຍ
+        'type',
         'dated',
         'created_at',
         'updated_at',
