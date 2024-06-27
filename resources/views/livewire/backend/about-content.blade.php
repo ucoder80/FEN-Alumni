@@ -84,7 +84,7 @@
                                                 <label for="name">ອີເມວ</label>
                                                 <input type="email" wire:model="email"
                                                     class="form-control @error('email') is-invalid @enderror"
-                                                    placeholder="ຂໍ້ມູນຕິດຕໍ່">
+                                                    placeholder="ອີເມວ">
                                                 @error('email')
                                                     <span style="color: red" class="error">{{ $message }}</span>
                                                 @enderror

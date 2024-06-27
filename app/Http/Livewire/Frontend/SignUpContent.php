@@ -131,25 +131,29 @@ class SignUpContent extends Component
             'confirmPassword.required' => 'ປ້ອນຍືນຍັນລະຫັດກ່ອນ!',
             'confirmPassword.same' => 'ລະຫັດຜ່ານ ເເລະ ຍືນຍັນລະຫັດບໍ່ຕົງກັນ!',
         ]);
-        $work_place = new WorkPlace();
-        if (!empty($this->image_work)) {
-            $this->validate([
-                'image' => 'required|mimes:jpg,png,jpeg',
-            ]);
-            $imageName = Carbon::now()->timestamp . '.' . $this->image_work->extension();
-            $this->image_work->storeAs('upload/workplace', $imageName);
-            $work_place->image = 'upload/workplace' . '/' . $imageName;
-        } else {
-            $work_place->image = '';
+        if($this->name_work)
+        {
+            $work_place = new WorkPlace();
+            if (!empty($this->image_work)) {
+                $this->validate([
+                    'image' => 'required|mimes:jpg,png,jpeg',
+                ]);
+                $imageName = Carbon::now()->timestamp . '.' . $this->image_work->extension();
+                $this->image_work->storeAs('upload/workplace', $imageName);
+                $work_place->image = 'upload/workplace' . '/' . $imageName;
+            } else {
+                $work_place->image = '';
+            }
+            $work_place->name = $this->name_work;
+            $work_place->phone = $this->phone_work;
+            $work_place->email = $this->email_work;
+            $work_place->facebook = $this->facebook_work;
+            $work_place->village_id = $this->village_id_work;
+            $work_place->district_id = $this->district_id_work;
+            $work_place->province_id = $this->province_id_work;
+            $work_place->save();
         }
-        $work_place->name = $this->name_work;
-        $work_place->phone = $this->phone_work;
-        $work_place->email = $this->email_work;
-        $work_place->facebook = $this->facebook_work;
-        $work_place->village_id = $this->village_id_work;
-        $work_place->district_id = $this->district_id_work;
-        $work_place->province_id = $this->province_id_work;
-        $work_place->save();
+        
         $data = new User();
         if (!empty($this->image)) {
             $this->validate([
@@ -168,7 +172,10 @@ class SignUpContent extends Component
         $data->subject_id = $this->subject_id;
         $data->education_year_id = $this->education_year_id;
         $data->education_system_id = $this->education_system_id;
-        $data->work_place_id = $work_place->id;
+        if($this->name_work)
+        {
+            $data->work_place_id = $work_place->id;
+        }
         $data->name_lastname = $this->name_lastname;
         $data->name_lastname_en = $this->name_lastname_en;
         $data->nationality = $this->nationality;

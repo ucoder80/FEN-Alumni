@@ -34,7 +34,12 @@ class ReportWorkPlaceContent extends Component
         if ($this->village_id) {
             $data->where('village_id', $this->village_id);
         }
-        $data = $data->get();
+        if(!empty($data))
+        {
+            $data = $data->get();
+        }else{
+            $data = [];
+        }
         return view('livewire.backend.reports.report-work-place-content', compact('data', 'province'))->layout('layouts.backend.style');
     }
 }
