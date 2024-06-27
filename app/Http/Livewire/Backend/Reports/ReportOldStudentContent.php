@@ -61,6 +61,9 @@ class ReportOldStudentContent extends Component
         if ($this->gender) {
             $data->where('gender', $this->gender);
         }
+        if ($this->status) {
+            $data->where('status', $this->status);
+        }
         if(!empty($data))
         {
             $data = $data->get();

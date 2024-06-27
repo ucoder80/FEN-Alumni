@@ -132,6 +132,22 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-md-3">
+                                            <div wire:ignore class="form-group">
+                                                <select wire:model="status" id="status"
+                                                    class="form-control @error('status') is-invalid @enderror">
+                                                    <option value="">
+                                                        ເລືອກ-ສະຖານະ
+                                                    </option>
+                                                    <option value="1">ໂສດ</option>
+                                                    <option value="2">ມີແຟນ</option>
+                                                    <option value="3">ແຕ່ງງານ</option>
+                                                    <option value="4">ຢ່າຮ້າງ</option>
+                                                    <option value="5">ແຍກກັນຢູ່</option>
+                                                    <option value="6">ຮັກເຂົາຂ້າງດຽວ</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div><!-- end div-row -->
                                                                             {{-- @foreach ($rolepermissions as $items)
                                 @if ($items->permissionname->name == 'action_report_sale') --}}
@@ -232,6 +248,7 @@
                                                                     <th>ຮູບ</th>
                                                                     <th>ຊື່ ນາມສະກຸນ</th>
                                                                     <th>ເພດ</th>
+                                                                    <th>ສະຖານະ</th>
                                                                     <th>ບ່ອນເຮັດວຽກ</th>
                                                                     {{-- <th>ຕຳແຫນ່ງ</th> --}}
                                                                 </tr>
@@ -287,6 +304,21 @@
                                                                                 @else
                                                                                     <span>ຊາຍ</span>
                                                                                 @endif
+                                                                            @endif
+                                                                        </td>
+                                                                        <td>
+                                                                            @if ($item->status == 1)
+                                                                                <span class="text-secondary">ໂສດ</span>
+                                                                            @elseif($item->status == 2)
+                                                                                <span class="text-secondary">ມີແຟນ</span>
+                                                                            @elseif($item->status == 3)
+                                                                                <span class="text-secondary">ແຕ່ງງານ</span>
+                                                                            @elseif($item->status == 4)
+                                                                                <span class="text-secondary">ຢ່າຮ້າງ</span>
+                                                                            @elseif($item->status == 5)
+                                                                                <span class="text-secondary">ແຍກກັນຢູ່</span>
+                                                                            @elseif($item->status == 6)
+                                                                                <span class="text-secondary">ຮັກເຂົາຂ້າງດຽວ</span>
                                                                             @endif
                                                                         </td>
                                                                         <td>
