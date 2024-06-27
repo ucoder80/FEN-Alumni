@@ -584,7 +584,7 @@
                                 <label for="">ສາຂາວີິຊາ</label>
                                 <select type="text" class="form-control @error('subject_id') is-invalid @enderror"
                                     wire:model.live="subject_id" id="subject_id">
-                                    <option value="">ເລືອກສາຂາວີິຊາ</option>
+                                    <option value="">ເລືອກສາຂາວີຊາ</option>
                                     @foreach ($Subjects as $item)
                                         <option value="{{ $item->id }}">
                                             {{ $item->name_la }} 
@@ -628,6 +628,90 @@
                                     @endforeach
                                 </select>
                                 @error('education_system_id')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">
+                                    ລະບົບ</label>
+                                <input type="text"
+                                    class="form-control @error('system') is-invalid @enderror"
+                                    wire:model="system" placeholder="ປ້ອນຂໍ້ມູນ">
+                                @error('system')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">
+                                    ທຶນການສຶກສາ</label>
+                                <input type="text"
+                                    class="form-control @error('scholarship') is-invalid @enderror"
+                                    wire:model="scholarship" placeholder="ປ້ອນຂໍ້ມູນ">
+                                @error('scholarship')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">
+                                    ບົດໂຄງການຈົບຊັ້ນ</label>
+                                <input type="text"
+                                    class="form-control @error('final_report') is-invalid @enderror"
+                                    wire:model="final_report" placeholder="ປ້ອນຂໍ້ມູນ">
+                                @error('final_report')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">
+                                    ອາຈານຜູ້ນຳພາ</label>
+                                <input type="text"
+                                    class="form-control @error('advisor') is-invalid @enderror"
+                                    wire:model="advisor" placeholder="ປ້ອນຂໍ້ມູນ">
+                                @error('advisor')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">
+                                    ອາຈານຜູ້ຊ່ວຍນຳພາ</label>
+                                <input type="text"
+                                    class="form-control @error('co_advisor') is-invalid @enderror"
+                                    wire:model="co_advisor" placeholder="ປ້ອນຂໍ້ມູນ">
+                                @error('co_advisor')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">
+                                    ເກຣດ</label>
+                                <input type="text"
+                                    class="form-control @error('grade') is-invalid @enderror"
+                                    wire:model="grade" placeholder="ປ້ອນຂໍ້ມູນ">
+                                @error('grade')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">
+                                    ຜົນງານນັກສຶກສາ</label>
+                                <input type="text"
+                                    class="form-control @error('performance') is-invalid @enderror"
+                                    wire:model="performance" placeholder="ປ້ອນຂໍ້ມູນ">
+                                @error('performance')
                                     <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -718,7 +802,7 @@
                     <div class="row text-center pt-3">
                         <input type="hidden" wire:model="ID">
                         <div class="col-md-12">
-                            <h4><b>{{ $this->name_lastname }} - {{ $this->name_lastname_en }}</b></h4>
+                            <h4><b><i class="fas fa-graduation-cap"></i> {{ $this->name_lastname }} - {{ $this->name_lastname_en }}</b></h4>
                         </div>
                     </div>
                     <table class="table table-hover responsive">
@@ -801,6 +885,62 @@
                                 <th>
                                     @if (!empty($this->subject_data))
                                         {{ $this->subject_data }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ລະບົບ: </th>
+                                <th>
+                                    @if (!empty($this->system))
+                                        {{ $this->system }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ທຶນການສຶກສາ: </th>
+                                <th>
+                                    @if (!empty($this->scholarship))
+                                        {{ $this->scholarship }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ໂຄງການຈົບຊັ້ນ: </th>
+                                <th>
+                                    @if (!empty($this->final_report))
+                                        {{ $this->final_report }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ອາຈານຊ່ວຍນຳພາ: </th>
+                                <th>
+                                    @if (!empty($this->advisor))
+                                        {{ $this->advisor }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ອາຈານຜູ້ຊ່ວຍນຳພາ: </th>
+                                <th>
+                                    @if (!empty($this->co_advisor))
+                                        {{ $this->co_advisor }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ເກຣດ: </th>
+                                <th>
+                                    @if (!empty($this->grade))
+                                        {{ $this->grade }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ຜົນງານນັກສຶກສາ: </th>
+                                <th>
+                                    @if (!empty($this->performance))
+                                        {{ $this->performance }} 
                                     @endif
                                 </th>
                             </tr>

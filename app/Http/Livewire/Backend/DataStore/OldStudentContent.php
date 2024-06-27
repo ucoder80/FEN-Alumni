@@ -38,6 +38,13 @@ class OldStudentContent extends Component
     $province_id,
     $village_id,
     $district_id,
+    $system,
+    $scholarship,
+    $final_report,
+    $advisor,
+    $co_advisor,
+    $grade,
+    $performance,
     $districts = [],
     $villages = [];
     public $education_year_id, $subject_id, $work_place_id, $image, $nationality, $religion, $newimage,$education_system_id;
@@ -47,6 +54,7 @@ class OldStudentContent extends Component
             $q->where('name_lastname', 'like', '%' . $this->search . '%')
                 ->orwhere('name_lastname_en', 'like', '%' . $this->search . '%')
                 ->orwhere('phone', 'like', '%' . $this->search . '%')
+                ->orwhere('email', 'like', '%' . $this->search . '%')
                 ->orwhere('code', 'like', '%' . $this->search . '%');
         })->orderBy('id', 'desc');
         if ($this->roles_id) {
@@ -107,6 +115,13 @@ class OldStudentContent extends Component
         $this->image = '';
         $this->nationality = '';
         $this->religion = '';
+        $this->system = '';
+        $this->scholarship = '';
+        $this->final_report = '';
+        $this->advisor = '';
+        $this->co_advisor = '';
+        $this->grade = '';
+        $this->performance = '';
 
     }
     public function create()
@@ -172,6 +187,14 @@ class OldStudentContent extends Component
             $data->education_system_id = !empty($this->education_system_id) ? $this->education_system_id : null;
             $data->nationality = $this->nationality;
             $data->religion = $this->religion;
+            $data->system = $this->system;
+            $data->scholarship = $this->scholarship;
+            $data->final_report = $this->final_report;
+            $data->advisor = $this->advisor;
+            $data->co_advisor = $this->co_advisor;
+            $data->grade = $this->grade;
+            $data->performance = $this->performance;
+
             $data->save();
             $this->resetField();
             $this->dispatchBrowserEvent('hide-modal-add-edit');
@@ -213,6 +236,13 @@ class OldStudentContent extends Component
         $this->newimage = $data->image;
         $this->nationality = $data->nationality;
         $this->religion = $data->religion;
+        $this->system = $data->system;
+        $this->scholarship = $data->scholarship;
+        $this->final_report = $data->final_report;
+        $this->advisor = $data->advisor;
+        $this->co_advisor = $data->co_advisor;
+        $this->grade = $data->grade;
+        $this->performance = $data->performance;
         $this->dispatchBrowserEvent('show-modal-add-edit');
     }
     public function Update($ids)
@@ -251,6 +281,13 @@ class OldStudentContent extends Component
         $data->education_system_id = !empty($this->education_system_id) ? $this->education_system_id : null;
         $data->nationality = $this->nationality;
         $data->religion = $this->religion;
+        $data->system = $this->system;
+        $data->scholarship = $this->scholarship;
+        $data->final_report = $this->final_report;
+        $data->advisor = $this->advisor;
+        $data->co_advisor = $this->co_advisor;
+        $data->grade = $this->grade;
+        $data->performance = $this->performance;
         $data->save();
         $this->dispatchBrowserEvent('swal', [
             'title' => 'ສຳເລັດເເລ້ວ!',
@@ -314,6 +351,13 @@ class OldStudentContent extends Component
         $this->newimage = $data->image;
         $this->nationality = $data->nationality;
         $this->religion = $data->religion;
+        $this->system = $data->system;
+        $this->scholarship = $data->scholarship;
+        $this->final_report = $data->final_report;
+        $this->advisor = $data->advisor;
+        $this->co_advisor = $data->co_advisor;
+        $this->grade = $data->grade;
+        $this->performance = $data->performance;
         $this->dispatchBrowserEvent('show-modal-detail');
     }
 }
