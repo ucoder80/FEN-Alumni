@@ -19,7 +19,7 @@ class SignUpContent extends Component
 {
     use WithFileUploads;
     public $name_lastname, $phone, $password, $confirmPassword, $districts = [], $villages = [], $ID, $name_lastname_en;
-    public $name_work, $phone_work, $email_work, $facebook_work, $village_id_work, $district_id_work, $province_id_work, $image_work,$system,$scholarship,$final_report,$advisor,$co_advisor,$grade,$performance;
+    public $name_work, $phone_work, $email_work, $facebook_work, $village_id_work, $district_id_work, $province_id_work, $image_work, $system, $scholarship, $final_report, $advisor, $co_advisor, $grade, $performance;
     public function render()
     {
         $provinces = Province::all();
@@ -131,8 +131,7 @@ class SignUpContent extends Component
             'confirmPassword.required' => 'ປ້ອນຍືນຍັນລະຫັດກ່ອນ!',
             'confirmPassword.same' => 'ລະຫັດຜ່ານ ເເລະ ຍືນຍັນລະຫັດບໍ່ຕົງກັນ!',
         ]);
-        if($this->name_work)
-        {
+        if ($this->name_work) {
             $work_place = new WorkPlace();
             if (!empty($this->image_work)) {
                 $this->validate([
@@ -153,7 +152,7 @@ class SignUpContent extends Component
             $work_place->province_id = $this->province_id_work;
             $work_place->save();
         }
-        
+
         $data = new User();
         if (!empty($this->image)) {
             $this->validate([
@@ -172,8 +171,7 @@ class SignUpContent extends Component
         $data->subject_id = $this->subject_id;
         $data->education_year_id = $this->education_year_id;
         $data->education_system_id = $this->education_system_id;
-        if($this->name_work)
-        {
+        if ($this->name_work) {
             $data->work_place_id = $work_place->id;
         }
         $data->name_lastname = $this->name_lastname;
