@@ -97,8 +97,13 @@
                     <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="service-item p-4">
                             <div class="overflow-hidden mb-4">
+                                @if(!empty($item->image))
                                 <img style="width: 100%; height:350px" class="img-fluid" src="{{ asset($item->image) }}"
-                                    alt="">
+                                alt="">
+                                @else
+                                <img style="width: 100%; height:350px" class="img-fluid" src="https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"
+                                alt="">
+                                @endif
                             </div>
                             <h4 class="mb-3 fs-5 " style="font-family:'Noto Sans Lao';color: #193b7c "><i class="fas fa-graduation-cap"></i> {{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>
                                 <p><b>ຈົບສົກສຶກສາ:</b>

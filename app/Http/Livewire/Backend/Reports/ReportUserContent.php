@@ -13,7 +13,7 @@ class ReportUserContent extends Component
 
     public function render()
     {
-        $data = User::get();
+        $data = User::whereIn('roles_id',[1,2,3])->get();
         $roles = Role::get();
         if ($this->roles_id) {
             $data = $data->where('roles_id', $this->roles_id);
