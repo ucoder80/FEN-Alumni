@@ -382,7 +382,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body right_content">
+                <div class="modal-body right_content2">
                     <div class="row">
                         <div class="container">
                             <div wire:ignore.self class="avatar-upload">
@@ -504,7 +504,7 @@
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary fas fa-times-circle" data-dismiss="modal">
                         ປິດ</button>
-                    <button id="print" type="button" class="btn btn-success"> <i class="fas fa-print"></i>
+                    <button id="print2" type="button" class="btn btn-success"> <i class="fas fa-print"></i>
                     </button>
                 </div>
             </div>
@@ -523,6 +523,22 @@
 
                     function printDiv() {
                         var printContents = $(".right_content").html();
+                        var originalContents = document.body.innerHTML;
+                        document.body.innerHTML = printContents;
+                        window.print();
+                        document.body.innerHTML = originalContents;
+                    }
+                    location.reload();
+                });
+            });
+        </script>
+         <script>
+            $(document).ready(function() {
+                $('#print2').click(function() {
+                    printDiv();
+
+                    function printDiv() {
+                        var printContents = $(".right_content2").html();
                         var originalContents = document.body.innerHTML;
                         document.body.innerHTML = printContents;
                         window.print();
