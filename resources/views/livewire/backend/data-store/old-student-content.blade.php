@@ -71,10 +71,10 @@
                                                     <div class="col-md-12">
                                                         @if (!empty($item->image))
                                                             <img class="rounded" src="{{ asset($item->image) }}"
-                                                                width="100%;" height="200px; ">
+                                                                width="100%;" height="250px; ">
                                                         @else
                                                             <img class="rounded" src="{{ asset('logo/noimage.jpg') }}"
-                                                                width="100%;" height="200px; ">
+                                                                width="100%;" height="250px; ">
                                                         @endif
                                                     </div>
                                                 </div>

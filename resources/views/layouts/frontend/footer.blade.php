@@ -1,6 +1,7 @@
 <div>
     <!-- Footer Start -->
-    <div class="container-fluid text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="background-color: {{ !empty($about->f_sidebar_color) ? $about->f_sidebar_color : '' }}">
+    {{-- <div class="container-fluid text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="background-color: {{ !empty($about->f_sidebar_color) ? $about->f_sidebar_color : '' }}"> --}}
+    <div class="container-fluid text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="background-color: #193b7c">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-4 col-md-6">
@@ -15,11 +16,11 @@
                         {{ $about->phone }}
                     @endif
                     </p>
-                    {{-- <p class="mb-2"><i class="fa fa-envelope me-3"></i>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>
                         @if(!empty($about))
                         {{ $about->email }}
                     @endif
-                    </p> --}}
+                    </p>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <h4 class="text-light mb-4" style="font-family:'Noto Sans Lao';color: #193b7c;">ເມນູລະບົບ</h4>

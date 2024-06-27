@@ -1,7 +1,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-primary elevation-3" style="background-color: {{ !empty($about->b_sidebar_color) ? $about->b_sidebar_color : '' }}">
       <!-- Brand Logo -->
-      <a href="{{ route('backend.dashboard') }}" class="brand-link" style="font-family:'Noto Sans Lao';color: #193b7c;">
+      <a href="{{ route('backend.dashboard') }}" class="brand-link" style="font-family:'Noto Sans Lao';color: #ffffff;">
           @if (!empty($about))
               <img src="{{ asset($about->logo) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                   style="width: 40px; height:70px" style="opacity: .8">
@@ -16,7 +16,7 @@
           </span>
       </a>
       <!-- Sidebar -->
-      <div class="sidebar" style="background-color:#193b7c ">
+      <div class="sidebar" style="background-color: {{ !empty($about->b_sidebar_color) ? $about->b_sidebar_color : '' }}">
           <!-- Sidebar Menu -->
           <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"

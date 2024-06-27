@@ -97,10 +97,10 @@
                     <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="service-item p-4">
                             <div class="overflow-hidden mb-4">
-                                <img style="width: 100%; height:250px" class="img-fluid" src="{{ asset($item->image) }}"
+                                <img style="width: 100%; height:350px" class="img-fluid" src="{{ asset($item->image) }}"
                                     alt="">
                             </div>
-                            <h4 class="mb-3 " style="font-family:'Noto Sans Lao';color: #193b7c "><i class="fas fa-graduation-cap"></i> {{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>
+                            <h4 class="mb-3 fs-5 " style="font-family:'Noto Sans Lao';color: #193b7c "><i class="fas fa-graduation-cap"></i> {{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>
                                 <p><b>ຈົບສົກສຶກສາ:</b>
                                     @if (!empty($item->education_year))
                                         {{ $item->education_year->start_year }} -
@@ -112,11 +112,11 @@
                                         {{ $item->education_year->genderation }}
                                     @endif
                                 </p>
-                                <p><b>ພາກວິຊາ: </b>
+                                {{-- <p><b>ພາກວິຊາ: </b>
                                     @if (!empty($item->subject->department))
                                         {{ $item->subject->department->name_la }}
                                     @endif
-                                </p>
+                                </p> --}}
                                 <p><b>ສາຂາ:</b>
                                     @if (!empty($item->subject))
                                         {{ $item->subject->name_la }}
@@ -132,7 +132,7 @@
                                         {{ $item->final_report }}
                                     @endif
                                 </p>
-                                <p><b>ອາຈານຜູ້ນຳພາ: </b>
+                                {{-- <p><b>ອາຈານຜູ້ນຳພາ: </b>
                                     @if (!empty($item->advidor))
                                         {{ $item->advidor }}
                                     @endif
@@ -151,7 +151,7 @@
                                     @if (!empty($item->performance))
                                         {{ $item->performance }}
                                     @endif
-                                </p>
+                                </p> --}}
                                 <p><b>ບ່ອນເຮັດວຽກ: </b>
                                     @if (!empty($item->work_place))
                                         {{ $item->work_place->name }}
@@ -159,7 +159,8 @@
                                 </p>
                                 <a class="btn-slide mt-2"
                                     href="@if (!empty($item->work_place)) {{ $item->work_place->facebook }} @endif"><i
-                                        class="fa fa-arrow-right"></i><span>ຍ້ຽມຊົມບ່ອນເຮັດວຽກ</span></a>
+                                        class="fa fa-arrow-right"></i><span>ຍ້ຽມຊົມບ່ອນເຮັດວຽກ</span>
+                                </a>
                         </div>
                     </div>
                 @endforeach

@@ -25,7 +25,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header"
-                                    style="background: #193b7c ">
+                                    style="background-color: {{ !empty($about->b_sidebar_color) ? $about->b_sidebar_color : '' }} ">
                                     <h5 style="color:#fff"><b><i class="fas fa-building"></i> ຂໍ້ມູນຕັ້ງຄ່າລະບົບ</b>
                                     </h5>
                                 </div>
