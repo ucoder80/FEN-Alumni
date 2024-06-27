@@ -271,13 +271,13 @@
                                         <select
                                             class="form-select border-0 @error('education_year_id') is-invalid @enderror"
                                             wire:model="education_year_id">
-                                            <option value="">ເລືອກ-ລະບົບປີຮຽນ</option>
+                                            <option value="">ເລືອກ-ສົກສືກສາປີຮຽນ</option>
                                             @foreach ($EducationYears as $item)
                                                 <option value="{{ $item->id }}">{{ $item->start_year }} -
                                                     {{ $item->end_year }} ລຸ້ນທີ່: {{ $item->genderation }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="education_year_id">ລະບົບປີຮຽນ</label>
+                                        <label for="education_year_id">ສົກສືກສາປິຮຽນ</label>
                                         @error('education_year_id')
                                             <span style="color: red" class="error">{{ $message }}</span>
                                         @enderror
@@ -316,15 +316,33 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-floating">
-                                        <input wire:model='system' type="text"
+                                        {{-- <input wire:model='system' type="text"
                                             class="form-control @error('system') is-invalid @enderror"
                                             id="name" placeholder="ລະບົບ">
-                                        <label for="name">ລະບົບ</label>
+                                        <label for="name">ລະບົບ</label> --}}
+                                        <select class="form-select border-0 @error('system') is-invalid @enderror"
+                                            wire:model="gender">
+                                            <option value="">ເລືອກ-ລະບົບ</option>
+                                            <option value="1">ນອກແຜນ</option>
+                                            <option value="2">ໃນແຜນ</option>
+                                        </select>
                                         @error('system')
                                             <span style="color: red" class="error">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
+                                {{-- <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input wire:model='system' type="text"
+                                            class="form-control @error('system') is-invalid @enderror"
+                                            id="name" placeholder="ລະບົບ">
+                                        <label for="name">ລະບົບ</label>
+                                        
+                                        @error('system')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div> --}}
                                 <div class="col-md-4">
                                     <div class="form-floating">
                                         <input wire:model='scholarship' type="text"
