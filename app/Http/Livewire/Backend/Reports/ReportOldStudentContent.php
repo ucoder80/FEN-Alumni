@@ -2,10 +2,14 @@
 
 namespace App\Http\Livewire\Backend\Reports;
 
-use App\Models\EducationYear;
 use App\Models\User;
+use App\Models\Village;
 use Livewire\Component;
+use App\Models\District;
 use App\Models\Position;
+use App\Models\Province;
+use App\Models\EducationYear;
+use App\Models\Subject;
 
 class ReportOldStudentContent extends Component
 {
@@ -30,13 +34,40 @@ class ReportOldStudentContent extends Component
     public $education_year_id, $subject_id, $work_place_id, $image, $nationality, $religion, $newimage,$education_system_id;
     public function render()
     {
+        $province = Province::all();
+        $subject = Subject::all();
         $education_year = EducationYear::all();
-        $data = User::where('roles_id',4)->get();
+        $data = User::where('roles_id',4);
         $position = Position::get();
         if ($this->education_year_id) {
             $data = $data->where('education_year_id', $this->education_year_id);
         }
-        return view('livewire.backend.reports.report-old-student-content', compact('data','position','education_year'))->layout('layouts.backend.style');
+        if ($this->subject_id) {
+            $data->where('subject_id', $this->subject_id);
+        }
+        if ($this->province_id) {
+            $this->districts = District::where('province_id', $this->province_id)->get();
+            $data->where('province_id', $this->province_id);
+        }
+
+        if ($this->district_id) {
+            $this->villages = Village::where('district_id', $this->district_id)->get();
+            $data->where('district_id', $this->district_id);
+        }
+
+        if ($this->village_id) {
+            $data->where('village_id', $this->village_id);
+        }
+        if ($this->gender) {
+            $data->where('gender', $this->gender);
+        }
+        if(!empty($data))
+        {
+            $data = $data->get();
+        }else{
+            $data = [];
+        }
+        return view('livewire.backend.reports.report-old-student-content', compact('data','subject','position','education_year','province'))->layout('layouts.backend.style');
     }
     public $village_data, $province_data, $district_data, $roles_data;
     public $education_start_year_data, $education_end_year_data, $subject_data, $work_place_data;
