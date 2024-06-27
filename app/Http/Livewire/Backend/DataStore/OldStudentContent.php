@@ -52,22 +52,37 @@ class OldStudentContent extends Component
         if ($this->roles_id) {
             $data = $data->where('roles_id', $this->roles_id);
         }
-        if (!empty($data)) {
-            $data = $data->paginate(8);
-        }
         $provinces = Province::all();
+        if ($this->education_year_id) {
+            $data = $data->where('education_year_id', $this->education_year_id);
+        }
+        if ($this->subject_id) {
+            $data->where('subject_id', $this->subject_id);
+        }
         if ($this->province_id) {
             $this->districts = District::where('province_id', $this->province_id)->get();
+            $data->where('province_id', $this->province_id);
         }
         if ($this->district_id) {
             $this->villages = Village::where('district_id', $this->district_id)->get();
+            $data->where('district_id', $this->district_id);
         }
+        if ($this->gender) {
+            $data->where('gender', $this->gender);
+        }
+        if ($this->status) {
+            $data->where('status', $this->status);
+        }
+        $education_year = EducationYear::all();
         $roles = Role::all();
         $EducationYears = EducationYear::all();
         $Subjects = Subject::all();
         $WorkPlaces = WorkPlace::all();
         $EducationSystem = EducationSystem::all();
-        return view('livewire.backend.data-store.old-student-content', compact('data', 'provinces', 'roles', 'EducationYears', 'Subjects', 'WorkPlaces','EducationSystem'))->layout('layouts.backend.style');
+        if (!empty($data)) {
+            $data = $data->get();
+        }
+        return view('livewire.backend.data-store.old-student-content', compact('data', 'education_year','provinces', 'roles', 'EducationYears', 'Subjects', 'WorkPlaces','EducationSystem'))->layout('layouts.backend.style');
     }
     public function resetField()
     {

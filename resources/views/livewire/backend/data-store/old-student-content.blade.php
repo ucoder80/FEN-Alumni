@@ -28,14 +28,125 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
+                          <div class="row pb-1">
+                            <div class="col-md-3">
+                                <a wire:click="create" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                        class="fa fa-plus-circle"></i> ເພີ່ມໃຫມ່</a>
+                            </div>
+                          </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <a wire:click="create" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
-                                            class="fa fa-plus-circle"></i> ເພີ່ມໃຫມ່</a>
+                                    <div wire:ignore class="form-group">
+                                        <select wire:model="education_year_id" id="education_year_id"
+                                            class="form-control @error('education_year_id') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ປີສົກຮຽນ
+                                            </option>
+                                            @foreach ($education_year as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->start_year }} -
+                                                    {{ $item->end_year }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select wire:model="subject_id" id="subject_id"
+                                            class="form-control @error('subject_id') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ສາຂາວິຊາ
+                                            </option>
+                                            @foreach ($Subjects as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->name_la }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
+                                    <div wire:ignore class="form-group">
+                                        <select wire:model="province_id" id="province_id"
+                                            class="form-control @error('province_id') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ແຂວງ
+                                            </option>
+                                            @foreach ($provinces as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->name_la }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select wire:model="district_id" id="district_id"
+                                            class="form-control @error('district_id') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ເມືອງ
+                                            </option>
+                                            @foreach ($districts as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->name_la }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select wire:model="village_id" id="village_id"
+                                            class="form-control @error('village_id') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ບ້ານ
+                                            </option>
+                                            @foreach ($villages as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->name_la }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div wire:ignore class="form-group">
+                                        <select wire:model="gender" id="gender"
+                                            class="form-control @error('gender') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ເພດ
+                                            </option>
+                                                <option value="1">
+                                                    ຍິງ
+                                                </option>
+                                                <option value="2">
+                                                    ຊາຍ
+                                                </option>
+                                                <option value="3">
+                                                    ອື່ນໆ
+                                                </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div wire:ignore class="form-group">
+                                        <select wire:model="status" id="status"
+                                            class="form-control @error('status') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ສະຖານະ
+                                            </option>
+                                            <option value="1">ໂສດ</option>
+                                            <option value="2">ມີແຟນ</option>
+                                            <option value="3">ແຕ່ງງານ</option>
+                                            <option value="4">ຢ່າຮ້າງ</option>
+                                            <option value="5">ແຍກກັນຢູ່</option>
+                                            <option value="6">ຮັກເຂົາຂ້າງດຽວ</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                {{-- <div class="col-md-3">
                                     <div wire:ignore class="form-group">
                                         <select wire:model="roles_id" id="roles_id"
                                             class="form-control @error('roles_id') is-invalid @enderror">
@@ -49,7 +160,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-3">
                                     <input wire:model.live="search" type="text" class="form-control"
                                         placeholder="ຄົ້ນຫາ">
@@ -116,9 +227,9 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <div class="float-right">
+                            {{-- <div class="float-right">
                                 {{ $data->links() }}
-                            </div>
+                            </div> --}}
                             {{-- <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
