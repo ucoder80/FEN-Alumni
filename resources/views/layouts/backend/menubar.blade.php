@@ -89,7 +89,7 @@
                         <li>
                             <a href="" class="dropdown-item"><i
                                     class="fa fa-angle-double-right main-web-color"></i>
-                                ລາຍຮັບ-ລາຍຈ່າຍ
+                                {{-- ລາຍຮັບ-ລາຍຈ່າຍ --}}
                             </a>
                         </li>
                         {{-- @endif

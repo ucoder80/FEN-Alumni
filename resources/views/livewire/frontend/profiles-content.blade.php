@@ -294,12 +294,12 @@
                                     <div class="form-floating">
                                         <select class="form-select border-0 @error('subject_id') is-invalid @enderror"
                                             wire:model="subject_id">
-                                            <option value="">ເລືອກ-ສາຂາວິຊາ</option>
+                                            <option value="">ເລືອກ-ສາຂາວີຊາ</option>
                                             @foreach ($Subjects as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name_la }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="subject_id">ສາຂາວິຊາ</label>
+                                        <label for="subject_id">ສາຂາວີຊາ</label>
                                         @error('subject_id')
                                             <span style="color: red" class="error">{{ $message }}</span>
                                         @enderror
@@ -310,12 +310,12 @@
                                         <select
                                             class="form-select border-0 @error('education_system_id') is-invalid @enderror"
                                             wire:model="education_system_id">
-                                            <option value="">ເລືອກ-ລະກັບການສຶກສາ</option>
+                                            <option value="">ເລືອກ-ລະດັບການສຶກສາ</option>
                                             @foreach ($EducationSystem as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
-                                        <label for="education_system_id">ລະກັບການສຶກສາ</label>
+                                        <label for="education_system_id">ລະດັບການສຶກສາ</label>
                                         @error('education_system_id')
                                             <span style="color: red" class="error">{{ $message }}</span>
                                         @enderror
