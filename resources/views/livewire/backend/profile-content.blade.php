@@ -142,7 +142,7 @@
                                                     id="inputEmail" placeholder="ປ້ອນຂໍ້ມູນ">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        {{-- <div class="form-group row">
                                             <label for="inputEmail" class="col-sm-2 col-form-label">ສະຖານະ </label>
                                             <div class="col-sm-10">
                                             <select wire:model.live="status" id="status" class="form-control">
@@ -155,7 +155,7 @@
                                                 <option value="6">ຮັກເຂົາຂ້າງດຽວ</option>
                                             </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group row">
                                             <div class="offset-sm-2 col-sm-10">
                                                 <button type="button" wire:click="updateProfile"

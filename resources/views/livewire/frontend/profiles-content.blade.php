@@ -122,6 +122,31 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-floating">
+                                        <input wire:model='code' type="text"
+                                            class="form-control @error('code') is-invalid @enderror" id="name"
+                                            placeholder="ຊື່">
+                                        <label for="name">ລະຫັດນັກສຶກສາ</label>
+                                        @error('code')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <select class="form-select border-0 @error('gender') is-invalid @enderror"
+                                            wire:model="gender">
+                                            <option value="">ເລືອກ-ເພດ</option>
+                                            <option value="1">ຍິງ</option>
+                                            <option value="2">ຊາຍ</option>
+                                        </select>
+                                        <label for="subject">ເພດ</label>
+                                        @error('gender')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
                                         <input wire:model='name_lastname' type="text"
                                             class="form-control @error('name_lastname') is-invalid @enderror"
                                             id="name" placeholder="ຊື່">
@@ -142,24 +167,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-floating">
-                                        <input wire:model='email' type="email" class="form-control" id="email"
-                                            placeholder="ອີເມວ">
-                                        <label for="email">ອີເມວ</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-floating">
-                                        <input wire:model='phone' type="number"
-                                            class="form-control @error('phone') is-invalid @enderror" id="name"
-                                            placeholder="ຊື່">
-                                        <label for="name">ເບີໂທ</label>
-                                        @error('phone')
-                                            <span style="color: red" class="error">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
+                                
                                 <div class="col-md-4">
                                     <div class="form-floating">
                                         <input wire:model='birtday_date' type="date"
@@ -171,23 +179,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-floating">
-                                        <select class="form-select border-0 @error('gender') is-invalid @enderror"
-                                            wire:model="gender">
-                                            <option value="">ເລືອກ-ເພດ</option>
-                                            <option value="1">ຍິງ</option>
-                                            <option value="2">ຊາຍ</option>
-                                            <option value="3">ອື່ນໆ</option>
-                                        </select>
-                                        <label for="subject">ເພດ</label>
-
-                                        @error('gender')
-                                            <span style="color: red" class="error">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
+                                {{-- <div class="col-md-4">
                                     <div class="form-floating">
                                         <select class="form-select border-0 @error('status') is-invalid @enderror"
                                             wire:model="status">
@@ -227,7 +219,7 @@
                                             <span style="color: red" class="error">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-4">
                                     <div class="form-floating">
                                         <select class="form-select border-0 @error('province_id') is-invalid @enderror"
@@ -258,15 +250,33 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-floating">
                                         <input wire:model='village_id' type="text"
                                             class="form-control @error('village_id') is-invalid @enderror"
-                                            id="name" placeholder="ບ້ານເກີດ (ຖະຫນົນເລກທີ)">
-                                        <label for="name">ບ້ານເກີດ (ຖະຫນົນເລກທີ)</label>
+                                            id="name" placeholder="ບ້ານເກີດ">
+                                        <label for="name">ບ້ານເກີດ</label>
                                         @error('village_id')
                                             <span style="color: red" class="error">{{ $message }}</span>
                                         @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input wire:model='phone' type="number"
+                                            class="form-control @error('phone') is-invalid @enderror" id="name"
+                                            placeholder="ຊື່">
+                                        <label for="name">ເບີໂທ</label>
+                                        @error('phone')
+                                            <span style="color: red" class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input wire:model='email' type="email" class="form-control" id="email"
+                                            placeholder="ອີເມວ">
+                                        <label for="email">ອີເມວ</label>
                                     </div>
                                 </div>
                                 <span class="text-bold">
@@ -323,9 +333,15 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-floating">
-                                        <input wire:model='system' type="text"
+                                        {{-- <input wire:model='system' type="text"
                                             class="form-control @error('system') is-invalid @enderror"
-                                            id="name" placeholder="ລະບົບ">
+                                            id="name" placeholder="ລະບົບ"> --}}
+                                            <select class="form-select border-0 @error('system') is-invalid @enderror"
+                                            wire:model="gender">
+                                            <option value="">ເລືອກ-ລະບົບ</option>
+                                            <option value="1">ນອກແຜນ</option>
+                                            <option value="2">ໃນແຜນ</option>
+                                        </select>
                                         <label for="name">ລະບົບ</label>
                                         @error('system')
                                             <span style="color: red" class="error">{{ $message }}</span>
@@ -380,8 +396,8 @@
                                     <div class="form-floating">
                                         <input wire:model='grade' type="text"
                                             class="form-control @error('grade') is-invalid @enderror"
-                                            id="name" placeholder="ເກຣດນິຍົມ">
-                                        <label for="name">ເກຣດນິຍົມ</label>
+                                            id="name" placeholder="ກຽດນິຍົມ">
+                                        <label for="name">ກຽດນິຍົມ</label>
                                         @error('grade')
                                             <span style="color: red" class="error">{{ $message }}</span>
                                         @enderror
@@ -471,8 +487,8 @@
                                     <div class="form-floating">
                                         <input wire:model='village_id_work' type="text"
                                             class="form-control @error('village_id_work') is-invalid @enderror"
-                                            id="name" placeholder="ບ້ານ (ຖະຫນົນເລກທີ)">
-                                        <label for="name">ບ້ານ (ຖະຫນົນເລກທີ)</label>
+                                            id="name" placeholder="ບ້ານ">
+                                        <label for="name">ບ້ານ</label>
                                         @error('village_id_work')
                                             <span style="color: red" class="error">{{ $message }}</span>
                                         @enderror
@@ -500,9 +516,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <span class="text-bold">
+                                {{-- <span class="text-bold">
                                     <h5 style="font-family:'Noto Sans Lao';color: #193b7c;" >4.ບັນຊີເຂົ້າສູ່ລະບົບ</h5>
-                                    {{-- <h5><b>4.ບັນຊີເຂົ້າສູ່ລະບົບ</b></h5> --}}
                                 </span>
                                 <div class="col-md-12">
                                     <div class="form-floating">
@@ -514,7 +529,7 @@
                                             <span style="color: red" class="error">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-12">
                                     <button wire:click ='updateProfile' class="btn btn-primary w-100 py-3" type="button"><i
                                             class="fas fa-pen"></i> ຍືນຍັນແກ້ໄຂ</button>

@@ -128,7 +128,7 @@
                                             <th>ເບີໂທ</th>
                                             <th>ອີເມວ</th>
                                             <th>ເພດ</th>
-                                            <th>ສະຖານະ</th>
+                                            {{-- <th>ສະຖານະ</th> --}}
                                             <th>ສິດນຳໃຊ້</th>
                                             {{-- <th>ວດປ ເກີດ</th> --}}
                                             <th>ຈັດການ</th>
@@ -159,7 +159,7 @@
                                                         <span class="text-danger">ຊາຍ</span>
                                                     @endif
                                                 </td>
-                                                <td>
+                                                {{-- <td>
                                                     @if ($item->status == 1)
                                                         <span class="text-secondary">ໂສດ</span>
                                                     @elseif($item->status == 2)
@@ -173,7 +173,7 @@
                                                     @elseif($item->status == 6)
                                                         <span class="text-secondary">ຮັກເຂົາຂ້າງດຽວ</span>
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td class="text-bold">
                                                     @if (!empty($item->roles))
                                                         {{ $item->roles->name }}

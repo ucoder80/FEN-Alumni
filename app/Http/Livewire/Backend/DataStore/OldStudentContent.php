@@ -67,6 +67,9 @@ class OldStudentContent extends Component
         if ($this->subject_id) {
             $data->where('subject_id', $this->subject_id);
         }
+        if ($this->education_system_id) {
+            $data->where('education_system_id', $this->education_system_id);
+        }
         if ($this->province_id) {
             $this->districts = District::where('province_id', $this->province_id)->get();
             $data->where('province_id', $this->province_id);
@@ -95,6 +98,7 @@ class OldStudentContent extends Component
     public function resetField()
     {
         $this->ID = '';
+        $this->code = '';//
         $this->name_lastname = '';
         $this->name_lastname_en = '';
         $this->phone = '';
@@ -133,28 +137,31 @@ class OldStudentContent extends Component
     {
         $this->validate([
             'name_lastname' => 'required',
-            'email' => 'unique:users',
+            // 'email' => 'unique:users',
             'gender' => 'required',
-            'phone' => 'required|min:8|max:8|unique:users',
+            'phone' => 'required|min:8|unique:users',
             'password' => 'required|min:6',
             'confirm_password' => 'required|same:password',
             'roles_id' => 'required',
+            'code' => 'required',//
         ], [
             'name_lastname.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
-            'email.unique' => 'ຂໍ້ມູນນີ້ມີໃນລະບົບເເລ້ວ!',
+            // 'email.unique' => 'ຂໍ້ມູນນີ້ມີໃນລະບົບເເລ້ວ!',
             'gender.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
             'phone.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
-            'phone.min' => 'ເບີໂທ8ໂຕເລກເທົ່ານັ້ນ!',
-            'phone.max' => 'ເບີໂທ8ໂຕເລກເທົ່ານັ້ນ!',
+            'phone.min' => 'ເບີໂທ11ໂຕເລກເທົ່ານັ້ນ!',
+            'phone.max' => 'ເບີໂທ11ໂຕເລກເທົ່ານັ້ນ!',
             'phone.unique' => 'ຂໍ້ມູນນີ້ມີໃນລະບົບເເລ້ວ!',
             'password.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
             'password.min' => 'ລະຫັດ6ໂຕຂື້ນໄປ!',
             'confirm_password.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',
             'confirm_password.same' => 'ລະຫັດຜ່ານບໍ່ຕົງກັນ!',
             'roles_id.required' => 'ເລືອກຂໍ້ມູນກ່ອນ!',
+            'code.unique' => 'ຂໍ້ມູນນີ້ມີໃນລະບົບເເລ້ວ!',//
+            'code.required' => 'ປ້ອນຂໍ້ມູນກ່ອນ!',//
         ]);
-        try {
-            DB::beginTransaction();
+        // {
+        //     DB::beginTransaction();
             $data = new User();
             if (!empty($this->image)) {
                 $this->validate([
@@ -166,27 +173,31 @@ class OldStudentContent extends Component
             } else {
                 $data->image = '';
             }
-            $data->code = mt_rand(1000000000, 9999999999);
+            // $data->code = mt_rand(1000000000, 9999999999);
             // $data->code = 'EP-' . mt_rand(100000, 999999);
+            $data->code = $this->code;
             $data->name_lastname = $this->name_lastname;
             $data->name_lastname_en = $this->name_lastname_en;
             $data->phone = $this->phone;
             $data->email = $this->email;
             $data->gender = $this->gender;
-            $data->status = $this->status;
-            $data->birtday_date = $this->birtday_date;
+            // $data->status = $this->status;
+            // $data->birtday_date = $this->birtday_date;
+            $data->birtday_date = !empty($this->birtday_date) ? $this->birtday_date : null;
             $data->email = $this->email;
             $data->password = bcrypt($this->password);
             $data->roles_id = $this->roles_id;
             $data->village_id = $this->village_id;
-            $data->district_id = $this->district_id;
-            $data->province_id = $this->province_id;
+            // $data->district_id = $this->district_id;
+            $data->district_id = !empty($this->district_id) ? $this->district_id : null;
+            // $data->province_id = $this->province_id;
+            $data->province_id = !empty($this->province_id) ? $this->province_id : null;
             $data->education_year_id = !empty($this->education_year_id) ? $this->education_year_id : null;
             $data->subject_id = !empty($this->subject_id) ? $this->subject_id : null;
             $data->work_place_id = !empty($this->work_place_id) ? $this->work_place_id : null;
             $data->education_system_id = !empty($this->education_system_id) ? $this->education_system_id : null;
-            $data->nationality = $this->nationality;
-            $data->religion = $this->religion;
+            // $data->nationality = $this->nationality;
+            // $data->religion = $this->religion;
             $data->system = $this->system;
             $data->scholarship = $this->scholarship;
             $data->final_report = $this->final_report;
@@ -204,20 +215,22 @@ class OldStudentContent extends Component
             ]);
             DB::commit();
             return redirect(route('backend.OldStudent'));
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            $this->dispatchBrowserEvent('swal', [
-                'title' => 'ມີບາງຢ່າງຜິດພາດ!',
-                'icon' => 'warning',
-                // 'iconColor'=>'warning',
-            ]);
-        }
+        // } 
+        // catch (\Exception $ex) {
+        //     DB::rollBack();
+        //     $this->dispatchBrowserEvent('swal', [
+        //         'title' => 'ມີບາງຢ່າງຜິດພາດ!',
+        //         'icon' => 'warning',
+        //         // 'iconColor'=>'warning',
+        //     ]);
+        // }
 
     }
     public function edit($ids)
     {
         $this->ID = $ids;
         $data = User::find($ids);
+        $this->code = $data->code;
         $this->name_lastname = $data->name_lastname;
         $this->name_lastname_en = $data->name_lastname_en;
         $this->phone = $data->phone;
@@ -264,6 +277,7 @@ class OldStudentContent extends Component
             $this->image->storeAs('upload/users' . $filename_image);
             $data->image = 'upload/users' . $filename_image;
         }
+        $data->code = $this->code;//
         $data->name_lastname = $this->name_lastname;
         $data->name_lastname_en = $this->name_lastname_en;
         $data->phone = $this->phone;
@@ -339,7 +353,7 @@ class OldStudentContent extends Component
         $this->email = $data->email;
         $this->gender = $data->gender;
         $this->status = $data->status;
-        $this->birtday_date = $data->birtday_date;
+        $this->birtdxsay_date = $data->birtday_date;
         $this->roles_data = $data->roles->name ?? '';
         $this->village_data = $data->village->name_la ?? '';
         $this->province_data = $data->province->name_la ?? '';

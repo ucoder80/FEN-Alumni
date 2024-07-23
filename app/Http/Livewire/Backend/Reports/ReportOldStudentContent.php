@@ -9,6 +9,7 @@ use App\Models\District;
 use App\Models\Position;
 use App\Models\Province;
 use App\Models\EducationYear;
+use App\Models\EducationSystem;
 use App\Models\Subject;
 
 class ReportOldStudentContent extends Component
@@ -36,6 +37,7 @@ class ReportOldStudentContent extends Component
     {
         $province = Province::all();
         $subject = Subject::all();
+        $education_system = EducationSystem::all();
         $education_year = EducationYear::all();
         $data = User::where('roles_id',4);
         $position = Position::get();
@@ -44,6 +46,9 @@ class ReportOldStudentContent extends Component
         }
         if ($this->subject_id) {
             $data->where('subject_id', $this->subject_id);
+        }
+        if ($this->education_system_id) {
+            $data->where('education_system_id', $this->education_system_id);
         }
         if ($this->province_id) {
             $this->districts = District::where('province_id', $this->province_id)->get();
@@ -70,10 +75,10 @@ class ReportOldStudentContent extends Component
         }else{
             $data = [];
         }
-        return view('livewire.backend.reports.report-old-student-content', compact('data','subject','position','education_year','province'))->layout('layouts.backend.style');
+        return view('livewire.backend.reports.report-old-student-content', compact('data','subject','education_system','position','education_year','province'))->layout('layouts.backend.style');
     }
     public $village_data, $province_data, $district_data, $roles_data;
-    public $education_start_year_data, $education_end_year_data, $subject_data, $work_place_data;
+    public $education_start_year_data, $education_end_year_data, $subject_data,$education_system_data, $work_place_data;
     public function show_detail($ids)
     {
         $this->ID = $ids;
@@ -93,6 +98,7 @@ class ReportOldStudentContent extends Component
         $this->education_start_year_data = $data->education_year->start_year ?? '';
         $this->education_end_year_data = $data->education_year->end_year ?? '';
         $this->subject_data = $data->subject->name_la ?? '';
+        $this->education_system_data = $data->education_system->name ?? '';
         $this->work_place_data = $data->work_place->name ?? '';
         $this->newimage = $data->image;
         $this->nationality = $data->nationality;

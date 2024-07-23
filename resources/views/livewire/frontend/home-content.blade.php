@@ -85,54 +85,74 @@
                 </div>
             </div>
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="my-4" style="font-family:'Noto Sans Lao';color: #193b7c ">
+                <h2 class="my-4" style="font-family:'Noto Sans Lao';color: #193b7c ">
                     {{-- @if(!empty($about))
                        <i class="fas fa-users"></i> {{ $about->name_la }}
                     @endif --}}
                     ສິດເກົ່າຂອງຄະນະວິສະວະກຳສາດ
-                </h1>
+                </h2>
+                <div class="mb-4">
+                    <h3 style="font-family:'Noto Sans Lao';color: #193b7c;">
+                        ທັງຫມົດ:  <span class="text-danger">{{ $this->old_student }}</span> ຄົນ
+                        {{-- ສິດເກົ່າທັງຫມົດ:  {{ $this->old_student }} ຄົນ, ລຸ້ນທີທັງຫມົດ:{{ $this->subject_id }} ຄົນ, ລະດັບການສຶກສາທັງຫມົດ: ຄົນ, ສາຂາວິຊາທັງຫມົດ: ຄົນ, --}}
+                    </h3>
+                </div>
             </div>
             <div class="row g-4">
                 @foreach ($data as $item)
-                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="service-item p-4">
                             <div class="overflow-hidden mb-4">
                                 @if(!empty($item->image))
-                                <img style="width: 100%; height:350px" class="img-fluid" src="{{ asset($item->image) }}"
+                                <img style="width: 100%; height:250px" class="img-fluid" src="{{ asset($item->image) }}"
                                 alt="">
                                 @else
-                                <img style="width: 100%; height:350px" class="img-fluid" src="https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"
+                                <img style="width: 100%; height:250px" class="img-fluid" src="https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"
                                 alt="">
                                 @endif
                             </div>
-                            <h4 class="mb-3 fs-5 " style="font-family:'Noto Sans Lao';color: #193b7c "><i class="fas fa-graduation-cap"></i> {{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>
-                                <p><b>ຈົບສົກສຶກສາ:</b>
+                            <h4 class="mb-3 fs-6 " style="font-family:'Noto Sans Lao';color: #193b7c; "><i class="fas fa-graduation-cap"></i> {{ $item->name_lastname }} <br> {{ $item->name_lastname_en }}</h4>
+                                <p style="font-size: 0.9rem;line-height: 0.4;"><b>ຈົບສົກສຶກສາ:</b>
                                     @if (!empty($item->education_year))
                                         {{ $item->education_year->start_year }} -
                                         {{ $item->education_year->end_year }}
                                     @endif
+                                    {{-- <b>ລຸ້ນທີ່:</b>
+                                    @if (!empty($item->education_year))
+                                        {{ $item->education_year->genderation }}
+                                    @endif --}}
                                 </p>
-                                <p><b>ລຸ້ນທີ່:</b>
+                                {{-- <p><b>ລຸ້ນທີ່:</b>
                                     @if (!empty($item->education_year))
                                         {{ $item->education_year->genderation }}
                                     @endif
-                                </p>
+                                </p> --}}
+                                <p style="font-size: 0.9rem;line-height: 0.4;"><b>ເບີໂທ:</b>
+                                    @if (!empty($item->phone))
+                                        {{ $item->phone }}
+                                    @endif
+                                </p style="">
+                                {{-- <p style="font-size: 0.9rem;line-height: 0.4;"><b>ອິເມວ:</b>
+                                    @if (!empty($item->email))
+                                        {{ $item->email }}
+                                    @endif
+                                </p> --}}
                                 {{-- <p><b>ພາກວິຊາ: </b>
                                     @if (!empty($item->subject->department))
                                         {{ $item->subject->department->name_la }}
                                     @endif
                                 </p> --}}
-                                <p><b>ສາຂາ:</b>
+                                <p style="font-size: 0.9rem;line-height: 0.4;"><b>ສາຂາ:</b>
                                     @if (!empty($item->subject))
                                         {{ $item->subject->name_la }}
                                     @endif
                                 </p>
-                                <p><b>ລະດັບການສຶກສາ: </b>
+                                <p style="font-size: 0.9rem;line-height: 0.4;"><b>ລະດັບການສຶກສາ: </b>
                                     @if (!empty($item->education_system))
                                         {{ $item->education_system->name }}
                                     @endif
                                 </p>
-                                <p><b>ບົດໂຄງການຈົບຊັ້ນ: </b>
+                                <p style="font-size: 0.9rem;"><b>ບົດໂຄງການຈົບຊັ້ນ: </b>
                                     @if (!empty($item->final_report))
                                         {{ $item->final_report }}
                                     @endif
@@ -157,7 +177,7 @@
                                         {{ $item->performance }}
                                     @endif
                                 </p> --}}
-                                <p><b>ບ່ອນເຮັດວຽກ: </b>
+                                <p style="font-size: 0.9rem;"><b>ບ່ອນເຮັດວຽກ: </b>
                                     @if (!empty($item->work_place))
                                         {{ $item->work_place->name }}
                                     @endif
@@ -170,7 +190,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="float-right">
+            <div class="float-right mt-4">
                 {{ $data->links() }}
             </div>
         </div>

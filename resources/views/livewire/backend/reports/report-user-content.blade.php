@@ -66,7 +66,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        {{-- <div class="col-md-4">
                                             <div wire:ignore class="form-group">
                                                 <select wire:model="status" id="status"
                                                     class="form-control @error('status') is-invalid @enderror">
@@ -81,7 +81,7 @@
                                                     <option value="6">ຮັກເຂົາຂ້າງດຽວ</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         {{-- @foreach ($rolepermissions as $items)
                                 @if ($items->permissionname->name == 'action_report_sale') --}}
                                         <div class="col-md-3">
@@ -184,7 +184,7 @@
                                                                     {{-- <th>ທີ່ຢູ່</th> --}}
                                                                     {{-- <th>ເຊື້ອຊາດ</th>
                                                             <th>ສາສະຫນາ</th> --}}
-                                                                    <th>ສະຖານະ</th>
+                                                                    {{-- <th>ສະຖານະ</th> --}}
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -227,7 +227,7 @@
                                                                 <td>
                                                                     {{ $item->religion }}
                                                                 </td> --}}
-                                                                        <td>
+                                                                        {{-- <td>
                                                                             @if ($item->status == 1)
                                                                                 <span class="text-secondary">ໂສດ</span>
                                                                             @elseif($item->status == 2)
@@ -246,7 +246,7 @@
                                                                                 <span
                                                                                     class="text-secondary">ຮັກເຂົາຂ້າງດຽວ</span>
                                                                             @endif
-                                                                        </td>
+                                                                        </td> --}}
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>

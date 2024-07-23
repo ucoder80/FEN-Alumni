@@ -12,9 +12,9 @@
                                     <label for="search">ຄົ້ນຫາຂໍ້ມູນ...</label>
                                 </div>
                                 {{-- <button type="submit" class="btn btn-primary ms-2" style="border-radius: 50%; height: 55px; width: 55px;"> --}}
-                                <button type="submit" class="btn btn-primary ms-2" style="border-radius: 50%; height: 55px; width: 55px; " >
+                                {{-- <button type="submit" class="btn btn-primary ms-2" style="border-radius: 50%; height: 55px; width: 55px; " >
                                     <i class="fas fa-search"></i>
-                                </button>
+                                </button> --}}
                             </div>
                         </form>
                     </div>

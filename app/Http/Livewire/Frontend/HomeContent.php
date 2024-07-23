@@ -10,14 +10,20 @@ use Livewire\WithPagination;
 use App\Models\EducationYear;
 use App\Models\Subject;
 use App\Models\WorkPlace;
+// use App\Models\OldStudent;
 
 class HomeContent extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $education_year_id,$search,$subject_id,$work_place_id,$education_system_id;
+    public $education_year_id,$search,$subject_id,$work_place_id,$education_system_id,$old_student_id;
     public function render()
     {
+        // $this->count_user = User::select('id')->count();
+        $this->old_student = User::select('id')->where('roles_id',4)->count();
+        // $this->work_place = WorkPlace::select('id')->count();
+        // $this->department = Department::select('id')->count();
+
         $slide = Slide::get();
         $education_year = EducationYear::all();
         $subject = Subject::all();
@@ -44,4 +50,12 @@ class HomeContent extends Component
         $data = $data->paginate(20);
         return view('livewire.frontend.home-content', compact('data', 'slide', 'education_year','subject','work_place','education_system'))->layout('layouts.frontend.style');
     }
+    // public function countstudent()
+    // {
+    //     $this->count_user = User::select('id')->count();
+    //     $this->old_student = User::select('id')->where('roles_id',4)->count();
+    //     $this->work_place = WorkPlace::select('id')->count();
+    //     $this->department = Department::select('id')->count();
+    //     return view('livewire.backend.dashboard-content',)->layout('layouts.backend.style');
+    // }
 }

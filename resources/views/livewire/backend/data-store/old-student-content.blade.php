@@ -24,14 +24,14 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!--customers -->
+                
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                          <div class="row pb-1">
-                            <div class="col-md-3">
-                                <a wire:click="create" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
-                                        class="fa fa-plus-circle"></i> ເພີ່ມໃຫມ່</a>
+                          <div class="row pb-3">
+                            <div class="col-md-3" >
+                                <a wire:click="create" class="btn " href="javascript:void(0)" style="background-color: #193b7c; color:white"><i
+                                        class="fa fa-plus-circle" ></i> ເພີ່ມໃຫມ່</a>
                             </div>
                           </div>
                             <div class="row">
@@ -40,7 +40,7 @@
                                         <select wire:model="education_year_id" id="education_year_id"
                                             class="form-control @error('education_year_id') is-invalid @enderror">
                                             <option value="">
-                                                ເລືອກ-ປີສົກຮຽນ
+                                                ເລືອກ-ປີສົກສືກສາ
                                             </option>
                                             @foreach ($education_year as $item)
                                                 <option value="{{ $item->id }}">
@@ -61,6 +61,36 @@
                                             @foreach ($Subjects as $item)
                                                 <option value="{{ $item->id }}">
                                                     {{ $item->name_la }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                {{-- <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select wire:model="xeducation_system_id" id="education_system_id"
+                                            class="form-control @error('education_system_id') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ສາຂາວິຊາ
+                                            </option>
+                                            @foreach ($Education_system as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->name_la }}
+                                                </option>
+                                            @endforeach
+                                        </select>\
+                                    </div>
+                                </div> --}}
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select wire:model="education_system_id" id="education_system_id"
+                                            class="form-control @error('education_system_id') is-invalid @enderror">
+                                            <option value="">
+                                                ເລືອກ-ລະດັບການສືກສາ
+                                            </option>
+                                            @foreach ($EducationSystem as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -96,7 +126,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                             <div class="col-md-3">
                                     <div class="form-group">
                                         <select wire:model="village_id" id="village_id"
                                             class="form-control @error('village_id') is-invalid @enderror">
@@ -124,13 +154,10 @@
                                                 <option value="2">
                                                     ຊາຍ
                                                 </option>
-                                                <option value="3">
-                                                    ອື່ນໆ
-                                                </option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                {{-- <div class="col-md-3">
                                     <div wire:ignore class="form-group">
                                         <select wire:model="status" id="status"
                                             class="form-control @error('status') is-invalid @enderror">
@@ -145,7 +172,7 @@
                                             <option value="6">ຮັກເຂົາຂ້າງດຽວ</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- <div class="col-md-3">
                                     <div wire:ignore class="form-group">
                                         <select wire:model="roles_id" id="roles_id"
@@ -192,16 +219,16 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <h2 class="lead"><b></b></h2>
-                                                        <p style="line-height: 20%;" class="text-muted text-sm">
+                                                        <p style="line-height: 40%;" class="text-muted text-sm">
                                                             <b>ລະຫັດ: </b>
                                                             {{ $item->code }}
                                                         </p>
-                                                        <p style="line-height: 20%;" class="text-muted text-sm">
+                                                        <p style="line-height: 40%;" class="text-muted text-sm">
                                                             <b>ເບີໂທ:</b>
                                                             {{ $item->phone }}
                                                         </p>
-                                                        <p style="line-height: 20%;" class="text-muted">
-                                                            <b>ຈົບສົກຮຽນ:</b>
+                                                        <p style="line-height: 40%;" class="text-muted">
+                                                            <b>ປິຈົບສົກສືກສາ:</b>
                                                             @if (!empty($item->education_year))
                                                                 {{ $item->education_year->start_year }} -
                                                                 {{ $item->education_year->end_year }} 
@@ -211,12 +238,12 @@
                                                 </div>
                                                 <div class="btn-group col-md-12">
                                                     <button wire:click='show_detail({{ $item->id }})'
-                                                        class="btn btn-secondary btn-sm float-right">
+                                                        class="btn btn-primary btn-sm float-right"style="background-color: #193b7c ">
                                                         <i class="fas fa-address-book"></i>
                                                         ປະຫວັດຫຍໍ້
                                                     </button>
                                                     <button wire:click="edit({{ $item->id }})" type="button"
-                                                        class="btn btn-warning btn-sm"><i
+                                                        class="btn btn-success btn-sm"><i
                                                             class="fas fa-pencil-alt"></i></button>
                                                     <button wire:click="showDestroy({{ $item->id }})"
                                                         type="button" class="btn btn-danger btn-sm"><i
@@ -374,7 +401,32 @@
                             </div>
                         </div>
                     </div>
+                    {{-- <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input wire:model='code' type="text"
+                                    class="form-control @error('code') is-invalid @enderror" id="name"
+                                    placeholder="ປ້ອນຂໍ້ມູນ">
+                                <label for="name">ລະຫັດນັກສຶກສາ</label>
+                                @error('code')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div> --}}
                     <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">
+                                    ລະຫັດນັກສຶກສາ</label>
+                                <input type="text"
+                                    class="form-control @error('code') is-invalid @enderror"
+                                    wire:model="code" placeholder="ປ້ອນຂໍ້ມູນ">
+                                @error('code')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
                         <input type="hidden" wire:model="ID">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -400,7 +452,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="form-group">
                                 <label for=""> ເບີໂທ
                                 </label>
@@ -411,7 +463,7 @@
                                     <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for=""> ວດປ ເກີດ
@@ -426,7 +478,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for=""><span class="text-danger"></span>
-                                    ແຂວງ</label>
+                                    ແຂວງເກີດ</label>
                                 <select class="form-control" wire:model.live="province_id" id="province_id">
                                     <option value="">ເລືອກຂໍ້ມູນ</option>
                                     @foreach ($provinces as $item)
@@ -449,7 +501,7 @@
                         <div class="col-md-4">
                             <div wire:ignore.self class="form-group">
                                 <label for=""><span class="text-danger"></span>
-                                    ເມືອງ</label>
+                                    ເມືອງເກີດ</label>
                                 <select class="form-control" wire:model.live="district_id" id="district_id">
                                     <option value="">ເລືອກຂໍ້ມູນ</option>
                                     @foreach ($districts as $item)
@@ -472,7 +524,7 @@
                         <div class="col-md-4">
                             <div wire:ignore.self class="form-group">
                                 <label for=""><span class="text-danger"></span>
-                                    ບ້ານ</label>
+                                    ບ້ານເກີດ</label>
                                 <select class="form-control" wire:model.live="village_id" id="village_id">
                                     <option value="">ເລືອກຂໍ້ມູນ</option>
                                     @foreach ($villages as $item)
@@ -494,15 +546,27 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label for=""> ເບີໂທ
+                                </label>
+                                <input type="number" min="1"
+                                    class="form-control @error('phone') is-invalid @enderror" wire:model="phone"
+                                    placeholder="ປ້ອນຂໍ້ມູນ" onkeypress="validateNumber(event)">
+                                @error('phone')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label for="">ອີເມວ</label>
-                                <input type="email" class="form-control @error('phone') is-invalid @enderror"
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     wire:model="email" placeholder="ປ້ອນຂໍ້ມູນ">
                                 @error('email')
                                     <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="form-group">
                                 <label for=""></span>
                                     ສະຖານະ</label>
@@ -520,8 +584,8 @@
                                     <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="col-md-4">
+                        </div> --}}
+                        <div class="col-md-8">
                             <div class="form-group">
                                 <label for="">ສິດນຳໃຊ້</label>
                                 <select type="text" class="form-control @error('roles_id') is-invalid @enderror"
@@ -538,7 +602,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">
                                     ສັນຊາດ</label>
@@ -559,14 +623,14 @@
                                     <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="col-md-6">
+                        </div> --}}
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="">ສົກຮຽນປີ</label>
+                                <label for="">ສົກສືກສາປີ</label>
                                 <select type="text"
                                     class="form-control @error('education_year_id') is-invalid @enderror"
                                     wire:model.live="education_year_id" id="education_year_id">
-                                    <option value="">ເລືອກສົກຮຽນປີ</option>
+                                    <option value="">ເລືອກສົກສືກສາປີ</option>
                                     @foreach ($EducationYears as $item)
                                         <option value="{{ $item->id }}">
                                             {{ $item->start_year }} - 
@@ -579,9 +643,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label for="">ສາຂາວີິຊາ</label>
+                                <label for="">ສາຂາວີຊາ</label>
                                 <select type="text" class="form-control @error('subject_id') is-invalid @enderror"
                                     wire:model.live="subject_id" id="subject_id">
                                     <option value="">ເລືອກສາຂາວີຊາ</option>
@@ -596,25 +660,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">ສະຖານທີ່ເຮັດວຽກ</label>
-                                <select type="text"
-                                    class="form-control @error('work_place_id') is-invalid @enderror"
-                                    wire:model.live="work_place_id" id="work_place_id">
-                                    <option value="">ເລືອກສະຖານທີ່ເຮັດວຽກ</option>
-                                    @foreach ($WorkPlaces as $item)
-                                        <option value="{{ $item->id }}">
-                                            {{ $item->name }} 
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('work_place_id')
-                                    <span style="color: red" class="error">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">ລະດັບການສຶກສາ</label>
                                 <select type="text"
@@ -632,6 +678,23 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="">ລະບົບ</label>
+                                <select type="text"
+                                    class="form-control @error('system') is-invalid @enderror"
+                                    wire:model.live="sy" id="system"> 
+                                    @foreach ($system as $item)
+                                        <option value="">ເລືອກ-ລະບົບ</option>
+                                        <option value="1">ນອກແຜນ</option>
+                                        <option value="2">ໃນແຜນ</option>
+                                    @endforeach
+                                </select>
+                                @error('system')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div> --}}
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">
@@ -695,7 +758,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">
-                                    ເກຣດ</label>
+                                    ກຽດນິຍົມ</label>
                                 <input type="text"
                                     class="form-control @error('grade') is-invalid @enderror"
                                     wire:model="grade" placeholder="ປ້ອນຂໍ້ມູນ">
@@ -704,7 +767,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">
                                     ຜົນງານນັກສຶກສາ</label>
@@ -712,6 +775,24 @@
                                     class="form-control @error('performance') is-invalid @enderror"
                                     wire:model="performance" placeholder="ປ້ອນຂໍ້ມູນ">
                                 @error('performance')
+                                    <span style="color: red" class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">ສະຖານທີ່ເຮັດວຽກ</label>
+                                <select type="text"
+                                    class="form-control @error('work_place_id') is-invalid @enderror"
+                                    wire:model.live="work_place_id" id="work_place_id">
+                                    <option value="">ເລືອກສະຖານທີ່ເຮັດວຽກ</option>
+                                    @foreach ($WorkPlaces as $item)
+                                        <option value="{{ $item->id }}">
+                                            {{ $item->name }} 
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('work_place_id')
                                     <span style="color: red" class="error">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -739,6 +820,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-secondary fas fa-times-circle" data-dismiss="modal">
@@ -826,7 +908,7 @@
                                 <th>{{ $this->birtday_date }}</th>
                             </tr>
                             <tr>
-                                <th>ທີ່ຢູ່ປະຈຸບັນ: </th>
+                                <th>ທີ່ເກີດ: </th>
                                 <th>
                                     @if (!empty($this->village_data))
                                         {{ $this->village_data }}
@@ -843,7 +925,7 @@
                                 <th>ອີເມວ: </th>
                                 <th>{{ $this->email }}</th>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th>ສະຖານະ: </th>
                                 <th>
                                     @if ($this->status == 2)
@@ -858,21 +940,21 @@
                                         <span>ຮັກເຂົາຂ້າງດຽວ</span>
                                     @endif
                                 </th>
-                            </tr>
-                            <tr>
+                            </tr> --}}
+                            {{-- <tr>
                                 <th>ສິດເຂົ້າສູ່ລະບົບ: </th>
                                 <th> {{ $this->roles_data }}</th>
-                            </tr>
-                            <tr>
+                            </tr> --}}
+                            {{-- <tr>
                                 <th>ສັນຊາດ: </th>
                                 <th>{{ $this->nationality }}</th>
                             </tr>
                             <tr>
                                 <th>ສາສະຫນາ: </th>
                                 <th>{{ $this->religion }}</th>
-                            </tr>
+                            </tr> --}}
                             <tr>
-                                <th>ປີສົກຮຽນຈົບ: </th>
+                                <th>ປິຈົບສົກສືກສາ: </th>
                                 <th>
                                     @if (!empty($this->education_start_year_data))
                                         {{ $this->education_start_year_data }} -
@@ -929,7 +1011,7 @@
                                 </th>
                             </tr>
                             <tr>
-                                <th>ເກຣດ: </th>
+                                <th>ກຽດນິຍົມ: </th>
                                 <th>
                                     @if (!empty($this->grade))
                                         {{ $this->grade }} 

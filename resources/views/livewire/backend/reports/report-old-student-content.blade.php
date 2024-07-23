@@ -69,6 +69,21 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3">
+                                            <div class="form-group">
+                                                <select wire:model="education_system_id" id="education_system_id"
+                                                    class="form-control @error('education_system_id') is-invalid @enderror">
+                                                    <option value="">
+                                                        ເລືອກ-ລະດັບການສືກສາ
+                                                    </option>
+                                                    @foreach ($education_system as $item)
+                                                        <option value="{{ $item->id }}">
+                                                            {{ $item->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
                                             <div wire:ignore class="form-group">
                                                 <select wire:model="province_id" id="province_id"
                                                     class="form-control @error('province_id') is-invalid @enderror">
@@ -126,13 +141,21 @@
                                                         <option value="2">
                                                             ຊາຍ
                                                         </option>
-                                                        <option value="3">
+                                                        {{-- <option value="3">
                                                             ອື່ນໆ
-                                                        </option>
+                                                        </option> --}}
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
+                                            <div class="form-group">
+                                                {{-- <button wire:click="sub()" class="btn btn-primary"><i
+                                                class="fas fa-file-pdf"></i> ສະເເດງ</button> --}}
+                                                <button class="btn btn-info" id="print"><i class="fas fa-print"></i>
+                                                    ປິ່ຣນ</button>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-md-3">
                                             <div wire:ignore class="form-group">
                                                 <select wire:model="status" id="status"
                                                     class="form-control @error('status') is-invalid @enderror">
@@ -147,18 +170,16 @@
                                                     <option value="6">ຮັກເຂົາຂ້າງດຽວ</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div><!-- end div-row -->
                                                                             {{-- @foreach ($rolepermissions as $items)
                                 @if ($items->permissionname->name == 'action_report_sale') --}}
-                                <div class="col-md-3">
+                                {{-- <div class="col-md-3">
                                     <div class="form-group">
-                                        {{-- <button wire:click="sub()" class="btn btn-primary"><i
-                                        class="fas fa-file-pdf"></i> ສະເເດງ</button> --}}
                                         <button class="btn btn-info" id="print"><i class="fas fa-print"></i>
                                             ປິ່ຣນ</button>
                                     </div>
-                                </div><!-- end div-col -->
+                                </div><!-- end div-col --> --}}
                                 {{-- @endif
                         @endforeach --}}
                                     <hr>
@@ -191,7 +212,7 @@
                                                     <div class="col-md-6 text-right">
                                                         {{-- <h6>ເລກທີ: {{ $this->billNumber }}</h6> --}}
                                                         <h6>ວັນທີ່ພິມ: {{ date('d/m/Y') }}</h6>
-                                                        <h6>ເວລາ: {{ date('H:i:s') }}</h6>
+                                                        <h6>ເວລາ: {{ date("H:i:s") }}</h6>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -248,7 +269,7 @@
                                                                     <th>ຮູບ</th>
                                                                     <th>ຊື່ ນາມສະກຸນ</th>
                                                                     <th>ເພດ</th>
-                                                                    <th>ສະຖານະ</th>
+                                                                    {{-- <th>ສະຖານະ</th> --}}
                                                                     <th>ບ່ອນເຮັດວຽກ</th>
                                                                     {{-- <th>ຕຳແຫນ່ງ</th> --}}
                                                                 </tr>
@@ -266,7 +287,7 @@
                                                                             @if (!empty($item->education_year))
                                                                                 {{ $item->education_year->start_year }}
                                                                                 -
-                                                                                {{ $item->education_year->start_year }}
+                                                                                {{ $item->education_year->end_year }}
                                                                             @endif
                                                                         </td>
                                                                         <td class="text-center">
@@ -306,7 +327,7 @@
                                                                                 @endif
                                                                             @endif
                                                                         </td>
-                                                                        <td>
+                                                                        {{-- <td>
                                                                             @if ($item->status == 1)
                                                                                 <span class="text-secondary">ໂສດ</span>
                                                                             @elseif($item->status == 2)
@@ -320,7 +341,7 @@
                                                                             @elseif($item->status == 6)
                                                                                 <span class="text-secondary">ຮັກເຂົາຂ້າງດຽວ</span>
                                                                             @endif
-                                                                        </td>
+                                                                        </td> --}}
                                                                         <td>
                                                                             @if (!empty($item->work_place))
                                                                                 {{ $item->work_place->name }}
@@ -444,7 +465,7 @@
                                 <th>ອີເມວ: </th>
                                 <th>{{ $this->email }}</th>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th>ສະຖານະ: </th>
                                 <th>
                                     @if ($this->status == 2)
@@ -459,21 +480,21 @@
                                         <span>ຮັກເຂົາຂ້າງດຽວ</span>
                                     @endif
                                 </th>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <th>ສິດເຂົ້າສູ່ລະບົບ: </th>
                                 <th> {{ $this->roles_data }}</th>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th>ສັນຊາດ: </th>
                                 <th>{{ $this->nationality }}</th>
                             </tr>
                             <tr>
                                 <th>ສາສະຫນາ: </th>
                                 <th>{{ $this->religion }}</th>
-                            </tr>
+                            </tr> --}}
                             <tr>
-                                <th>ປີສົກຮຽນຈົບ: </th>
+                                <th>ປິຈົບສົກສືກສາ: </th>
                                 <th>
                                     @if (!empty($this->education_start_year_data))
                                         {{ $this->education_start_year_data }} -
@@ -486,6 +507,62 @@
                                 <th>
                                     @if (!empty($this->subject_data))
                                         {{ $this->subject_data }}
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ລະບົບ: </th>
+                                <th>
+                                    @if (!empty($this->system))
+                                        {{ $this->system }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ທຶນການສຶກສາ: </th>
+                                <th>
+                                    @if (!empty($this->scholarship))
+                                        {{ $this->scholarship }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ໂຄງການຈົບຊັ້ນ: </th>
+                                <th>
+                                    @if (!empty($this->final_report))
+                                        {{ $this->final_report }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ອາຈານຊ່ວຍນຳພາ: </th>
+                                <th>
+                                    @if (!empty($this->advisor))
+                                        {{ $this->advisor }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ອາຈານຜູ້ຊ່ວຍນຳພາ: </th>
+                                <th>
+                                    @if (!empty($this->co_advisor))
+                                        {{ $this->co_advisor }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ກຽດນິຍົມ: </th>
+                                <th>
+                                    @if (!empty($this->grade))
+                                        {{ $this->grade }} 
+                                    @endif
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ຜົນງານນັກສຶກສາ: </th>
+                                <th>
+                                    @if (!empty($this->performance))
+                                        {{ $this->performance }} 
                                     @endif
                                 </th>
                             </tr>
