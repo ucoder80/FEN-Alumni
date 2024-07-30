@@ -100,7 +100,7 @@
             </div>
             <div class="row g-4">
                 @foreach ($data as $item)
-                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="service-item p-4">
                             <div class="overflow-hidden mb-4">
                                 @if(!empty($item->image))
