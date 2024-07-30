@@ -17,9 +17,7 @@
                 </div>
                 <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
                    {{-- <br>
-                   <br>
-                   <br>
-                   <br>
+                   
                    <br> --}}
                     <h1 class="mb-5" style="font-family:'Noto Sans Lao';color: #193b7c ">
                         @if(!empty($about))
